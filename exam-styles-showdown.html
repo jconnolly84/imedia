@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Exam Styles Showdown – iMedia R093</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="exam-styles-showdown-style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header card">
+      <div class="header-main">
+        <div class="logo-wrap">
+          <img src="imedia_genius_logo_transparent.png" alt="iMedia Genius Logo" class="logo-img" />
+        </div>
+        <div class="title-block">
+          <h1>Exam Styles <span>Showdown</span></h1>
+          <p class="subtitle">
+            Train your exam brain: spot the question style, build a describe answer, then plan a high-mark extended response.
+          </p>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <div class="field">
+          <label for="topicSelect">Topic:</label>
+          <select id="topicSelect">
+            <option value="preproduction">Pre-production &amp; planning</option>
+            <option value="copyright">Copyright &amp; legislation</option>
+          </select>
+        </div>
+        <button id="startGameBtn" class="btn primary" type="button">Start Training</button>
+      </div>
+    </header>
+
+    <main class="main-layout card">
+      <section class="question-panel">
+        <div class="hud">
+          <div id="stageIndicator">Stage 1 of 3</div>
+          <div>Score: <span id="scoreDisplay">0</span></div>
+        </div>
+
+        <h2 id="questionFocus">Press <strong>Start Training</strong> to begin.</h2>
+        <p id="questionText" class="question-text">
+          You will answer three linked questions: a 1-mark identify question, a 3-mark describe question and a
+          longer extended response.
+        </p>
+        <p id="subPrompt" class="sub-prompt"></p>
+
+        <!-- Stage 1: identify style -->
+        <div id="identifyRound" class="round-panel hidden">
+          <p class="round-intro">
+            Look at the command word and marks. What <strong>type of question</strong> is this?
+          </p>
+          <div class="button-row">
+            <button class="style-btn btn" data-style="identify">Identify / State</button>
+            <button class="style-btn btn" data-style="describe">Describe</button>
+            <button class="style-btn btn" data-style="explain">Explain / Discuss</button>
+          </div>
+        </div>
+
+        <!-- Stage 2: describe answer -->
+        <div id="describeRound" class="round-panel hidden">
+          <p class="round-intro">
+            Write 2–3 short points. Aim for <strong>one clear point per mark</strong>.
+          </p>
+          <textarea id="describeAnswer" rows="5"
+            placeholder="E.g. 'Include images that match the brief', 'Use colours that suit the target audience'..."></textarea>
+          <button id="submitDescribeBtn" class="btn primary" type="button">Check my answer</button>
+          <p class="marking-tip">
+            The game looks for key ideas and useful phrases – not just how much you write.
+          </p>
+        </div>
+
+        <!-- Stage 3: extended answer planning -->
+        <div id="extendRound" class="round-panel hidden">
+          <p class="round-intro">
+            Choose the <strong>best points</strong> to build a high-mark answer. Avoid weak or off-topic ideas.
+          </p>
+          <div id="extendOptions" class="options-column"></div>
+          <button id="submitExtendBtn" class="btn primary" type="button">Check my choices</button>
+        </div>
+
+        <div id="feedback" class="feedback" aria-live="polite"></div>
+        <div id="markingBreakdown" class="mark-scheme hidden"></div>
+
+        <div class="controls-row">
+          <button id="nextStageBtn" class="btn secondary" type="button" disabled>Next stage</button>
+        </div>
+      </section>
+
+      <aside class="help-panel">
+        <h2>Exam Style Cheat Sheet</h2>
+        <ul class="ref-list">
+          <li><strong>Identify</strong> – name a single fact (usually 1 mark).</li>
+          <li><strong>Describe</strong> – give 2–3 clear points with some detail.</li>
+          <li><strong>Explain</strong> – point <em>and</em> reason / impact (use “because”, “so that”).</li>
+          <li><strong>Extended</strong> – several linked points, often comparing ideas and linking back to the brief.</li>
+        </ul>
+        <p class="hint">
+          Tip: before you write, underline the <strong>command word</strong> and the number of
+          <strong>marks</strong>. Plan one strong point for each mark.
+        </p>
+        <div class="hint ai-hint">
+          Optional: your teacher can connect this game to an AI marker to give extra personalised feedback.
+        </div>
+      </aside>
+    </main>
+
+    <section id="summaryCard" class="card footer-card hidden">
+      <p class="hint final-title"><strong>Exam Style Summary</strong></p>
+      <p id="finalScore" class="final-score"></p>
+      <p id="examReadiness" class="readiness-text"></p>
+      <ul class="ref-list small">
+        <li>You practised spotting command words and question styles.</li>
+        <li>You built short <strong>describe</strong> answers using one point per mark.</li>
+        <li>You selected strong points for a <strong>high-mark extended response</strong>.</li>
+      </ul>
+      <button id="playAgainBtn" class="btn primary" type="button">Play again with a new question set</button>
+    </section>
+  </div>
+
+  <script src="exam-styles-showdown-game.js"></script>
+</body>
+</html>

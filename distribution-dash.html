@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Distribution Dash – iMedia R093</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="distribution-dash-style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header card">
+      <div class="header-main">
+        <div class="logo-wrap">
+          <img src="imedia_genius_logo_transparent.png" alt="iMedia Genius Logo" class="logo-img" />
+        </div>
+        <div class="title-block">
+          <h1>Distribution <span>Dash</span></h1>
+          <p class="subtitle">
+            Choose the best way to distribute and promote a media product so it reaches the right audience – just like in R093 exam questions.
+          </p>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <div class="field">
+          <label for="modeSelect">Focus:</label>
+          <select id="modeSelect">
+            <option value="mixed">Mixed questions</option>
+            <option value="platform">Platforms &amp; formats</option>
+            <option value="promotion">Promotion &amp; social media</option>
+            <option value="scheduling">Scheduling &amp; targeting</option>
+          </select>
+        </div>
+        <button id="newGameBtn" class="btn primary" type="button">Start Dash</button>
+      </div>
+    </header>
+
+    <main class="main-layout card">
+      <section class="question-panel">
+        <div class="hud">
+          <div>Question <span id="questionNumber">1</span> / <span id="questionTotal">1</span></div>
+          <div>Score: <span id="scoreDisplay">0</span></div>
+        </div>
+
+        <h2 id="questionHeading">Distribution decision</h2>
+        <p id="scenarioText" class="scenario-text">
+          Press <strong>Start Dash</strong> to begin. Read the scenario, then choose the BEST distribution or promotion option for that product and audience.
+        </p>
+
+        <p id="questionText" class="question-text"></p>
+
+        <div id="answersContainer" class="answers">
+          <!-- buttons injected here -->
+        </div>
+
+        <div class="controls-row">
+          <button id="nextQuestionBtn" class="btn secondary" type="button" disabled>Next Question</button>
+        </div>
+
+        <div id="feedback" class="feedback" aria-live="polite"></div>
+        <div id="explanation" class="explanation hidden"></div>
+      </section>
+
+      <aside class="help-panel">
+        <h2>Distribution Cheat Sheet</h2>
+        <ul class="ref-list">
+          <li><strong>Traditional platforms</strong> – cinema, TV, radio, print, billboards.</li>
+          <li><strong>Digital platforms</strong> – websites, streaming services, apps, social media.</li>
+          <li><strong>On-demand</strong> – watch/listen when the audience chooses (catch-up, streaming).</li>
+          <li><strong>Cross-media promotion</strong> – using more than one platform to advertise the same product.</li>
+          <li><strong>Scheduling</strong> – choosing times/slots that match the target audience (e.g. after school, prime time).</li>
+          <li><strong>Targeting</strong> – matching platform and format to age, interests and access (mobile, console, smart TV, etc.).</li>
+        </ul>
+        <p class="hint">
+          Exam tip: when explaining a choice, mention the <strong>platform</strong>, the <strong>audience</strong> and how it helps the product <strong>reach or engage</strong> that audience.
+        </p>
+      </aside>
+    </main>
+
+    <section class="card footer-card">
+      <p class="hint">
+        Use Distribution Dash to revise how media products are released, promoted and scheduled across different platforms in R093.
+      </p>
+    </section>
+  </div>
+
+  <script src="distribution-dash-game.js"></script>
+</body>
+</html>

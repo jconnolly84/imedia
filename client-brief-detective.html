@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Client Brief Detective – iMedia R093</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="client-brief-detective-style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header card">
+      <div class="header-main">
+        <div class="logo-wrap">
+          <img src="imedia_genius_logo_transparent.png" alt="iMedia Genius Logo" class="logo-img" />
+        </div>
+        <div class="title-block">
+          <h1>Client Brief <span>Detective</span></h1>
+          <p class="subtitle">
+            Read the brief, then answer questions about audience, purpose, constraints and requirements – just like R093.
+          </p>
+        </div>
+      </div>
+      <div class="header-controls">
+        <div class="field">
+          <label for="briefSelect">Scenario:</label>
+          <select id="briefSelect"></select>
+        </div>
+        <button id="newRoundBtn" class="btn primary">New Brief</button>
+      </div>
+    </header>
+
+    <main class="main-layout">
+      <section class="card brief-card">
+        <h2>Client Brief</h2>
+        <p class="brief-hint">Read the brief carefully. All your answers will come from this information.</p>
+        <div id="briefText" class="brief-text"></div>
+        <ul id="briefKeyPoints" class="brief-keypoints"></ul>
+      </section>
+
+      <section class="card question-card">
+        <div class="hud">
+          <div>Question <span id="questionNumber">1</span> / <span id="questionTotal">1</span></div>
+          <div>Score: <span id="scoreDisplay">0</span></div>
+        </div>
+
+        <div id="questionText" class="question-text">
+          Press <strong>New Brief</strong> to start.
+        </div>
+
+        <div id="answersContainer" class="answers"></div>
+
+        <div class="controls-row">
+          <button id="nextQuestionBtn" class="btn secondary" disabled>Next Question</button>
+        </div>
+
+        <div id="feedback" class="feedback" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <section class="card footer-card">
+      <p class="hint">
+        Tip: look for key words in the brief like <strong>audience</strong>, <strong>purpose</strong>,
+        <strong>deadline</strong> and <strong>client ethos</strong>. These are common R093 exam triggers.
+      </p>
+    </section>
+  </div>
+
+  <script src="client-brief-detective-game.js"></script>
+</body>
+</html>

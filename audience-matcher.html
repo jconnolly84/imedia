@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Audience Matcher – iMedia R093</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="audience-matcher-style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header card">
+      <div class="header-main">
+        <div class="logo-wrap">
+          <img src="imedia_genius_logo_transparent.png" alt="iMedia Genius Logo" class="logo-img" />
+        </div>
+        <div class="title-block">
+          <h1>Audience <span>Matcher</span></h1>
+          <p class="subtitle">
+            Match products to the right audience – practise demographics, interests and platforms for R093 exam questions.
+          </p>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <div class="field">
+          <label for="modeSelect">Focus:</label>
+          <select id="modeSelect">
+            <option value="mixed">Mixed questions</option>
+            <option value="demographics">Demographics (age, gender, income)</option>
+            <option value="interests">Interests &amp; lifestyle</option>
+            <option value="platform">Platforms &amp; devices</option>
+          </select>
+        </div>
+        <button id="newGameBtn" class="btn primary" type="button">Start Matching</button>
+      </div>
+    </header>
+
+    <main class="main-layout card">
+      <section class="question-panel">
+        <div class="hud">
+          <div>Question <span id="questionNumber">1</span> / <span id="questionTotal">1</span></div>
+          <div>Score: <span id="scoreDisplay">0</span></div>
+        </div>
+
+        <h2 id="questionHeading">Who is it for?</h2>
+        <p id="scenarioText" class="scenario-text">
+          Press <strong>Start Matching</strong> to begin. Read the product or audience profile, then choose the BEST match.
+        </p>
+
+        <p id="questionText" class="question-text"></p>
+
+        <div id="answersContainer" class="answers">
+          <!-- buttons injected here -->
+        </div>
+
+        <div class="controls-row">
+          <button id="nextQuestionBtn" class="btn secondary" type="button" disabled>Next Question</button>
+        </div>
+
+        <div id="feedback" class="feedback" aria-live="polite"></div>
+        <div id="explanation" class="explanation hidden"></div>
+      </section>
+
+      <aside class="help-panel">
+        <h2>Audience Cheat Sheet</h2>
+        <ul class="ref-list">
+          <li><strong>Demographics</strong> – age, gender, income, job, education.</li>
+          <li><strong>Interests</strong> – hobbies, fandoms, genres they enjoy.</li>
+          <li><strong>Lifestyle</strong> – how they spend their time (gaming, streaming, sport, commuting).</li>
+          <li><strong>Access</strong> – devices and platforms they use (phone, console, TV, social media).</li>
+          <li><strong>Rating &amp; suitability</strong> – PEGI / BBFC ratings, school rules, parents’ expectations.</li>
+        </ul>
+        <p class="hint">
+          Exam tip: when you describe a target audience, include <strong>age range</strong>, <strong>gender (if relevant)</strong>, key <strong>interests</strong> and how / where they would access the product.
+        </p>
+      </aside>
+    </main>
+
+    <section class="card footer-card">
+      <p class="hint">
+        Use Audience Matcher to practise giving focused, specific descriptions of audiences for media products in R093.
+      </p>
+    </section>
+  </div>
+
+  <script src="audience-matcher-game.js"></script>
+</body>
+</html>

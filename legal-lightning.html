@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Legal Lightning Round – iMedia R093</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="legal-lightning-round-style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header card">
+      <div class="header-main">
+        <div class="logo-wrap">
+          <img src="imedia_genius_logo_transparent.png" alt="iMedia Genius Logo" class="logo-img" />
+        </div>
+        <div class="title-block">
+          <h1>Legal <span>Lightning Round</span></h1>
+          <p class="subtitle">
+            Quick-fire questions on copyright, data protection, classification and other legal issues from R093.
+          </p>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <div class="field">
+          <label for="topicSelect">Topic:</label>
+          <select id="topicSelect">
+            <option value="all">All topics</option>
+            <option value="copyright">Copyright &amp; IP</option>
+            <option value="data">Data &amp; Privacy</option>
+            <option value="classification">Classification &amp; Regulation</option>
+          </select>
+        </div>
+        <button id="startBtn" class="btn primary" type="button">Start Round</button>
+      </div>
+    </header>
+
+    <main class="main-layout card">
+      <section class="question-panel">
+        <div class="hud">
+          <div>Question <span id="questionNumber">0</span> / <span id="questionTotal">0</span></div>
+          <div>Score: <span id="scoreDisplay">0</span></div>
+        </div>
+
+        <div class="timer-row">
+          <span id="timerLabel">Timer: –</span>
+          <div class="timer-bar-wrap">
+            <div id="timerBar" class="timer-bar"></div>
+          </div>
+        </div>
+
+        <h2 id="questionHeading">Ready?</h2>
+        <p id="questionText" class="question-text">
+          Choose a topic and press <strong>Start Round</strong>. You have limited time per question – answer before the bar runs out!
+        </p>
+
+        <div id="answersContainer" class="answers">
+          <!-- answer buttons injected here -->
+        </div>
+
+        <div class="controls-row">
+          <button id="nextQuestionBtn" class="btn secondary" type="button" disabled>Skip / Next</button>
+        </div>
+
+        <div id="feedback" class="feedback" aria-live="polite"></div>
+      </section>
+
+      <aside class="help-panel">
+        <h2>Legal &amp; Ethical Cheat Sheet</h2>
+        <ul class="ref-list">
+          <li><strong>Copyright</strong> – protects original work (images, video, audio, code).</li>
+          <li><strong>Trademark</strong> – protects logos, brand names and slogans.</li>
+          <li><strong>Data Protection / GDPR</strong> – controls how personal data is collected, stored and used.</li>
+          <li><strong>Classification</strong> – BBFC (films), PEGI (games) give age ratings.</li>
+          <li><strong>Regulators</strong> – ASA (adverts), Ofcom (broadcast &amp; on-demand).</li>
+          <li><strong>Consent</strong> – permission to use people’s images, voices or locations.</li>
+        </ul>
+        <p class="hint">
+          Tip: many R093 questions ask you to <strong>identify</strong> a law then <strong>explain</strong> how it affects a media product.
+        </p>
+      </aside>
+    </main>
+
+    <section class="card footer-card">
+      <p class="hint">
+        Try to build a streak of correct answers. Use this game for quick starters or end-of-lesson legal recap.
+      </p>
+    </section>
+  </div>
+
+  <script src="legal-lightning-round-game.js"></script>
+</body>
+</html>

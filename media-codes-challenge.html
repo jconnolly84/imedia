@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Media Codes Challenge – iMedia R093</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="media-codes-challenge-style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header card">
+      <div class="header-main">
+        <div class="logo-wrap">
+          <img src="imedia_genius_logo_transparent.png" alt="iMedia Genius Logo" class="logo-img" />
+        </div>
+        <div class="title-block">
+          <h1>Media Codes <span>Challenge</span></h1>
+          <p class="subtitle">
+            Practise identifying technical and symbolic codes – and the effect they have on the audience – for R093 exams.
+          </p>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <div class="field">
+          <label for="modeSelect">Mode:</label>
+          <select id="modeSelect">
+            <option value="mixed">Mixed questions</option>
+            <option value="type">Identify the code type</option>
+            <option value="effect">Explain the effect</option>
+          </select>
+        </div>
+        <button id="newGameBtn" class="btn primary" type="button">New Game</button>
+      </div>
+    </header>
+
+    <main class="main-layout card">
+      <section class="question-panel">
+        <div class="hud">
+          <div>Question <span id="questionNumber">1</span> / <span id="questionTotal">1</span></div>
+          <div>Score: <span id="scoreDisplay">0</span></div>
+        </div>
+
+        <h2 id="questionHeading">Question</h2>
+        <p id="questionText" class="question-text">
+          Press <strong>New Game</strong> to start. Read the description of the media example, then answer the question underneath.
+        </p>
+
+        <div id="answersContainer" class="answers">
+          <!-- answer buttons injected here -->
+        </div>
+
+        <div class="controls-row">
+          <button id="nextQuestionBtn" class="btn secondary" type="button" disabled>Next Question</button>
+        </div>
+
+        <div id="feedback" class="feedback" aria-live="polite"></div>
+      </section>
+
+      <aside class="help-panel">
+        <h2>Media Codes Cheat Sheet</h2>
+        <ul class="ref-list">
+          <li><strong>Technical codes</strong> – camera (shots, angles, movement), editing, sound, lighting.</li>
+          <li><strong>Symbolic codes</strong> – body language, facial expression, costume, props, colour, setting.</li>
+          <li><strong>Written codes</strong> – titles, captions, on-screen text, fonts, slogans.</li>
+          <li><strong>Audio</strong> – diegetic (in the world) vs non-diegetic (added for the audience).</li>
+          <li><strong>Denotation</strong> – what you actually see or hear.</li>
+          <li><strong>Connotation</strong> – what it suggests or makes the audience think/feel.</li>
+        </ul>
+        <p class="hint">
+          Exam tip: high-band answers clearly name the <strong>code</strong> and then explain its <strong>effect on the audience</strong>.
+        </p>
+      </aside>
+    </main>
+
+    <section class="card footer-card">
+      <p class="hint">
+        Use this game to prepare for R093 questions that ask you to describe, explain or justify how media products use codes and conventions.
+      </p>
+    </section>
+  </div>
+
+  <script src="media-codes-challenge-game.js"></script>
+</body>
+</html>

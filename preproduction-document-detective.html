@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pre-production Document Detective – iMedia R093</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="preproduction-document-detective.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header card">
+      <div class="header-main">
+        <div class="logo-wrap">
+          <img src="imedia_genius_logo_transparent.png"
+               alt="iMedia Genius Logo"
+               class="logo-img" />
+        </div>
+        <div class="title-block">
+          <h1>Pre-production <span>Document Detective</span></h1>
+          <p class="subtitle">
+            Can you spot the right document and say what it’s used for?
+          </p>
+        </div>
+      </div>
+      <div class="header-controls">
+        <div class="hud">
+          <div>Document: <span id="docCounter">0 / 0</span></div>
+          <div>Score: <span id="scoreDisplay">0</span></div>
+        </div>
+        <button id="startGameBtn" class="btn primary" type="button">Start Game</button>
+      </div>
+    </header>
+
+    <main class="main-layout card">
+      <section class="left-panel">
+        <h2 id="scenarioTitle">Press <strong>Start Game</strong> to begin.</h2>
+        <p id="scenarioIntro" class="scenario-intro">
+          You will see different pre-production documents. First, identify the document type. Then, choose the best description of what it is used for.
+        </p>
+
+        <div id="imageCard" class="image-card hidden">
+          <img id="docImage" src="" alt="Pre-production document" />
+          <p id="imageCaption" class="image-caption"></p>
+        </div>
+
+        <div id="feedback" class="feedback" aria-live="polite"></div>
+        <div id="breakdown" class="mark-scheme hidden"></div>
+
+        <div class="controls-row">
+          <button id="nextDocBtn" class="btn secondary" type="button" disabled>
+            Next document
+          </button>
+        </div>
+      </section>
+
+      <aside class="right-panel">
+        <section class="question-block" id="q1Block">
+          <h3>Step 1 – Identify the document</h3>
+          <p class="hint">
+            Look at the layout, labels and structure. What kind of pre-production document is this?
+          </p>
+          <div id="docTypeButtons" class="button-grid"></div>
+        </section>
+
+        <section class="question-block" id="q2Block">
+          <h3>Step 2 – What is it used for?</h3>
+          <p class="hint">
+            Pick the description that best matches what this document is mainly used for.
+          </p>
+          <div id="docUseButtons" class="button-grid"></div>
+        </section>
+
+        <section class="cheatsheet">
+          <h3>Pre-production Toolkit</h3>
+          <ul class="ref-list">
+            <li><strong>Client brief</strong> – requirements agreed with the client.</li>
+            <li><strong>Mood board</strong> – style, colours and inspiration.</li>
+            <li><strong>Mind map</strong> – organise and expand ideas.</li>
+            <li><strong>Visualisation diagram</strong> – what a still product will look like.</li>
+            <li><strong>Storyboard</strong> – sequence of shots for video/animation.</li>
+            <li><strong>Script</strong> – dialogue, actions and direction.</li>
+            <li><strong>Wireframe</strong> – layout and navigation of screens.</li>
+            <li><strong>Gantt chart</strong> – tasks and timings across a project.</li>
+            <li><strong>Asset table</strong> – list of assets, sources and permissions.</li>
+          </ul>
+        </section>
+      </aside>
+    </main>
+
+    <section id="summaryCard" class="card footer-card hidden">
+      <p class="hint final-title"><strong>Document Detective Summary</strong></p>
+      <p id="finalScore" class="final-score"></p>
+      <p id="readinessText" class="readiness-text"></p>
+      <button id="playAgainBtn" class="btn primary" type="button">
+        Play again with shuffled documents
+      </button>
+    </section>
+  </div>
+
+  <script src="preproduction-document-detective.js"></script>
+</body>
+</html>

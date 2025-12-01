@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sector Sorter – iMedia R093</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="sector-sorter-style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div class="logo-wrap">
+        <img src="imedia_genius_logo_transparent.png" alt="iMedia Genius Logo" class="logo-img" />
+        <div class="title-block">
+          <h1>Sector <span>Sorter</span></h1>
+          <p class="subtitle">
+            Drag each card into the correct bucket to master R093 media sectors and products.
+          </p>
+        </div>
+      </div>
+
+      <section class="control-bar card">
+        <div class="field">
+          <label for="roundSelect">Round:</label>
+          <select id="roundSelect">
+            <option value="traditionalNew">Traditional vs New Media</option>
+            <option value="sectors">Media Sectors & Products</option>
+            <option value="jobRoles">Job Roles (Creative / Technical / Senior)</option>
+          </select>
+        </div>
+        <button id="newRoundBtn" class="btn primary">New Round</button>
+        <div class="hint">
+          Drag cards into the buckets. When you're done, press <strong>Check Answers</strong>.
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section class="card game-layout">
+        <div class="pool-column">
+          <h2>Unsorted Cards</h2>
+          <p class="hint">Drag each card into the correct bucket.</p>
+          <div id="cardPool" class="card-pool" aria-label="Unsorted cards"></div>
+        </div>
+
+        <div class="buckets-column">
+          <div id="buckets" class="buckets" aria-label="Answer buckets"></div>
+        </div>
+      </section>
+
+      <section class="card footer-bar">
+        <div class="score">
+          Score this round:
+          <span id="scoreDisplay">0 / 0</span>
+        </div>
+        <div class="actions">
+          <button id="checkBtn" class="btn">Check Answers</button>
+          <button id="showAnswersBtn" class="btn secondary">Show Correct Buckets</button>
+        </div>
+        <p id="feedback" class="feedback" aria-live="polite"></p>
+      </section>
+    </main>
+  </div>
+
+  <script src="sector-sorter-game.js"></script>
+</body>
+</html>

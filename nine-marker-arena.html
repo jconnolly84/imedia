@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>9-Marker Arena – Rank the Answer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="nine-marker-arena-style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header card">
+      <div class="header-main">
+        <div class="logo-wrap">
+          <img src="imedia_genius_logo_transparent.png" alt="iMedia Genius Logo" class="logo-img" />
+        </div>
+        <div class="title-block">
+          <h1>9-Marker <span>Arena</span></h1>
+          <p class="subtitle">
+            Rank three sample answers from strongest to weakest to train for extended 9-mark R093 questions.
+          </p>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <div class="field">
+          <label for="modeSelect">Focus:</label>
+          <select id="modeSelect">
+            <option value="mixed">Mixed skills</option>
+            <option value="audience">Audience &amp; purpose</option>
+            <option value="preproduction">Pre-production docs</option>
+            <option value="distribution">Distribution &amp; promotion</option>
+            <option value="legal">Legal / ethical / safety</option>
+          </select>
+        </div>
+        <button id="newGameBtn" class="btn primary" type="button">Enter Arena</button>
+      </div>
+    </header>
+
+    <main class="main-layout card">
+      <section class="question-panel">
+        <div class="hud">
+          <div>Question <span id="questionNumber">1</span> / <span id="questionTotal">1</span></div>
+          <div>Score: <span id="scoreDisplay">0</span></div>
+        </div>
+
+        <h2 id="questionHeading">Rank the answers</h2>
+
+        <div class="question-box">
+          <p id="questionText" class="question-text">
+            Press <strong>Enter Arena</strong> to begin. For each 9-mark question, drag the answers so that:
+            <strong>top = strongest</strong>, <strong>bottom = weakest</strong>.
+          </p>
+        </div>
+
+        <ol class="rank-legend">
+          <li><span>Top</span> = best, Band 3 style answer</li>
+          <li><span>Middle</span> = mid-range, Band 2 style answer</li>
+          <li><span>Bottom</span> = weakest, Band 1 style answer</li>
+        </ol>
+
+        <div id="answersContainer" class="answers-list">
+          <!-- draggable answer cards injected here -->
+        </div>
+
+        <div class="controls-row">
+          <button id="checkRankingBtn" class="btn primary" type="button" disabled>Check ranking</button>
+          <button id="nextQuestionBtn" class="btn secondary" type="button" disabled>Next question</button>
+        </div>
+
+        <div id="feedback" class="feedback" aria-live="polite"></div>
+
+        <div class="explanation-wrapper">
+          <button id="toggleExplanationBtn" class="link-btn" type="button" disabled>
+            Show examiner commentary
+          </button>
+          <div id="explanation" class="explanation hidden"></div>
+        </div>
+      </section>
+
+      <aside class="help-panel">
+        <h2>9-Marker Power Moves</h2>
+        <ul class="ref-list">
+          <li><strong>Structure:</strong> clear intro, organised middle, mini-conclusion.</li>
+          <li><strong>Balance:</strong> consider more than one side (advantages / disadvantages / options).</li>
+          <li><strong>Explain impact:</strong> link each point to audience, purpose or client needs.</li>
+          <li><strong>Language:</strong> use connectives – “however”, “therefore”, “as a result”.</li>
+          <li><strong>Examples:</strong> refer to the scenario – name the product, audience and platform.</li>
+          <li><strong>Judgement:</strong> if it says “evaluate”, give a justified overall opinion.</li>
+        </ul>
+        <p class="hint">
+          Exam tip: a Band 3 answer is not just longer – it explains, compares and <strong>justifies</strong>.
+        </p>
+      </aside>
+    </main>
+
+    <section class="card footer-card">
+      <p class="hint">
+        Use 9-Marker Arena to see why some answers earn more marks than others, and steal those techniques for your own writing.
+      </p>
+    </section>
+  </div>
+
+  <script src="nine-marker-arena-game.js"></script>
+</body>
+</html>

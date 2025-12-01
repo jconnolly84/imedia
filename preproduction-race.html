@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pre-Production Race – iMedia R093</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="pre-production-race-style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header card">
+      <div class="header-main">
+        <div class="logo-wrap">
+          <img src="imedia_genius_logo_transparent.png" alt="iMedia Genius Logo" class="logo-img" />
+        </div>
+        <div class="title-block">
+          <h1>Pre‑Production <span>Race</span></h1>
+          <p class="subtitle">
+            Put the planning and pre‑production tasks into the correct order before the project can start.
+          </p>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <div class="field">
+          <label for="scenarioSelect">Scenario:</label>
+          <select id="scenarioSelect"></select>
+        </div>
+        <button id="newRoundBtn" class="btn primary" type="button">New Race</button>
+      </div>
+    </header>
+
+    <main class="main-layout">
+      <section class="card brief-card">
+        <h2>Project Brief</h2>
+        <p class="hint">
+          Read the project description, then reorder the pre‑production tasks on the right into the order they should happen.
+        </p>
+        <div id="briefText" class="brief-text"></div>
+
+        <h3>Key Focus</h3>
+        <ul id="briefFocus" class="brief-focus"></ul>
+
+        <p class="hint small">
+          Exam tip: know the difference between <strong>planning/pre‑production</strong> and <strong>production</strong> tasks.
+        </p>
+      </section>
+
+      <section class="card race-card">
+        <div class="hud">
+          <div>Scenario: <span id="scenarioLabel">–</span></div>
+          <div>Perfect rounds: <span id="perfectCount">0</span></div>
+        </div>
+
+        <h2>Order the Pre‑Production Tasks</h2>
+        <p class="hint">
+          Step 1 should be at the <strong>top</strong>. Use the arrows to move tasks up or down. When you’re happy, hit <strong>Check Order</strong>.
+        </p>
+
+        <div id="stepsContainer" class="steps-container">
+          <!-- rows injected here -->
+        </div>
+
+        <div class="controls-row">
+          <button id="checkBtn" class="btn" type="button">Check Order</button>
+        </div>
+
+        <div id="feedback" class="feedback" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <section class="card footer-card">
+      <p class="hint">
+        In R093 you might be asked to describe or explain planning steps. Use this game to practise putting tasks in a logical production order.
+      </p>
+    </section>
+  </div>
+
+  <script src="pre-production-race-game.js"></script>
+</body>
+</html>

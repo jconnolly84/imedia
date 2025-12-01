@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Escape Room: R093</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="escape-room-r093-style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header card">
+      <div class="header-main">
+        <div class="logo-wrap">
+          <div class="logo-circle">R093</div>
+        </div>
+        <div class="title-block">
+          <h1>Escape Room: <span>R093</span></h1>
+          <p class="subtitle">
+            Crack the locks by answering iMedia R093 revision challenges. 
+            Beat all the puzzles to escape the exam room!
+          </p>
+        </div>
+      </div>
+      <div class="header-controls">
+        <div class="status-pill">
+          <span id="locksRemaining">4</span> locks remaining
+        </div>
+        <div class="status-pill secondary">
+          Attempts: <span id="attemptsCount">0</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-layout card">
+      <section class="puzzle-panel">
+        <div class="room-intro">
+          <h2 id="puzzleTitle">Welcome to the Escape Room</h2>
+          <p id="puzzleIntro" class="puzzle-intro">
+            You are locked in the R093 exam room. To escape, you must unlock four 
+            digital padlocks – each one tests a different part of the specification. 
+            Get the questions right to crack each code.
+          </p>
+        </div>
+
+        <div class="lock-progress">
+          <div class="lock" id="lock-1"><span>1</span></div>
+          <div class="lock" id="lock-2"><span>2</span></div>
+          <div class="lock" id="lock-3"><span>3</span></div>
+          <div class="lock" id="lock-4"><span>4</span></div>
+        </div>
+
+        <div class="puzzle-box">
+          <p id="puzzleQuestion" class="puzzle-question">
+            Click "Start Escape" to face your first lock.
+          </p>
+
+          <div id="mcqOptions" class="options-grid hidden"></div>
+
+          <div id="inputArea" class="input-area hidden">
+            <input type="text" id="textAnswer" placeholder="Type your answer here...">
+          </div>
+
+          <div id="codeClue" class="code-clue hidden"></div>
+
+          <div class="controls-row">
+            <button id="startBtn" class="btn primary">Start Escape</button>
+            <button id="submitBtn" class="btn secondary" disabled>Submit Answer</button>
+            <button id="resetBtn" class="btn secondary">Reset Game</button>
+          </div>
+
+          <div id="puzzleFeedback" class="feedback"></div>
+          <button id="showExplanationBtn" class="link-btn hidden">
+            Show model answer / explanation
+          </button>
+          <div id="puzzleExplanation" class="explanation hidden"></div>
+        </div>
+      </section>
+
+      <aside class="help-panel">
+        <h2>Escape Tips</h2>
+        <ul class="ref-list">
+          <li><strong>Lock 1 – Client Brief Decoder</strong><br>Check purpose, target audience and requirements.</li>
+          <li><strong>Lock 2 – Pre-production Padlock</strong><br>Think about which documents are best for planning.</li>
+          <li><strong>Lock 3 – Legal Lightning Lock</strong><br>Copyright, permissions and release forms.</li>
+          <li><strong>Lock 4 – Export Code Breaker</strong><br>Choose the right formats for print, web and audio-visual.</li>
+        </ul>
+        <p class="hint">
+          Remember: use exam-style phrasing – justify your choices and link back to the scenario.
+        </p>
+      </aside>
+    </main>
+
+    <footer class="footer-card card">
+      <p>
+        Part of the <strong>Ultimate iMedia R093 Revision Hub</strong>. 
+        Use this game for quick-fire exam practice.
+      </p>
+    </footer>
+  </div>
+
+  <script src="escape-room-r093-game.js"></script>
+</body>
+</html>

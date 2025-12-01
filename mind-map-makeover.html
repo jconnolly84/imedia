@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mind Map Makeover – iMedia R093</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="mind-map-makeover-style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header card">
+      <div class="header-main">
+        <div class="logo-wrap">
+          <img src="imedia_genius_logo_transparent.png" alt="iMedia Genius Logo" class="logo-img" />
+        </div>
+        <div class="title-block">
+          <h1>Mind Map <span>Makeover</span></h1>
+          <p class="subtitle">
+            Analyse weak mind maps, spot the problems and learn how to improve pre‑production documents for R093.
+          </p>
+        </div>
+      </div>
+      <div class="header-controls">
+        <div class="field">
+          <label for="scenarioSelect">Scenario:</label>
+          <select id="scenarioSelect"></select>
+        </div>
+        <button id="newScenarioBtn" class="btn primary">New Scenario</button>
+      </div>
+    </header>
+
+    <main class="main-layout">
+      <section class="card mindmap-card">
+        <h2>Current Mind Map</h2>
+        <p class="hint">This is a description of a student's mind map. Read it carefully – what could be improved?</p>
+        <div id="mindmapText" class="mindmap-text"></div>
+        <h3 class="issues-title">What’s good / bad about it?</h3>
+        <ul id="mindmapNotes" class="mindmap-notes"></ul>
+      </section>
+
+      <section class="card analysis-card">
+        <div class="hud">
+          <div>Scenario: <span id="scenarioLabel">–</span></div>
+          <div>Score: <span id="scoreDisplay">0</span></div>
+        </div>
+
+        <h2>Spot the Issues</h2>
+        <p class="hint">
+          Tick every statement that describes a <strong>problem</strong> with the mind map. Leave correct features unticked.
+        </p>
+
+        <form id="optionsForm" class="options-list">
+          <!-- options injected here -->
+        </form>
+
+        <div class="controls-row">
+          <button id="checkBtn" class="btn" type="button">Check Answers</button>
+          <button id="showModelBtn" class="btn secondary" type="button">Show Model Answer</button>
+        </div>
+
+        <div id="feedback" class="feedback" aria-live="polite"></div>
+        <div id="modelAnswer" class="model-answer hidden"></div>
+      </section>
+    </main>
+
+    <section class="card footer-card">
+      <p class="hint">
+        Exam tip: high‑band answers don’t just say “add more detail”. They name specific components
+        like <strong>branches</strong>, <strong>sub‑topics</strong>, <strong>grouping</strong>, <strong>colour coding</strong> and
+        <strong>annotations</strong>.
+      </p>
+    </section>
+  </div>
+
+  <script src="mind-map-makeover-game.js"></script>
+</body>
+</html>

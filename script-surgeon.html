@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Script Surgeon – iMedia R093</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="script-surgeon-style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header card">
+      <div class="header-main">
+        <div class="logo-wrap">
+          <img src="imedia_genius_logo_transparent.png" alt="iMedia Genius Logo" class="logo-img" />
+        </div>
+        <div class="title-block">
+          <h1>Script <span>Surgeon</span></h1>
+          <p class="subtitle">
+            Diagnose and fix broken scripts – check layout, directions and dialogue just like in R093 pre-production questions.
+          </p>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <div class="field">
+          <label for="modeSelect">Focus:</label>
+          <select id="modeSelect">
+            <option value="mixed">Mixed skills</option>
+            <option value="layout">Layout &amp; conventions</option>
+            <option value="directions">Stage / camera directions</option>
+            <option value="audio">Audio &amp; dialogue</option>
+          </select>
+        </div>
+        <button id="newGameBtn" class="btn primary" type="button">New Operation</button>
+      </div>
+    </header>
+
+    <main class="main-layout card">
+      <section class="question-panel">
+        <div class="hud">
+          <div>Case <span id="questionNumber">1</span> / <span id="questionTotal">1</span></div>
+          <div>Score: <span id="scoreDisplay">0</span></div>
+        </div>
+
+        <h2 id="questionHeading">Script emergency</h2>
+        <p id="scenarioText" class="scenario-text">
+          Press <strong>New Operation</strong> to start. Read the script extract and choose the BEST fix or diagnosis.
+        </p>
+
+        <div class="script-box">
+          <pre id="scriptExtract"></pre>
+        </div>
+
+        <p id="questionText" class="question-text"></p>
+
+        <div id="answersContainer" class="answers">
+          <!-- buttons injected here -->
+        </div>
+
+        <div class="controls-row">
+          <button id="nextQuestionBtn" class="btn secondary" type="button" disabled>Next Case</button>
+        </div>
+
+        <div id="feedback" class="feedback" aria-live="polite"></div>
+        <div id="explanation" class="explanation hidden"></div>
+      </section>
+
+      <aside class="help-panel">
+        <h2>Script Health Checklist</h2>
+        <ul class="ref-list">
+          <li><strong>Layout</strong> – scene headings, margins, clear speaker names.</li>
+          <li><strong>Directions</strong> – camera, action and sound in brackets or separate columns.</li>
+          <li><strong>Dialogue</strong> – what characters say, in the correct column/line.</li>
+          <li><strong>Audio</strong> – music, SFX and voiceover clearly labelled.</li>
+          <li><strong>Timing</strong> – approximate timings can be included for adverts/trailers.</li>
+        </ul>
+        <p class="hint">
+          Exam tip: when asked to <strong>describe a script</strong>, mention layout (columns, labels) AND content (dialogue, directions, sounds).
+        </p>
+      </aside>
+    </main>
+
+    <section class="card footer-card">
+      <p class="hint">
+        Use Script Surgeon to practise the kind of script knowledge needed for R093: what goes in a script, how it is laid out and how it guides production.
+      </p>
+    </section>
+  </div>
+
+  <script src="script-surgeon-game.js"></script>
+</body>
+</html>

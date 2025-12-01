@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Explain It! – iMedia R093</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="explain-it-style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header card">
+      <div class="header-main">
+        <div class="logo-wrap">
+          <img src="imedia_genius_logo_transparent.png" alt="iMedia Genius Logo" class="logo-img" />
+        </div>
+        <div class="title-block">
+          <h1>Explain <span>It!</span></h1>
+          <p class="subtitle">
+            Build high-mark “explain” answers by matching a strong point with the best reason, just like R093 exam questions.
+          </p>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <div class="field">
+          <label for="modeSelect">Help level:</label>
+          <select id="modeSelect">
+            <option value="guided">Guided (show steps)</option>
+            <option value="challenge">Challenge (less help)</option>
+          </select>
+        </div>
+        <button id="newGameBtn" class="btn primary" type="button">New Game</button>
+      </div>
+    </header>
+
+    <main class="main-layout card">
+      <section class="question-panel">
+        <div class="hud">
+          <div>Question <span id="questionNumber">1</span> / <span id="questionTotal">1</span></div>
+          <div>Score: <span id="scoreDisplay">0</span></div>
+        </div>
+
+        <h2 id="questionMarks">Explain question</h2>
+        <p id="scenarioText" class="scenario-text">
+          Press <strong>New Game</strong> to start. You’ll pick a good point first, then choose the best reason to turn it into a full “explain” answer.
+        </p>
+
+        <div id="stepLabel" class="step-label">Step 1 – Choose the best point</div>
+
+        <div id="answersContainer" class="answers">
+          <!-- buttons injected here -->
+        </div>
+
+        <div class="controls-row">
+          <button id="nextQuestionBtn" class="btn secondary" type="button" disabled>Next Question</button>
+        </div>
+
+        <div id="feedback" class="feedback" aria-live="polite"></div>
+        <div id="modelAnswer" class="model-answer hidden"></div>
+      </section>
+
+      <aside class="help-panel">
+        <h2>How to “Explain It”</h2>
+        <ul class="ref-list">
+          <li><strong>Point</strong> – make a clear statement that answers the question.</li>
+          <li><strong>Because / so that</strong> – add a reason or impact.</li>
+          <li><strong>Link back</strong> – mention the audience, client brief or product.</li>
+        </ul>
+        <p class="hint">
+          Formula: <strong>Point</strong> + <strong>because</strong> + <strong>impact on audience / project</strong> =
+          a strong 2–3 mark “explain” answer.
+        </p>
+      </aside>
+    </main>
+
+    <section class="card footer-card">
+      <p class="hint">
+        Use this game to practise turning basic facts into developed explanations for R093 questions that use the command word
+        <strong>“explain”</strong>.
+      </p>
+    </section>
+  </div>
+
+  <script src="explain-it-game.js"></script>
+</body>
+</html>
