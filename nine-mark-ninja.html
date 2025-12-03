@@ -1,73 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="nine-mark-ninja-style.css">
   <meta charset="UTF-8" />
-  <title>iMedia Genius – 9‑Mark Ninja</title>
+  <title>iMedia Genius – 9-Mark Ninja</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Re‑use your existing site styles -->
+
+  <!-- Game-specific high-contrast styles -->
+  <link rel="stylesheet" href="nine-mark-ninja-style.css">
+
+  <!-- Your existing site styles -->
   <link rel="stylesheet" href="imedia-genius-style.css" />
-  <style>
-    /* Light extra styling in case base CSS is minimal */
-    .nine-card { margin: 1.2rem auto; max-width: 960px; }
-    .nine-flex { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start; }
-    .nine-flex > div { flex: 1 1 260px; }
-    .nine-storyboard { max-width: 100%; border: 2px solid #ccc; border-radius: 8px; }
-    .stage-pill { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 999px;
-                  background: #eef3ff; font-size: 0.8rem; margin-bottom: 0.4rem; }
-    .mcq-option { display: block; margin: 0.4rem 0; padding: 0.4rem 0.6rem;
-                  border-radius: 6px; border: 1px solid #ccc; cursor: pointer; }
-    .mcq-option.selected { border-color: #1a73e8; background: #e8f0ff; }
-    .mcq-option.correct { border-color: #1e8e3e; background: #e6f4ea; }
-    .mcq-option.incorrect { border-color: #d93025; background: #fce8e6; }
-    .pill-row { display:flex; flex-wrap:wrap; gap:0.4rem; margin:0.4rem 0; }
-    .pill { padding:0.2rem 0.6rem; border-radius:999px; border:1px solid #ccc;
-            cursor:pointer; font-size:0.85rem; background:#fafafa; }
-    .pill.selected { background:#e8f0ff; border-color:#1a73e8; }
-    .pill.strong { border-color:#1e8e3e; }
-    .pill.weak { border-color:#d93025; }
-    .nine-feedback { margin-top:0.6rem; min-height:1.6rem; }
-    .nine-meter-bar { height:10px; background:#e0e0e0; border-radius:999px; overflow:hidden; }
-    .nine-meter-fill { height:100%; width:0%; background:#1a73e8; transition:width 0.4s ease; }
-    .sentence-bank, .answer-output { min-height: 80px; padding:0.5rem; border-radius:6px; border:1px dashed #ccc; }
-    .sentence-chip { display:inline-block; margin:0.2rem; padding:0.25rem 0.45rem;
-                     border-radius:6px; background:#f1f3f4; cursor:pointer; font-size:0.85rem; }
-    .sentence-chip.used { opacity:0.4; text-decoration:line-through; }
-    .badge { display:inline-block; padding:0.15rem 0.4rem; border-radius:6px;
-             font-size:0.75rem; background:#f1f3f4; margin-left:0.3rem; }
-    .badge-l1 { background:#fce8e6; }
-    .badge-l2 { background:#fff3cd; }
-    .badge-l3 { background:#e6f4ea; }
-  </style>
 </head>
 <body>
   <div class="app">
     <header class="app-header">
-      <img src="imedia_genius_logo_transparent.png" alt="iMedia Genius Logo" class="logo-img" />
-      <h1>9‑Mark Ninja – Extended Answer Trainer</h1>
+      <img src="imedia_genius_logo_transparent.png"
+           alt="iMedia Genius Logo"
+           class="logo-img" />
+      <h1>9-Mark Ninja – Extended Answer Trainer</h1>
       <p class="subtitle">
-        Learn how to build a top band (Level 3) 9‑mark answer by working through each training stage.
+        Learn how to build a top band (Level 3) 9-mark answer by working through each training stage.
       </p>
     </header>
 
-    <!-- Scenario + storyboard -->
+    <!-- Scenario picker -->
+    <section class="card nine-card">
+      <label for="scenarioSelect"><strong>Choose a 9-mark question type:</strong></label>
+      <select id="scenarioSelect" class="scenario-select">
+        <option value="storyboard">Storyboard – Rollin Café advert</option>
+        <option value="clientBrief">Client brief – Quick Eats app</option>
+        <option value="moodBoard">Mood board – Quick Eats branding</option>
+        <option value="wireframe">Wireframe – Quick Eats app screen</option>
+        <option value="visualisation">Visualisation diagram – Quick Eats poster</option>
+        <option value="assetTable">Asset table – Quick Eats app</option>
+        <option value="script">Script – Quick Eats TV advert</option>
+        <option value="mindMap">Mind map – New adventure game</option>
+        <option value="gantt">Gantt chart – Quick Eats project</option>
+      </select>
+    </section>
+
+    <!-- Scenario + image -->
     <section class="card nine-card">
       <div class="nine-flex">
         <div>
           <span class="stage-pill">Scenario</span>
-          <h2 id="scenarioTitle">Rollin Café storyboard – 9‑mark question</h2>
+          <h2 id="scenarioTitle">Rollin Café storyboard – 9-mark question</h2>
           <p id="scenarioQuestion">
-            Figure 1 shows a storyboard for an advert for Rollin Café.<br/>
+            Figure 1 shows a storyboard for an advert for Rollin Café.<br>
             Discuss the suitability of this storyboard for use by the director.
           </p>
           <ul>
-            <li>Marks are awarded for suggesting <strong>improvements</strong> to the storyboard.</li>
-            <li>You must <strong>explain how</strong> each suggestion will help the director.</li>
-            <li>Use <strong>correct script / storyboard terminology</strong>.</li>
+            <li>Marks are awarded for suggesting <strong>improvements</strong> to the pre-production document.</li>
+            <li>You must <strong>explain how</strong> each suggestion will help the person using it (for example the director, client, design team or project manager).</li>
+            <li>Use <strong>correct pre-production terminology</strong> such as timings, target audience, constraints and technical details.</li>
           </ul>
         </div>
         <div>
-          <img src="rollin-cafe-storyboard.png" alt="Storyboard for Rollin Café advert" class="nine-storyboard" />
+          <!-- NOTE: now uses img/ folder -->
+          <img id="scenarioImage"
+               src="img/rollin-cafe-storyboard.png"
+               alt="Storyboard for Rollin Café advert"
+               class="nine-storyboard" />
         </div>
       </div>
     </section>
@@ -80,11 +73,12 @@
           <p><strong>Total score:</strong> <span id="totalScore">0</span></p>
         </div>
         <div>
-          <p><strong>9‑Mark Skill Meter</strong></p>
+          <p><strong>9-Mark Skill Meter</strong></p>
           <div class="nine-meter-bar">
             <div id="skillMeterFill" class="nine-meter-fill"></div>
           </div>
-          <p id="skillBandLabel" style="font-size:0.85rem;margin-top:0.25rem;">
+          <p id="skillBandLabel"
+             style="font-size:0.85rem;margin-top:0.25rem;">
             Band: not yet classified
           </p>
         </div>
@@ -100,14 +94,15 @@
       <button id="prevStageBtn" class="btn secondary" type="button">⬅ Previous stage</button>
       <button id="nextStageBtn" class="btn primary" type="button">Next stage ➜</button>
       <p style="margin-top:0.6rem;font-size:0.85rem;">
-        You can move back and forth between stages. Your best score is kept.
+        You can move back and forth between stages. Your best score is kept for each stage.
       </p>
     </section>
 
     <div class="return-menu" style="text-align:center;margin:20px 0;">
-      <a href="index.html" class="btn secondary"
+      <a href="index.html"
+         class="btn secondary"
          style="display:inline-block;padding:10px 18px;background:#1a73e8;color:#fff;
-                text-decoration:none;border-radius:8px;font-weight:bold;text-decoration:none;">
+                text-decoration:none;border-radius:8px;font-weight:bold;">
         ⬅ Return to Menu
       </a>
     </div>
