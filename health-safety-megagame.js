@@ -14,37 +14,55 @@ const startBtn = document.getElementById("startBtn");
 const gameSection = document.getElementById("gameSection");
 const questionCard = document.getElementById("questionCard");
 const questionText = document.getElementById("questionText");
-const answersContainer = document.getElementById("answersContainer");
-const feedbackEl = document.getElementById("feedback");
+const answersList = document.getElementById("answersList");
+const stageTitleEl = document.getElementById("stageTitle");
 const stageIntroEl = document.getElementById("stageIntro");
-const progressLabel = document.getElementById("progressLabel");
-const scorePopEl = document.getElementById("scorePop");
 
-const stageLabel = document.getElementById("stageLabel");
-const stageNameLabel = document.getElementById("stageNameLabel");
-const scoreDisplay = document.getElementById("scoreDisplay");
-const multiplierDisplay = document.getElementById("multiplierDisplay");
+const hudScore = document.getElementById("hudScore");
+const hudMultiplier = document.getElementById("hudMultiplier");
+const hudQuestion = document.getElementById("hudQuestion");
+const hudStage = document.getElementById("hudStage");
 const livesDisplay = document.getElementById("livesDisplay");
 
 const timerBar = document.getElementById("timerBar");
-const timerLabel = document.getElementById("timerLabel");
+const scorePopEl = document.getElementById("scorePop");
 
-const stageCompletePanel = document.getElementById("stageCompletePanel");
-const completedStageNameEl = document.getElementById("completedStageName");
-const stageScoreDisplay = document.getElementById("stageScoreDisplay");
-const nextStageBtn = document.getElementById("nextStageBtn");
+const feedbackPanel = document.getElementById("feedbackPanel");
+const feedbackTitle = document.getElementById("feedbackTitle");
+const feedbackBody = document.getElementById("feedbackBody");
+const feedbackNextBtn = document.getElementById("feedbackNextBtn");
 
 const gameOverPanel = document.getElementById("gameOverPanel");
-const gameOverTitle = document.getElementById("gameOverTitle");
 const finalScoreEl = document.getElementById("finalScore");
-const lastStageNameEl = document.getElementById("lastStageName");
+const finalGradeEl = document.getElementById("finalGrade");
+const finalCommentEl = document.getElementById("finalComment");
+const finalSummaryEl = document.getElementById("finalSummary");
 const restartBtn = document.getElementById("restartBtn");
 
+const nextStageBtn = document.getElementById("nextStageBtn");
+
+// Leaderboard DOM
+const leaderboardTabs = Array.from(document.querySelectorAll(".lb-tab"));
 const leaderboardTitle = document.getElementById("leaderboardTitle");
 const leaderboardContainer = document.getElementById("leaderboardContainer");
-const leaderboardTabs = Array.from(document.querySelectorAll(".lb-tab"));
 
-// SFX
+// GAME STATE
+let currentStageIndex = 0;
+let currentQuestionIndex = 0;
+let score = 0;
+let multiplier = 1;
+let lives = 3;
+
+let currentStage = null;
+let currentQuestion = null;
+
+let acceptingAnswers = false;
+
+let questionTimerHandle = null;
+let timerStartTime = 0;
+let timerDuration = 15000; // 15 seconds per question
+
+// SOUND EFFECTS
 let sfxCorrect, sfxWrong, sfxStart, sfxGameOver;
 
 function initSfx() {
@@ -53,60 +71,47 @@ function initSfx() {
     sfxWrong = new Audio("sfx-wrong.mp3");
     sfxStart = new Audio("sfx-start.mp3");
     sfxGameOver = new Audio("sfx-gameover.mp3");
+
     [sfxCorrect, sfxWrong, sfxStart, sfxGameOver].forEach((a) => {
-      if (!a) return;
-      a.volume = 0.5;
+      a.preload = "auto";
+      a.volume = 0.6;
     });
   } catch (err) {
-    console.warn("SFX not initialised:", err);
+    console.warn("Unable to init SFX", err);
   }
 }
 
-function playSfx(audioObj) {
-  if (!audioObj) return;
+function playSfx(audioEl) {
   try {
-    audioObj.currentTime = 0;
-    audioObj.play().catch(() => {});
-  } catch {}
-}
-
-// Game state
-let currentStageIndex = 0;
-let currentQuestionIndex = 0;
-let score = 0;
-let multiplier = 1;
-let lives = 3;
-let questionResolved = false;
-
-const MAX_MULTIPLIER = 5;
-const QUESTION_TIME_MS = 15000;
-let questionEndTime = 0;
-let timerHandle = null;
-
-// Utils
-function shuffle(array) {
-  const arr = array.slice();
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
+    if (audioEl && typeof audioEl.play === "function") {
+      audioEl.currentTime = 0;
+      audioEl.play();
+    }
+  } catch (err) {
+    console.warn("SFX play error:", err);
   }
-  return arr;
 }
 
-function pulseStat(el) {
-  if (!el) return;
-  el.classList.remove("stat-pulse");
-  void el.offsetWidth;
-  el.classList.add("stat-pulse");
+// GAME LOGIC
+function resetGameState() {
+  currentStageIndex = 0;
+  currentQuestionIndex = 0;
+  score = 0;
+  multiplier = 1;
+  lives = 3;
+
+  currentStage = STAGES[0] || null;
+  currentQuestion = currentStage ? currentStage.questions[0] : null;
+
+  updateHud();
+  renderLives();
 }
 
-function updateMultiplierHeat() {
-  if (!multiplierDisplay) return;
-  if (multiplier >= 4) {
-    multiplierDisplay.classList.add("multiplier-hot");
-  } else {
-    multiplierDisplay.classList.remove("multiplier-hot");
-  }
+function updateHud() {
+  hudScore.textContent = score;
+  hudMultiplier.textContent = "x" + multiplier;
+  hudQuestion.textContent = currentQuestionIndex + 1;
+  hudStage.textContent = currentStageIndex + 1;
 }
 
 function renderLives() {
@@ -121,402 +126,294 @@ function renderLives() {
 function showScorePop(text) {
   if (!scorePopEl) return;
   scorePopEl.textContent = text;
-  scorePopEl.classList.remove("hidden", "score-pop-anim");
-  void scorePopEl.offsetWidth;
+  scorePopEl.classList.remove("hidden");
+  scorePopEl.classList.remove("score-pop-anim");
+
+  void scorePopEl.offsetWidth; // trigger reflow
   scorePopEl.classList.add("score-pop-anim");
+
   setTimeout(() => {
     scorePopEl.classList.add("hidden");
-  }, 750);
+  }, 800);
 }
 
-// Timer
-function stopTimer() {
-  if (timerHandle) {
-    cancelAnimationFrame(timerHandle);
-    timerHandle = null;
-  }
-  if (timerBar) timerBar.classList.remove("timer-active");
-}
-
-function startTimer() {
-  stopTimer();
+function startQuestionTimer() {
   if (!timerBar) return;
-  const startTime = performance.now();
-  questionEndTime = Date.now() + QUESTION_TIME_MS;
+  stopQuestionTimer();
+
+  timerStartTime = performance.now();
   timerBar.style.width = "100%";
   timerBar.classList.add("timer-active");
 
-  function tick(now) {
-    if (questionResolved) {
-      stopTimer();
+  const step = (now) => {
+    const elapsed = now - timerStartTime;
+    const ratio = Math.max(0, 1 - elapsed / timerDuration);
+    timerBar.style.width = ratio * 100 + "%";
+
+    if (elapsed >= timerDuration) {
+      stopQuestionTimer();
+      handleTimeOut();
       return;
     }
-    const elapsed = now - startTime;
-    const remaining = Math.max(0, QUESTION_TIME_MS - elapsed);
-    const ratio = remaining / QUESTION_TIME_MS;
-    timerBar.style.width = (ratio * 100).toFixed(1) + "%";
-    if (remaining <= 0) {
-      timerHandle = null;
-      handleTimeout();
-    } else {
-      timerHandle = requestAnimationFrame(tick);
-    }
-  }
 
-  timerHandle = requestAnimationFrame(tick);
+    questionTimerHandle = requestAnimationFrame(step);
+  };
+
+  questionTimerHandle = requestAnimationFrame(step);
 }
 
-// Game reset & start
-function resetGame() {
-  currentStageIndex = 0;
-  currentQuestionIndex = 0;
-  score = 0;
+function stopQuestionTimer() {
+  if (questionTimerHandle) {
+    cancelAnimationFrame(questionTimerHandle);
+    questionTimerHandle = null;
+  }
+  if (timerBar) {
+    timerBar.classList.remove("timer-active");
+  }
+}
+
+function handleTimeOut() {
+  if (!acceptingAnswers) return;
+  acceptingAnswers = false;
+
+  lives--;
   multiplier = 1;
-  lives = 3;
-  questionResolved = false;
-  stopTimer();
-
-  scoreDisplay.textContent = "0";
-  multiplierDisplay.textContent = "x1";
-  updateMultiplierHeat();
   renderLives();
-  feedbackEl.textContent = "";
-  feedbackEl.className = "feedback";
-  stageIntroEl.textContent = "";
-  progressLabel.textContent = "";
-  stageLabel.textContent = "1";
-  stageNameLabel.textContent = STAGES[0] ? STAGES[0].name : "";
-  timerLabel.textContent = "Answer quickly for more points!";
+  updateHud();
+
+  showFeedback(
+    "Time's up!",
+    "You ran out of time on this question. Remember to scan the key details quickly before you commit to an answer.",
+    false
+  );
+
+  if (lives <= 0) {
+    endGame();
+  }
 }
 
-function startGameHandler() {
-  const name = (playerNameInput.value || "").trim();
-  if (!name) {
-    alert("Please enter your name so your score can be logged.");
-    return;
-  }
-  if (!STAGES.length) {
-    alert("No stages loaded – check health-safety-megagame-data.js.");
+function showQuestion() {
+  if (!currentStage) {
+    console.error("No stage loaded!");
     return;
   }
 
-  resetGame();
-  gameOverPanel.classList.add("hidden");
-  stageCompletePanel.classList.add("hidden");
+  const questions = currentStage.questions || [];
+  if (!questions.length) {
+    console.error("Stage has no questions:", currentStage);
+    return;
+  }
+
+  currentQuestion = questions[currentQuestionIndex];
+  if (!currentQuestion) {
+    console.error("No question at index", currentQuestionIndex);
+    return;
+  }
+
+  stageTitleEl.textContent = currentStage.title || "Stage";
+  stageIntroEl.textContent = currentStage.intro || "";
+
+  questionText.textContent = currentQuestion.text || "Question";
+
+  const answers = (currentQuestion.answers || []).slice();
+  answersList.innerHTML = "";
+
+  answers.forEach((ans, index) => {
+    const li = document.createElement("li");
+    li.className = "answer-option";
+    li.textContent = ans.text;
+
+    li.dataset.correct = ans.correct ? "true" : "false";
+    li.dataset.index = index;
+
+    li.addEventListener("click", onAnswerClick);
+    answersList.appendChild(li);
+  });
+
+  acceptingAnswers = true;
+  startQuestionTimer();
+}
+
+function onAnswerClick(e) {
+  if (!acceptingAnswers) return;
+  acceptingAnswers = false;
+  stopQuestionTimer();
+
+  const li = e.currentTarget;
+  const isCorrect = li.dataset.correct === "true";
+
+  Array.from(answersList.children).forEach((child) => {
+    child.classList.remove("correct", "wrong");
+    if (child.dataset.correct === "true") {
+      child.classList.add("correct");
+    }
+  });
+
+  if (isCorrect) {
+    li.classList.add("correct");
+    handleCorrectAnswer();
+  } else {
+    li.classList.add("wrong");
+    handleWrongAnswer();
+  }
+}
+
+function handleCorrectAnswer() {
+  playSfx(sfxCorrect);
+
+  const timeRemainingRatio = parseFloat(timerBar.style.width) / 100 || 0;
+  const basePoints = 100;
+  const timeBonus = Math.round(basePoints * timeRemainingRatio);
+
+  const totalGain = basePoints * multiplier + timeBonus;
+  score += totalGain;
+  multiplier++;
+  updateHud();
+
+  showScorePop("+" + totalGain);
+  showFeedback(
+    "Correct!",
+    `Nice work – you spotted the safest option. You earned a base ${
+      100 * multiplier
+    } points plus a time bonus.`,
+    true
+  );
+}
+
+function handleWrongAnswer() {
+  playSfx(sfxWrong);
+
+  lives--;
+  multiplier = 1;
+  renderLives();
+  updateHud();
+
+  let explanation = currentQuestion.explanation || "";
+  if (!explanation) {
+    explanation =
+      "Review the hazard, risk and control measure carefully. Ask yourself: what could go wrong here, and which answer actually controls the risk?";
+  }
+
+  showFeedback(
+    "Not quite...",
+    explanation,
+    false
+  );
+
+  if (lives <= 0) {
+    endGame();
+  }
+}
+
+function showFeedback(title, body, wasCorrect) {
+  feedbackTitle.textContent = title;
+  feedbackBody.textContent = body;
+
+  feedbackPanel.classList.remove("hidden");
+  questionCard.classList.add("hidden");
+}
+
+function hideFeedback() {
+  feedbackPanel.classList.add("hidden");
+  questionCard.classList.remove("hidden");
+}
+
+function nextQuestionOrStage() {
+  const questions = currentStage.questions || [];
+  currentQuestionIndex++;
+
+  if (currentQuestionIndex >= questions.length) {
+    currentQuestionIndex = 0;
+    currentStageIndex++;
+
+    if (currentStageIndex >= STAGES.length) {
+      endGame(true);
+      return;
+    }
+
+    currentStage = STAGES[currentStageIndex];
+    showStageIntro();
+  } else {
+    updateHud();
+    showQuestion();
+  }
+}
+
+function showStageIntro() {
+  questionCard.classList.add("hidden");
+  feedbackPanel.classList.add("hidden");
   gameSection.classList.remove("hidden");
 
-  playSfx(sfxStart);
-  loadStageIntro();
+  stageTitleEl.textContent = currentStage.title || "Stage";
+  stageIntroEl.textContent = currentStage.intro || "";
+
+  nextStageBtn.classList.remove("hidden");
+}
+
+function hideStageIntro() {
+  nextStageBtn.classList.add("hidden");
   showQuestion();
 }
 
-function loadStageIntro() {
-  const stage = STAGES[currentStageIndex];
-  if (!stage) return;
-  stageLabel.textContent = (currentStageIndex + 1).toString();
-  stageNameLabel.textContent = stage.name;
-  stageIntroEl.textContent = stage.intro;
-}
+function endGame(completedAllStages = false) {
+  stopQuestionTimer();
 
-// Question rendering
-function showQuestion() {
-  const stage = STAGES[currentStageIndex];
-  if (!stage) {
-    endGame(true);
-    return;
-  }
+  gameSection.classList.add("hidden");
+  feedbackPanel.classList.add("hidden");
+  questionCard.classList.add("hidden");
 
-  const questions = stage.questions || [];
-  if (currentQuestionIndex >= questions.length) {
-    handleStageComplete();
-    return;
-  }
+  finalScoreEl.textContent = score;
 
-  const q = questions[currentQuestionIndex];
-  questionResolved = false;
-  feedbackEl.textContent = "";
-  feedbackEl.className = "feedback";
-  questionCard.classList.remove("flash-correct", "flash-wrong");
-  answersContainer.innerHTML = "";
-  progressLabel.textContent =
-    "Question " + (currentQuestionIndex + 1) + " of " + questions.length;
+  let grade = "Pass";
+  let comment =
+    "You’ve made a solid start revising health & safety. Tighten up your understanding of hazards, risks and control measures to boost your score next time.";
+  let summary =
+    "You completed some of the stages, but there’s still more practice needed to become the safest production manager in iMedia.";
 
-  switch (stage.type) {
-    case "hazardIdentify":
-      renderHazardIdentifyQuestion(q);
-      break;
-    case "controlMeasure":
-      renderControlMeasureQuestion(q);
-      break;
-    case "riskLevel":
-      renderRiskLevelQuestion(q);
-      break;
-    case "locationSafety":
-      renderLocationSafetyQuestion(q);
-      break;
-    case "equipmentSafety":
-      renderEquipmentSafetyQuestion(q);
-      break;
-    case "paperwork":
-      renderPaperworkQuestion(q);
-      break;
-    case "eightMark":
-      renderEightMarkQuestion(q);
-      break;
-    default:
-      questionText.textContent = "Unknown question type.";
-  }
-
-  startTimer();
-}
-
-function createAnswerButton(text, isCorrect) {
-  const btn = document.createElement("button");
-  btn.className = "answer-btn";
-  btn.textContent = text;
-  btn.dataset.correct = isCorrect ? "true" : "false";
-  btn.addEventListener("click", () => handleAnswer(isCorrect, btn));
-  return btn;
-}
-
-// Stage-specific renderers
-function renderHazardIdentifyQuestion(q) {
-  questionText.innerHTML =
-    "What is the <strong>main hazard</strong> in this situation?<br><br><em>" +
-    q.scenario +
-    "</em>";
-  const options = shuffle(q.options || []);
-  options.forEach((opt) => {
-    const btn = createAnswerButton(opt, opt === q.answer);
-    answersContainer.appendChild(btn);
-  });
-}
-
-function renderControlMeasureQuestion(q) {
-  questionText.innerHTML =
-    "Which is the <strong>best control measure</strong> for this hazard?<br><br><em>" +
-    q.scenario +
-    "</em>";
-  const options = shuffle(q.options || []);
-  options.forEach((opt) => {
-    const btn = createAnswerButton(opt, opt === q.answer);
-    answersContainer.appendChild(btn);
-  });
-}
-
-function renderRiskLevelQuestion(q) {
-  questionText.innerHTML =
-    "What is the overall <strong>risk level</strong>?<br><br><em>" +
-    q.scenario +
-    "</em>";
-  const options = shuffle(q.options || []);
-  options.forEach((opt) => {
-    const btn = createAnswerButton(opt, opt === q.answer);
-    answersContainer.appendChild(btn);
-  });
-}
-
-function renderLocationSafetyQuestion(q) {
-  questionText.innerHTML =
-    "Which is the <strong>safer plan</strong> for this location?<br><br><em>" +
-    q.scenario +
-    "</em>";
-  const options = shuffle(q.options || []);
-  options.forEach((opt) => {
-    const btn = createAnswerButton(opt, opt === q.answer);
-    answersContainer.appendChild(btn);
-  });
-}
-
-function renderEquipmentSafetyQuestion(q) {
-  questionText.innerHTML =
-    "How should you <strong>use the equipment or workstation safely</strong>?<br><br><em>" +
-    q.scenario +
-    "</em>";
-  const options = shuffle(q.options || []);
-  options.forEach((opt) => {
-    const btn = createAnswerButton(opt, opt === q.answer);
-    answersContainer.appendChild(btn);
-  });
-}
-
-function renderPaperworkQuestion(q) {
-  questionText.innerHTML =
-    "Which <strong>document or permission</strong> is needed?<br><br><em>" +
-    q.scenario +
-    "</em>";
-  const options = shuffle(q.options || []);
-  options.forEach((opt) => {
-    const btn = createAnswerButton(opt, opt === q.answer);
-    answersContainer.appendChild(btn);
-  });
-}
-
-function renderEightMarkQuestion(q) {
-  questionText.innerHTML =
-    "Pick the sentence that would gain the <strong>most marks</strong> in an 8‑mark exam answer.<br><br><em>" +
-    q.question +
-    "</em>";
-  const indexedOptions = (q.options || []).map((text, index) => ({
-    text,
-    index
-  }));
-  shuffle(indexedOptions).forEach((opt) => {
-    const btn = createAnswerButton(opt.text, opt.index === q.answer);
-    answersContainer.appendChild(btn);
-  });
-}
-
-// Answer handling
-function handleAnswer(correct, clickedBtn) {
-  if (questionResolved) return;
-  questionResolved = true;
-  stopTimer();
-
-  const buttons = Array.from(answersContainer.querySelectorAll("button"));
-  buttons.forEach((b) => (b.disabled = true));
-  buttons.forEach((b) => {
-    if (b.dataset.correct === "true") b.classList.add("correct");
-  });
-
-  if (correct) {
-    if (clickedBtn) clickedBtn.classList.add("correct");
-    const remaining = Math.max(0, questionEndTime - Date.now());
-    const ratio = QUESTION_TIME_MS > 0 ? remaining / QUESTION_TIME_MS : 0;
-    const timeBonus = 0.4 + ratio * 0.6;
-    const stageBonusFactor = 1 + currentStageIndex * 0.1;
-    const basePoints = 100 * multiplier * stageBonusFactor;
-    const points = Math.max(10, Math.round(basePoints * timeBonus));
-
-    score += points;
-    multiplier = Math.min(MAX_MULTIPLIER, multiplier + 1);
-
-    feedbackEl.textContent = "Correct! +" + points;
-    feedbackEl.className = "feedback correct";
-    playSfx(sfxCorrect);
-    questionCard.classList.add("flash-correct");
-    showScorePop("+" + points);
+  if (score >= 7000) {
+    grade = "Distinction*";
+    comment =
+      "Outstanding! You show a thorough understanding of hazards, risk levels, control measures and paperwork. You’re ready to keep your cast and crew safe.";
+    summary =
+      "You answered most questions accurately, even under time pressure, and sustained a strong multiplier. This mirrors the depth expected in top-band exam responses.";
+  } else if (score >= 5000) {
+    grade = "Distinction";
+    comment =
+      "Great work. You’ve got a strong, secure understanding of safe working practices. A little more precision on paperwork and high-risk scenarios will push you even higher.";
+    summary =
+      "You maintained a good multiplier and rarely ran out of lives, which shows consistent decision-making.";
+  } else if (score >= 3000) {
+    grade = "Merit";
+    comment =
+      "A good attempt. You recognise many common hazards, but need more practice matching the *best* control measure to each scenario.";
+    summary =
+      "Focus your revision on the trickier comparisons where more than one answer sounds safe – what makes the *best* control?";
   } else {
-    if (clickedBtn) clickedBtn.classList.add("wrong");
-    feedbackEl.textContent = "Wrong! Multiplier reset.";
-    feedbackEl.className = "feedback wrong";
-    lives -= 1;
-    multiplier = 1;
-    playSfx(sfxWrong);
-    questionCard.classList.add("flash-wrong");
+    grade = "Pass – Keep Practising";
+    comment =
+      "You’ve begun to explore health & safety, but you need more practice to apply the ideas under pressure.";
+    summary =
+      "Revisit your notes on hazards, risks, control measures and paperwork. Use this game again to track your progress over time.";
   }
 
-  scoreDisplay.textContent = score.toString();
-  multiplierDisplay.textContent = "x" + multiplier;
-  updateMultiplierHeat();
-  renderLives();
-  pulseStat(scoreDisplay);
-  pulseStat(multiplierDisplay);
+  finalGradeEl.textContent = grade;
+  finalCommentEl.textContent = comment;
+  finalSummaryEl.textContent = summary;
 
-  currentQuestionIndex += 1;
-
-  setTimeout(() => {
-    if (lives <= 0) {
-      endGame(false);
-    } else {
-      showQuestion();
-    }
-  }, 900);
-}
-
-function handleTimeout() {
-  if (questionResolved) return;
-  questionResolved = true;
-  stopTimer();
-
-  const buttons = Array.from(answersContainer.querySelectorAll("button"));
-  buttons.forEach((b) => {
-    b.disabled = true;
-    if (b.dataset.correct === "true") b.classList.add("correct");
-  });
-
-  feedbackEl.textContent = "Out of time! Multiplier reset.";
-  feedbackEl.className = "feedback wrong";
-  lives -= 1;
-  multiplier = 1;
-  playSfx(sfxWrong);
-  questionCard.classList.add("flash-wrong");
-
-  scoreDisplay.textContent = score.toString();
-  multiplierDisplay.textContent = "x" + multiplier;
-  updateMultiplierHeat();
-  renderLives();
-  pulseStat(multiplierDisplay);
-
-  currentQuestionIndex += 1;
-
-  setTimeout(() => {
-    if (lives <= 0) {
-      endGame(false);
-    } else {
-      showQuestion();
-    }
-  }, 900);
-}
-
-// Stage complete & game over
-function handleStageComplete() {
-  currentQuestionIndex = 0;
-  stopTimer();
-  questionResolved = true;
-
-  const stage = STAGES[currentStageIndex];
-  const isLastStage = currentStageIndex >= STAGES.length - 1;
-
-  if (isLastStage) {
-    endGame(true);
-    return;
-  }
-
-  gameSection.classList.add("hidden");
-  stageCompletePanel.classList.remove("hidden");
-  completedStageNameEl.textContent = stage.name;
-  stageScoreDisplay.textContent = score.toString();
-}
-
-function endGame(completedAll) {
-  stopTimer();
-  questionResolved = true;
-
-  gameSection.classList.add("hidden");
-  stageCompletePanel.classList.add("hidden");
   gameOverPanel.classList.remove("hidden");
 
-  finalScoreEl.textContent = score.toString();
-  const lastStage = STAGES[Math.min(currentStageIndex, STAGES.length - 1)];
-  lastStageNameEl.textContent = lastStage ? lastStage.name : "Stage 1";
-  gameOverTitle.textContent = completedAll
-    ? "Gauntlet Complete!"
-    : "Game Over";
+  // Submit score to shared sheet
+  submitGauntletScore(
+    (playerNameInput.value || "Anonymous").trim(),
+    score,
+    completedAllStages
+  );
 
-  const name = (playerNameInput.value || "Anonymous").trim();
-  submitScore(name, completedAll);
-
-  playSfx(sfxGameOver);
-  setTimeout(loadLeaderboardFromSheet, 800);
+  setTimeout(loadLeaderboardFromSheet, 1000);
 }
 
-function nextStageHandler() {
-  stageCompletePanel.classList.add("hidden");
-  currentStageIndex += 1;
-  currentQuestionIndex = 0;
-  questionResolved = false;
-  if (currentStageIndex >= STAGES.length) {
-    endGame(true);
-    return;
-  }
-  gameSection.classList.remove("hidden");
-  loadStageIntro();
-  showQuestion();
-}
-
-// Score logging
-function submitScore(name, completedAll) {
+// SCORE LOGGING FOR GAUNTLET
+function submitGauntletScore(name, score, completedAll) {
   try {
     const params = new URLSearchParams();
     params.append("action", "submitScore");
@@ -563,10 +460,7 @@ function renderLeaderboardFromSheet(response) {
       const topicId = (r[3] && r[3].v) || "";
       const timestamp = (r[4] && r[4].v) || "";
 
-      if (topicId && topicId.indexOf("HealthSafetyGauntlet") === -1) {
-        continue; // only this game's scores
-      }
-
+      // No topic filtering – show the shared iMedia Genius leaderboard
       entries.push({ name, score: scoreVal, topicLabel, topicId, timestamp });
     }
 
@@ -582,11 +476,13 @@ function renderLeaderboardFromSheet(response) {
       .map((e, i) => {
         const place = i + 1;
         const name = e.name || "Anonymous";
+        const topic = e.topicLabel || e.topicId || "All Topics";
         return `
           <tr>
             <td>${place}</td>
             <td>${name}</td>
             <td>${e.score}</td>
+            <td>${topic}</td>
           </tr>`;
       })
       .join("");
@@ -598,6 +494,7 @@ function renderLeaderboardFromSheet(response) {
             <th>#</th>
             <th>Name</th>
             <th>Score</th>
+            <th>Topic</th>
           </tr>
         </thead>
         <tbody>
@@ -612,12 +509,13 @@ function renderLeaderboardFromSheet(response) {
 }
 
 function loadLeaderboardFromSheet() {
-  if (!leaderboardContainer) return;
-
   leaderboardContainer.innerHTML =
     "<p class='leaderboard-note'>Loading leaderboard...</p>";
 
-  const tq = encodeURIComponent("select A,B,C,D,F order by B desc limit 10");
+  const tq = encodeURIComponent(
+    "select A,B,C,D,F order by B desc limit 10"
+  ); // A=name, B=score, C=topicLabel, D=topicId, F=timestamp
+
   const callbackName = "renderLeaderboardFromSheet";
   const url =
     "https://docs.google.com/spreadsheets/d/" +
@@ -636,26 +534,51 @@ function loadLeaderboardFromSheet() {
 
 // Leaderboard tabs (if present)
 function setupLeaderboardTabs() {
-  leaderboardTabs.forEach((btn) => {
+  leaderboardTabs.forEach((btn) =>
     btn.addEventListener("click", () => {
+      const filter = btn.dataset.filter || "all";
+
       leaderboardTabs.forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
-      const tab = btn.dataset.tab;
-      if (tab === "all") {
-        leaderboardTitle.textContent =
-          "Health & Safety Gauntlet – Leaderboard (All Time)";
-      } else if (tab === "week") {
-        leaderboardTitle.textContent =
-          "Health & Safety Gauntlet – This Week (visual only)";
-      } else if (tab === "today") {
-        leaderboardTitle.textContent =
-          "Health & Safety Gauntlet – Today (visual only)";
+
+      if (filter === "all") {
+        leaderboardTitle.textContent = "Health & Safety Gauntlet – Leaderboard";
+      } else if (filter === "gauntlet") {
+        leaderboardTitle.textContent = "Health & Safety Gauntlet – Top Runs";
       }
-    });
-  });
+
+      loadLeaderboardFromSheet();
+    })
+  );
 }
 
-// Restart
+// START / RESTART HANDLERS
+function startGameHandler() {
+  const name = (playerNameInput.value || "").trim();
+  if (!name) {
+    alert("Please enter your name so we can log your score!");
+    return;
+  }
+
+  if (!STAGES.length) {
+    alert(
+      "No game data loaded. Check that health-safety-megagame-data.js is included."
+    );
+    return;
+  }
+
+  resetGameState();
+  gameOverPanel.classList.add("hidden");
+  gameSection.classList.remove("hidden");
+
+  playSfx(sfxStart);
+  showStageIntro();
+}
+
+function nextStageHandler() {
+  hideStageIntro();
+}
+
 function restartHandler() {
   gameOverPanel.classList.add("hidden");
   gameSection.classList.add("hidden");
