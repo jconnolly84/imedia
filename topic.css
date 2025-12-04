@@ -1,19 +1,21 @@
 /* Topic page extras – sits on top of host.css */
 
+/* Topic page extras – sits on top of host.css */
+
 .topic-header {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-bottom: 20px;
+  align-items: stretch;
+  gap: 24px;
+  margin-bottom: 40px;
 }
 
 @media (min-width: 840px) {
   .topic-header {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    gap: 28px;
   }
 }
+
 
 .topic-logo {
   width: 64px;

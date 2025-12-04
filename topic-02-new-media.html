@@ -9,16 +9,83 @@
   <link rel="stylesheet" href="host.css">
   <!-- Extra topic-page styles -->
   <link rel="stylesheet" href="topic.css">
+  <link rel="stylesheet" href="nav.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
   <div class="page">
 
     <!-- Header -->
     <header class="topic-header">
+    <!-- Global site navigation -->
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="site-nav-inner">
+        <a href="index.html" class="site-nav-brand">
+          <img src="imedia_genius_logo_transparent.png"
+               alt="iMedia Genius logo"
+               class="site-nav-logo-img">
+          <span class="site-nav-title">
+            iMedia Genius
+            <span class="site-nav-subtitle">R093 Revision Hub</span>
+          </span>
+        </a>
+
+        <div class="site-nav-topic-jump">
+          <label for="topicJump" class="topic-jump-label">Jump to topic</label>
+          <select id="topicJump" class="topic-jump-select" aria-label="Jump directly to a topic page">
+            <option value="">Select a topic…</option>
+            <option value="topic-01-traditional-media.html">01 – Traditional Media</option>
+            <option value="topic-02-new-media.html">02 – New Media</option>
+            <option value="topic-03-video-audio-music.html">03 – Video, Audio &amp; Music</option>
+            <option value="topic-04-animation-sfx-vfx.html">04 – Animation, SFX &amp; VFX</option>
+            <option value="topic-05-social-media.html">05 – Social Media</option>
+            <option value="topic-06-website-assets.html">06 – Website Assets</option>
+            <option value="topic-07-creative-job-roles.html">07 – Creative Job Roles</option>
+            <option value="topic-08-technical-job-roles.html">08 – Technical Job Roles</option>
+            <option value="topic-09-senior-job-roles.html">09 – Senior Job Roles</option>
+            <option value="topic-10-purpose-of-media-products.html">10 – Purpose of Media Products</option>
+            <option value="topic-11-client-requirements.html">11 – Client Requirements</option>
+            <option value="topic-12-client-brief-formats.html">12 – Client Brief Formats</option>
+            <option value="topic-13-audience-segmentation.html">13 – Audience Segmentation</option>
+            <option value="topic-14-audience-research.html">14 – Audience Research</option>
+            <option value="topic-15-primary-research.html">15 – Primary Research</option>
+            <option value="topic-16-secondary-research.html">16 – Secondary Research</option>
+            <option value="topic-17-understanding-media-codes.html">17 – Understanding Media Codes</option>
+            <option value="topic-18-camera-and-lighting.html">18 – Camera and Lighting</option>
+            <option value="topic-19-mise-en-scene-audio-animation.html">19 – Mise en Scene, Audio and Animation</option>
+            <option value="topic-20-movement-transitions-interactivity.html">20 – Movement, Transitions & Interactivity</option>
+            <option value="topic-21-colour-graphics-typography.html">21 – Colour, Graphics & Typography</option>
+            <option value="topic-22-components-of-work-plans.html">22 – Components of Work Plans</option>
+            <option value="topic-23-mind-maps-mood-boards.html">23 – Mind Maps & Mood Boards</option>
+            <option value="topic-24-asset-logs-flow-charts-scripts.html">24 – Asset Logs, Flow Charts & Scripts</option>
+            <option value="topic-25-storyboards-visualisations-wireframes.html">25 – Storyboards, Visualisations & Wireframes</option>
+            <option value="topic-26-legal-considerations-protect-individuals.html">26 – Legal Considerations to Protect Individuals</option>
+            <option value="topic-27-intellectual-property-rights.html">27 – Intellectual Property Rights</option>
+            <option value="topic-28-regulation-certification-classification.html">28 – Regulation, Certification & Classification</option>
+            <option value="topic-29-health-and-safety.html">29 – Health &amp; Safety</option>
+            <option value="topic-30-distribution-platforms-media.html">30 – Distribution Platforms &amp; Media</option>
+            <option value="topic-31-file-compression.html">31 – File Compression</option>
+            <option value="topic-32-image-files.html">32 – Image Files</option>
+            <option value="topic-33-audio-files.html">33 – Audio Files</option>
+            <option value="topic-34-moving-image-files.html">34 – Moving Image Files</option>
+            <option value="topic-35-hardware-and-software.html">35 – Hardware &amp; Software</option>
+          </select>
+        </div>
+      </div>
+    </nav>
+    <script>
+      (function() {
+        var jump = document.getElementById('topicJump');
+        if (jump) {
+          jump.addEventListener('change', function() {
+            if (this.value) {
+              window.location.href = this.value;
+            }
+          });
+        }
+      })();
+    </script>
       <div class="brand">
-        <img src="img/imedia_genius_logo_transparent.png"
-             alt="iMedia Genius logo"
-             class="topic-logo">
         <div class="brand-text">
           <h1>
             <span>R093 · 02</span>
@@ -68,7 +135,7 @@
     <!-- Video + Podcast + NotebookLM -->
     <section class="topic-section revision-media">
       <div class="media-column">
-        <h2>Video Lesson</h2>
+        <h2>Video Overview</h2>
         <div class="video-wrapper video-fallback">
           <a class="video-card"
              href="https://www.youtube.com/watch?v=8bBCnv0iePg&list=PLRWYJlKco6rndF8eB78pJ-YT8GCBQGhRY&index=2"
@@ -86,9 +153,7 @@
             </div>
           </a>
         </div>
-        <p class="video-note">
-          If the video player is blocked in school, click the thumbnail to open the lesson directly on YouTube.
-        </p>
+        
       </div>
 
       <div class="media-column">
