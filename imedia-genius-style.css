@@ -447,3 +447,36 @@ body {
   text-shadow: 0 0 14px rgba(255,215,0,0.85);
 }
 
+
+
+
+/* Override leaderboard display for all game cards to match Colour Critic styling */
+.leaderboard-card .leaderboard-note {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.leaderboard-card .leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  border-radius: 0;
+  border: none;
+  background: transparent;
+  padding: 0;
+  max-height: none;
+  overflow: visible;
+}
+
+.leaderboard-card .leaderboard-table th,
+.leaderboard-card .leaderboard-table td {
+  padding: 0.35rem 0.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  text-align: left;
+}
+
+.leaderboard-card .leaderboard-table th {
+  font-weight: 600;
+  background: rgba(0,0,0,0.3);
+}
