@@ -1,59 +1,60 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<title>iMedia Genius – Colour Critic (Branding &amp; Typography)</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link href="imedia-genius-style.css" rel="stylesheet"/>
-<style>
-    .game-shell {
-      max-width: 960px;
-      margin: 0 auto;
+  <meta charset="UTF-8" />
+  <title>iMedia Genius – Camera Command (Shots, Angles & Movement)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="imedia-genius-style.css" />
+  <style>
+    .scene-wrapper {
+      margin: 1.5rem auto;
+      text-align: center;
     }
-    .question-image {
-      max-width: 280px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.2);
-      box-shadow: 0 16px 32px rgba(0,0,0,0.5);
-      margin: 0 auto 1rem;
-      display: block;
+    .scene-image {
+      max-width: 100%;
+      border-radius: 18px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+      border: 2px solid rgba(255,255,255,0.15);
     }
-    .question-prompt {
+    .scene-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .question-text {
       font-size: 1.1rem;
       font-weight: 500;
       margin-bottom: 1rem;
     }
-    .answer-grid {
+    .answer-list {
       list-style: none;
       padding: 0;
       margin: 0;
       display: grid;
       gap: 0.75rem;
     }
-    .answer-chip {
+    .answer-option {
       padding: 0.85rem 1rem;
       border-radius: 999px;
       background: linear-gradient(135deg, rgba(34,34,60,0.9), rgba(25,25,40,0.9));
       border: 1px solid rgba(255,255,255,0.12);
       cursor: pointer;
-      transition: transform 0.12s ease, box-shadow 0.12s ease,
-                  background 0.12s ease, border-color 0.12s ease;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, border-color 0.12s ease;
     }
-    .answer-chip:hover {
+    .answer-option:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 24px rgba(0,0,0,0.45);
-      border-color: rgba(255,215,130,0.9);
+      border-color: rgba(102,187,255,0.8);
     }
-    .answer-chip.correct {
-      background: linear-gradient(135deg, #33691e, #558b2f);
-      border-color: #a5d6a7;
+    .answer-option.correct {
+      background: linear-gradient(135deg, #1b5e20, #2e7d32);
+      border-color: #81c784;
     }
-    .answer-chip.wrong {
+    .answer-option.wrong {
       background: linear-gradient(135deg, #b71c1c, #d32f2f);
       border-color: #ef9a9a;
     }
-    .answer-chip.disabled {
+    .answer-option.disabled {
       opacity: 0.7;
       cursor: default;
       pointer-events: none;
@@ -98,67 +99,13 @@
     .hidden {
       display: none !important;
     }
-    .leaderboard-note {
-      font-size: 0.9rem;
-      opacity: 0.9;
-    }
-    .leaderboard-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 0.75rem;
-      font-size: 0.9rem;
-    }
-    .leaderboard-table th,
-    .leaderboard-table td {
-      padding: 0.35rem 0.5rem;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      text-align: left;
-    }
-    .leaderboard-table th {
-      font-weight: 600;
-      background: rgba(0,0,0,0.3);
-    }
-  
-
-    .timer-pill {
-      padding: 0.45rem 0.85rem;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,255,255,0.12);
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      min-width: 160px;
-      justify-content: center;
-    }
-    .timer-label {
-      font-variant-numeric: tabular-nums;
-      font-weight: 600;
-    }
-    .timer-bar-wrap {
-      position: relative;
-      overflow: hidden;
-      border-radius: 999px;
-      height: 6px;
-      width: 100%;
-      background: rgba(255,255,255,0.12);
-    }
-    .timer-bar {
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 100%;
-      background: linear-gradient(90deg, #43a047, #fdd835, #e53935);
-      transition: width 0.2s linear;
-    }
-</style>
+  </style>
   <link rel="stylesheet" href="nav.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-<div class="app game-shell">
-<header class="app-header">
+  <div class="app">
+    <header class="app-header">
     <!-- Global site navigation -->
     <nav class="site-nav" aria-label="Main navigation">
       <div class="site-nav-inner">
@@ -227,95 +174,120 @@
         }
       })();
     </script>
-<h1>Colour Critic – Branding, Colour &amp; Typography</h1>
-<p>
-        Look at each design and make the best choice based on colour meaning,
-        branding and typography.
+      <h1>Camera Command – Shots, Angles & Movement Master</h1>
+      <p>
+        Train like a camera operator. Identify the best shot, angle or movement and explain how it shapes meaning.
       </p>
-</header>
-<main class="app-main">
-<!-- Intro card -->
-<section class="card intro-card" id="introCard">
-<h2>How to Play</h2>
-<p>
-          Each question shows a design or mock-up and an exam-style brief.
-          Choose the answer that best matches the target audience and purpose.
+    </header>
+
+    <main class="app-main">
+      <section class="card intro-card">
+        <h2>How to Play</h2>
+        <p>
+          Each question shows a filming scenario or frame. Decide which camera technique is being used or which choice
+          would best match the brief.
         </p>
-<ul>
-<li><strong>+100</strong> for a correct answer.</li>
-<li><strong>Zero</strong> for an incorrect answer (no negative marking).</li>
-<li>At the end, you’ll get a grade and examiner-style feedback.</li>
-</ul>
-<div class="controls-row" style="margin-top:1rem;display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;">
-<label for="playerName"><strong>Name:</strong></label>
-<input class="text-input" id="playerName" placeholder="Type your name" style="min-width:180px;flex:1 1 180px;max-width:260px;" type="text"/>
-<button class="btn primary" id="startBtn">Start Colour Critic</button>
-</div>
-<p class="small-note" style="margin-top:0.75rem;">
-          Based on the Colour, Graphics &amp; Typography content for R093.
+        <ul>
+          <li><strong>4 options</strong> per question – only one is the best choice.</li>
+          <li><strong>+100 points</strong> for a correct answer, <strong>+25 bonus</strong> for a 3-answer streak.</li>
+          <li>Questions cover <strong>shot types</strong>, <strong>angles</strong>, <strong>movement</strong> and <strong>purpose</strong>.</li>
+        </ul>
+        <div class="controls-row" style="margin-top:1rem;display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;">
+          <label for="playerName"><strong>Name:</strong></label>
+          <input
+            id="playerName"
+            type="text"
+            placeholder="Type your name"
+            class="text-input"
+            style="min-width:180px;flex:1 1 180px;max-width:260px;"
+          />
+          <button id="startBtn" class="btn primary">Start Camera Command</button>
+        </div>
+        <p class="small-note" style="margin-top:0.75rem;">
+          Questions are based on the Camera &amp; Lighting revision pack for R093.
         </p>
-</section>
-<!-- Game card -->
-<section class="card game-card hidden" id="gameCard">
-<header class="hud-inline">
-<div class="hud-pill">
+      </section>
+
+      <section id="gameSection" class="card game-card hidden">
+        <header class="hud-inline">
+          <div class="hud-pill">
             Score: <strong><span id="hudScore">0</span></strong>
-</div>
-<div class="hud-pill">
+          </div>
+          <div class="hud-pill">
             Question: <strong><span id="hudQuestion">1</span>/<span id="hudTotal">0</span></strong>
-</div>
-<div class="hud-pill timer-pill hidden" id="timerPill"><span>Time left:</span><span class="timer-label" id="timerLabel">25</span><div class="timer-bar-wrap"><div class="timer-bar" id="timerBar"></div></div></div></header>
-<div style="text-align:center;margin-bottom:0.75rem;">
-<div class="badge">
-<span>Track:</span>
-<strong id="hudTrack">Colour Meaning</strong>
-</div>
-<div class="badge">
-<span>Focus:</span>
-<strong id="hudFocus">Palette / Typography / Layout</strong>
-</div>
-</div>
-<img alt="Design example" class="question-image hidden" id="questionImage" src=""/>
-<p class="small-note" id="briefText" style="text-align:center;margin-bottom:0.5rem;"></p>
-<p class="question-prompt" id="questionText"></p>
-<ul class="answer-grid" id="answersList"></ul>
-<div class="explanation-panel hidden" id="explanationPanel">
-<h3 id="explanationHeading">Explanation</h3>
-<p id="explanationText"></p>
-<button class="btn primary" id="nextQuestionBtn" style="margin-top:0.5rem;">
+          </div>
+          <div class="hud-pill">
+            Streak: <strong><span id="hudStreak">0</span></strong>
+          </div>
+          <div class="hud-pill">
+            Track: <strong><span id="hudTrack">Mixed</span></strong>
+          </div>
+        </header>
+
+        <div class="scene-wrapper">
+          <div class="scene-title" id="sceneTitle">Scenario title</div>
+          <img
+            id="sceneImage"
+            class="scene-image"
+            src="img/camera-placeholder.png"
+            alt="Camera frame or storyboard still"
+          />
+          <p class="small-note">
+            Think about what information the camera is giving the audience: distance, angle, movement and purpose.
+          </p>
+        </div>
+
+        <div class="badge" id="focusBadge">
+          <span>Focus:</span>
+          <strong id="focusText">Shot / Angle / Movement</strong>
+        </div>
+
+        <p id="questionText" class="question-text">
+          Question will appear here.
+        </p>
+
+        <ul id="answersList" class="answer-list"></ul>
+
+        <div id="explanationPanel" class="explanation-panel hidden">
+          <h3 id="explanationHeading">Explanation</h3>
+          <p id="explanationText"></p>
+          <button id="nextQuestionBtn" class="btn primary" style="margin-top:0.5rem;">
             Next Question ▶
           </button>
-</div>
-</section>
-<!-- Game over card -->
-<section class="card hidden" id="gameOverCard">
-<h2>Design Verdict</h2>
-<p>Your final score: <strong><span id="finalScore">0</span></strong></p>
-<p>Your Colour Critic grade: <strong><span id="finalGrade">Pass</span></strong></p>
-<p id="finalComment"></p>
-<p id="finalSummary"></p>
-<button class="btn secondary" id="restartBtn" style="margin-top:0.75rem;">
+        </div>
+      </section>
+
+      <section id="gameOverSection" class="card hidden">
+        <h2>Camera Report</h2>
+        <p>Your final score: <strong><span id="finalScore">0</span></strong></p>
+        <p>Your camera skills grade: <strong><span id="finalGrade">Pass</span></strong></p>
+        <p id="finalComment"></p>
+        <p id="finalSummary"></p>
+        <button id="restartBtn" class="btn secondary" style="margin-top:0.75rem;">
           Play Again
         </button>
-</section>
-<!-- Leaderboard -->
-<section class="card leaderboard-card">
-<h2>iMedia Genius Leaderboard (All Topics)</h2>
-<p class="leaderboard-note">
-          Finish a game to log your score to the shared iMedia Genius leaderboard.
-          Colour Critic scores appear alongside the other iMedia games.
+      </section>
+
+      <section class="card leaderboard-card">
+        <h2>iMedia Genius Leaderboard (All Topics)</h2>
+        <p class="small-note">
+          Finish a game to log your score to the shared iMedia Genius leaderboard. Scores from Camera Command
+          appear alongside the other arcade games.
         </p>
-<div id="leaderboardContainer"></div>
-</section>
-<div class="return-menu" style="text-align:center;margin:20px 0;">
-<a class="btn secondary" href="index.html" style="display:inline-block;padding:10px 18px;background:#1a73e8;color:#fff;
+        <div id="leaderboardContainer"></div>
+      </section>
+
+      <div class="return-menu" style="text-align:center;margin:20px 0;">
+        <a href="index.html" class="btn secondary"
+           style="display:inline-block;padding:10px 18px;background:#1a73e8;color:#fff;
                   text-decoration:none;border-radius:8px;font-weight:bold;text-decoration:none;">
           ⬅ Return to Menu
         </a>
-</div>
-</main>
-</div>
-<script src="colour-critic-data.js"></script>
-<script src="colour-critic.js"></script>
+      </div>
+    </main>
+  </div>
+
+  <script src="camera-command-data.js"></script>
+  <script src="camera-command.js"></script>
 </body>
 </html>
