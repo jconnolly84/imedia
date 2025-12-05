@@ -1,0 +1,18 @@
+/* Client Brief Builder – arcade edition
+ * Imports the base mega-game styles and tweaks the arena theme.
+ */
+@import url('work-plan-megagame.css');
+
+.game-card {
+  background: radial-gradient(circle at top left, #1d283d, #091429 65%, #04060a 95%);
+}
+
+.answer-btn.correct {
+  background: linear-gradient(135deg, #1a3b32, #215d4c);
+  border-color: rgba(0, 255, 170, 0.85);
+}
+
+.answer-btn.wrong {
+  background: linear-gradient(135deg, #402121, #7a3030);
+  border-color: rgba(255, 80, 120, 0.85);
+}

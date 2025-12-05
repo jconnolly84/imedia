@@ -1,0 +1,22 @@
+/* Distribution & Media Platforms Picker – arcade edition
+ * Import the core mega‑game styles and customise the look for this topic.
+ */
+
+@import url('work-plan-megagame.css');
+
+/* Custom gradient for this game – purple/blue highlights */
+.game-card {
+  background: radial-gradient(circle at top left, #221a36, #0e1230 60%, #05081a 95%);
+}
+
+/* Correct answers: gentle purple‑green mix */
+.answer-btn.correct {
+  background: linear-gradient(135deg, #1c3a2b, #2e684d);
+  border-color: rgba(64, 255, 200, 0.9);
+}
+
+/* Incorrect answers: muted red/purple tones */
+.answer-btn.wrong {
+  background: linear-gradient(135deg, #442036, #7b3555);
+  border-color: rgba(255, 80, 150, 0.8);
+}

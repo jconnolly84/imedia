@@ -1,0 +1,21 @@
+/* Social Media Strategy Arena – arcade edition
+ * Import base mega-game styles and adjust colours for this quiz.
+ */
+
+@import url('work-plan-megagame.css');
+
+/* Neon social palette – purple/blue gradient for the arena */
+.game-card {
+  background: radial-gradient(circle at top left, #221437, #0f1630 55%, #050613 95%);
+}
+
+/* Shared arcade buttons */
+.answer-btn.correct {
+  background: linear-gradient(135deg, #25375f, #3e6ad9);
+  border-color: rgba(120, 190, 255, 0.9);
+}
+
+.answer-btn.wrong {
+  background: linear-gradient(135deg, #4a2345, #822f69);
+  border-color: rgba(255, 120, 190, 0.85);
+}

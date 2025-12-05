@@ -1,0 +1,21 @@
+/* Website Asset Inspector – arcade edition
+ * Import the base mega‑game styles and customise the colour palette for this game.
+ */
+
+@import url('work-plan-megagame.css');
+
+/* Use a teal/brown palette for this inspector */
+.game-card {
+  background: radial-gradient(circle at top left, #1e2b29, #0c1d1c 60%, #051414 95%);
+}
+
+/* Correct / wrong answer buttons follow the shared .answer-btn pattern */
+.answer-btn.correct {
+  background: linear-gradient(135deg, #0a3d32, #0f6a54);
+  border-color: rgba(40, 200, 170, 0.9);
+}
+
+.answer-btn.wrong {
+  background: linear-gradient(135deg, #3b2d29, #70473e);
+  border-color: rgba(180, 80, 80, 0.8);
+}

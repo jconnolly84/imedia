@@ -1,0 +1,21 @@
+/* Animation, SFX & VFX Challenge styles
+ * This game imports the core mega‑game styles and then adds
+ * theme tweaks so it still feels part of the arcade family. */
+
+@import url('work-plan-megagame.css');
+
+/* Slightly different gradient for this arena */
+.game-card {
+  background: radial-gradient(circle at top left, #1a243a, #060a14 60%, #030308 95%);
+}
+
+/* Emphasise correct / wrong answers with stronger colours */
+.answer-btn.correct {
+  background: linear-gradient(135deg, #113c33, #145a48);
+  border-color: rgba(0, 255, 170, 0.8);
+}
+
+.answer-btn.wrong {
+  background: linear-gradient(135deg, #442123, #7d2528);
+  border-color: rgba(255, 80, 120, 0.8);
+}
