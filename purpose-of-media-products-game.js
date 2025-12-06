@@ -639,7 +639,7 @@ function setupLeaderboardTabs() {
 function startGameHandler() {
   const name = (playerNameInput.value || "").trim();
   if (!name) {
-    alert("Please enter your name so we can log your score!");
+    alert("Please enter your initials so we can log your score!");
     return;
   }
 

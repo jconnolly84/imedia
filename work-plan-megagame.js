@@ -727,7 +727,7 @@ function setupLeaderboardTabs() {
 function startGameHandler() {
   const name = (playerNameInput && playerNameInput.value || "").trim();
   if (!name) {
-    alert("Please enter your name before starting so we can add you to the leaderboard.");
+    alert("Please enter your initials before starting so we can add you to the leaderboard.");
     if (playerNameInput) playerNameInput.focus();
     return;
   }

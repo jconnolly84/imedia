@@ -221,7 +221,7 @@ function showScorePop(text) {
 function startGameHandler() {
   const name = (playerNameInput.value || "").trim();
   if (!name) {
-    alert("Please enter your name to begin the adventure.");
+    alert("Please enter your initials to begin the adventure.");
     return;
   }
 
