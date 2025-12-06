@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Interface Inspector – iMedia Genius</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Interface Inspector UX practice game for OCR Creative iMedia R093 – spot layout, accessibility and usability issues in mocked-up interfaces." />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="stylesheet" href="nav.css" />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-card: #0b1020;
+      --accent: #ffbf00;
+      --accent-soft: rgba(255,191,0,0.12);
+      --accent-strong: #ffda5e;
+      --text: #f5f5f5;
+      --muted: #a0a4c0;
+      --wrong: #ff4b6a;
+      --right: #2ecc71;
+      --border: #20263d;
+      --shadow-soft: 0 18px 40px rgba(0,0,0,0.55);
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --transition-fast: 0.18s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .app {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    .page-main {
+      margin-top: 16px;
+    }
+
+    .game-shell {
+      width: 100%;
+      max-width: 1100px;
+      background: radial-gradient(circle at top left, #1e293b 0, #020617 50%);
+      border-radius: 32px;
+      padding: 24px 24px 28px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148,163,184,0.25);
+      position: relative;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .game-shell::before {
+      content: "";
+      position: absolute;
+      inset: -120px;
+      background:
+        radial-gradient(circle at 0 0, rgba(94,234,212,0.1), transparent 60%),
+        radial-gradient(circle at 100% 0, rgba(248,250,252,0.06), transparent 55%);
+      opacity: 0.7;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    header.game-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      font-size: 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(15,23,42,0.8);
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--muted);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(255,191,0,0.85);
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 1.2rem + 1.4vw, 2.4rem);
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h1 span.highlight {
+      background: linear-gradient(120deg, #f97316, #facc15, #22c55e);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    h2 span.highlight {
+      background: linear-gradient(120deg, #f97316, #facc15, #22c55e);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    .score-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      margin-left: auto;
+      min-width: 170px;
+    }
+
+    .score-chip-row {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.85);
+      color: var(--muted);
+    }
+
+    .chip strong {
+      color: var(--accent-strong);
+      font-weight: 600;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 7px;
+      background: rgba(15,23,42,0.9);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid rgba(30,64,175,0.7);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #f97316, #facc15, #4ade80);
+      transition: width var(--transition-fast);
+    }
+
+    .main-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 860px) {
+      .main-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .score-panel {
+        align-items: flex-start;
+      }
+    }
+
+    .interface-panel {
+      background: radial-gradient(circle at top, #0b1220 0, #020617 60%);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(51,65,85,0.9);
+      padding: 14px 14px 16px;
+      box-shadow: 0 14px 30px rgba(15,23,42,0.9);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .interface-panel::after {
+      content: "UI MOCK";
+      position: absolute;
+      bottom: -36px;
+      right: -10px;
+      font-size: 3.1rem;
+      font-weight: 700;
+      letter-spacing: 0.6em;
+      text-transform: uppercase;
+      color: rgba(15,23,42,0.85);
+      pointer-events: none;
+    }
+
+    .interface-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .interface-header span {
+      opacity: 0.9;
+    }
+
+    .interface-tag {
+      padding: 4px 9px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148,163,184,0.7);
+      background: rgba(15,23,42,0.9);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    #svg-container {
+      background: radial-gradient(circle at top, #020617 0, #020617 60%);
+      border-radius: 14px;
+      border: 1px solid rgba(15,23,42,0.9);
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 260px;
+    }
+
+    #svg-container svg {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+      display: block;
+    }
+
+    .hint {
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hint-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      opacity: 0.7;
+    }
+
+    .question-panel {
+      background: rgba(15,23,42,0.95);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(55,65,81,0.95);
+      padding: 16px 16px 18px;
+      box-shadow: 0 10px 26px rgba(15,23,42,0.85);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .question-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(148,163,184,0.14), transparent 55%);
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .question-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .difficulty {
+      padding: 3px 9px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148,163,184,0.6);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .question-text {
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .choice-btn {
+      width: 100%;
+      text-align: left;
+      padding: 9px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(75,85,99,0.9);
+      background: rgba(15,23,42,0.9);
+      color: var(--text);
+      font-size: 0.92rem;
+      cursor: pointer;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
+    }
+
+    .choice-btn span.index {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .choice-btn:hover {
+      background: radial-gradient(circle at top left, rgba(248,250,252,0.06), rgba(15,23,42,1));
+      border-color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(15,23,42,0.9);
+    }
+
+    .choice-btn.correct {
+      border-color: rgba(34,197,94,0.9);
+      background: radial-gradient(circle at top left, rgba(34,197,94,0.14), rgba(15,23,42,1));
+    }
+
+    .choice-btn.wrong {
+      border-color: rgba(248,113,113,0.9);
+      background: radial-gradient(circle at top left, rgba(248,113,113,0.14), rgba(15,23,42,1));
+    }
+
+    .choice-btn.disabled {
+      cursor: default;
+      opacity: 0.9;
+    }
+
+    .feedback {
+      font-size: 0.88rem;
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+      color: var(--muted);
+    }
+
+    .feedback.correct {
+      color: var(--right);
+    }
+
+    .feedback.wrong {
+      color: var(--wrong);
+    }
+
+    .controls-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition:
+        background var(--transition-fast),
+        box-shadow var(--transition-fast),
+        transform var(--transition-fast),
+        opacity var(--transition-fast);
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, #f97316, #facc15);
+      color: #111827;
+      box-shadow: 0 12px 22px rgba(251,191,36,0.33);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 28px rgba(251,191,36,0.4);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: default;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      border-radius: var(--radius-pill);
+      padding: 6px 12px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15,23,42,0.9);
+    }
+
+    .summary {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .summary strong {
+      color: var(--accent-strong);
+    }
+
+    .badge {
+      padding: 2px 7px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148,163,184,0.6);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .badge-good {
+      border-color: rgba(34,197,94,0.9);
+      color: #4ade80;
+    }
+
+    .badge-ok {
+      border-color: rgba(250,204,21,0.9);
+      color: #fde047;
+    }
+
+    .badge-need {
+      border-color: rgba(248,113,113,0.9);
+      color: #fb7185;
+    }
+
+    .footer-card {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-radius: 16px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(51,65,85,0.9);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .return-menu {
+      text-align: center;
+      margin: 20px 0 8px;
+    }
+
+    .return-menu .btn.secondary {
+      display: inline-block;
+      padding: 10px 18px;
+      background: #1a73e8;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .return-menu .btn.secondary:hover {
+      opacity: 0.92;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="app-header card">
+      <nav class="site-nav" aria-label="Main navigation">
+        <div class="site-nav-inner">
+          <a class="site-nav-brand" href="index.html">
+            <img src="imedia_genius_logo_transparent.png" alt="iMedia Genius logo" class="site-nav-logo-img" />
+            <span class="site-nav-title">
+              iMedia Genius
+              <span class="site-nav-subtitle">R093 Revision Hub</span>
+            </span>
+          </a>
+          <div class="site-nav-topic-jump">
+            <label class="topic-jump-label" for="topicJump">Jump to topic</label>
+            <select id="topicJump" class="topic-jump-select" aria-label="Jump directly to a topic page">
+              <option value="">Select a topic…</option>
+              <option value="topic-01-traditional-media.html">01 – Traditional Media</option>
+              <option value="topic-02-new-media.html">02 – New Media</option>
+              <option value="topic-03-video-audio-music.html">03 – Video, Audio &amp; Music</option>
+              <option value="topic-04-animation-sfx-vfx.html">04 – Animation, SFX &amp; VFX</option>
+              <option value="topic-05-social-media.html">05 – Social Media</option>
+              <option value="topic-06-website-assets.html">06 – Website Assets</option>
+              <option value="topic-07-creative-job-roles.html">07 – Creative Job Roles</option>
+              <option value="topic-08-technical-job-roles.html">08 – Technical Job Roles</option>
+              <option value="topic-09-senior-job-roles.html">09 – Senior Job Roles</option>
+              <option value="topic-10-purpose-of-media-products.html">10 – Purpose of Media Products</option>
+              <option value="topic-11-client-requirements.html">11 – Client Requirements</option>
+              <option value="topic-12-client-brief-formats.html">12 – Client Brief Formats</option>
+              <option value="topic-13-audience-segmentation.html">13 – Audience Segmentation</option>
+              <option value="topic-14-audience-research.html">14 – Audience Research</option>
+              <option value="topic-15-primary-research.html">15 – Primary Research</option>
+              <option value="topic-16-secondary-research.html">16 – Secondary Research</option>
+              <option value="topic-17-understanding-media-codes.html">17 – Understanding Media Codes</option>
+              <option value="topic-18-camera-and-lighting.html">18 – Camera and Lighting</option>
+              <option value="topic-19-mise-en-scene-audio-animation.html">19 – Mise en Scene, Audio and Animation</option>
+              <option value="topic-20-movement-transitions-interactivity.html">20 – Movement, Transitions &amp; Interactivity</option>
+              <option value="topic-21-colour-graphics-typography.html">21 – Colour, Graphics &amp; Typography</option>
+              <option value="topic-22-components-of-work-plans.html">22 – Components of Work Plans</option>
+              <option value="topic-23-mind-maps-mood-boards.html">23 – Mind Maps &amp; Mood Boards</option>
+              <option value="topic-24-asset-logs-flow-charts-scripts.html">24 – Asset Logs, Flow Charts &amp; Scripts</option>
+              <option value="topic-25-storyboards-visualisations-wireframes.html">25 – Storyboards, Visualisations &amp; Wireframes</option>
+              <option value="topic-26-legal-considerations-protect-individuals.html">26 – Legal Considerations to Protect Individuals</option>
+              <option value="topic-27-intellectual-property-rights.html">27 – Intellectual Property Rights</option>
+              <option value="topic-28-regulation-certification-classification.html">28 – Regulation, Certification &amp; Classification</option>
+              <option value="topic-29-health-and-safety.html">29 – Health &amp; Safety</option>
+              <option value="topic-30-distribution-platforms-media.html">30 – Distribution Platforms &amp; Media</option>
+              <option value="topic-31-file-compression.html">31 – File Compression</option>
+              <option value="topic-32-image-files.html">32 – Image Files</option>
+              <option value="topic-33-audio-files.html">33 – Audio Files</option>
+              <option value="topic-34-moving-image-files.html">34 – Moving Image Files</option>
+              <option value="topic-35-hardware-and-software.html">35 – Hardware &amp; Software</option>
+            </select>
+          </div>
+        </div>
+      </nav>
+      <script>
+        (function () {
+          var jump = document.getElementById('topicJump');
+          if (jump) {
+            jump.addEventListener('change', function () {
+              if (this.value) {
+                window.location.href = this.value;
+              }
+            });
+          }
+        })();
+      </script>
+      <div class="header-main">
+        <div class="title-block">
+          <h1>Interface <span class="highlight">Inspector</span></h1>
+          <p class="subtitle">
+            Look at each mocked-up screen and diagnose what works and what fails in the design.
+            Be the UX detective and pick the <strong>best explanation</strong> each time.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-main">
+      <div class="game-shell">
+        <header class="game-header">
+          <div class="title-block">
+            <div class="pill">
+              <span class="pill-dot"></span>
+              <span>iMedia Genius · R093</span>
+            </div>
+            <h2><span class="highlight">Interface Inspector</span></h2>
+            <p class="subtitle">
+              Train your eye to spot layout, contrast and usability issues just like in the exam.
+            </p>
+          </div>
+          <div class="score-panel">
+            <div class="score-chip-row">
+              <div class="chip">
+                Q <strong id="question-counter">1 / 10</strong>
+              </div>
+              <div class="chip">
+                Score <strong id="score-label">0</strong>
+              </div>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="progress-fill"></div>
+            </div>
+          </div>
+        </header>
+
+        <div class="main-layout">
+          <section class="interface-panel">
+            <div class="interface-header">
+              <span id="interface-label">Mock 1 · Landing Page</span>
+              <span class="interface-tag" id="interface-tag">DESKTOP UI</span>
+            </div>
+            <div id="svg-container" aria-label="Interface mock-up" role="group"></div>
+            <div class="hint">
+              <span class="hint-dot"></span>
+              <span id="hint-text">Hint: Imagine using this on a real device – what would frustrate you?</span>
+            </div>
+          </section>
+
+          <section class="question-panel" aria-live="polite">
+            <div class="question-meta">
+              <span id="pattern-label">Pattern 1 · Layout &amp; Spacing</span>
+              <span class="difficulty" id="difficulty-label">Level: Easy</span>
+            </div>
+            <div class="question-text" id="question-text">
+              What is the main usability problem with this interface?
+            </div>
+
+            <div class="choices" id="choices"></div>
+
+            <div class="feedback" id="feedback"></div>
+
+            <div class="controls-row">
+              <button class="btn-ghost" type="button" id="restart-btn" style="display:none;">
+                Restart
+              </button>
+              <button class="btn btn-primary" type="button" id="next-btn" disabled>
+                Next mock
+              </button>
+            </div>
+
+            <div class="summary" id="summary-text">
+              Spot interface problems just like you would in an exam: look for contrast, clarity, and whether
+              a real user could complete their task quickly.
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <section class="footer-card">
+        <p class="hint">
+          Use Interface Inspector to practise writing focused exam answers about layout, accessibility, contrast and error handling.
+        </p>
+      </section>
+
+      <div class="return-menu">
+        <a href="index.html" class="btn secondary">
+          ⬅ Return to Menu
+        </a>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const scenarios = [
+      {
+        id: 1,
+        label: "Mock 1 · Hero Banner",
+        tag: "DESKTOP UI",
+        difficulty: "Level: Easy",
+        pattern: "Pattern 1 · Visual Hierarchy",
+        hint: "Look at the text over the image. Could everyone read it clearly?",
+        question: "What is the biggest accessibility issue in this landing-page design?",
+        svg: `<svg viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bannerBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="60%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="ctaGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="50%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#22c55e"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="520" height="320" rx="26" fill="#020617"/>
+  <rect x="14" y="14" width="492" height="292" rx="22" fill="#020617" stroke="#1f2937"/>
+
+  <!-- Top nav bar -->
+  <rect x="26" y="26" width="468" height="32" rx="10" fill="#020617" stroke="#111827"/>
+  <rect x="40" y="36" width="90" height="12" rx="6" fill="#e5e7eb"/>
+  <rect x="150" y="36" width="60" height="10" rx="5" fill="#1d4ed8" opacity="0.7"/>
+  <rect x="220" y="36" width="60" height="10" rx="5" fill="#0b1120"/>
+  <rect x="290" y="36" width="60" height="10" rx="5" fill="#0b1120"/>
+
+  <!-- Hero banner with poor contrast heading -->
+  <rect x="26" y="72" width="468" height="140" rx="18" fill="url(#bannerBg)"/>
+  <rect x="40" y="88" width="260" height="26" rx="6" fill="#e5e7eb" opacity="0.08"/>
+  <rect x="40" y="118" width="220" height="10" rx="5" fill="#e5e7eb" opacity="0.08"/>
+  <rect x="40" y="136" width="200" height="10" rx="5" fill="#e5e7eb" opacity="0.08"/>
+
+  <!-- Intentionally bad text-on-image -->
+  <rect x="52" y="94" width="230" height="20" rx="4" fill="#f9fafb" opacity="0.85"/>
+  <rect x="52" y="124" width="180" height="12" rx="4" fill="#f9fafb" opacity="0.8"/>
+  <rect x="52" y="144" width="140" height="10" rx="4" fill="#f9fafb" opacity="0.7"/>
+
+  <!-- CTA -->
+  <rect x="340" y="112" width="134" height="44" rx="12" fill="url(#ctaGrad)"/>
+  <rect x="352" y="124" width="110" height="12" rx="6" fill="#111827" opacity="0.9"/>
+
+  <!-- Card row -->
+  <rect x="26" y="226" width="468" height="78" rx="14" fill="#020617" stroke="#111827"/>
+  <rect x="40" y="238" width="130" height="54" rx="10" fill="#020617" stroke="#1f2937"/>
+  <rect x="56" y="250" width="90" height="10" rx="5" fill="#e5e7eb" opacity="0.9"/>
+  <rect x="56" y="266" width="70" height="8" rx="4" fill="#9ca3af"/>
+
+  <rect x="194" y="238" width="130" height="54" rx="10" fill="#020617" stroke="#1f2937"/>
+  <rect x="210" y="250" width="90" height="10" rx="5" fill="#e5e7eb" opacity="0.9"/>
+  <rect x="210" y="266" width="70" height="8" rx="4" fill="#9ca3af"/>
+
+  <rect x="348" y="238" width="130" height="54" rx="10" fill="#020617" stroke="#1f2937"/>
+  <rect x="364" y="250" width="90" height="10" rx="5" fill="#e5e7eb" opacity="0.9"/>
+  <rect x="364" y="266" width="70" height="8" rx="4" fill="#9ca3af"/>
+
+  <!-- Highlight area showing poor contrast text -->
+  <rect x="44" y="86" width="260" height="90" rx="10"
+        fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6"/>
+</svg>`,
+        options: [
+          "The white text over the image has very low contrast, so lots of users would struggle to read it.",
+          "There are three content cards instead of four, so the layout feels unbalanced.",
+          "The call-to-action button is on the right instead of the left, which is always bad UX."
+        ],
+        correctIndex: 0,
+        explanation: "Body text placed directly over an image with almost no contrast fails basic accessibility checks. In an exam you'd talk about poor contrast and readability."
+      },
+      {
+        id: 2,
+        label: "Mock 2 · Mobile App",
+        tag: "MOBILE UI",
+        difficulty: "Level: Medium",
+        pattern: "Pattern 2 · Touch Targets",
+        hint: "Imagine using this on a phone with one hand – what becomes awkward or error-prone?",
+        question: "What is the most serious usability problem shown in this mobile interface?",
+        svg: `<svg viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="phoneBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="520" height="320" rx="26" fill="#020617"/>
+  <!-- phone shell -->
+  <rect x="40" y="18" width="200" height="284" rx="40" fill="#020617" stroke="#1f2937" stroke-width="2"/>
+  <rect x="50" y="40" width="180" height="244" rx="26" fill="url(#phoneBg)" stroke="#020617"/>
+  <rect x="120" y="26" width="36" height="4" rx="2" fill="#020617"/>
+  <circle cx="172" cy="28" r="3" fill="#020617"/>
+
+  <!-- status bar -->
+  <rect x="64" y="54" width="152" height="10" rx="5" fill="#020617" stroke="#0f172a"/>
+  <rect x="72" y="56" width="76" height="6" rx="3" fill="#e5e7eb"/>
+
+  <!-- header -->
+  <rect x="64" y="74" width="152" height="16" rx="8" fill="#0b1120"/>
+  <rect x="72" y="78" width="80" height="8" rx="4" fill="#e5e7eb"/>
+
+  <!-- content cards -->
+  <rect x="64" y="100" width="152" height="70" rx="14" fill="#020617" stroke="#1f2937"/>
+  <rect x="76" y="112" width="96" height="8" rx="4" fill="#e5e7eb"/>
+  <rect x="76" y="128" width="72" height="6" rx="3" fill="#9ca3af"/>
+  <rect x="76" y="142" width="60" height="6" rx="3" fill="#4b5563"/>
+
+  <rect x="64" y="178" width="152" height="46" rx="14" fill="#020617" stroke="#1f2937"/>
+  <rect x="76" y="190" width="80" height="8" rx="4" fill="#e5e7eb"/>
+  <rect x="76" y="206" width="64" height="6" rx="3" fill="#9ca3af"/>
+
+  <!-- bottom nav bar with tiny icons -->
+  <rect x="64" y="236" width="152" height="32" rx="16" fill="#020617" stroke="#1f2937"/>
+  <rect x="74" y="242" width="30" height="18" rx="9" fill="#0b1120"/>
+  <rect x="108" y="242" width="30" height="18" rx="9" fill="#0b1120"/>
+  <rect x="142" y="242" width="30" height="18" rx="9" fill="#0b1120"/>
+  <rect x="176" y="242" width="30" height="18" rx="9" fill="#0b1120"/>
+
+  <!-- tiny inner icons (too small touch targets) -->
+  <rect x="82" y="248" width="14" height="6" rx="3" fill="#e5e7eb"/>
+  <rect x="116" y="248" width="14" height="6" rx="3" fill="#e5e7eb"/>
+  <rect x="150" y="248" width="14" height="6" rx="3" fill="#e5e7eb"/>
+  <rect x="184" y="248" width="14" height="6" rx="3" fill="#e5e7eb"/>
+
+  <!-- dashed highlight showing problem area -->
+  <rect x="70" y="240" width="140" height="24" rx="14"
+        fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="5 5"/>
+</svg>`,
+        options: [
+          "The bottom navigation icons are tiny and packed closely together, so they are too small as touch targets.",
+          "The screen uses too many grey tones instead of bright colours, which is always bad design.",
+          "The app only shows one main button, so users will be confused about what to tap first."
+        ],
+        correctIndex: 0,
+        explanation: "On mobile, tap targets should be big enough and spaced out. Very small, crowded icons at the bottom are easy to miss or tap incorrectly."
+      },
+      {
+        id: 3,
+        label: "Mock 3 · Settings Dialog",
+        tag: "DESKTOP UI",
+        difficulty: "Level: Medium",
+        pattern: "Pattern 3 · Grouping & Labelling",
+        hint: "Think about how quickly a new user could change one simple setting.",
+        question: "What is the key usability issue in this settings pop-up?",
+        svg: `<svg viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="520" height="320" rx="24" fill="#020617"/>
+  <rect x="26" y="28" width="468" height="264" rx="18" fill="#020617" stroke="#1f2937"/>
+
+  <!-- title bar -->
+  <rect x="44" y="44" width="430" height="30" rx="10" fill="#020617" stroke="#111827"/>
+  <rect x="56" y="54" width="150" height="10" rx="5" fill="#e5e7eb"/>
+  <circle cx="448" cy="59" r="4" fill="#ef4444"/>
+  <circle cx="432" cy="59" r="4" fill="#eab308"/>
+  <circle cx="416" cy="59" r="4" fill="#22c55e"/>
+
+  <!-- left menu -->
+  <rect x="44" y="88" width="130" height="180" rx="12" fill="#020617" stroke="#111827"/>
+  <rect x="56" y="104" width="94" height="10" rx="5" fill="#0b1120"/>
+  <rect x="56" y="122" width="94" height="10" rx="5" fill="#0b1120"/>
+  <rect x="56" y="140" width="94" height="10" rx="5" fill="#0b1120"/>
+  <rect x="56" y="158" width="94" height="10" rx="5" fill="#0b1120"/>
+  <rect x="56" y="176" width="94" height="10" rx="5" fill="#0b1120"/>
+
+  <!-- content area -->
+  <rect x="188" y="96" width="260" height="40" rx="10" fill="#020617" stroke="#111827"/>
+  <rect x="198" y="106" width="160" height="10" rx="5" fill="#e5e7eb"/>
+  <rect x="188" y="144" width="260" height="50" rx="10" fill="#020617" stroke="#111827"/>
+  <rect x="198" y="156" width="180" height="8" rx="4" fill="#9ca3af"/>
+  <rect x="198" y="170" width="140" height="8" rx="4" fill="#4b5563"/>
+
+  <!-- badly grouped mixed controls -->
+  <rect x="188" y="204" width="260" height="64" rx="10" fill="#020617" stroke="#111827"/>
+  <rect x="198" y="214" width="110" height="8" rx="4" fill="#e5e7eb"/>
+  <rect x="198" y="228" width="80" height="8" rx="4" fill="#9ca3af"/>
+  <rect x="314" y="214" width="60" height="8" rx="4" fill="#0b1120"/>
+  <rect x="314" y="228" width="90" height="8" rx="4" fill="#0b1120"/>
+  <rect x="382" y="210" width="52" height="22" rx="6" fill="#020617" stroke="#4b5563"/>
+  <circle cx="392" cy="221" r="4" fill="#4b5563"/>
+  <rect x="188" y="274" width="260" height="24" rx="12" fill="#020617"/>
+  <rect x="198" y="278" width="96" height="16" rx="8" fill="#22c55e"/>
+  <rect x="314" y="278" width="96" height="16" rx="8" fill="#ef4444" opacity="0.9"/>
+
+  <!-- highlight area around messy group -->
+  <rect x="192" y="208" width="252" height="56" rx="10"
+        fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6"/>
+</svg>`,
+        options: [
+          "Related options are not clearly grouped or labelled, so it is hard to see which controls belong together.",
+          "The dialog window uses a dark theme instead of a light theme, which users always find confusing.",
+          "There are two buttons at the bottom, which is too many for a settings panel."
+        ],
+        correctIndex: 0,
+        explanation: "Settings should be clearly grouped with strong headings. Here the highlighted area mixes controls without obvious labels, making it slow for users to find what they need."
+      },
+      {
+        id: 4,
+        label: "Mock 4 · Form Screen",
+        tag: "WEB FORM",
+        difficulty: "Level: Hard",
+        pattern: "Pattern 4 · Error Prevention",
+        hint: "Think about mistakes users might make and how the interface helps them recover (or not).",
+        question: "What is the most serious design problem with this form interface?",
+        svg: `<svg viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="520" height="320" rx="22" fill="#020617"/>
+  <rect x="28" y="30" width="464" height="260" rx="16" fill="#020617" stroke="#1f2937"/>
+
+  <!-- form fields -->
+  <rect x="56" y="80" width="150" height="10" rx="5" fill="#0b1120"/>
+  <rect x="56" y="96" width="210" height="14" rx="7" fill="#020617" stroke="#111827"/>
+  <rect x="62" y="100" width="120" height="6" rx="3" fill="#9ca3af"/>
+
+  <rect x="56" y="126" width="150" height="10" rx="5" fill="#0b1120"/>
+  <rect x="56" y="142" width="210" height="14" rx="7" fill="#020617" stroke="#111827"/>
+  <rect x="62" y="146" width="150" height="6" rx="3" fill="#9ca3af"/>
+
+  <rect x="56" y="172" width="150" height="10" rx="5" fill="#0b1120"/>
+  <rect x="56" y="188" width="210" height="14" rx="7" fill="#020617" stroke="#111827"/>
+  <rect x="62" y="192" width="140" height="6" rx="3" fill="#9ca3af"/>
+
+  <!-- right-hand fields -->
+  <rect x="300" y="80" width="160" height="10" rx="5" fill="#0b1120"/>
+  <rect x="300" y="96" width="180" height="14" rx="7" fill="#020617" stroke="#111827"/>
+  <rect x="306" y="100" width="120" height="6" rx="3" fill="#9ca3af"/>
+
+  <rect x="300" y="126" width="160" height="10" rx="5" fill="#0b1120"/>
+  <rect x="300" y="142" width="180" height="14" rx="7" fill="#020617" stroke="#111827"/>
+  <rect x="306" y="146" width="100" height="6" rx="3" fill="#9ca3af"/>
+
+  <!-- submit area -->
+  <rect x="300" y="214" width="110" height="12" rx="6" fill="#0b1120"/>
+  <rect x="300" y="236" width="120" height="20" rx="10" fill="#b91c1c"/>
+  <rect x="304" y="240" width="112" height="12" rx="6" fill="#fee2e2"/>
+
+  <!-- no field level error messages - highlight button -->
+  <rect x="296" y="232" width="128" height="28" rx="12"
+        fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="6 6"/>
+</svg>`,
+        options: [
+          "The form shows an error state on the submit button but there is no clear error message next to the field that is wrong.",
+          "The form uses a red colour on the button which is not allowed in web design.",
+          "There are too many fields on one page; forms must always be split across several pages."
+        ],
+        correctIndex: 0,
+        explanation: "Good error handling should clearly explain what went wrong and how to fix it. Here the red button hints at an error, but no specific field-level message is shown for the user."
+      },
+      {
+        id: 5,
+        label: "Mock 5 · Dashboard",
+        tag: "DESKTOP UI",
+        difficulty: "Level: Hard",
+        pattern: "Pattern 5 · Information Overload",
+        hint: "Think about how quickly a user could find the single most important piece of information.",
+        question: "Why might this dashboard be difficult for users to work with?",
+        svg: `<svg viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="520" height="320" rx="24" fill="#020617"/>
+  <rect x="24" y="24" width="472" height="272" rx="18" fill="#020617" stroke="#1f2937"/>
+
+  <!-- top nav -->
+  <rect x="40" y="40" width="440" height="28" rx="9" fill="#020617" stroke="#111827"/>
+  <rect x="52" y="48" width="96" height="12" rx="6" fill="#e5e7eb"/>
+  <rect x="170" y="48" width="56" height="10" rx="5" fill="#0b1120"/>
+  <rect x="236" y="48" width="56" height="10" rx="5" fill="#0b1120"/>
+  <rect x="302" y="48" width="56" height="10" rx="5" fill="#0b1120"/>
+  <rect x="368" y="48" width="56" height="10" rx="5" fill="#0b1120"/>
+
+  <!-- four equally strong cards -->
+  <rect x="40" y="84" width="210" height="100" rx="14" fill="#020617" stroke="#111827"/>
+  <rect x="52" y="96" width="130" height="10" rx="5" fill="#e5e7eb"/>
+  <rect x="52" y="112" width="150" height="8" rx="4" fill="#9ca3af"/>
+  <rect x="52" y="126" width="138" height="8" rx="4" fill="#4b5563"/>
+
+  <rect x="266" y="84" width="210" height="100" rx="14" fill="#020617" stroke="#111827"/>
+  <rect x="278" y="96" width="130" height="10" rx="5" fill="#e5e7eb"/>
+  <rect x="278" y="112" width="150" height="8" rx="4" fill="#9ca3af"/>
+  <rect x="278" y="126" width="138" height="8" rx="4" fill="#4b5563"/>
+
+  <rect x="40" y="194" width="210" height="90" rx="14" fill="#020617" stroke="#111827"/>
+  <rect x="52" y="206" width="130" height="10" rx="5" fill="#e5e7eb"/>
+  <rect x="52" y="222" width="150" height="8" rx="4" fill="#9ca3af"/>
+  <rect x="52" y="236" width="138" height="8" rx="4" fill="#4b5563"/>
+
+  <rect x="266" y="194" width="210" height="90" rx="14" fill="#020617" stroke="#111827"/>
+  <rect x="278" y="206" width="130" height="10" rx="5" fill="#e5e7eb"/>
+  <rect x="278" y="222" width="150" height="8" rx="4" fill="#9ca3af"/>
+  <rect x="278" y="236" width="138" height="8" rx="4" fill="#4b5563"/>
+
+  <!-- highlight multiple equally strong panels -->
+  <rect x="36" y="80" width="216" height="108" rx="16"
+        fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6"/>
+  <rect x="262" y="80" width="216" height="108" rx="16"
+        fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6"/>
+  <rect x="36" y="188" width="216" height="104" rx="16"
+        fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6"/>
+  <rect x="262" y="188" width="216" height="104" rx="16"
+        fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6"/>
+</svg>`,
+        options: [
+          "Too many panels fight for attention and there is no clear visual hierarchy showing what is most important.",
+          "The interface only uses rectangular cards instead of more interesting shapes.",
+          "The navigation bar is at the top of the screen instead of the side, which is always wrong."
+        ],
+        correctIndex: 0,
+        explanation: "This layout shows information overload: lots of panels with similar visual weight. Users struggle to know where to look first or which card is the key metric."
+      },
+      {
+        id: 6,
+        label: "Mock 6 · Overloaded Menu",
+        tag: "DESKTOP UI",
+        difficulty: "Level: Medium",
+        pattern: "Pattern 6 · Navigation Overload",
+        hint: "Menus should guide users, not overwhelm them.",
+        question: "What is the most serious problem with this navigation menu?",
+        svg: `<svg viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="520" height="320" fill="#020617"/>
+  <!-- side menu -->
+  <rect x="20" y="20" width="160" height="280" rx="18" fill="#020617" stroke="#1f2937"/>
+  <rect x="30" y="32" width="140" height="12" rx="6" fill="#e5e7eb"/>
+  <!-- long list of ungrouped items -->
+  <rect x="30" y="56" width="140" height="10" rx="5" fill="#0b1120"/>
+  <rect x="30" y="74" width="140" height="10" rx="5" fill="#0b1120"/>
+  <rect x="30" y="92" width="140" height="10" rx="5" fill="#0b1120"/>
+  <rect x="30" y="110" width="140" height="10" rx="5" fill="#0b1120"/>
+  <rect x="30" y="128" width="140" height="10" rx="5" fill="#0b1120"/>
+  <rect x="30" y="146" width="140" height="10" rx="5" fill="#0b1120"/>
+  <rect x="30" y="164" width="140" height="10" rx="5" fill="#0b1120"/>
+  <rect x="30" y="182" width="140" height="10" rx="5" fill="#0b1120"/>
+  <rect x="30" y="200" width="140" height="10" rx="5" fill="#0b1120"/>
+  <rect x="30" y="218" width="140" height="10" rx="5" fill="#0b1120"/>
+  <rect x="30" y="236" width="140" height="10" rx="5" fill="#0b1120"/>
+  <rect x="30" y="254" width="140" height="10" rx="5" fill="#0b1120"/>
+
+  <!-- highlight whole menu as overload -->
+  <rect x="24" y="24" width="152" height="272" rx="18"
+        fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6"/>
+
+  <!-- content area to show context -->
+  <rect x="200" y="40" width="300" height="240" rx="18" fill="#020617" stroke="#1f2937"/>
+  <rect x="216" y="56" width="180" height="14" rx="7" fill="#e5e7eb"/>
+  <rect x="216" y="80" width="220" height="10" rx="5" fill="#9ca3af"/>
+  <rect x="216" y="98" width="160" height="10" rx="5" fill="#4b5563"/>
+</svg>`,
+        options: [
+          "Too many similar menu items with no grouping makes scanning difficult.",
+          "The menu is positioned vertically; vertical menus are not allowed.",
+          "The text is grey instead of blue, so users won’t recognise it."
+        ],
+        correctIndex: 0,
+        explanation: "Navigation should be grouped logically. Long, unstructured menus increase cognitive load and slow down scanning."
+      },
+      {
+        id: 7,
+        label: "Mock 7 · Confusing Icons",
+        tag: "MOBILE UI",
+        difficulty: "Level: Hard",
+        pattern: "Pattern 7 · Icon Ambiguity",
+        hint: "Icons must communicate meaning at a glance.",
+        question: "What is the main usability issue with these mobile app icons?",
+        svg: `<svg viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="520" height="320" fill="#020617"/>
+  <!-- icons row -->
+  <rect x="60" y="80" width="160" height="160" rx="20" fill="#020617" stroke="#1f2937"/>
+  <circle cx="140" cy="144" r="44" fill="#0b1120" stroke="#1f2937"/>
+  <rect x="122" y="128" width="36" height="26" rx="4" fill="#4b5563"/>
+
+  <rect x="300" y="80" width="160" height="160" rx="20" fill="#020617" stroke="#1f2937"/>
+  <circle cx="380" cy="144" r="44" fill="#0b1120" stroke="#1f2937"/>
+  <rect x="362" y="132" width="32" height="20" rx="4" fill="#4b5563"/>
+
+  <!-- highlight ambiguous icons -->
+  <rect x="72" y="92" width="136" height="136" rx="16"
+        fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6"/>
+  <rect x="312" y="92" width="136" height="136" rx="16"
+        fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6"/>
+</svg>`,
+        options: [
+          "The icons do not clearly represent their function, so users may guess incorrectly.",
+          "Icons should always use bright colours, not grey.",
+          "There should be five icons instead of two for better balance."
+        ],
+        correctIndex: 0,
+        explanation: "Ambiguous icons reduce learnability. Users should recognise meaning instantly without labels."
+      },
+      {
+        id: 8,
+        label: "Mock 8 · Broken Grid Layout",
+        tag: "WEB UI",
+        difficulty: "Level: Medium",
+        pattern: "Pattern 8 · Alignment",
+        hint: "Look at how elements align vertically and horizontally.",
+        question: "What is the core issue with this grid-based layout?",
+        svg: `<svg viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="520" height="320" fill="#020617"/>
+  <!-- intended grid -->
+  <rect x="40" y="60" width="130" height="90" rx="12" fill="#020617" stroke="#1f2937"/>
+  <rect x="60" y="80" width="90" height="12" rx="6" fill="#e5e7eb"/>
+  <rect x="60" y="98" width="70" height="8" rx="4" fill="#9ca3af"/>
+
+  <rect x="195" y="60" width="130" height="90" rx="12" fill="#020617" stroke="#1f2937"/>
+  <rect x="215" y="80" width="90" height="12" rx="6" fill="#e5e7eb"/>
+  <rect x="215" y="98" width="70" height="8" rx="4" fill="#9ca3af"/>
+
+  <!-- misaligned third card -->
+  <rect x="350" y="80" width="130" height="90" rx="12" fill="#020617" stroke="#1f2937"/>
+  <rect x="370" y="100" width="90" height="12" rx="6" fill="#e5e7eb"/>
+  <rect x="370" y="118" width="70" height="8" rx="4" fill="#9ca3af"/>
+
+  <!-- alignment guide -->
+  <line x1="40" y1="60" x2="480" y2="60" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6"/>
+</svg>`,
+        options: [
+          "The top row is misaligned, breaking the grid and making the layout feel messy.",
+          "The boxes should be circular, not rectangular.",
+          "The colours used are too dark."
+        ],
+        correctIndex: 0,
+        explanation: "Broken alignment disrupts visual hierarchy and makes scanning inefficient."
+      },
+      {
+        id: 9,
+        label: "Mock 9 · Overuse of Modals",
+        tag: "WEB UI",
+        difficulty: "Level: Hard",
+        pattern: "Pattern 9 · Interruptions",
+        hint: "Interrupting user flow is a serious UX issue.",
+        question: "Why is this interface problematic?",
+        svg: `<svg viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="520" height="320" fill="#020617"/>
+  <!-- background app -->
+  <rect x="40" y="40" width="440" height="240" rx="18" fill="#020617" stroke="#1f2937"/>
+  <rect x="56" y="56" width="180" height="14" rx="7" fill="#e5e7eb"/>
+  <rect x="56" y="76" width="220" height="10" rx="5" fill="#9ca3af"/>
+
+  <!-- main modal -->
+  <rect x="120" y="80" width="280" height="180" rx="16" fill="#111827" stroke="#1f2937"/>
+  <rect x="134" y="96" width="180" height="12" rx="6" fill="#e5e7eb"/>
+  <rect x="134" y="116" width="220" height="8" rx="4" fill="#9ca3af"/>
+  <rect x="134" y="132" width="210" height="8" rx="4" fill="#4b5563"/>
+
+  <!-- smaller stacked modal on top -->
+  <rect x="150" y="120" width="220" height="120" rx="14" fill="#020617" stroke="#1f2937"/>
+  <rect x="164" y="136" width="150" height="10" rx="5" fill="#e5e7eb"/>
+  <rect x="164" y="154" width="170" height="8" rx="4" fill="#9ca3af"/>
+  <rect x="164" y="170" width="150" height="8" rx="4" fill="#4b5563"/>
+  <rect x="210" y="204" width="80" height="16" rx="8" fill="#22c55e"/>
+
+  <!-- highlight nested modal as problem -->
+  <rect x="146" y="116" width="228" height="128" rx="18"
+        fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6"/>
+</svg>`,
+        options: [
+          "Stacked modal windows interrupt the user’s flow and overload working memory.",
+          "The modal should have rounded corners.",
+          "The background should be blue to match the brand."
+        ],
+        correctIndex: 0,
+        explanation: "Modal stacking creates cognitive load and traps the user in nested tasks."
+      },
+      {
+        id: 10,
+        label: "Mock 10 · Hidden CTA",
+        tag: "DESKTOP UI",
+        difficulty: "Level: Easy",
+        pattern: "Pattern 10 · Call to Action Priority",
+        hint: "The most important action should stand out visibly.",
+        question: "What is the main design flaw here?",
+        svg: `<svg viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="520" height="320" fill="#020617"/>
+  <!-- content -->
+  <rect x="40" y="60" width="300" height="60" rx="14" fill="#020617" stroke="#1f2937"/>
+  <rect x="56" y="76" width="220" height="14" rx="7" fill="#e5e7eb"/>
+  <rect x="56" y="96" width="190" height="10" rx="5" fill="#9ca3af"/>
+
+  <!-- hidden CTA at bottom right -->
+  <rect x="320" y="220" width="120" height="32" rx="16" fill="#374151"/>
+  <rect x="332" y="230" width="96" height="12" rx="6" fill="#9ca3af"/>
+
+  <!-- highlight CTA area -->
+  <rect x="314" y="214" width="132" height="44" rx="18"
+        fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6"/>
+</svg>`,
+        options: [
+          "The primary call-to-action button is hidden at the bottom with weak contrast, so users may not see it.",
+          "The CTA is rectangular instead of circular.",
+          "The page doesn’t include animations."
+        ],
+        correctIndex: 0,
+        explanation: "Primary actions should stand out clearly in position, size, and contrast."
+      }
+    ];
+
+    let currentIndex = 0;
+    let score = 0;
+    let hasAnswered = false;
+
+    const svgContainer = document.getElementById("svg-container");
+    const interfaceLabel = document.getElementById("interface-label");
+    const interfaceTag = document.getElementById("interface-tag");
+    const hintText = document.getElementById("hint-text");
+    const patternLabel = document.getElementById("pattern-label");
+    const difficultyLabel = document.getElementById("difficulty-label");
+    const questionText = document.getElementById("question-text");
+    const choicesContainer = document.getElementById("choices");
+    const feedbackEl = document.getElementById("feedback");
+    const nextBtn = document.getElementById("next-btn");
+    const restartBtn = document.getElementById("restart-btn");
+    const summaryText = document.getElementById("summary-text");
+    const questionCounter = document.getElementById("question-counter");
+    const scoreLabel = document.getElementById("score-label");
+    const progressFill = document.getElementById("progress-fill");
+
+    function renderScenario(index) {
+      const s = scenarios[index];
+      hasAnswered = false;
+      nextBtn.disabled = true;
+      feedbackEl.textContent = "";
+      feedbackEl.className = "feedback";
+
+      svgContainer.innerHTML = s.svg;
+      interfaceLabel.textContent = s.label;
+      interfaceTag.textContent = s.tag;
+      hintText.textContent = s.hint;
+      patternLabel.textContent = s.pattern;
+      difficultyLabel.textContent = s.difficulty;
+      questionText.textContent = s.question;
+
+      questionCounter.textContent = (index + 1) + " / " + scenarios.length;
+      scoreLabel.textContent = score.toString();
+      const progress = (index / scenarios.length) * 100;
+      progressFill.style.width = progress + "%";
+
+      // shuffle answers so correct is not always first
+      const order = s.options.map((_, i) => i);
+      for (let i = order.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [order[i], order[j]] = [order[j], order[i]];
+      }
+
+      choicesContainer.innerHTML = "";
+      order.forEach((originalIndex, displayIndex) => {
+        const optionText = s.options[originalIndex];
+        const btn = document.createElement("button");
+        btn.className = "choice-btn";
+        btn.type = "button";
+        btn.dataset.index = String(originalIndex);
+        btn.dataset.correct = originalIndex === s.correctIndex ? "1" : "0";
+        btn.innerHTML =
+          '<span class="index">' + String.fromCharCode(65 + displayIndex) + '</span><span>' +
+          optionText +
+          "</span>";
+        btn.addEventListener("click", () => handleChoice(btn));
+        choicesContainer.appendChild(btn);
+      });
+
+      restartBtn.style.display = index === scenarios.length - 1 ? "inline-flex" : "none";
+
+      if (index === scenarios.length - 1) {
+        nextBtn.textContent = "Finish";
+        summaryText.textContent = "Last mock! Use everything you know about layout, contrast, and error messages to make your final call.";
+      } else {
+        nextBtn.textContent = "Next mock";
+        summaryText.textContent = "Use the hints like an exam question: pick the issue that would cause the most serious usability problem for real users.";
+      }
+    }
+
+    function handleChoice(buttonEl) {
+      if (hasAnswered) return;
+      hasAnswered = true;
+
+      const s = scenarios[currentIndex];
+      const chosenIndex = Number(buttonEl.dataset.index);
+      const buttons = choicesContainer.querySelectorAll(".choice-btn");
+
+      buttons.forEach((btn) => {
+        const isCorrect = btn.dataset.correct === "1";
+        btn.classList.add("disabled");
+        if (isCorrect) {
+          btn.classList.add("correct");
+        }
+        if (btn === buttonEl && !isCorrect) {
+          btn.classList.add("wrong");
+        }
+      });
+
+      if (chosenIndex === s.correctIndex) {
+        score += 1;
+        feedbackEl.textContent = "Correct – " + s.explanation;
+        feedbackEl.classList.add("correct");
+      } else {
+        feedbackEl.textContent = "Not quite – " + s.explanation;
+        feedbackEl.classList.add("wrong");
+      }
+
+      scoreLabel.textContent = score.toString();
+      nextBtn.disabled = false;
+
+      if (currentIndex === scenarios.length - 1) {
+        const total = scenarios.length;
+        const percent = Math.round((score / total) * 100);
+        let badgeClass = "badge-ok";
+        let label = "Developing UX eye";
+        if (percent >= 80) {
+          badgeClass = "badge-good";
+          label = "Interface inspector pro";
+        } else if (percent < 50) {
+          badgeClass = "badge-need";
+          label = "Needs more practice";
+        }
+        summaryText.innerHTML =
+          'Final score: <strong>' + score + " / " + total +
+          "</strong> (" + percent + '%) · ' +
+          '<span class="badge ' + badgeClass + '">' + label + "</span>";
+      }
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if (!hasAnswered) return;
+      if (currentIndex < scenarios.length - 1) {
+        currentIndex += 1;
+        renderScenario(currentIndex);
+      } else {
+        currentIndex = 0;
+        score = 0;
+        renderScenario(currentIndex);
+      }
+    });
+
+    restartBtn.addEventListener("click", () => {
+      currentIndex = 0;
+      score = 0;
+      renderScenario(currentIndex);
+    });
+
+    // initial render
+    renderScenario(currentIndex);
+  </script>
+</body>
+</html>
