@@ -192,7 +192,7 @@ function resetGame() {
 function startGameHandler() {
   const name = (playerNameInput.value || "").trim();
   if (!name) {
-    alert("Please enter your name so your score can be logged.");
+    alert("Please enter your initials so your score can be logged.");
     return;
   }
   if (!STAGES.length) {
