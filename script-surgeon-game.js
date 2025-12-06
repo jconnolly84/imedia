@@ -33,10 +33,10 @@ Narrator: Packed with vitamins and electrolytes.`,
       question:
         "What is the MAIN layout problem with this script if it is going to be used on set?",
       options: [
-        "There is no separate column or clear section for sound / audio directions.",
-        "Scene headings should never be written in capital letters.",
-        "There are too many lines of dialogue in the scene.",
-        "Camera shots should be written in a different language."
+        "There is no separate column or clear section for sound / audio directions, so the sound engineer cannot quickly find their instructions.",
+        "Scene headings should never be written in capital letters because that makes the script look too formal for the crew.",
+        "There are too many lines of dialogue in the scene, which will automatically make the advert run over its time limit.",
+        "Camera shots should be written in a different language so that only the camera operator can understand them."
       ],
       correctIndex: 0,
       explanation:
@@ -57,10 +57,10 @@ Voiceover: Download City Fitness now from your app store.`,
       question:
         "What is the BEST improvement to make this script easier to use in production?",
       options: [
-        "Add character names (e.g. PERSON A, PERSON B, VOICEOVER) before each line of dialogue.",
-        "Remove the scene heading from the top.",
-        "Change all the text to capital letters.",
-        "Delete the voiceover line completely."
+        "Add character names (e.g. PERSON A, PERSON B, VOICEOVER) before each line of dialogue so the performers can clearly see which lines belong to them.",
+        "Remove the scene heading from the top so the director has to work out the setting from the dialogue instead.",
+        "Change all the text to capital letters so that the entire script looks more dramatic on the page.",
+        "Delete the voiceover line completely and hope the advert still makes sense without the call to action."
       ],
       correctIndex: 0,
       explanation:
@@ -81,10 +81,10 @@ TEACHER: Are you ready for your exam, Sam?`,
       question:
         "How could the directions for SAM’s movement be written more clearly using script conventions?",
       options: [
-        "Write the movement in brackets on its own line, e.g. (SAM walks nervously down the corridor).",
-        "Remove the description of how SAM feels.",
-        "Write the directions in a different colour.",
-        "Put the directions in the middle of another character’s dialogue."
+        "Write the movement in brackets on its own line, for example: (SAM walks nervously down the corridor, looking unsure).",
+        "Remove the description of how SAM feels so that the actor can guess the emotion without any guidance.",
+        "Write the directions in a different colour pen to show they are separate from the rest of the script.",
+        "Put the directions in the middle of another character’s dialogue so that the lines feel more crowded."
       ],
       correctIndex: 0,
       explanation:
@@ -104,10 +104,10 @@ Host: Welcome to the Tech Talk podcast!`,
       question:
         "What is the BEST way to improve how the sound effects and music are written?",
       options: [
-        "Label them clearly as SFX and MUSIC, for example: (MUSIC: upbeat theme, fades in), (SFX: door opens).",
-        "Delete the music from the script.",
-        "Write all the audio in capital letters only.",
-        "Move the sound effects into the host’s dialogue line."
+        "Label them clearly as SFX and MUSIC, for example: (MUSIC: upbeat theme, fades in), (SFX: door opens loudly as the host enters).",
+        "Delete the music from the script so the sound engineer can improvise their own background track later.",
+        "Write all the audio in capital letters only and hope the sound engineer can guess what type of sound each line is.",
+        "Move the sound effects into the host’s dialogue line so everything appears on a single line of the script."
       ],
       correctIndex: 0,
       explanation:
@@ -130,10 +130,10 @@ SCENE 3 – PACK SHOT (00:20–00:30)
       question:
         "Why is including timings in an advert script like this useful?",
       options: [
-        "Because it helps the team plan how long each scene should last to fit the total advert duration.",
-        "Because it makes the script look more colourful.",
-        "Because timings are legally required for all scripts.",
-        "Because it means the advert does not need editing."
+        "Because it helps the team plan how long each scene should last so the finished advert fits the required total duration.",
+        "Because it makes the script look more colourful and visually interesting for the advertising client.",
+        "Because timings are legally required on every single type of script, including school plays and podcasts.",
+        "Because it means the advert does not need editing at all once it has been filmed on location."
       ],
       correctIndex: 0,
       explanation:
@@ -153,10 +153,10 @@ Interview: It was a tough job but we were proud of what we made.`,
       question:
         "What change would make it clearer which parts are voiceover and which are interviews?",
       options: [
-        "Label lines that are spoken over the footage as VOICEOVER and label interview speech with the interviewee’s name.",
-        "Remove the interview line completely.",
-        "Write both lines in capital letters.",
-        "Put all the narration into brackets."
+        "Label lines that are spoken over the footage as VOICEOVER and label interview speech with the interviewee’s name so the editor can organise the audio correctly.",
+        "Remove the interview line completely so that the documentary only contains the narrator’s opinion.",
+        "Write both lines in capital letters to show that they are equally important, without explaining who is speaking.",
+        "Put all the narration into brackets so it looks like a stage direction rather than spoken audio."
       ],
       correctIndex: 0,
       explanation:
@@ -175,10 +175,10 @@ Interview: It was a tough job but we were proud of what we made.`,
       question:
         "What is the BEST improvement for this script layout?",
       options: [
-        "Separate camera directions from dialogue, for example with a VIDEO column for camera shots and an AUDIO column for speech.",
-        "Remove all camera directions and only leave dialogue.",
-        "Write the camera directions in the middle of every sentence.",
-        "Change the bedroom setting to a kitchen."
+        "Separate camera directions from dialogue, for example with a VIDEO column for camera shots and an AUDIO column for speech so each team member can scan their part easily.",
+        "Remove all camera directions and only leave dialogue, leaving the camera operator to guess which shots to use on the day.",
+        "Write the camera directions in the middle of every sentence so they interrupt the dialogue and make it harder to read.",
+        "Change the bedroom setting to a kitchen because different locations always improve script layout problems."
       ],
       correctIndex: 0,
       explanation:
@@ -194,6 +194,7 @@ Interview: It was a tough job but we were proud of what we made.`,
   let questionPool = [];
   let currentIndex = 0;
   let score = 0;
+  let currentOptions = [];
 
   // ---------------------------
   // HELPERS
@@ -261,11 +262,19 @@ Interview: It was a tough job but we were proud of what we made.`,
 
     clearElement(answersContainer);
 
-    q.options.forEach((optText, index) => {
+    // Build a shuffled set of answer options so the correct one is not always first
+    currentOptions = shuffle(
+      q.options.map((text, originalIndex) => ({
+        text,
+        isCorrect: originalIndex === q.correctIndex
+      }))
+    );
+
+    currentOptions.forEach((opt, index) => {
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "answer-btn";
-      btn.textContent = optText;
+      btn.textContent = opt.text;
       btn.addEventListener("click", () => handleAnswerClick(index));
       answersContainer.appendChild(btn);
     });
@@ -277,23 +286,28 @@ Interview: It was a tough job but we were proud of what we made.`,
       answersContainer.querySelectorAll(".answer-btn")
     );
 
+    const selectedOption = currentOptions[selectedIndex];
+    const isCorrect = selectedOption && selectedOption.isCorrect;
+
     buttons.forEach((btn, index) => {
       btn.disabled = true;
-      if (index === q.correctIndex) {
+      if (currentOptions[index].isCorrect) {
         btn.classList.add("correct");
       }
-      if (index === selectedIndex && index !== q.correctIndex) {
+      if (index === selectedIndex && !currentOptions[index].isCorrect) {
         btn.classList.add("wrong");
       }
     });
 
-    if (selectedIndex === q.correctIndex) {
+    if (isCorrect) {
       score++;
       scoreDisplayEl.textContent = score.toString();
-      feedbackEl.textContent = "Correct – you’ve made the right fix for this script.";
+      feedbackEl.textContent =
+        "Correct – you’ve made the right fix for this script.";
       feedbackEl.className = "feedback good";
     } else {
-      feedbackEl.textContent = "Not quite. Check the explanation for how this script should be written.";
+      feedbackEl.textContent =
+        "Not quite. Check the explanation for how this script should be written.";
       feedbackEl.className = "feedback bad";
     }
 
