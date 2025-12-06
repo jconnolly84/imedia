@@ -11,6 +11,86 @@
   <link rel="stylesheet" href="topic.css">
   <link rel="stylesheet" href="nav.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <style>
+  /* Inline infographic styles – shared across topics */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
   <div class="page">
@@ -137,6 +217,74 @@
         <li>Longer questions might ask you to <strong>justify</strong> mise en scene, audio and animation choices for a new product.</li>
       </ul>
     </section>
+
+    <section class="topic-section">
+      <h2>Mise en Scene, Audio &amp; Animation at a Glance</h2>
+      <p class="topic-intro">
+        This infographic reminds you how what appears in the frame, what you hear and how things move all
+        work together as media codes.
+      </p>
+
+      <div class="infographic-grid">
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Stage / scene icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="8" width="18" height="9" rx="1.5" ry="1.5" fill="#f4b163"/>
+                <rect x="5" y="10" width="4" height="5" fill="#004556"/>
+                <rect x="15" y="10" width="4" height="5" fill="#004556"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Mise en Scene Elements</h3>
+              <p class="infographic-tagline">
+                Everything placed in the frame that sends messages to the audience.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Setting:</strong> location, time period and environment that create context.</li>
+            <li><strong>Props:</strong> objects that hint at character, genre and storyline.</li>
+            <li><strong>Costume &amp; make-up:</strong> show personality, status, era and genre.</li>
+            <li><strong>Colour:</strong> warm vs cool palettes to create mood and symbolism.</li>
+            <li><strong>Actor placement:</strong> where characters stand or sit to show relationships and power.</li>
+            <li><strong>Exam link:</strong> write “The use of [mise en scene element] suggests…” and finish with meaning or representation.</li>
+          </ul>
+          <span class="infographic-pill">Setting · Props · Costume</span>
+        </article>
+
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Speaker / wave icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 9v6l4-2.5V11.5L6 9z" fill="#004556"/>
+                <path d="M13 10a3 3 0 0 1 0 4" stroke="#f4b163" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M15 8a5 5 0 0 1 0 8" stroke="#f4b163" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Audio &amp; Animation</h3>
+              <p class="infographic-tagline">
+                How sound and movement bring shots and scenes to life.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Dialogue:</strong> what characters say and how they say it.</li>
+            <li><strong>Music:</strong> sets mood and pace (tempo, key, instrumentation).</li>
+            <li><strong>Sound effects (SFX):</strong> make worlds feel real and emphasise actions.</li>
+            <li><strong>Ambient sound:</strong> background noise that stops scenes feeling empty.</li>
+            <li><strong>Animation:</strong> 2D, 3D and motion graphics to explain ideas and add energy.</li>
+            <li><strong>Exam tip:</strong> link sound and animation to purpose, genre and how the audience feels at key moments.</li>
+          </ul>
+          <span class="infographic-pill">Sound · Motion · Atmosphere</span>
+        </article>
+      </div>
+    </section>
+
+
 
     <!-- Mise en scene detail -->
     <section class="topic-section">

@@ -11,6 +11,86 @@
 <link href="topic.css" rel="stylesheet"/>
 <link href="nav.css" rel="stylesheet"/>
 <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+
+  <style>
+  /* Inline infographic styles – shared across topics */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
 <div class="page">
@@ -124,6 +204,73 @@
 <li>Exam questions often ask you to match a product or idea to a suitable audience segment.</li>
 </ul>
 </section>
+
+    <section class="topic-section">
+      <h2>Audience Segmentation at a Glance</h2>
+      <p class="topic-intro">
+        These infographics summarise how audiences are divided into segments and how to use this in exam answers.
+      </p>
+
+      <div class="infographic-grid">
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- People / groups icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="8" cy="9" r="2.4" fill="#f4b163"/>
+                <circle cx="16" cy="9" r="2.4" fill="#004556"/>
+                <path d="M4.5 16c.6-2 1.8-3 3.5-3s2.9 1 3.5 3" stroke="#f4b163" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M12.5 16c.6-2 1.8-3 3.5-3s2.9 1 3.5 3" stroke="#004556" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Types of Audience Segments</h3>
+              <p class="infographic-tagline">
+                The main segmentation categories you must remember.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Demographics:</strong> age, gender, income, education, family status, job.</li>
+            <li><strong>Geographics:</strong> country, region, city, climate, urban vs rural.</li>
+            <li><strong>Psychographics:</strong> values, attitudes, opinions, lifestyle, interests.</li>
+            <li><strong>Behaviour:</strong> buying habits, brand loyalty, usage frequency, benefits sought.</li>
+            <li><strong>Mass vs niche:</strong> broad mainstream audiences vs smaller specialist groups.</li>
+            <li><strong>Exam link:</strong> state <em>which</em> segment the product is aimed at and why.</li>
+          </ul>
+          <span class="infographic-pill">Demographic · Lifestyle · Behaviour</span>
+        </article>
+
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Map pin / target icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3a5 5 0 0 0-5 5c0 3.2 5 9 5 9s5-5.8 5-9a5 5 0 0 0-5-5z" fill="#f4b163"/>
+                <circle cx="12" cy="8" r="2" fill="#004556"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Using Segmentation in Products &amp; Campaigns</h3>
+              <p class="infographic-tagline">
+                How producers use segments to make better design decisions.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Product design:</strong> choose content, style, features and platforms that suit the target segment.</li>
+            <li><strong>Messaging:</strong> adapt language, tone and imagery to match audience interests and values.</li>
+            <li><strong>Media planning:</strong> select channels (social platforms, TV, print, outdoor) your segment actually uses.</li>
+            <li><strong>Testing:</strong> use research to check if a segment understands and responds to the product.</li>
+            <li><strong>Exam tip:</strong> write “This targets [segment] because…” and refer to specific design choices.</li>
+            <li><strong>9-mark boost:</strong> compare how effective a product is for <em>two</em> different segments.</li>
+          </ul>
+          <span class="infographic-pill">Targeting · Design · Impact</span>
+        </article>
+      </div>
+    </section>
+
+
 <!-- Video + Podcast + NotebookLM -->
 <section class="topic-section revision-media">
 <div class="media-column">

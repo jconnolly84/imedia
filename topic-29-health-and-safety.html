@@ -11,6 +11,86 @@
   <link rel="stylesheet" href="topic.css">
   <link rel="stylesheet" href="nav.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <style>
+  /* Inline infographic styles – shared across topics */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
   <div class="page">
@@ -125,6 +205,74 @@
         <li>Often appears in the exam as <strong>scenarios</strong> you must analyse and improve.</li>
       </ul>
     </section>
+
+    <section class="topic-section">
+      <h2>Health &amp; Safety at a Glance</h2>
+      <p class="topic-intro">
+        This infographic highlights key health and safety concepts and how to apply them to media production scenarios.
+      </p>
+
+      <div class="infographic-grid">
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Warning triangle icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 4l8 14H4l8-14z" fill="#f4b163"/>
+                <path d="M12 9v5" stroke="#004556" stroke-width="1.8" stroke-linecap="round"/>
+                <circle cx="12" cy="16" r="1" fill="#004556"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Hazards, Risks &amp; Control Measures</h3>
+              <p class="infographic-tagline">
+                Understanding the language of risk assessments.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Hazard:</strong> something that could cause harm (e.g. cables, vehicles, weather, equipment).</li>
+            <li><strong>Risk:</strong> how likely it is that harm will happen and how serious it could be.</li>
+            <li><strong>Control measure:</strong> action taken to reduce the risk (e.g. cable covers, barriers, PPE).</li>
+            <li><strong>Likelihood &amp; severity:</strong> often scored to prioritise which risks to deal with first.</li>
+            <li><strong>Common media hazards:</strong> trip hazards, lighting rigs, crowds, loud sound levels, stunts.</li>
+            <li><strong>Exam link:</strong> identify hazards in a scenario and suggest <em>specific</em> control measures.</li>
+          </ul>
+          <span class="infographic-pill">Hazards · Risks · Controls</span>
+        </article>
+
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Checklist / clipboard icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="7" y="4" width="10" height="16" rx="2" ry="2" fill="#004556"/>
+                <rect x="9" y="3" width="6" height="2.4" rx="1.2" fill="#f4b163"/>
+                <path d="M9.5 10l1.4 1.4 2.4-3" stroke="#f4b163" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9.5 14l1.4 1.4 2.4-3" stroke="#f4b163" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Risk Assessments &amp; Safe Working</h3>
+              <p class="infographic-tagline">
+                Planning safe shoots for locations, studios and events.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Risk assessment:</strong> identify hazards → assess risks → decide control measures.</li>
+            <li><strong>Responsibilities:</strong> producers and location managers ensure assessments are done and followed.</li>
+            <li><strong>Briefing:</strong> communicate safety rules to cast, crew and anyone on set.</li>
+            <li><strong>Emergency procedures:</strong> plan for fire, first aid and evacuation routes.</li>
+            <li><strong>Documentation:</strong> keep written records of assessments and incident reports.</li>
+            <li><strong>Exam tip:</strong> suggest realistic measures (e.g. extra staff, signage, barriers) rather than vague “be careful” answers.</li>
+          </ul>
+          <span class="infographic-pill">Plan · Brief · Record</span>
+        </article>
+      </div>
+    </section>
+
+
 
     <!-- Hazards and risks -->
     <section class="topic-section">

@@ -11,6 +11,86 @@
   <link rel="stylesheet" href="topic.css">
   <link rel="stylesheet" href="nav.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <style>
+  /* Inline infographic styles – shared across topics */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
   <div class="page">
@@ -130,6 +210,71 @@
         <li><strong>Quality settings</strong> – sample rate, bit depth, bitrate.</li>
       </ul>
     </section>
+
+    <section class="topic-section">
+      <h2>Audio Files at a Glance</h2>
+      <p class="topic-intro">
+        This infographic covers common audio formats, bitrates and how to choose the right file for each project.
+      </p>
+
+      <div class="infographic-grid">
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Headphones / audio icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 12a6 6 0 0 1 12 0" stroke="#004556" stroke-width="1.8" stroke-linecap="round"/>
+                <rect x="5" y="12" width="3" height="6" rx="1.4" fill="#f4b163"/>
+                <rect x="16" y="12" width="3" height="6" rx="1.4" fill="#f4b163"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Common Audio File Types</h3>
+              <p class="infographic-tagline">
+                Lossless vs lossy audio and where each is used.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>WAV:</strong> uncompressed or lossless, high quality, large files – good for editing.</li>
+            <li><strong>MP3:</strong> lossy, very common for music and podcasts, small files.</li>
+            <li><strong>AAC:</strong> lossy, used by many streaming services and devices.</li>
+            <li><strong>FLAC/ALAC:</strong> lossless compression, high-quality music with smaller files than WAV.</li>
+            <li><strong>OGG, WMA, etc.:</strong> other formats used in specific systems or games.</li>
+            <li><strong>Exam link:</strong> choose a format based on quality needs and how the audio will be delivered.</li>
+          </ul>
+          <span class="infographic-pill">Lossless · Lossy · Use</span>
+        </article>
+
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Waveform icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 12h2l1-4 2 8 2-12 2 12 2-8 1 4h2" stroke="#004556" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Bitrate, Quality &amp; Usage</h3>
+              <p class="infographic-tagline">
+                How audio settings affect sound quality and file size.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Bitrate:</strong> measured in kbps (e.g. 128, 192, 320) – higher means better quality, larger files.</li>
+            <li><strong>Sample rate:</strong> e.g. 44.1 kHz or 48 kHz; higher rates capture more detail.</li>
+            <li><strong>Editing masters:</strong> keep high-quality WAV or FLAC versions for mixing.</li>
+            <li><strong>Online delivery:</strong> use compressed formats (e.g. MP3, AAC) for streaming and downloads.</li>
+            <li><strong>Voice vs music:</strong> voice-only content may use lower bitrates than music.</li>
+            <li><strong>Exam tip:</strong> justify audio choices by referring to platform, storage and audience expectations.</li>
+          </ul>
+          <span class="infographic-pill">Bitrate · Sample Rate · Masters</span>
+        </article>
+      </div>
+    </section>
+
+
 
     <!-- Audio formats -->
     <section class="topic-section">

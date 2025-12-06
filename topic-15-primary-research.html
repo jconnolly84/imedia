@@ -11,6 +11,86 @@
   <link rel="stylesheet" href="topic.css">
   <link rel="stylesheet" href="nav.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <style>
+  /* Inline infographic styles – shared across topics */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
   <div class="page">
@@ -132,6 +212,73 @@
         <li>Sample size, question design and bias all affect how reliable the results are.</li>
       </ul>
     </section>
+
+    <section class="topic-section">
+      <h2>Primary Research at a Glance</h2>
+      <p class="topic-intro">
+        Use this infographic to remember what primary research is, when to use it and how to evaluate it.
+      </p>
+
+      <div class="infographic-grid">
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Clipboard / tick icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="7" y="4" width="10" height="16" rx="2" ry="2" fill="#f4b163"/>
+                <rect x="9" y="3" width="6" height="2.4" rx="1.2" fill="#004556"/>
+                <path d="M10 11l1.6 1.7 3-3.7" stroke="#004556" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>What Counts as Primary Research?</h3>
+              <p class="infographic-tagline">
+                First-hand data collected directly from your audience.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Surveys and questionnaires:</strong> designed by you for your specific project.</li>
+            <li><strong>Interviews and focus groups:</strong> speaking directly to members of your target audience.</li>
+            <li><strong>User testing:</strong> watching people interact with prototypes or early versions.</li>
+            <li><strong>Observation:</strong> recording behaviour in real situations (e.g. how people use a website).</li>
+            <li><strong>Test screenings:</strong> previewing videos or adverts to collect feedback before release.</li>
+            <li><strong>Exam link:</strong> emphasise that the data is <em>new</em>, <em>project-specific</em> and collected by the producer.</li>
+          </ul>
+          <span class="infographic-pill">First-hand · Project-specific</span>
+        </article>
+
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Stopwatch / cost icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="13" r="6" fill="#004556"/>
+                <path d="M12 10v3l2 2" stroke="#f4b163" stroke-width="1.8" stroke-linecap="round"/>
+                <rect x="10" y="4" width="4" height="2" rx="1" fill="#f4b163"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Pros, Cons &amp; When to Use Primary Research</h3>
+              <p class="infographic-tagline">
+                Help for evaluation questions and 9-mark answers.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Advantages:</strong> up-to-date, relevant to your exact project, can target a specific audience.</li>
+            <li><strong>Disadvantages:</strong> can be time-consuming, costly and require planning and skills.</li>
+            <li><strong>Good for:</strong> testing ideas, checking usability, understanding detailed opinions.</li>
+            <li><strong>Less good for:</strong> getting a quick overview of a large market or long-term trends.</li>
+            <li><strong>Exam tip:</strong> when evaluating, balance strengths and weaknesses and refer to budget/time.</li>
+            <li><strong>Comparison:</strong> contrast with secondary research to show deeper understanding.</li>
+          </ul>
+          <span class="infographic-pill">Pros · Cons · Best Use</span>
+        </article>
+      </div>
+    </section>
+
+
 
     <!-- Video + Podcast + NotebookLM -->
     <section class="topic-section revision-media">

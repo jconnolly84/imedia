@@ -11,6 +11,86 @@
   <link rel="stylesheet" href="topic.css">
   <link rel="stylesheet" href="nav.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <style>
+  /* Inline infographic styles – shared across topics */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
   <div class="page">
@@ -132,6 +212,75 @@
         <li>Strong communication, organisation and problem-solving skills are essential.</li>
       </ul>
     </section>
+
+    <section class="topic-section">
+      <h2>Senior Job Roles at a Glance</h2>
+      <p class="topic-intro">
+        These infographics summarise who leads a media project, what decisions they make and how they
+        link to the client and the rest of the team.
+      </p>
+
+      <div class="infographic-grid">
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Leadership / flag icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="4" y="3" width="2" height="18" fill="#004556"/>
+                <path d="M6 4h9l-2 3 2 3H6V4z" fill="#f4b163"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Where Senior Roles Sit</h3>
+              <p class="infographic-tagline">
+                Senior roles at the top of teams, departments and entire productions.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Overall project:</strong> producers, executive producers, project managers.</li>
+            <li><strong>Creative leadership:</strong> directors, series producers, creative directors.</li>
+            <li><strong>Department heads:</strong> heads of camera, post-production, sound, design or development.</li>
+            <li><strong>Editorial leadership:</strong> editors-in-chief, senior editors, content leads.</li>
+            <li><strong>Business &amp; strategy:</strong> commissioners, channel controllers, senior marketing managers.</li>
+            <li><strong>Exam link:</strong> highlight how senior roles <em>coordinate</em> teams and <em>take responsibility</em> for outcomes.</li>
+          </ul>
+          <span class="infographic-pill">Leadership · Strategy · Oversight</span>
+        </article>
+
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Clipboard / checklist icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="6" y="4" width="12" height="16" rx="2" ry="2" fill="#f4b163"/>
+                <rect x="9" y="3" width="6" height="2.4" rx="1.2" fill="#004556"/>
+                <path d="M9 9h6" stroke="#004556" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M9 12h6" stroke="#004556" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M9 15h4" stroke="#004556" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Key Senior Responsibilities</h3>
+              <p class="infographic-tagline">
+                What senior staff actually do day to day – and how to phrase it in exam answers.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Planning &amp; scheduling:</strong> create work plans, milestones and deadlines for the team.</li>
+            <li><strong>Budgeting:</strong> allocate money to staff, equipment, travel and marketing and monitor spend.</li>
+            <li><strong>Managing staff:</strong> hire, brief, motivate and review the work of creative and technical teams.</li>
+            <li><strong>Client communication:</strong> update clients, pitch ideas and negotiate changes to the brief.</li>
+            <li><strong>Quality &amp; risk:</strong> check that the product meets legal, ethical and technical standards.</li>
+            <li><strong>Exam tip:</strong> when evaluating a project, mention how senior roles would <em>solve problems</em> and keep it on track.</li>
+          </ul>
+          <span class="infographic-pill">Planning · People · Quality</span>
+        </article>
+      </div>
+    </section>
+
+
 
     <!-- Video + Podcast + NotebookLM -->
     <section class="topic-section revision-media">

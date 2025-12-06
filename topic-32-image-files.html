@@ -11,6 +11,86 @@
 <link href="topic.css" rel="stylesheet"/>
 <link href="nav.css" rel="stylesheet"/>
 <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+
+  <style>
+  /* Inline infographic styles – shared across topics */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
 <div class="page">
@@ -121,6 +201,74 @@
 <li>Image files link closely to <strong>file compression</strong> and <strong>distribution</strong> topics.</li>
 </ul>
 </section>
+
+    <section class="topic-section">
+      <h2>Image Files at a Glance</h2>
+      <p class="topic-intro">
+        This infographic lists common image formats and helps you choose the right one for each use case.
+      </p>
+
+      <div class="infographic-grid">
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Image / photo icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="4" y="6" width="16" height="12" rx="1.5" ry="1.5" fill="#f4b163"/>
+                <circle cx="9" cy="10" r="1.4" fill="#004556"/>
+                <path d="M7 16l3-3 2.5 2.5L15 12l3 4" stroke="#004556" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Common Image File Types</h3>
+              <p class="infographic-tagline">
+                Raster vs vector and what each format is best for.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>JPEG/JPG:</strong> lossy, good for photos and web images with gradients.</li>
+            <li><strong>PNG:</strong> lossless, supports transparency, good for logos and UI elements.</li>
+            <li><strong>GIF:</strong> supports simple animation, limited to 256 colours.</li>
+            <li><strong>SVG:</strong> vector-based, scalable without losing quality – ideal for icons and logos.</li>
+            <li><strong>TIFF/RAW:</strong> high-quality formats used in professional photography and print.</li>
+            <li><strong>Exam link:</strong> state <em>which</em> format you would use and explain why it is suitable.</li>
+          </ul>
+          <span class="infographic-pill">Raster · Vector · Transparency</span>
+        </article>
+
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Resolution / pixels icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="5" y="5" width="5" height="5" fill="#004556"/>
+                <rect x="14" y="5" width="5" height="5" fill="#004556"/>
+                <rect x="5" y="14" width="5" height="5" fill="#004556"/>
+                <rect x="14" y="14" width="5" height="5" fill="#004556"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Resolution, Quality &amp; Use Cases</h3>
+              <p class="infographic-tagline">
+                Factors that influence file size and image quality.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Resolution:</strong> measured in pixels (e.g. 1920×1080) and DPI for print.</li>
+            <li><strong>Compression level:</strong> higher compression reduces file size but may add artefacts.</li>
+            <li><strong>Web use:</strong> smaller JPEG/PNG images optimised for fast loading.</li>
+            <li><strong>Print use:</strong> high-resolution, low-compression images for crisp output.</li>
+            <li><strong>Transparency &amp; overlays:</strong> choose PNG or SVG when backgrounds must be see-through.</li>
+            <li><strong>Exam tip:</strong> link your choice of file type to resolution, quality and how the image will be used.</li>
+          </ul>
+          <span class="infographic-pill">Resolution · Quality · Purpose</span>
+        </article>
+      </div>
+    </section>
+
+
 <!-- Raster vs vector -->
 <section class="topic-section">
 <h2>Raster vs Vector Graphics</h2>

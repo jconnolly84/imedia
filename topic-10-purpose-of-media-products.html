@@ -11,6 +11,86 @@
 <link href="topic.css" rel="stylesheet"/>
 <link href="nav.css" rel="stylesheet"/>
 <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+
+  <style>
+  /* Inline infographic styles – shared across topics */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
 <div class="page">
@@ -124,6 +204,74 @@
 <li>Understanding purpose helps you answer exam questions about suitability and improvements.</li>
 </ul>
 </section>
+
+    <section class="topic-section">
+      <h2>Purposes of Media Products at a Glance</h2>
+      <p class="topic-intro">
+        This infographic helps you remember the main purposes of media products and how to explain them
+        clearly in exam questions.
+      </p>
+
+      <div class="infographic-grid">
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Target / bullseye icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="7" fill="#f4b163"/>
+                <circle cx="12" cy="12" r="4" fill="#004556"/>
+                <circle cx="12" cy="12" r="1.6" fill="#f4b163"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Main Purposes You Must Know</h3>
+              <p class="infographic-tagline">
+                Core purposes that appear again and again in OCR questions.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Inform:</strong> give factual information (news articles, information posters, help pages).</li>
+            <li><strong>Entertain:</strong> provide enjoyment or escapism (films, games, comedy videos).</li>
+            <li><strong>Educate:</strong> teach skills or knowledge (revision sites, tutorials, documentaries).</li>
+            <li><strong>Promote / advertise:</strong> raise interest in a product, service, event or brand.</li>
+            <li><strong>Raise awareness:</strong> highlight an issue or cause (charity campaigns, PSAs).</li>
+            <li><strong>Exam link:</strong> a product can have <em>more than one purpose</em> – explain the combination.</li>
+          </ul>
+          <span class="infographic-pill">Inform · Entertain · Educate</span>
+        </article>
+
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Megaphone icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 11l11-5v12L4 13v-2z" fill="#f4b163"/>
+                <path d="M9 14l1.2 3.5a1.5 1.5 0 0 0 2.3.8L14 17" stroke="#004556" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M18 9.5v5" stroke="#004556" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Linking Purpose to Audience &amp; Product</h3>
+              <p class="infographic-tagline">
+                How to turn “purpose” into a strong exam explanation.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Purpose + audience:</strong> explain <em>who</em> it is for and <em>why that group</em> needs this purpose.</li>
+            <li><strong>Purpose + content:</strong> show how images, text, audio and layout support the purpose.</li>
+            <li><strong>Purpose + platform:</strong> describe why a website, app, poster or video is the best choice.</li>
+            <li><strong>Purpose + success:</strong> suggest how success could be measured (views, clicks, sales, feedback).</li>
+            <li><strong>Combined purposes:</strong> e.g. “entertain and promote” or “raise awareness and persuade”.</li>
+            <li><strong>Exam tip:</strong> use phrases like “This is effective because it…” followed by an impact on the audience.</li>
+          </ul>
+          <span class="infographic-pill">Audience · Content · Impact</span>
+        </article>
+      </div>
+    </section>
+
+
 <!-- Video + Podcast + NotebookLM -->
 <section class="topic-section revision-media">
 <div class="media-column">

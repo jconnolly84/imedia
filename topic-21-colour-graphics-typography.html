@@ -11,6 +11,86 @@
   <link rel="stylesheet" href="topic.css">
   <link rel="stylesheet" href="nav.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <style>
+  /* Inline infographic styles – shared across topics */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
   <div class="page">
@@ -130,6 +210,75 @@
         <li>Typography affects how easy text is to read and how professional it looks.</li>
       </ul>
     </section>
+
+    <section class="topic-section">
+      <h2>Colour, Graphics &amp; Typography at a Glance</h2>
+      <p class="topic-intro">
+        This infographic summarises how visual choices support branding, readability and audience appeal.
+      </p>
+
+      <div class="infographic-grid">
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Palette icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 4a7 7 0 0 0-7 7 7 7 0 0 0 9 6.7 2.3 2.3 0 0 0-.5-4.5h-1a1.5 1.5 0 0 1-1.5-1.3A7 7 0 0 0 12 4z" fill="#f4b163"/>
+                <circle cx="9" cy="9" r="1" fill="#004556"/>
+                <circle cx="14" cy="8" r="1" fill="#004556"/>
+                <circle cx="8" cy="13" r="1" fill="#004556"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Colour &amp; Graphics</h3>
+              <p class="infographic-tagline">
+                How colour palettes and imagery communicate brand and mood.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Brand colours:</strong> consistent palette to match logos and existing materials.</li>
+            <li><strong>Colour meanings:</strong> warm colours for energy, cool colours for calm or technology.</li>
+            <li><strong>Contrast:</strong> strong contrast between text and background for readability and accessibility.</li>
+            <li><strong>Graphics:</strong> photos, illustrations, icons and logos chosen to suit the target audience.</li>
+            <li><strong>Style consistency:</strong> using a similar look across all pages, screens and assets.</li>
+            <li><strong>Exam link:</strong> when evaluating designs, comment on how colour and imagery support purpose and audience.</li>
+          </ul>
+          <span class="infographic-pill">Palette · Imagery · Brand</span>
+        </article>
+
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Text / typography icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 7h12" stroke="#004556" stroke-width="2" stroke-linecap="round"/>
+                <path d="M9 7v10" stroke="#004556" stroke-width="2" stroke-linecap="round"/>
+                <path d="M15 7v10" stroke="#004556" stroke-width="2" stroke-linecap="round"/>
+                <path d="M7 17h10" stroke="#f4b163" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Typography &amp; Layout</h3>
+              <p class="infographic-tagline">
+                How font choices and text layout affect clarity and tone.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Font choice:</strong> sans serif for modern, clean designs; serif for formal or traditional products.</li>
+            <li><strong>Hierarchy:</strong> headings, subheadings and body text clearly separated by size and weight.</li>
+            <li><strong>Alignment &amp; spacing:</strong> consistent alignment and line spacing to aid readability.</li>
+            <li><strong>Readability:</strong> avoid tiny text, overcrowded layouts and long unbroken paragraphs.</li>
+            <li><strong>Accessibility:</strong> avoid colour-only cues and use clear, legible typefaces.</li>
+            <li><strong>Exam tip:</strong> use phrases like “This is effective because the typography makes…” followed by impact on audience.</li>
+          </ul>
+          <span class="infographic-pill">Fonts · Layout · Clarity</span>
+        </article>
+      </div>
+    </section>
+
+
 
     <!-- Colour detail -->
     <section class="topic-section">

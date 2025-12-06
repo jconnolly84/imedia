@@ -13,6 +13,80 @@
 <link href="topic.css" rel="stylesheet"/>
 <link href="nav.css" rel="stylesheet"/>
 <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+
+<style>
+  /* Inline infographic styles for Topic 06 – Website Assets */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+</style>
+
 </head>
 <body>
 <div class="page">
@@ -162,6 +236,79 @@
       All assets must follow copyright, IPR and licensing rules.
      </li>
 </ul>
+
+<!-- Topic infographics: Website Assets -->
+<section class="topic-section">
+  <h2>Website Assets at a Glance</h2>
+  <p class="topic-intro">
+    These infographics summarise the main types of website asset and how to prepare them
+    so pages look professional and load quickly on different devices.
+  </p>
+  <div class="infographic-grid">
+    <article class="infographic-card">
+      <div class="infographic-header">
+        <div class="infographic-icon">
+          <!-- Browser window icon for asset types -->
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="2" ry="2" fill="#f4b163"/>
+            <rect x="3.5" y="5.5" width="17" height="3" fill="#004556"/>
+            <circle cx="6" cy="7" r="0.7" fill="#fdf5e6"/>
+            <circle cx="8.5" cy="7" r="0.7" fill="#fdf5e6"/>
+            <circle cx="11" cy="7" r="0.7" fill="#fdf5e6"/>
+            <rect x="5" y="10" width="6" height="4" fill="#004556"/>
+            <rect x="13" y="10" width="6" height="1.5" fill="#004556"/>
+            <rect x="13" y="13" width="6" height="1.5" fill="#004556"/>
+            <rect x="5" y="15.5" width="7" height="1.5" fill="#004556"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Types of Website Asset</h3>
+          <p class="infographic-tagline">
+            The building blocks that appear on a web page.
+          </p>
+        </div>
+      </div>
+      <ul class="infographic-list">
+        <li><strong>Images:</strong> logos, hero images, icons, product photos, background graphics.</li>
+        <li><strong>Text:</strong> headings, body copy, buttons, navigation labels and captions.</li>
+        <li><strong>Media:</strong> embedded video clips, audio players and animations.</li>
+        <li><strong>Interactive elements:</strong> menus, buttons, forms, carousels and accordions.</li>
+        <li><strong>Downloads:</strong> PDFs, brochures, worksheets and other resource files.</li>
+        <li><strong>Branding assets:</strong> colour scheme, fonts and repeated graphic elements.</li>
+      </ul>
+      <span class="infographic-pill">Images · Text · Media · Downloads</span>
+    </article>
+
+    <article class="infographic-card">
+      <div class="infographic-header">
+        <div class="infographic-icon">
+          <!-- Speed / optimisation icon -->
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" fill="#f4b163"/>
+            <path d="M12 7v5l3 3" stroke="#004556" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="12" r="7" fill="none" stroke="#004556" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Optimising Website Assets</h3>
+          <p class="infographic-tagline">
+            Choices that affect quality, performance and accessibility.
+          </p>
+        </div>
+      </div>
+      <ul class="infographic-list">
+        <li>Choose suitable <strong>file formats</strong> (e.g. PNG/SVG for logos, JPEG/WebP for photos, MP4 for video).</li>
+        <li>Use <strong>compression</strong> to reduce file size so pages load quickly.</li>
+        <li>Export images at an appropriate <strong>resolution</strong> for desktop and mobile screens.</li>
+        <li>Add clear <strong>alt text</strong> and captions to support accessibility and SEO.</li>
+        <li>Keep filenames and folder structure <strong>organised</strong> so assets are easy to update.</li>
+        <li>Test pages on different <strong>devices and connection speeds</strong> to check performance.</li>
+      </ul>
+      <span class="infographic-pill">Formats · Compression · Accessibility</span>
+    </article>
+  </div>
+</section>
+
 </section>
 <!-- Video + Podcast + NotebookLM -->
 <section class="topic-section revision-media">

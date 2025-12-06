@@ -11,6 +11,86 @@
   <link rel="stylesheet" href="topic.css">
   <link rel="stylesheet" href="nav.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <style>
+  /* Inline infographic styles – shared across topics */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
   <div class="page">
@@ -130,6 +210,71 @@
         <li>Keeps media producers within the law and avoids <strong>complaints and sanctions</strong>.</li>
       </ul>
     </section>
+
+    <section class="topic-section">
+      <h2>Regulation, Certification &amp; Classification at a Glance</h2>
+      <p class="topic-intro">
+        These infographics summarise who regulates media products and how age ratings and content rules protect audiences.
+      </p>
+
+      <div class="infographic-grid">
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Shield / badge icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3l7 3v6c0 4-3 7.4-7 8.6C8 19.4 5 16 5 12V6l7-3z" fill="#004556"/>
+                <path d="M9 10.5l2 2.2 4-4.2" stroke="#f4b163" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Key UK Regulators &amp; Rating Bodies</h3>
+              <p class="infographic-tagline">
+                Organisations you must be able to name and describe in the exam.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Ofcom:</strong> regulates TV, radio and on-demand services – protects audiences from harmful or offensive content.</li>
+            <li><strong>ASA:</strong> checks that adverts are legal, decent, honest and truthful.</li>
+            <li><strong>BBFC:</strong> gives age ratings (U, PG, 12, 15, 18) for films and some online video.</li>
+            <li><strong>VSC / PEGI:</strong> provides age ratings and content icons for games in the UK and Europe.</li>
+            <li><strong>Platform policies:</strong> YouTube, TikTok and app stores have their own community guidelines.</li>
+            <li><strong>Exam link:</strong> when given a product, state <em>which regulator</em> applies and <em>why</em>.</li>
+          </ul>
+          <span class="infographic-pill">Rules · Ratings · Protection</span>
+        </article>
+
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Age rating icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="5" y="5" width="14" height="14" rx="2" ry="2" fill="#f4b163"/>
+                <text x="12" y="15" text-anchor="middle" font-size="7" fill="#004556" font-family="system-ui, sans-serif">12</text>
+              </svg>
+            </div>
+            <div>
+              <h3>How Ratings Affect Products &amp; Exams</h3>
+              <p class="infographic-tagline">
+                Using age ratings and rules in design and evaluation questions.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Suitability:</strong> make sure violence, language, sex and themes match the chosen age rating.</li>
+            <li><strong>Target audience:</strong> rating must be realistic for the audience the client wants to reach.</li>
+            <li><strong>Edits &amp; cuts:</strong> producers may remove or tone down content to achieve a lower age rating.</li>
+            <li><strong>Scheduling &amp; access:</strong> watershed times, parental controls and store restrictions limit who can see content.</li>
+            <li><strong>Complaints:</strong> regulators can order changes, fines or removal if rules are broken.</li>
+            <li><strong>Exam tip:</strong> when evaluating an idea, comment on whether the content <em>meets</em> or <em>breaks</em> the relevant code or rating.</li>
+          </ul>
+          <span class="infographic-pill">Suitability · Codes · Complaints</span>
+        </article>
+      </div>
+    </section>
+
+
 
     <!-- Regulators -->
     <section class="topic-section">

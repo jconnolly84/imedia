@@ -11,6 +11,86 @@
 <link href="topic.css" rel="stylesheet"/>
 <link href="nav.css" rel="stylesheet"/>
 <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+
+  <style>
+  /* Inline infographic styles – shared across topics */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
 <div class="page">
@@ -128,6 +208,75 @@
 <li><strong>Natural vs artificial light</strong> – daylight compared with studio lights or LED panels.</li>
 </ul>
 </section>
+
+    <section class="topic-section">
+      <h2>Camera &amp; Lighting at a Glance</h2>
+      <p class="topic-intro">
+        Use this infographic to remember how camera and lighting choices act as technical codes and how to
+        explain their impact on the audience.
+      </p>
+
+      <div class="infographic-grid">
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Camera icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="8" width="18" height="10" rx="2" ry="2" fill="#f4b163"/>
+                <rect x="8" y="6" width="4" height="3" rx="0.8" fill="#004556"/>
+                <circle cx="14" cy="13" r="3.2" fill="#004556"/>
+                <circle cx="14" cy="13" r="1.5" fill="#f4b163"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Key Camera Choices</h3>
+              <p class="infographic-tagline">
+                Shot types, angles and movement that create meaning.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Shot types:</strong> close-up to show emotion, mid shot for body language, long shot for setting.</li>
+            <li><strong>Angles:</strong> high angle to make a subject look weak, low angle to make them look powerful.</li>
+            <li><strong>Movement:</strong> pans and tilts to follow action, tracking shots to move with characters.</li>
+            <li><strong>Framing:</strong> rule of thirds, headroom and lead room to keep compositions balanced.</li>
+            <li><strong>Focus:</strong> shallow depth of field to highlight one subject, deep focus to show the whole scene.</li>
+            <li><strong>Exam link:</strong> name the camera choice and explain how it affects the audience’s view of a character or event.</li>
+          </ul>
+          <span class="infographic-pill">Shots · Angles · Movement</span>
+        </article>
+
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Light / lamp icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 11a5 5 0 0 1 10 0c0 2.3-1.4 3.6-2 4.5-.3.5-.5 1-.6 1.5H9.6c-.1-.6-.3-1-.6-1.5-.6-.9-2-2.2-2-4.5z" fill="#f4b163"/>
+                <rect x="10" y="18" width="4" height="1.6" rx="0.8" fill="#004556"/>
+                <rect x="10" y="20" width="4" height="1.6" rx="0.8" fill="#004556"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Lighting &amp; Mood</h3>
+              <p class="infographic-tagline">
+                How lighting style changes the mood and meaning of a scene.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>High-key lighting:</strong> bright, even lighting for cheerful, safe or professional scenes.</li>
+            <li><strong>Low-key lighting:</strong> strong shadows and contrast for tension, mystery or danger.</li>
+            <li><strong>Colour gels:</strong> warm tones for comfort or romance, cool tones for calm or isolation.</li>
+            <li><strong>Direction of light:</strong> front lighting for clarity, side lighting for drama, backlighting for silhouettes.</li>
+            <li><strong>Natural vs artificial:</strong> realism vs stylised looks depending on the product’s purpose.</li>
+            <li><strong>Exam tip:</strong> use the pattern “The use of [lighting type] creates a [mood] because…” and link to audience response.</li>
+          </ul>
+          <span class="infographic-pill">Mood · Atmosphere · Focus</span>
+        </article>
+      </div>
+    </section>
+
+
 <!-- Detailed camera section -->
 <section class="topic-section">
 <h2>Camera Shots, Angles and Movement</h2>

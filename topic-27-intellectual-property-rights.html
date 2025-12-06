@@ -11,6 +11,86 @@
   <link rel="stylesheet" href="topic.css">
   <link rel="stylesheet" href="nav.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <style>
+  /* Inline infographic styles – shared across topics */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
   <div class="page">
@@ -132,6 +212,71 @@
         <li>Exam questions can ask you to <strong>identify legal risks</strong> and <strong>recommend solutions</strong>.</li>
       </ul>
     </section>
+
+    <section class="topic-section">
+      <h2>Intellectual Property Rights at a Glance</h2>
+      <p class="topic-intro">
+        This infographic summarises key IPR types and how media producers use other people’s work legally.
+      </p>
+
+      <div class="infographic-grid">
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Copyright / badge icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="7" fill="#f4b163"/>
+                <path d="M14.5 10.2A2.7 2.7 0 0 0 12.4 9a2.9 2.9 0 1 0 0 6 2.7 2.7 0 0 0 2.1-1.2" fill="none" stroke="#004556" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Types of Intellectual Property</h3>
+              <p class="infographic-tagline">
+                Legal rights that protect creative and original work.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Copyright:</strong> protects original music, video, images, writing and software.</li>
+            <li><strong>Trademarks:</strong> protect brand names, logos and slogans.</li>
+            <li><strong>Patents:</strong> protect new inventions and technical processes.</li>
+            <li><strong>Design rights:</strong> protect the look and shape of products.</li>
+            <li><strong>Moral rights:</strong> right to be named as the creator and object to harmful changes.</li>
+            <li><strong>Exam link:</strong> identify which IPR applies in a scenario and what it protects.</li>
+          </ul>
+          <span class="infographic-pill">Copyright · Trademarks · Patents</span>
+        </article>
+
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Contract / handshake icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 4h9l3 3v13H6V4z" fill="#004556"/>
+                <path d="M9 9h6M9 12h4" stroke="#f4b163" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Using Content Legally</h3>
+              <p class="infographic-tagline">
+                How producers avoid infringement and respect IPR in projects.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Licensing:</strong> getting permission to use copyrighted work under agreed conditions.</li>
+            <li><strong>Creative Commons:</strong> licences that allow reuse with rules (e.g. attribution, non-commercial).</li>
+            <li><strong>Royalty-free vs rights-managed:</strong> different ways to pay for stock assets.</li>
+            <li><strong>Infringement:</strong> using content without permission or outside the licence terms.</li>
+            <li><strong>Consequences:</strong> takedown notices, fines, legal action and reputational damage.</li>
+            <li><strong>Exam tip:</strong> when planning a product, state how you will source or create assets legally.</li>
+          </ul>
+          <span class="infographic-pill">Licences · Permissions · Consequences</span>
+        </article>
+      </div>
+    </section>
+
+
 
     <!-- Copyright and infringement -->
     <section class="topic-section">

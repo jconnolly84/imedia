@@ -11,6 +11,86 @@
   <link rel="stylesheet" href="topic.css">
   <link rel="stylesheet" href="nav.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <style>
+  /* Inline infographic styles – shared across topics */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
   <div class="page">
@@ -130,7 +210,77 @@
         <li>It can be highly targeted using user data and analytics.</li>
         <li>It is usually cheaper to distribute than traditional media and can reach global audiences.</li>
       </ul>
+    
+    
+</section>
+
+    <section class="topic-section">
+      <h2>New Media at a Glance</h2>
+      <p class="topic-intro">
+        This infographic explains what makes media “new” and how digital technologies change campaigns.
+      </p>
+
+      <div class="infographic-grid">
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Mobile / screen icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="7" y="3" width="10" height="18" rx="2" ry="2" fill="#f4b163"/>
+                <rect x="9" y="6" width="6" height="9" fill="#004556"/>
+                <circle cx="12" cy="17" r="0.9" fill="#004556"/>
+              </svg>
+            </div>
+            <div>
+              <h3>What Makes Media “New”?</h3>
+              <p class="infographic-tagline">
+                Digital, interactive and connected technologies.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Digital delivery:</strong> content accessed through the internet and digital devices.</li>
+            <li><strong>Interactivity:</strong> audiences can like, share, comment, vote and participate.</li>
+            <li><strong>On-demand:</strong> users choose when and where to access content (catch-up, streaming).</li>
+            <li><strong>Personalisation:</strong> content and adverts can be targeted to individuals.</li>
+            <li><strong>Convergence:</strong> one device can access TV, games, web, social and messaging.</li>
+            <li><strong>Exam link:</strong> compare new media with traditional media in terms of <em>reach</em> and <em>interactivity</em>.</li>
+          </ul>
+          <span class="infographic-pill">Digital · Interactive · On-demand</span>
+        </article>
+
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Network / social icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="8" cy="8" r="2" fill="#004556"/>
+                <circle cx="16" cy="7" r="2" fill="#004556"/>
+                <circle cx="12" cy="15" r="2" fill="#004556"/>
+                <path d="M9.7 9.3l1.9 4M14.3 8.7L12.3 13" stroke="#f4b163" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>New Media in Campaigns</h3>
+              <p class="infographic-tagline">
+                How advertisers and creators use new media channels.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Websites &amp; microsites:</strong> hubs for detailed information and calls-to-action.</li>
+            <li><strong>Social media:</strong> posts, stories, shorts and influencer partnerships.</li>
+            <li><strong>Video platforms:</strong> pre‑roll ads, sponsored content and branded channels.</li>
+            <li><strong>Apps &amp; games:</strong> branded apps, advergames and in‑game advertising.</li>
+            <li><strong>Cross‑platform campaigns:</strong> consistent message across web, social and offline media.</li>
+            <li><strong>Exam tip:</strong> say how new media allows <em>two-way communication</em> and <em>data collection</em>.</li>
+          </ul>
+          <span class="infographic-pill">Web · Social · Apps</span>
+        </article>
+      </div>
     </section>
+
+
 
     <!-- Video + Podcast + NotebookLM -->
     <section class="topic-section revision-media">

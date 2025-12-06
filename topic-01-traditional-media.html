@@ -11,6 +11,86 @@
   <link rel="stylesheet" href="topic.css">
   <link rel="stylesheet" href="nav.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <style>
+  /* Inline infographic styles – shared across topics */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
   <div class="page">
@@ -132,15 +212,78 @@
       </ul>
     
     
-    <!-- Infographics -->
-    <section class="topic-section" style="display:flex; gap:20px; justify-content:center; align-items:flex-start; flex-wrap:wrap;">
-      <img src="img/topic-01-traditional-media-img_1.png" alt="Traditional Media Categories Infographic"
-           style="width:48%; min-width:300px; height:auto; flex:1 1 48%;">
-      <img src="img/topic-01-traditional-media-img_2.png" alt="Traditional Media Key Characteristics Infographic"
-           style="width:48%; min-width:300px; height:auto; flex:1 1 48%;">
-    </section>
+    
 
 </section>
+
+    <section class="topic-section">
+      <h2>Traditional Media at a Glance</h2>
+      <p class="topic-intro">
+        Use this infographic to remember the main <strong>types of traditional media</strong> and how they are used
+        in campaigns today.
+      </p>
+
+      <div class="infographic-grid">
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Newspaper / radio icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="6" width="9" height="12" rx="1.5" ry="1.5" fill="#f4b163"/>
+                <rect x="12" y="8" width="9" height="8" rx="1.2" ry="1.2" fill="#004556"/>
+                <path d="M5 8.5h5M5 11h4" stroke="#004556" stroke-width="1.2" stroke-linecap="round"/>
+                <path d="M14 17.5l2-1.5 2 1.5" stroke="#f4b163" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Types of Traditional Media</h3>
+              <p class="infographic-tagline">
+                Channels that existed before the internet and social media.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Print:</strong> newspapers, magazines, flyers, posters, billboards.</li>
+            <li><strong>Broadcast:</strong> TV and radio adverts, sponsorship idents, programme trailers.</li>
+            <li><strong>Outdoor:</strong> bus stops, transport adverts, building wraps, shop signage.</li>
+            <li><strong>Cinema:</strong> adverts before films, special event screenings and trailers.</li>
+            <li><strong>Direct marketing:</strong> posted leaflets, catalogues and door drops.</li>
+            <li><strong>Exam link:</strong> be ready to <em>name</em> at least three examples in 1–3 mark questions.</li>
+          </ul>
+          <span class="infographic-pill">Print · Broadcast · Outdoor</span>
+        </article>
+
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Megaphone / reach icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 11v2l4 2.5V8.5L5 11z" fill="#004556"/>
+                <path d="M9 9l7-3v12l-7-3" fill="#f4b163"/>
+                <path d="M18 9.5a2.5 2.5 0 0 1 0 5" stroke="#004556" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Strengths &amp; Limitations</h3>
+              <p class="infographic-tagline">
+                When traditional media is still powerful – and what holds it back.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Strength – mass reach:</strong> TV and national print can reach millions quickly.</li>
+            <li><strong>Strength – perceived trust:</strong> established channels often feel more credible.</li>
+            <li><strong>Limitation – low interactivity:</strong> mainly one-way communication.</li>
+            <li><strong>Limitation – cost:</strong> TV, radio and large outdoor campaigns can be expensive.</li>
+            <li><strong>Modern campaigns:</strong> often mix traditional with new media (social, web, apps).</li>
+            <li><strong>Exam tip:</strong> say <em>how</em> a traditional method reaches the audience and <em>why</em> it suits the product.</li>
+          </ul>
+          <span class="infographic-pill">Reach · Trust · Cost</span>
+        </article>
+      </div>
+    </section>
+
+
 
     <!-- Video + Podcast + NotebookLM -->
     <section class="topic-section revision-media">

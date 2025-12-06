@@ -11,6 +11,86 @@
   <link rel="stylesheet" href="topic.css">
   <link rel="stylesheet" href="nav.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <style>
+  /* Inline infographic styles – shared across topics */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
   <div class="page">
@@ -133,6 +213,77 @@
         <li>Creative work is usually part of a wider production team and workflow.</li>
       </ul>
     </section>
+
+
+    <section class="topic-section">
+      <h2>Creative Job Roles at a Glance</h2>
+      <p class="topic-intro">
+        These infographics summarise where creative job roles fit into the media industry and the
+        responsibilities you can write about in the exam.
+      </p>
+
+      <div class="infographic-grid">
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Lightbulb / idea icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="9" r="4" fill="#f4b163"/>
+                <path d="M9 15c0-1.7 1.3-3 3-3s3 1.3 3 3c0 .9-.4 1.6-1 2.1-.4.4-.7.8-.9 1.4l-.2.5H11l-.2-.5c-.2-.6-.5-1-1-1.4-.6-.5-1-1.2-1-2.1z" fill="#004556"/>
+                <rect x="10" y="19" width="4" height="1.4" rx="0.7" fill="#f4b163"/>
+                <rect x="10" y="21" width="4" height="1.4" rx="0.7" fill="#f4b163"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Where Creative Roles Work</h3>
+              <p class="infographic-tagline">
+                Key places you will find creative job roles in media projects.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Advertising agencies:</strong> copywriters, designers and art directors creating campaigns.</li>
+            <li><strong>Film &amp; TV production:</strong> scriptwriters, storyboard artists, editors and title designers.</li>
+            <li><strong>Game studios:</strong> concept artists, character designers, level designers and UI designers.</li>
+            <li><strong>Web &amp; app design teams:</strong> UX/UI designers, graphic designers and content designers.</li>
+            <li><strong>In‑house marketing teams:</strong> social media designers, content creators and brand designers.</li>
+            <li><strong>Freelancers:</strong> self‑employed creatives working for multiple clients on different projects.</li>
+          </ul>
+          <span class="infographic-pill">Sectors · Teams · Workplaces</span>
+        </article>
+
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Pen / tools icon for responsibilities -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 20l2.5-6.5L15 5l4 4-8.5 8.5L4 20z" fill="#f4b163"/>
+                <path d="M14 6l4 4" stroke="#004556" stroke-width="2" stroke-linecap="round"/>
+                <rect x="5" y="19" width="4" height="1.4" rx="0.7" fill="#004556"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Key Creative Roles &amp; Responsibilities</h3>
+              <p class="infographic-tagline">
+                Job titles, what they actually do and exam phrases you can use.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Graphic designer:</strong> creates layouts, logos, icons and marketing materials that match brand guidelines.</li>
+            <li><strong>Illustrator:</strong> produces drawings, characters and assets for books, games, web and animation.</li>
+            <li><strong>Photographer:</strong> plans and captures still images that meet the brief (composition, lighting, style).</li>
+            <li><strong>Videographer / camera operator:</strong> records moving image footage using appropriate framing and movement.</li>
+            <li><strong>Scriptwriter / copywriter:</strong> writes dialogue, voice‑over and on‑screen text suitable for the audience.</li>
+            <li><strong>Editor:</strong> selects and combines images, video and audio to create a final product that flows well.</li>
+          </ul>
+          <span class="infographic-pill">Roles · Skills · Responsibilities</span>
+        </article>
+      </div>
+
+    </section>
+
+
 
     <!-- Video + Podcast + NotebookLM -->
     <section class="topic-section revision-media">

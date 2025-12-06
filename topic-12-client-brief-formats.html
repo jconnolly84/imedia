@@ -11,6 +11,86 @@
 <link href="topic.css" rel="stylesheet"/>
 <link href="nav.css" rel="stylesheet"/>
 <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+
+  <style>
+  /* Inline infographic styles – shared across topics */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
 <div class="page">
@@ -123,6 +203,72 @@
 <li>In exam questions, always quote or refer to details from the brief to support your answers.</li>
 </ul>
 </section>
+
+    <section class="topic-section">
+      <h2>Client Brief Formats at a Glance</h2>
+      <p class="topic-intro">
+        Different formats contain similar information. This infographic helps you spot it quickly in the exam.
+      </p>
+
+      <div class="infographic-grid">
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Email / message icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="4" y="5" width="16" height="14" rx="2" ry="2" fill="#f4b163"/>
+                <path d="M5.5 7.5L12 12l6.5-4.5" stroke="#004556" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Common Brief Formats</h3>
+              <p class="infographic-tagline">
+                Different ways the client can explain what they want.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Formal written brief:</strong> structured document with headings and bullet points.</li>
+            <li><strong>Informal email:</strong> less structured, but still contains purpose, audience and constraints.</li>
+            <li><strong>Script or page outline:</strong> shows scenes, panels or page layout instead of paragraphs.</li>
+            <li><strong>Treatment / proposal:</strong> longer document pitching style and approach in more detail.</li>
+            <li><strong>Meeting notes:</strong> actions, decisions and requirements captured from a discussion.</li>
+            <li><strong>Exam link:</strong> whichever format you see, hunt for purpose, audience, content, style and timescales.</li>
+          </ul>
+          <span class="infographic-pill">Formats · Structure · Clues</span>
+        </article>
+
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Magnifying glass icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="4.5" fill="#004556"/>
+                <circle cx="11" cy="11" r="2.5" fill="#f4b163"/>
+                <path d="M14 14l4 4" stroke="#004556" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Explicit vs Implicit Requirements</h3>
+              <p class="infographic-tagline">
+                Reading between the lines of the brief.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Explicit requirements:</strong> clearly stated (e.g. “must use our logo and brand colours”).</li>
+            <li><strong>Implicit requirements:</strong> implied by the context (e.g. suitable for children, safe, age-appropriate).</li>
+            <li><strong>Format clues:</strong> headings, subject lines, dialogue and stage directions reveal extra details.</li>
+            <li><strong>Constraints:</strong> hidden in phrases such as “limited budget” or “tight deadline”.</li>
+            <li><strong>Exam structure:</strong> identify → quote → explain how it affects your ideas.</li>
+            <li><strong>Exam tip:</strong> write “This is an implicit requirement because…” and justify your interpretation.</li>
+          </ul>
+          <span class="infographic-pill">Explicit · Implicit · Constraints</span>
+        </article>
+      </div>
+    </section>
+
+
 <!-- Video + Podcast + NotebookLM -->
 <section class="topic-section revision-media">
 <div class="media-column">

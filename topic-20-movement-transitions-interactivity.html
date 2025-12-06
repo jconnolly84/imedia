@@ -11,6 +11,86 @@
   <link rel="stylesheet" href="topic.css">
   <link rel="stylesheet" href="nav.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <style>
+  /* Inline infographic styles – shared across topics */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
   <div class="page">
@@ -139,6 +219,71 @@
         <li>Longer questions can ask you to <strong>recommend</strong> and explain suitable transitions and interactive elements.</li>
       </ul>
     </section>
+
+    <section class="topic-section">
+      <h2>Movement, Transitions &amp; Interactivity at a Glance</h2>
+      <p class="topic-intro">
+        This infographic shows how motion, screen changes and interactive elements improve usability and
+        audience engagement.
+      </p>
+
+      <div class="infographic-grid">
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Arrows / motion icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 9h8l-2-2m2 2l-2 2" fill="none" stroke="#f4b163" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19 15h-8l2-2m-2 2l2 2" fill="none" stroke="#004556" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Movement &amp; Transitions</h3>
+              <p class="infographic-tagline">
+                How screens and scenes change in a way that feels smooth and clear.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Movement:</strong> scrolling, parallax, animated icons and motion graphics.</li>
+            <li><strong>Scene transitions:</strong> cuts, fades, wipes and dissolves between shots or screens.</li>
+            <li><strong>Feedback:</strong> hover states, button presses and loading animations.</li>
+            <li><strong>Pacing:</strong> faster movement for energy and excitement, slower for calm or serious content.</li>
+            <li><strong>Clarity:</strong> transitions should help users understand where they have come from and where they are going.</li>
+            <li><strong>Exam link:</strong> explain how a specific movement or transition makes a product easier to follow or more engaging.</li>
+          </ul>
+          <span class="infographic-pill">Flow · Feedback · Pacing</span>
+        </article>
+
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Hand / tap icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M11 6a2 2 0 0 1 2 2v3.2l.9-.6a2 2 0 0 1 2.9.9L18 14l.7 1.8A3 3 0 0 1 17 20l-3.4 1.1a3 3 0 0 1-3.7-1.7L8 16.5V9.5a2 2 0 0 1 3-1.7V8a2 2 0 0 1 0-2z" fill="#f4b163"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Interactivity &amp; User Control</h3>
+              <p class="infographic-tagline">
+                How users make choices and control the product experience.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Navigation:</strong> menus, buttons, icons and links that are easy to spot and use.</li>
+            <li><strong>Input methods:</strong> touch, mouse, keyboard, controller and voice commands.</li>
+            <li><strong>Interactive elements:</strong> quizzes, hotspots, branching paths, sliders and carousels.</li>
+            <li><strong>Accessibility:</strong> clear focus states, keyboard navigation and readable targets.</li>
+            <li><strong>Engagement:</strong> rewards, progress indicators and branching choices to keep users interested.</li>
+            <li><strong>Exam tip:</strong> describe how interactivity helps users achieve goals quickly and enjoyably.</li>
+          </ul>
+          <span class="infographic-pill">Control · Navigation · Engagement</span>
+        </article>
+      </div>
+    </section>
+
+
 
     <!-- Movement detail -->
     <section class="topic-section">

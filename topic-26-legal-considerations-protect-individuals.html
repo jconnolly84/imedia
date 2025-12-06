@@ -11,6 +11,86 @@
   <link rel="stylesheet" href="topic.css">
   <link rel="stylesheet" href="nav.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <style>
+  /* Inline infographic styles – shared across topics */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
   <div class="page">
@@ -132,6 +212,74 @@
         <li>9-mark questions can ask you to <strong>discuss legal and ethical issues</strong> in detail.</li>
       </ul>
     </section>
+
+    <section class="topic-section">
+      <h2>Legal Considerations to Protect Individuals at a Glance</h2>
+      <p class="topic-intro">
+        This infographic focuses on how laws keep people’s data, privacy and wellbeing safe in media projects.
+      </p>
+
+      <div class="infographic-grid">
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Shield / lock icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3l7 3v5c0 4.2-3 7.8-7 9-4-1.2-7-4.8-7-9V6l7-3z" fill="#004556"/>
+                <path d="M9.5 11.5a2.5 2.5 0 0 1 5 0v1.2h-5v-1.2z" fill="#f4b163"/>
+                <rect x="10" y="12.7" width="4" height="3" rx="0.8" fill="#f4b163"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Data &amp; Privacy Protection</h3>
+              <p class="infographic-tagline">
+                Laws that control how personal information is collected and used.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Data protection:</strong> collect only necessary data and keep it secure and accurate.</li>
+            <li><strong>Consent:</strong> tell people how their data will be used and get permission where required.</li>
+            <li><strong>Privacy:</strong> avoid revealing personal details (addresses, contact info, sensitive data).</li>
+            <li><strong>Retention:</strong> do not keep data longer than needed for the stated purpose.</li>
+            <li><strong>Exam link:</strong> when planning a product, explain how you would handle personal data safely.</li>
+            <li><strong>Consequences:</strong> fines, legal action and reputational damage if laws are broken.</li>
+          </ul>
+          <span class="infographic-pill">Data · Consent · Security</span>
+        </article>
+
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- People / safety icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="9" cy="10" r="2" fill="#f4b163"/>
+                <circle cx="15" cy="10" r="2" fill="#f4b163"/>
+                <path d="M5.5 17c.5-1.9 1.7-2.8 3.5-2.8S12 15.1 12.5 17" stroke="#004556" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M11.5 17c.5-1.9 1.7-2.8 3.5-2.8S18 15.1 18.5 17" stroke="#004556" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Safety, Wellbeing &amp; Ethical Content</h3>
+              <p class="infographic-tagline">
+                Protecting people during production and when content is shared.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>On-set safety:</strong> risk assessments, training and supervision for cast and crew.</li>
+            <li><strong>Safeguarding:</strong> extra protection for children and vulnerable people.</li>
+            <li><strong>Consent to appear:</strong> release forms for people whose image, voice or data is used.</li>
+            <li><strong>Harmful content:</strong> avoid material that could cause physical, emotional or psychological harm.</li>
+            <li><strong>Exam tip:</strong> link legal and ethical points to real production decisions (locations, stunts, topics).</li>
+            <li><strong>Documentation:</strong> keep clear records of permissions, risk assessments and training.</li>
+          </ul>
+          <span class="infographic-pill">Safety · Safeguarding · Ethics</span>
+        </article>
+      </div>
+    </section>
+
+
 
     <!-- Data protection and privacy -->
     <section class="topic-section">

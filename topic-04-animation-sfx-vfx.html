@@ -11,6 +11,86 @@
 <link href="topic.css" rel="stylesheet"/>
 <link href="nav.css" rel="stylesheet"/>
 <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+
+  <style>
+  /* Inline infographic styles – shared across topics */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
 <div class="page">
@@ -128,7 +208,78 @@
             <strong>target audience</strong> of the product.</li>
 <li>More complex animation and VFX usually require more time, skill and budget.</li>
 </ul>
+
+    
 </section>
+
+    <section class="topic-section">
+      <h2>Animation, SFX &amp; VFX at a Glance</h2>
+      <p class="topic-intro">
+        Use this infographic to remember the difference between animation, sound effects (SFX) and visual effects (VFX),
+        and when each is used.
+      </p>
+
+      <div class="infographic-grid">
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Motion / stars icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="8" cy="10" r="2" fill="#f4b163"/>
+                <path d="M4 15h7" stroke="#004556" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M15 7l1-2 1 2 2 .5-2 .5-1 2-1-2-2-.5z" fill="#004556"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Animation &amp; Visual Effects</h3>
+              <p class="infographic-tagline">
+                Changing what the audience <em>sees</em> on screen.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Animation:</strong> creating moving images frame‑by‑frame (2D, 3D, stop motion).</li>
+            <li><strong>Motion graphics:</strong> animated text, logos and shapes used in intros and adverts.</li>
+            <li><strong>VFX (visual effects):</strong> adding or changing elements using software (e.g. green screen, CGI).</li>
+            <li><strong>Compositing:</strong> combining multiple layers, live‑action and CGI into one shot.</li>
+            <li><strong>Uses:</strong> bring impossible scenes to life, explain complex ideas and add visual impact.</li>
+            <li><strong>Exam link:</strong> when comparing, say <em>animation creates everything</em>, VFX <em>enhances filmed footage</em>.</li>
+          </ul>
+          <span class="infographic-pill">Animation · Motion Graphics · VFX</span>
+        </article>
+
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Audio / spark icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 11v4l3-1.5V9.5L6 11z" fill="#004556"/>
+                <path d="M13 10a2.5 2.5 0 0 1 0 4" stroke="#f4b163" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M15 8a4.5 4.5 0 0 1 0 8" stroke="#f4b163" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M18 6l.7 1.6L21 8.3l-1.7 1 .4 1.9L18 10.4l-1.7.8.4-1.9L15 8.3l2.3-.7z" fill="#f4b163"/>
+              </svg>
+            </div>
+            <div>
+              <h3>SFX &amp; Combining Techniques</h3>
+              <p class="infographic-tagline">
+                Using sound and visuals together for maximum impact.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>SFX (sound effects):</strong> explosions, whooshes, impacts and ambient sounds.</li>
+            <li><strong>Sync with visuals:</strong> match SFX to on‑screen action for believable results.</li>
+            <li><strong>Stylised sound:</strong> exaggerated or non‑realistic SFX for games and animation.</li>
+            <li><strong>Combining techniques:</strong> live‑action footage + VFX + SFX + music + titles.</li>
+            <li><strong>Suitability:</strong> choose techniques that match genre, audience and budget.</li>
+            <li><strong>Exam tip:</strong> clearly label which part of an example is animation, SFX or VFX when explaining.</li>
+          </ul>
+          <span class="infographic-pill">SFX · Timing · Impact</span>
+        </article>
+      </div>
+    </section>
+
+
 <!-- Video + Podcast + NotebookLM -->
 <section class="topic-section revision-media">
 <div class="media-column">

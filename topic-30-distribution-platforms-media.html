@@ -11,6 +11,86 @@
 <link href="topic.css" rel="stylesheet"/>
 <link href="nav.css" rel="stylesheet"/>
 <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+
+  <style>
+  /* Inline infographic styles – shared across topics */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
 <div class="page">
@@ -120,6 +200,72 @@
 <li>Often appears in the exam as <strong>scenarios</strong> where you must pick suitable platforms and justify them.</li>
 </ul>
 </section>
+
+    <section class="topic-section">
+      <h2>Distribution Platforms &amp; Media at a Glance</h2>
+      <p class="topic-intro">
+        This infographic summarises where media products can be distributed and how to match platforms to audiences.
+      </p>
+
+      <div class="infographic-grid">
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Screen / devices icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="6" width="12" height="9" rx="1.5" ry="1.5" fill="#f4b163"/>
+                <rect x="9" y="15" width="8" height="4" rx="1" ry="1" fill="#004556"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Key Distribution Platforms</h3>
+              <p class="infographic-tagline">
+                How audiences access media products in different ways.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Broadcast:</strong> TV and radio channels (live and catch-up).</li>
+            <li><strong>Streaming &amp; on-demand:</strong> services like Netflix, iPlayer, Spotify and YouTube.</li>
+            <li><strong>Cinema &amp; physical media:</strong> theatrical releases, DVDs, Blu-ray, boxed games.</li>
+            <li><strong>Online &amp; social:</strong> websites, social networks, video platforms and blogs.</li>
+            <li><strong>Apps &amp; downloads:</strong> mobile apps, app stores, digital game stores.</li>
+            <li><strong>Exam link:</strong> name the most suitable platform(s) for a product and justify your choice.</li>
+          </ul>
+          <span class="infographic-pill">Broadcast · Online · Apps</span>
+        </article>
+
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Globe / audience icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="7" fill="#004556"/>
+                <path d="M12 5v14M5 12h14" stroke="#f4b163" stroke-width="1.4"/>
+                <path d="M9 6.5a6 6 0 0 0 0 11M15 6.5a6 6 0 0 1 0 11" stroke="#f4b163" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Matching Platforms to Audience &amp; Purpose</h3>
+              <p class="infographic-tagline">
+                Choosing the best way to reach your target audience.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Audience habits:</strong> where your target age group actually spends time (TV, TikTok, games, etc.).</li>
+            <li><strong>Access &amp; devices:</strong> smartphones, consoles, smart TVs, PCs or tablets.</li>
+            <li><strong>Interactivity:</strong> choose web/apps or games when user control is important.</li>
+            <li><strong>Budget:</strong> some platforms are cheaper (social media) than others (cinema release).</li>
+            <li><strong>Global vs local:</strong> online platforms can reach worldwide audiences more easily.</li>
+            <li><strong>Exam tip:</strong> link your chosen platform back to purpose, audience and distribution budget.</li>
+          </ul>
+          <span class="infographic-pill">Habits · Access · Reach</span>
+        </article>
+      </div>
+    </section>
+
+
 <!-- Distribution platforms -->
 <section class="topic-section">
 <h2>Types of Distribution Platform</h2>

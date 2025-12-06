@@ -11,6 +11,86 @@
   <link rel="stylesheet" href="topic.css">
   <link rel="stylesheet" href="nav.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <style>
+  /* Inline infographic styles – shared across topics */
+  .infographic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 1.5rem;
+  }
+  .infographic-card {
+    flex: 1 1 320px;
+    background: #004556;
+    border-radius: 18px;
+    padding: 1.75rem 2rem;
+    color: #fdf5e6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  .infographic-tagline {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+  .infographic-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .infographic-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .infographic-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f4b163;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .infographic-pill {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(244, 177, 99, 0.18);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .infographic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .infographic-icon {
+    flex: 0 0 40px;
+  }
+  .infographic-icon svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+  .infographic-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
   <div class="page">
@@ -133,6 +213,73 @@
         <li>Exam questions often ask you to choose or justify suitable research methods for a scenario.</li>
       </ul>
     </section>
+
+    <section class="topic-section">
+      <h2>Audience Research at a Glance</h2>
+      <p class="topic-intro">
+        This infographic shows the main audience research methods and how to discuss their strengths and weaknesses.
+      </p>
+
+      <div class="infographic-grid">
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Survey / form icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="6" y="4" width="12" height="16" rx="2" ry="2" fill="#f4b163"/>
+                <path d="M9 9h6M9 12h6M9 15h4" stroke="#004556" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Common Audience Research Methods</h3>
+              <p class="infographic-tagline">
+                Ways to find out what audiences think, feel and do.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Surveys / questionnaires:</strong> collect quantifiable data from larger samples.</li>
+            <li><strong>Interviews:</strong> in-depth, one-to-one conversations for detailed opinions.</li>
+            <li><strong>Focus groups:</strong> small group discussions about ideas, prototypes or trailers.</li>
+            <li><strong>Observation / user testing:</strong> watch people using a product to spot problems.</li>
+            <li><strong>Analytics &amp; insights:</strong> website stats, social media data, viewing figures.</li>
+            <li><strong>Exam link:</strong> select the <em>most suitable</em> method(s) for the scenario given.</li>
+          </ul>
+          <span class="infographic-pill">Methods · Data · Insights</span>
+        </article>
+
+        <article class="infographic-card">
+          <div class="infographic-header">
+            <div class="infographic-icon">
+              <!-- Scales / balance icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 4v14" stroke="#004556" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M6 8h12" stroke="#004556" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M5 9l-2 4h6l-2-4H5z" fill="#f4b163"/>
+                <path d="M15 9l-2 4h6l-2-4h-2z" fill="#f4b163"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Strengths, Weaknesses &amp; Exam Phrases</h3>
+              <p class="infographic-tagline">
+                How to evaluate research methods instead of just naming them.
+              </p>
+            </div>
+          </div>
+          <ul class="infographic-list">
+            <li><strong>Strengths:</strong> accuracy, depth, large sample size, low cost, speed or realism.</li>
+            <li><strong>Weaknesses:</strong> bias, small sample, time-consuming, expensive, limited detail.</li>
+            <li><strong>Quantitative vs qualitative:</strong> numbers/statistics vs detailed opinions.</li>
+            <li><strong>Reliability:</strong> whether results would be similar if the research was repeated.</li>
+            <li><strong>Validity:</strong> whether the research actually measures what you need it to.</li>
+            <li><strong>Exam tip:</strong> write “This method is appropriate because…” and link to the scenario’s audience and budget.</li>
+          </ul>
+          <span class="infographic-pill">Strengths · Weaknesses · Suitability</span>
+        </article>
+      </div>
+    </section>
+
+
 
     <!-- Video + Podcast + NotebookLM -->
     <section class="topic-section revision-media">
