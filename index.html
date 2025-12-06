@@ -1112,5 +1112,19 @@
         }
       })();
     </script>
+
+<script>
+fetch("https://api.indexnow.org/indexnow", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    host: "imediagenius.co.uk",
+    key: "9df0e2c3b8b24b4e9f2682e3fbbccfa0",
+    keyLocation: "https://imediagenius.co.uk/9df0e2c3b8b24b4e9f2682e3fbbccfa0.txt",
+    urlList: [window.location.href]
+  })
+});
+</script>
+
 </body>
 </html>
