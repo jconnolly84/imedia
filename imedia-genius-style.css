@@ -480,3 +480,18 @@ body {
   font-weight: 600;
   background: rgba(0,0,0,0.3);
 }
+
+
+/* Shared footer for arcade-style game pages */
+footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+.footer-note {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
