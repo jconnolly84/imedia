@@ -55,6 +55,14 @@ const restartBtn = document.getElementById("restartBtn");
 const leaderboardTitle = document.getElementById("leaderboardTitle");
 const leaderboardContainer = document.getElementById("leaderboardContainer");
 
+// Hide leaderboard panel entirely (not used for this game)
+if (leaderboardTitle) {
+  const leaderboardCard = leaderboardTitle.closest(".card");
+  if (leaderboardCard) {
+    leaderboardCard.style.display = "none";
+  }
+}
+
 // -----------------------------------------------------------------------------
 // GAME STATE
 // -----------------------------------------------------------------------------
@@ -643,7 +651,7 @@ function restartHandler() {
 
 (function init() {
   initSfx();
-  loadLeaderboardFromSheet();
+  // loadLeaderboardFromSheet(); // disabled leaderboard
 
   if (startBtn) startBtn.addEventListener("click", startGameHandler);
   if (nextStageBtn) nextStageBtn.addEventListener("click", nextStageHandler);
