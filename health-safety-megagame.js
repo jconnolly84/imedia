@@ -612,15 +612,10 @@ function startGameHandler() {
     return;
   }
 
-  const name = (playerNameInput && playerNameInput.value || "").trim();
-  if (!name) {
-    alert("Please enter your initials so we can log your score.");
-    return;
-  }
-  if (name.length > 3) {
-    alert("Please enter up to 3 initials (e.g. ABC).");
-    return;
-  }
+  // Name / initials no longer required – leaderboard is disabled for this game.
+  // We still support sending an optional name if the field exists in future.
+  const name =
+    (playerNameInput && (playerNameInput.value || "").trim()) || "Anonymous";
 
   resetGameState();
   playSfx(sfxStart);
