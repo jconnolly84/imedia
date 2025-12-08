@@ -347,13 +347,15 @@ main {
 }
 
 .card-footer {
+
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 8px;
   margin-top: auto;
   padding-top: 8px;
   border-top: 1px solid rgba(33, 41, 67, 0.9);
+  justify-content: center;
+  text-align: center;
 }
 
 .skill-text {
@@ -392,10 +394,13 @@ main {
 }
 
 footer {
+
   margin-top: 12px;
   text-align: center;
   font-size: 0.8rem;
   color: var(--text-muted);
+  justify-content: center;
+  text-align: center;
 }
 
 .hint {
