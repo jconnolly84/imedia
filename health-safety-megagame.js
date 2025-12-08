@@ -1,52 +1,64 @@
-// Health & Safety Gauntlet – Mega Game
-// Uses iMedia Genius HUD, timer, multiplier & leaderboard.
+// Health & Safety Gauntlet – Mega Game (rebuild)
+// Uses iMedia Genius HUD, timer, multiplier & shared leaderboard.
+// This version is tailored to health-safety-megagame.html & health-safety-megagame-data.js.
+
+// -----------------------------------------------------------------------------
+// CONFIG
+// -----------------------------------------------------------------------------
 
 const GAS_URL =
   "https://script.google.com/macros/s/AKfycbzrw-GfhZm1Lxtm4kUHqUmUV1rzYbBRJ875twjme9SObdLeNu9AwzwerrM70N9YiLTKCg/exec";
 const SHEET_ID = "10HJ2Az6GC8m-QFoibX-X0-izyszocRhzgfizY9bwoGg";
 
+// Stage & question data from health-safety-megagame-data.js
 const STAGES = window.HEALTH_SAFETY_STAGES || [];
 
-// DOM references
+// -----------------------------------------------------------------------------
+// DOM REFERENCES – these MUST match IDs in health-safety-megagame.html
+// -----------------------------------------------------------------------------
+
+// Setup
 const playerNameInput = document.getElementById("playerName");
 const startBtn = document.getElementById("startBtn");
 
+// Game HUD / layout
 const gameSection = document.getElementById("gameSection");
 const questionCard = document.getElementById("questionCard");
 const questionText = document.getElementById("questionText");
 const answersList = document.getElementById("answersList");
-const stageTitleEl = document.getElementById("stageTitle");
-const stageIntroEl = document.getElementById("stageIntro");
+const feedbackEl = document.getElementById("feedback");
+const progressLabel = document.getElementById("progressLabel");
 
-const hudScore = document.getElementById("hudScore");
-const hudMultiplier = document.getElementById("hudMultiplier");
-const hudQuestion = document.getElementById("hudQuestion");
-const hudStage = document.getElementById("hudStage");
+const stageLabelEl = document.getElementById("stageLabel");
+const stageNameLabelEl = document.getElementById("stageNameLabel");
+const scoreDisplay = document.getElementById("scoreDisplay");
+const multiplierDisplay = document.getElementById("multiplierDisplay");
 const livesDisplay = document.getElementById("livesDisplay");
+const stageIntroEl = document.getElementById("stageIntro");
 
 const timerBar = document.getElementById("timerBar");
 const scorePopEl = document.getElementById("scorePop");
 
-const feedbackPanel = document.getElementById("feedbackPanel");
-const feedbackTitle = document.getElementById("feedbackTitle");
-const feedbackBody = document.getElementById("feedbackBody");
-const feedbackNextBtn = document.getElementById("feedbackNextBtn");
-
-const gameOverPanel = document.getElementById("gameOverPanel");
-const finalScoreEl = document.getElementById("finalScore");
-const finalGradeEl = document.getElementById("finalGrade");
-const finalCommentEl = document.getElementById("finalComment");
-const finalSummaryEl = document.getElementById("finalSummary");
-const restartBtn = document.getElementById("restartBtn");
-
+// Stage complete & game over panels
+const stageCompletePanel = document.getElementById("stageCompletePanel");
+const completedStageNameEl = document.getElementById("completedStageName");
+const stageScoreDisplay = document.getElementById("stageScoreDisplay");
 const nextStageBtn = document.getElementById("nextStageBtn");
 
-// Leaderboard DOM
-const leaderboardTabs = Array.from(document.querySelectorAll(".lb-tab"));
+const gameOverPanel = document.getElementById("gameOverPanel");
+const gameOverTitleEl = document.getElementById("gameOverTitle");
+const finalScoreEl = document.getElementById("finalScore");
+const lastStageNameEl = document.getElementById("lastStageName");
+const restartBtn = document.getElementById("restartBtn");
+
+// Leaderboard
 const leaderboardTitle = document.getElementById("leaderboardTitle");
 const leaderboardContainer = document.getElementById("leaderboardContainer");
 
+// -----------------------------------------------------------------------------
 // GAME STATE
+// -----------------------------------------------------------------------------
+
 let currentStageIndex = 0;
 let currentQuestionIndex = 0;
 let score = 0;
@@ -65,13 +77,39 @@ let timerDuration = 15000; // 15 seconds per question
 // SOUND EFFECTS
 let sfxCorrect, sfxWrong, sfxStart, sfxGameOver;
 
+// -----------------------------------------------------------------------------
+// UTILS
+// -----------------------------------------------------------------------------
+
+function getCurrentStage() {
+  return STAGES[currentStageIndex] || null;
+}
+
+function getCurrentQuestion() {
+  const st = getCurrentStage();
+  if (!st || !st.questions) return null;
+  return st.questions[currentQuestionIndex] || null;
+}
+
+function shuffleArray(arr) {
+  const copy = arr.slice();
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+// -----------------------------------------------------------------------------
+// SFX
+// -----------------------------------------------------------------------------
+
 function initSfx() {
   try {
     sfxCorrect = new Audio("sfx-correct.mp3");
     sfxWrong = new Audio("sfx-wrong.mp3");
     sfxStart = new Audio("sfx-start.mp3");
     sfxGameOver = new Audio("sfx-gameover.mp3");
-
     [sfxCorrect, sfxWrong, sfxStart, sfxGameOver].forEach((a) => {
       a.preload = "auto";
       a.volume = 0.6;
@@ -92,27 +130,9 @@ function playSfx(audioEl) {
   }
 }
 
-// GAME LOGIC
-function resetGameState() {
-  currentStageIndex = 0;
-  currentQuestionIndex = 0;
-  score = 0;
-  multiplier = 1;
-  lives = 3;
-
-  currentStage = STAGES[0] || null;
-  currentQuestion = currentStage ? currentStage.questions[0] : null;
-
-  updateHud();
-  renderLives();
-}
-
-function updateHud() {
-  hudScore.textContent = score;
-  hudMultiplier.textContent = "x" + multiplier;
-  hudQuestion.textContent = currentQuestionIndex + 1;
-  hudStage.textContent = currentStageIndex + 1;
-}
+// -----------------------------------------------------------------------------
+// HUD
+// -----------------------------------------------------------------------------
 
 function renderLives() {
   const maxLives = 3;
@@ -120,21 +140,56 @@ function renderLives() {
   for (let i = 0; i < maxLives; i++) {
     hearts.push(i < lives ? "♥" : "✖");
   }
-  livesDisplay.textContent = hearts.join(" ");
+  if (livesDisplay) {
+    livesDisplay.textContent = hearts.join(" ");
+  }
+}
+
+function updateHud() {
+  currentStage = getCurrentStage();
+  currentQuestion = getCurrentQuestion();
+
+  if (!currentStage || !currentQuestion) return;
+
+  if (stageLabelEl) stageLabelEl.textContent = currentStageIndex + 1;
+  if (stageNameLabelEl)
+    stageNameLabelEl.textContent = currentStage.name || currentStage.title || `Stage ${currentStageIndex + 1}`;
+  if (scoreDisplay) scoreDisplay.textContent = score;
+  if (multiplierDisplay) multiplierDisplay.textContent = "x" + multiplier;
+  if (stageIntroEl) stageIntroEl.textContent = currentStage.intro || "";
+
+  const totalQs = currentStage.questions ? currentStage.questions.length : 0;
+  const qNumber = currentQuestionIndex + 1;
+  if (progressLabel && totalQs > 0) {
+    progressLabel.textContent = `Question ${qNumber} of ${totalQs}`;
+  }
+  renderLives();
 }
 
 function showScorePop(text) {
   if (!scorePopEl) return;
   scorePopEl.textContent = text;
-  scorePopEl.classList.remove("hidden");
-  scorePopEl.classList.remove("score-pop-anim");
+  scorePopEl.classList.remove("hidden", "score-pop-anim");
 
-  void scorePopEl.offsetWidth; // trigger reflow
+  // trigger reflow
+  void scorePopEl.offsetWidth;
   scorePopEl.classList.add("score-pop-anim");
 
   setTimeout(() => {
     scorePopEl.classList.add("hidden");
-  }, 800);
+  }, 900);
+}
+
+// -----------------------------------------------------------------------------
+// TIMER
+// -----------------------------------------------------------------------------
+
+function stopQuestionTimer() {
+  if (questionTimerHandle) {
+    cancelAnimationFrame(questionTimerHandle);
+    questionTimerHandle = null;
+  }
+  if (timerBar) timerBar.classList.remove("timer-active");
 }
 
 function startQuestionTimer() {
@@ -162,80 +217,77 @@ function startQuestionTimer() {
   questionTimerHandle = requestAnimationFrame(step);
 }
 
-function stopQuestionTimer() {
-  if (questionTimerHandle) {
-    cancelAnimationFrame(questionTimerHandle);
-    questionTimerHandle = null;
-  }
-  if (timerBar) {
-    timerBar.classList.remove("timer-active");
-  }
-}
+// -----------------------------------------------------------------------------
+// GAME FLOW
+// -----------------------------------------------------------------------------
 
-function handleTimeOut() {
-  if (!acceptingAnswers) return;
+function resetGameState() {
+  currentStageIndex = 0;
+  currentQuestionIndex = 0;
+  score = 0;
+  multiplier = 1;
+  lives = 3;
+  currentStage = getCurrentStage();
+  currentQuestion = getCurrentQuestion();
   acceptingAnswers = false;
 
-  lives--;
-  multiplier = 1;
+  if (gameSection) gameSection.classList.add("hidden");
+  if (stageCompletePanel) stageCompletePanel.classList.add("hidden");
+  if (gameOverPanel) gameOverPanel.classList.add("hidden");
+  if (feedbackEl) feedbackEl.textContent = "";
+  if (progressLabel) progressLabel.textContent = "";
   renderLives();
   updateHud();
-
-  showFeedback(
-    "Time's up!",
-    "You ran out of time on this question. Remember to scan the key details quickly before you commit to an answer.",
-    false
-  );
-
-  if (lives <= 0) {
-    endGame();
-  }
 }
 
 function showQuestion() {
-  if (!currentStage) {
-    console.error("No stage loaded!");
+  currentStage = getCurrentStage();
+  currentQuestion = getCurrentQuestion();
+
+  if (!currentStage || !currentQuestion) {
+    console.error("No stage/question data. Check HEALTH_SAFETY_STAGES.");
     return;
   }
 
-  const questions = currentStage.questions || [];
-  if (!questions.length) {
-    console.error("Stage has no questions:", currentStage);
-    return;
+  if (gameSection) gameSection.classList.remove("hidden");
+  if (stageCompletePanel) stageCompletePanel.classList.add("hidden");
+  if (gameOverPanel) gameOverPanel.classList.add("hidden");
+
+  updateHud();
+
+  // Build answers
+  const qText =
+    currentQuestion.scenario ||
+    currentQuestion.question ||
+    currentQuestion.text ||
+    "Question";
+
+  if (questionText) questionText.textContent = qText;
+
+  const options = currentQuestion.options || [];
+  const correctValue = currentQuestion.answer;
+
+  const answers = shuffleArray(
+    options.map((opt) => ({
+      text: opt,
+      correct: opt === correctValue,
+    }))
+  );
+
+  if (answersList) {
+    answersList.innerHTML = "";
+    answers.forEach((ans, index) => {
+      const li = document.createElement("li");
+      li.className = "answer-option";
+      li.textContent = ans.text;
+      li.dataset.correct = ans.correct ? "true" : "false";
+      li.dataset.index = String(index);
+      li.addEventListener("click", onAnswerClick);
+      answersList.appendChild(li);
+    });
   }
 
-  currentQuestion = questions[currentQuestionIndex];
-  if (!currentQuestion) {
-    console.error("No question at index", currentQuestionIndex);
-    return;
-  }
-
-  stageTitleEl.textContent = currentStage.title || "Stage";
-  stageIntroEl.textContent = currentStage.intro || "";
-
-  questionText.textContent = currentQuestion.text || "Question";
-
-  // Create a fresh copy of answers and shuffle so the correct option
-  // isn't always in the same position.
-  const answers = (currentQuestion.answers || []).slice();
-  for (let i = answers.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [answers[i], answers[j]] = [answers[j], answers[i]];
-  }
-  answersList.innerHTML = "";
-
-  answers.forEach((ans, index) => {
-    const li = document.createElement("li");
-    li.className = "answer-option";
-    li.textContent = ans.text;
-
-    li.dataset.correct = ans.correct ? "true" : "false";
-    li.dataset.index = index;
-
-    li.addEventListener("click", onAnswerClick);
-    answersList.appendChild(li);
-  });
-
+  if (feedbackEl) feedbackEl.textContent = "";
   acceptingAnswers = true;
   startQuestionTimer();
 }
@@ -248,12 +300,16 @@ function onAnswerClick(e) {
   const li = e.currentTarget;
   const isCorrect = li.dataset.correct === "true";
 
-  Array.from(answersList.children).forEach((child) => {
-    child.classList.remove("correct", "wrong");
-    if (child.dataset.correct === "true") {
-      child.classList.add("correct");
-    }
-  });
+  // highlight all correct options
+  if (answersList) {
+    Array.from(answersList.children).forEach((child) => {
+      const correct = child.dataset.correct === "true";
+      child.classList.remove("correct", "wrong");
+      if (correct) {
+        child.classList.add("correct");
+      }
+    });
+  }
 
   if (isCorrect) {
     li.classList.add("correct");
@@ -267,189 +323,177 @@ function onAnswerClick(e) {
 function handleCorrectAnswer() {
   playSfx(sfxCorrect);
 
-  const timeRemainingRatio = parseFloat(timerBar.style.width) / 100 || 0;
-  const basePoints = 100;
-  const timeBonus = Math.round(basePoints * timeRemainingRatio);
+  let timeRatio = 0;
+  if (timerBar) {
+    const widthPercent = parseFloat(timerBar.style.width || "0");
+    timeRatio = widthPercent / 100 || 0;
+  }
 
+  const basePoints = 100;
+  const timeBonus = Math.round(basePoints * timeRatio);
   const totalGain = basePoints * multiplier + timeBonus;
+
   score += totalGain;
   multiplier++;
-  updateHud();
+
+  if (feedbackEl) {
+    feedbackEl.textContent =
+      "Nice work – you picked the safest option and protected the production!";
+  }
 
   showScorePop("+" + totalGain);
-  showFeedback(
-    "Correct!",
-    `Nice work – you spotted the safest option. You earned a base ${
-      100 * multiplier
-    } points plus a time bonus.`,
-    true
-  );
+  updateHud();
+
+  setTimeout(() => {
+    if (lives > 0) {
+      nextQuestionOrStage();
+    }
+  }, 900);
 }
 
 function handleWrongAnswer() {
   playSfx(sfxWrong);
-
   lives--;
   multiplier = 1;
   renderLives();
+
+  if (feedbackEl) {
+    feedbackEl.textContent =
+      "That choice leaves people at risk. Think about the main hazard and which control actually reduces it.";
+  }
+
   updateHud();
 
-  let explanation = currentQuestion.explanation || "";
-  if (!explanation) {
-    explanation =
-      "Review the hazard, risk and control measure carefully. Ask yourself: what could go wrong here, and which answer actually controls the risk?";
+  if (lives <= 0) {
+    setTimeout(() => endGame(false), 900);
+  } else {
+    setTimeout(() => nextQuestionOrStage(), 1200);
   }
+}
 
-  showFeedback(
-    "Not quite...",
-    explanation,
-    false
-  );
+function handleTimeOut() {
+  if (!acceptingAnswers) return;
+  acceptingAnswers = false;
+  lives--;
+  multiplier = 1;
+  renderLives();
+
+  if (feedbackEl) {
+    feedbackEl.textContent =
+      "Time's up! In the exam you still need to pick something – scan the scenario quickly and focus on the biggest risk.";
+  }
 
   if (lives <= 0) {
-    endGame();
+    setTimeout(() => endGame(false), 900);
+  } else {
+    setTimeout(() => nextQuestionOrStage(), 1200);
   }
-}
-
-function showFeedback(title, body, wasCorrect) {
-  feedbackTitle.textContent = title;
-  feedbackBody.textContent = body;
-
-  feedbackPanel.classList.remove("hidden");
-  questionCard.classList.add("hidden");
-}
-
-function hideFeedback() {
-  feedbackPanel.classList.add("hidden");
-  questionCard.classList.remove("hidden");
 }
 
 function nextQuestionOrStage() {
-  const questions = currentStage.questions || [];
+  const stage = getCurrentStage();
+  if (!stage) {
+    endGame(false);
+    return;
+  }
+
   currentQuestionIndex++;
 
-  if (currentQuestionIndex >= questions.length) {
-    currentQuestionIndex = 0;
-    currentStageIndex++;
-
-    if (currentStageIndex >= STAGES.length) {
+  if (!stage.questions || currentQuestionIndex >= stage.questions.length) {
+    // finished this stage
+    const stageTitle = stage.name || stage.title || `Stage ${currentStageIndex + 1}`;
+    if (currentStageIndex >= STAGES.length - 1) {
+      // last stage complete
       endGame(true);
       return;
     }
 
-    currentStage = STAGES[currentStageIndex];
-    showStageIntro();
+    if (gameSection) gameSection.classList.add("hidden");
+    if (stageCompletePanel) stageCompletePanel.classList.remove("hidden");
+    if (completedStageNameEl) completedStageNameEl.textContent = stageTitle;
+    if (stageScoreDisplay) stageScoreDisplay.textContent = score;
   } else {
-    updateHud();
     showQuestion();
   }
 }
 
-function showStageIntro() {
-  questionCard.classList.add("hidden");
-  feedbackPanel.classList.add("hidden");
-  gameSection.classList.remove("hidden");
-
-  stageTitleEl.textContent = currentStage.title || "Stage";
-  stageIntroEl.textContent = currentStage.intro || "";
-
-  nextStageBtn.classList.remove("hidden");
-}
-
-function hideStageIntro() {
-  nextStageBtn.classList.add("hidden");
-  showQuestion();
-}
-
-function endGame(completedAllStages = false) {
+function endGame(completedAllStages) {
   stopQuestionTimer();
+  acceptingAnswers = false;
 
-  gameSection.classList.add("hidden");
-  feedbackPanel.classList.add("hidden");
-  questionCard.classList.add("hidden");
+  if (gameSection) gameSection.classList.add("hidden");
+  if (stageCompletePanel) stageCompletePanel.classList.add("hidden");
+  if (gameOverPanel) gameOverPanel.classList.remove("hidden");
 
-  finalScoreEl.textContent = score;
+  const finalStageIndex =
+    completedAllStages || currentStageIndex >= STAGES.length
+      ? STAGES.length - 1
+      : currentStageIndex;
 
-  let grade = "Pass";
-  let comment =
-    "You’ve made a solid start revising health & safety. Tighten up your understanding of hazards, risks and control measures to boost your score next time.";
-  let summary =
-    "You completed some of the stages, but there’s still more practice needed to become the safest production manager in iMedia.";
+  const lastStage =
+    STAGES[finalStageIndex] || STAGES[STAGES.length - 1] || null;
 
-  if (score >= 7000) {
-    grade = "Distinction*";
-    comment =
-      "Outstanding! You show a thorough understanding of hazards, risk levels, control measures and paperwork. You’re ready to keep your cast and crew safe.";
-    summary =
-      "You answered most questions accurately, even under time pressure, and sustained a strong multiplier. This mirrors the depth expected in top-band exam responses.";
-  } else if (score >= 5000) {
-    grade = "Distinction";
-    comment =
-      "Great work. You’ve got a strong, secure understanding of safe working practices. A little more precision on paperwork and high-risk scenarios will push you even higher.";
-    summary =
-      "You maintained a good multiplier and rarely ran out of lives, which shows consistent decision-making.";
-  } else if (score >= 3000) {
-    grade = "Merit";
-    comment =
-      "A good attempt. You recognise many common hazards, but need more practice matching the *best* control measure to each scenario.";
-    summary =
-      "Focus your revision on the trickier comparisons where more than one answer sounds safe – what makes the *best* control?";
-  } else {
-    grade = "Pass – Keep Practising";
-    comment =
-      "You’ve begun to explore health & safety, but you need more practice to apply the ideas under pressure.";
-    summary =
-      "Revisit your notes on hazards, risks, control measures and paperwork. Use this game again to track your progress over time.";
+  if (gameOverTitleEl) {
+    gameOverTitleEl.textContent = completedAllStages
+      ? "Gauntlet Complete!"
+      : "Game Over – Watch Those Hazards!";
   }
 
-  finalGradeEl.textContent = grade;
-  finalCommentEl.textContent = comment;
-  finalSummaryEl.textContent = summary;
+  if (finalScoreEl) finalScoreEl.textContent = score;
+  if (lastStageNameEl) {
+    lastStageNameEl.textContent = lastStage
+      ? lastStage.name || lastStage.title || `Stage ${finalStageIndex + 1}`
+      : `Stage ${finalStageIndex + 1}`;
+  }
 
-  gameOverPanel.classList.remove("hidden");
-
-  // Submit score to shared sheet
+  // log score
   submitGauntletScore(
-    (playerNameInput.value || "Anonymous").trim(),
+    (playerNameInput && playerNameInput.value ? playerNameInput.value : "Anonymous").trim(),
     score,
     completedAllStages
   );
 
+  // refresh leaderboard shortly afterwards
   setTimeout(loadLeaderboardFromSheet, 1000);
 }
 
-// SCORE LOGGING FOR GAUNTLET
-function submitGauntletScore(name, score, completedAll) {
+// -----------------------------------------------------------------------------
+// SCORE LOGGING & LEADERBOARD
+// -----------------------------------------------------------------------------
+
+function submitGauntletScore(name, scoreValue, completedAll) {
   try {
     const params = new URLSearchParams();
     params.append("action", "submitScore");
-    params.append("name", name);
+    params.append("name", name || "Anonymous");
     params.append("topic", "HealthSafetyGauntlet");
-    params.append("score", String(score));
     params.append(
-      "questionsPlayed",
-      String(
-        STAGES.reduce((total, stg, index) => {
-          if (index < currentStageIndex) return total + (stg.questions || []).length;
-          if (index === currentStageIndex) {
-            return total + currentQuestionIndex;
-          }
-          return total;
-        }, 0)
-      )
+      "score",
+      typeof scoreValue === "number" ? String(scoreValue) : "0"
     );
+
+    // Rough count of questions attempted
+    let questionsPlayed = 0;
+    for (let i = 0; i < STAGES.length; i++) {
+      const stage = STAGES[i];
+      if (!stage.questions) continue;
+      if (i < currentStageIndex) {
+        questionsPlayed += stage.questions.length;
+      } else if (i === currentStageIndex) {
+        questionsPlayed += currentQuestionIndex;
+      }
+    }
+    params.append("questionsPlayed", String(questionsPlayed));
     params.append("completedAll", completedAll ? "yes" : "no");
     params.append("timestamp", new Date().toISOString());
 
     const img = new Image();
     img.src = GAS_URL + "?" + params.toString();
-    console.log("Submitting score to:", img.src);
   } catch (err) {
-    console.error("Error creating score beacon:", err);
+    console.error("Error submitting score:", err);
   }
 }
 
-// Leaderboard
 function renderLeaderboardFromSheet(response) {
   try {
     const table = response.table;
@@ -458,6 +502,8 @@ function renderLeaderboardFromSheet(response) {
 
     for (let i = 0; i < rows.length; i++) {
       const r = rows[i].c;
+      if (!r || !r.length) continue;
+
       const name = (r[0] && r[0].v) || "";
       if (!name || name.toLowerCase() === "name") continue;
 
@@ -466,27 +512,36 @@ function renderLeaderboardFromSheet(response) {
       const topicId = (r[3] && r[3].v) || "";
       const timestamp = (r[4] && r[4].v) || "";
 
-      // No topic filtering – show the shared iMedia Genius leaderboard
+      // Filter to Health & Safety Gauntlet rows if the sheet includes multiple games
+      if (
+        topicLabel &&
+        !String(topicLabel).toLowerCase().includes("health") &&
+        !String(topicId).toLowerCase().includes("health")
+      ) {
+        continue;
+      }
+
       entries.push({ name, score: scoreVal, topicLabel, topicId, timestamp });
     }
 
     if (!entries.length) {
       leaderboardContainer.innerHTML =
-        "<p class='leaderboard-note'>No scores yet. Complete the gauntlet to be first on the board!</p>";
+        "<p class='leaderboard-note'>No scores yet. Finish the gauntlet to claim the top spot!</p>";
       return;
     }
 
     entries.sort((a, b) => b.score - a.score);
 
     const rowsHtml = entries
+      .slice(0, 10)
       .map((e, i) => {
         const place = i + 1;
-        const name = e.name || "Anonymous";
-        const topic = e.topicLabel || e.topicId || "All Topics";
+        const playerName = e.name || "Anonymous";
+        const topic = e.topicLabel || e.topicId || "All topics";
         return `
           <tr>
             <td>${place}</td>
-            <td>${name}</td>
+            <td>${playerName}</td>
             <td>${e.score}</td>
             <td>${topic}</td>
           </tr>`;
@@ -498,7 +553,7 @@ function renderLeaderboardFromSheet(response) {
         <thead>
           <tr>
             <th>#</th>
-            <th>Name</th>
+            <th>Name (initials)</th>
             <th>Score</th>
             <th>Topic</th>
           </tr>
@@ -510,18 +565,17 @@ function renderLeaderboardFromSheet(response) {
   } catch (err) {
     console.error("Error rendering leaderboard:", err);
     leaderboardContainer.innerHTML =
-      "<p class='leaderboard-note'>Couldn't load leaderboard. Check sheet sharing or try again.</p>";
+      "<p class='leaderboard-note'>Couldn't load leaderboard. Check sheet sharing or try again later.</p>";
   }
 }
 
 function loadLeaderboardFromSheet() {
+  if (!leaderboardContainer) return;
+
   leaderboardContainer.innerHTML =
     "<p class='leaderboard-note'>Loading leaderboard...</p>";
 
-  const tq = encodeURIComponent(
-    "select A,B,C,D,F order by B desc limit 10"
-  ); // A=name, B=score, C=topicLabel, D=topicId, F=timestamp
-
+  const tq = encodeURIComponent("select A,B,C,D,F order by B desc limit 20");
   const callbackName = "renderLeaderboardFromSheet";
   const url =
     "https://docs.google.com/spreadsheets/d/" +
@@ -538,63 +592,60 @@ function loadLeaderboardFromSheet() {
   document.body.appendChild(script);
 }
 
-// Leaderboard tabs (if present)
-function setupLeaderboardTabs() {
-  leaderboardTabs.forEach((btn) =>
-    btn.addEventListener("click", () => {
-      const filter = btn.dataset.filter || "all";
+// -----------------------------------------------------------------------------
+// EVENT HANDLERS & INIT
+// -----------------------------------------------------------------------------
 
-      leaderboardTabs.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      if (filter === "all") {
-        leaderboardTitle.textContent = "Health & Safety Gauntlet – Leaderboard";
-      } else if (filter === "gauntlet") {
-        leaderboardTitle.textContent = "Health & Safety Gauntlet – Top Runs";
-      }
-
-      loadLeaderboardFromSheet();
-    })
-  );
-}
-
-// START / RESTART HANDLERS
 function startGameHandler() {
-  const name = (playerNameInput.value || "").trim();
-  if (!name) {
-    alert("Please enter your initials so we can log your score!");
-    return;
-  }
-
   if (!STAGES.length) {
     alert(
-      "No game data loaded. Check that health-safety-megagame-data.js is included."
+      "No Health & Safety stages loaded. Check health-safety-megagame-data.js is included before the game script."
     );
     return;
   }
 
-  resetGameState();
-  gameOverPanel.classList.add("hidden");
-  gameSection.classList.remove("hidden");
+  const name = (playerNameInput && playerNameInput.value || "").trim();
+  if (!name) {
+    alert("Please enter your initials so we can log your score.");
+    return;
+  }
+  if (name.length > 3) {
+    alert("Please enter up to 3 initials (e.g. ABC).");
+    return;
+  }
 
+  resetGameState();
   playSfx(sfxStart);
-  showStageIntro();
+  showQuestion();
 }
 
 function nextStageHandler() {
-  hideStageIntro();
+  if (currentStageIndex < STAGES.length - 1) {
+    currentStageIndex++;
+    currentQuestionIndex = 0;
+    if (stageCompletePanel) stageCompletePanel.classList.add("hidden");
+    showQuestion();
+  } else {
+    endGame(true);
+  }
 }
 
 function restartHandler() {
-  gameOverPanel.classList.add("hidden");
-  gameSection.classList.add("hidden");
+  if (gameOverPanel) gameOverPanel.classList.add("hidden");
+  resetGameState();
+  playSfx(sfxStart);
+  showQuestion();
 }
 
-// Init
-initSfx();
-setupLeaderboardTabs();
-loadLeaderboardFromSheet();
+// -----------------------------------------------------------------------------
+// BOOTSTRAP
+// -----------------------------------------------------------------------------
 
-startBtn.addEventListener("click", startGameHandler);
-nextStageBtn.addEventListener("click", nextStageHandler);
-restartBtn.addEventListener("click", restartHandler);
+(function init() {
+  initSfx();
+  loadLeaderboardFromSheet();
+
+  if (startBtn) startBtn.addEventListener("click", startGameHandler);
+  if (nextStageBtn) nextStageBtn.addEventListener("click", nextStageHandler);
+  if (restartBtn) restartBtn.addEventListener("click", restartHandler);
+})();
