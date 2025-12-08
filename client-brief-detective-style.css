@@ -37,7 +37,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  min-height: 100vh;
 }
+
 
 .card {
   background: var(--card-bg);
@@ -320,4 +322,10 @@ body {
   margin: 0;
   font-size: 0.85rem;
   color: var(--muted);
+}
+
+
+footer {
+  margin-top: auto;
+  text-align: center;
 }
