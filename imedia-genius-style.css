@@ -44,9 +44,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  min-height: 100vh;
 }
-
 
 .app-header {
   text-align: center;
@@ -486,11 +484,10 @@ body {
 
 /* Shared footer for arcade-style game pages */
 footer {
-
+  margin-top: 1.5rem;
+  text-align: center;
   font-size: 0.9rem;
   opacity: 0.9;
-  margin-top: auto;
-  text-align: center;
 }
 .footer-note {
   display: block;

@@ -36,9 +36,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  min-height: 100vh;
 }
-
 
 .card {
   background: var(--card-bg);
@@ -339,7 +337,16 @@ body {
 }
 
 
+/* Shared footer styling for arcade-style games */
 footer {
-  margin-top: auto;
   text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+.footer-note {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  opacity: 0.85;
 }

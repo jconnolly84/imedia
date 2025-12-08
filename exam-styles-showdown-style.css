@@ -39,9 +39,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  min-height: 100vh;
 }
-
 
 .card {
   background: var(--card-bg);
@@ -377,10 +375,4 @@ textarea {
 
 .hidden {
   display: none !important;
-}
-
-
-footer {
-  margin-top: auto;
-  text-align: center;
 }
