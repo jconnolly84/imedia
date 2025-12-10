@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>iMedia Genius – 9-Mark AI Trainer</title>
+  <meta name="description" content="iMedia Genius – 9-Mark AI Trainer for OCR Creative iMedia R093, using existing 9-Mark Ninja scenarios with AI-ready marking prompts.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Reuse your existing Ninja + site styles -->
+  <link rel="stylesheet" href="nine-mark-ninja-style.css">
+  <link rel="stylesheet" href="imedia-genius-style.css">
+  <link rel="stylesheet" href="nav.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="canonical" href="https://imediagenius.co.uk/nine-mark-ai-trainer.html">
+  <style>
+    /* Page-specific tweaks only – everything else comes from your existing CSS */
+
+    .app {
+      max-width: 1150px;
+      margin: 0 auto;
+    }
+
+    .answer-textarea {
+      width: 100%;
+      min-height: 200px;
+      resize: vertical;
+      padding: 0.75rem;
+      border-radius: 10px;
+      border: 1px solid #3b4364;
+      background: #050716;
+      color: #ffffff;
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+
+    .answer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .char-counter {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    .ai-prompt-panel {
+      display: none; /* Shown after generating prompt */
+      margin-top: 1rem;
+    }
+
+    .ai-prompt-panel textarea {
+      width: 100%;
+      min-height: 220px;
+      resize: vertical;
+      padding: 0.75rem;
+      border-radius: 10px;
+      border: 1px solid #3b4364;
+      background: #050716;
+      color: #ffffff;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 0.85rem;
+      box-sizing: border-box;
+    }
+
+    .ai-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      align-items: center;
+    }
+
+    .btn-link {
+      border-radius: 999px;
+      border: 1px solid #252c40;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      background: #141a33;
+      color: #ffffff;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .btn-link:hover {
+      background: #1e2647;
+    }
+
+    .copy-status {
+      font-size: 0.8rem;
+      margin-top: 0.3rem;
+      color: #d6d9f0;
+      min-height: 1.1rem;
+    }
+
+    details.tips-box {
+      margin-top: 0.75rem;
+      border-radius: 10px;
+      border: 1px solid #3b4364;
+      padding: 0.65rem 0.8rem;
+      background: #0d1128;
+      color: #ffffff;
+    }
+
+    details.tips-box summary {
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .question-meta {
+      font-size: 0.85rem;
+      color: #d6d9f0;
+      margin-bottom: 0.25rem;
+    }
+
+    .scenario-meta-badge {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid #3b4364;
+      font-size: 0.75rem;
+      margin-right: 0.35rem;
+      opacity: 0.85;
+    }
+
+    @media (max-width: 800px) {
+      .nine-flex {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="app-header">
+    <!-- Global site navigation – copied from 9-Mark Ninja but subtitle tweaked to avoid "Hub" -->
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="site-nav-inner">
+        <a href="index.html" class="site-nav-brand">
+          <img src="imedia_genius_logo_transparent.png"
+               alt="iMedia Genius logo"
+               class="site-nav-logo-img">
+          <span class="site-nav-title">
+            iMedia Genius
+            <span class="site-nav-subtitle">R093 Revision</span>
+          </span>
+        </a>
+        <div class="site-nav-topic-jump">
+          <label class="topic-jump-label" for="topicJump">Jump to topic</label>
+          <select id="topicJump" class="topic-jump-select" aria-label="Jump directly to a topic page">
+            <option value="">Select a topic…</option>
+            <option value="topic-01-traditional-media.html">01 – Traditional Media</option>
+            <option value="topic-02-new-media.html">02 – New Media</option>
+            <option value="topic-03-video-audio-music.html">03 – Video, Audio &amp; Music</option>
+            <option value="topic-04-animation-sfx-vfx.html">04 – Animation, SFX &amp; VFX</option>
+            <option value="topic-05-social-media.html">05 – Social Media</option>
+            <option value="topic-06-website-assets.html">06 – Website Assets</option>
+            <option value="topic-07-creative-job-roles.html">07 – Creative Job Roles</option>
+            <option value="topic-08-technical-job-roles.html">08 – Technical Job Roles</option>
+            <option value="topic-09-senior-job-roles.html">09 – Senior Job Roles</option>
+            <option value="topic-10-purpose-of-media-products.html">10 – Purpose of Media Products</option>
+            <option value="topic-11-client-requirements.html">11 – Client Requirements</option>
+            <option value="topic-12-client-brief-formats.html">12 – Client Brief Formats</option>
+            <option value="topic-13-audience-segmentation.html">13 – Audience Segmentation</option>
+            <option value="topic-14-audience-research.html">14 – Audience Research</option>
+            <option value="topic-15-primary-research.html">15 – Primary Research</option>
+            <option value="topic-16-secondary-research.html">16 – Secondary Research</option>
+            <option value="topic-17-understanding-media-codes.html">17 – Understanding Media Codes</option>
+            <option value="topic-18-camera-and-lighting.html">18 – Camera and Lighting</option>
+            <option value="topic-19-mise-en-scene-audio-animation.html">19 – Mise en Scene, Audio and Animation</option>
+            <option value="topic-20-movement-transitions-interactivity.html">20 – Movement, Transitions &amp; Interactivity</option>
+            <option value="topic-21-colour-graphics-typography.html">21 – Colour, Graphics &amp; Typography</option>
+            <option value="topic-22-components-of-work-plans.html">22 – Components of Work Plans</option>
+            <option value="topic-23-mind-maps-mood-boards.html">23 – Mind Maps &amp; Mood Boards</option>
+            <option value="topic-24-asset-logs-flow-charts-scripts.html">24 – Asset Logs, Flow Charts &amp; Scripts</option>
+            <option value="topic-25-storyboards-visualisations-wireframes.html">25 – Storyboards, Visualisations &amp; Wireframes</option>
+            <option value="topic-26-legal-considerations-protect-individuals.html">26 – Legal Considerations to Protect Individuals</option>
+            <option value="topic-27-intellectual-property-rights.html">27 – Intellectual Property Rights</option>
+            <option value="topic-28-regulation-certification-classification.html">28 – Regulation, Certification &amp; Classification</option>
+            <option value="topic-29-health-and-safety.html">29 – Health &amp; Safety</option>
+            <option value="topic-30-distribution-platforms-media.html">30 – Distribution Platforms &amp; Media</option>
+            <option value="topic-31-file-compression.html">31 – File Compression</option>
+            <option value="topic-32-image-files.html">32 – Image Files</option>
+            <option value="topic-33-audio-files.html">33 – Audio Files</option>
+            <option value="topic-34-moving-image-files.html">34 – Moving Image Files</option>
+            <option value="topic-35-hardware-and-software.html">35 – Hardware &amp; Software</option>
+          </select>
+        </div>
+      </div>
+    </nav>
+    <script>
+      (function() {
+        const jump = document.getElementById('topicJump');
+        if (jump) {
+          jump.addEventListener('change', function () {
+            if (this.value) window.location.href = this.value;
+          });
+        }
+      })();
+    </script>
+
+    <h1>9-Mark AI Trainer – Full Answer Practice</h1>
+    <p class="subtitle">
+      Use the same scenarios as <strong>9-Mark Ninja</strong> to write a full 9-mark answer, then send it to an AI to mark and give feedback.
+    </p>
+  </header>
+
+  <!-- Scenario picker (same keys as original Ninja game) -->
+  <section class="card nine-card">
+    <label for="scenarioSelect"><strong>Choose a 9-mark question type:</strong></label>
+    <select id="scenarioSelect" class="scenario-select">
+      <option value="storyboard">Storyboard – Rollin Café advert</option>
+      <option value="clientBrief">Client brief – Quick Eats app</option>
+      <option value="moodBoard">Mood board – Quick Eats branding</option>
+      <option value="wireframe">Wireframe – Quick Eats app screen</option>
+      <option value="visualisation">Visualisation diagram – Quick Eats poster</option>
+      <option value="assetTable">Asset table – Quick Eats app</option>
+      <option value="script">Script – Quick Eats TV advert</option>
+      <option value="mindMap">Mind map – New adventure game</option>
+      <option value="gantt">Gantt chart – Quick Eats project</option>
+    </select>
+  </section>
+
+  <!-- Scenario + image -->
+  <section class="card nine-card">
+    <div class="nine-flex">
+      <div>
+        <span class="stage-pill">Scenario</span>
+        <h2 id="scenarioTitle">9-mark question</h2>
+        <p class="question-meta">
+          <span class="scenario-meta-badge" id="docLabelBadge"></span>
+          <span class="scenario-meta-badge" id="userRoleBadge"></span>
+        </p>
+        <p id="scenarioQuestion">
+          Question text goes here.
+        </p>
+        <ul>
+          <li>Write a full 9-mark answer in the box below.</li>
+          <li>When you are happy, click <strong>Generate AI marking prompt</strong>.</li>
+          <li>This will copy a ready-made prompt to your clipboard.</li>
+          <li>Paste it into ChatGPT, Gemini, Claude or Copilot to get a mark and feedback.</li>
+        </ul>
+      </div>
+      <div>
+        <img id="scenarioImage"
+             class="nine-storyboard"
+             src="img/rollin-cafe-storyboard.png"
+             alt="Storyboard for Rollin Café advert">
+      </div>
+    </div>
+  </section>
+
+  <!-- Answer + tips -->
+  <section class="card nine-card">
+    <div class="answer-header">
+      <h2>Your 9-mark answer</h2>
+      <div class="char-counter">
+        Characters: <span id="charCount">0</span>
+      </div>
+    </div>
+
+    <textarea id="studentAnswer"
+              class="answer-textarea"
+              placeholder="Write your full answer here. Aim for 3–4 well-developed points that link features to audience and purpose."></textarea>
+
+    <div style="margin-top:0.8rem;display:flex;flex-wrap:wrap;gap:0.5rem;">
+      <button type="button" class="btn primary" id="generatePromptBtn">
+        Generate AI marking prompt &amp; copy
+      </button>
+      <button type="button" class="btn secondary" id="clearAnswerBtn">
+        Clear answer
+      </button>
+    </div>
+
+    <div id="copyStatus" class="copy-status"></div>
+
+    <details class="tips-box">
+      <summary>Need help structuring a 9-mark answer?</summary>
+      <ul>
+        <li>Aim for <strong>3–4 clear, developed points</strong>, not 9 tiny ones.</li>
+        <li>Use a structure such as <strong>P.E.E.L.</strong> for each point:
+          <ul>
+            <li><strong>P</strong>oint – what is your main idea?</li>
+            <li><strong>E</strong>xplain – why does this matter?</li>
+            <li><strong>E</strong>xample – link to this specific document / product.</li>
+            <li><strong>L</strong>ink – tie it back to the <strong>user</strong> (director, design team, client, etc.) and the <strong>purpose</strong>.</li>
+          </ul>
+        </li>
+        <li>Keep bringing it back to:
+          <ul>
+            <li>How <strong>suitable</strong> the document is, and</li>
+            <li>How your improvements <strong>help the person using it</strong>.</li>
+          </ul>
+        </li>
+        <li>Use correct terms: storyboard, wireframe, mood board, asset table, target audience, constraints, layout, typography, etc.</li>
+        <li>End with a short <strong>judgement / conclusion</strong>.</li>
+      </ul>
+    </details>
+  </section>
+
+  <!-- AI prompt output -->
+  <section class="card nine-card ai-prompt-panel" id="aiPromptPanel">
+    <span class="stage-pill">Step 2 – Use an AI to mark it</span>
+    <h2>Your AI-ready marking prompt</h2>
+    <p style="font-size:0.9rem;">
+      All done! This text has been copied to your clipboard.  
+      <br>Open one of the AI tools below, paste it in, and run it to get a mark and feedback.
+    </p>
+
+    <textarea id="aiPrompt" readonly></textarea>
+
+    <div class="ai-links">
+      <span>Open an AI tool:</span>
+
+      <button type="button" class="btn-link"
+              onclick="openAIAndCopy('https://chat.openai.com/')">
+        ChatGPT
+      </button>
+
+      <button type="button" class="btn-link"
+              onclick="openAIAndCopy('https://gemini.google.com/')">
+        Gemini
+      </button>
+
+      <button type="button" class="btn-link"
+              onclick="openAIAndCopy('https://claude.ai/')">
+        Claude
+      </button>
+
+      <button type="button" class="btn-link"
+              onclick="openAIAndCopy('https://copilot.microsoft.com/')">
+        Copilot
+      </button>
+    </div>
+
+    <p id="pasteHelper"
+       style="margin-top:8px;font-size:0.85rem;color:#d6d9f0;">
+      Your prompt has been copied ✔
+      In the AI chat box, press <strong>Ctrl+V</strong> (or <strong>⌘+V</strong> on Mac), then press Enter.
+    </p>
+  </section>
+
+  <div class="return-menu" style="text-align:center;margin:20px 0;">
+    <a href="index.html"
+       class="btn secondary"
+       style="display:inline-block;padding:10px 18px;background:#1a73e8;color:#fff;text-decoration:none;border-radius:8px;font-weight:bold;">
+      ⬅ Return to Menu
+    </a>
+  </div>
+</div>
+
+<!-- Reuse your existing scenario data -->
+<script src="nine-mark-ninja-data.js"></script>
+
+<script>
+  (function () {
+    const scenarios = window.NINE_MARK_SCENARIOS || {};
+
+    const scenarioSelect = document.getElementById("scenarioSelect");
+    const scenarioTitleEl = document.getElementById("scenarioTitle");
+    const scenarioQuestionEl = document.getElementById("scenarioQuestion");
+    const scenarioImageEl = document.getElementById("scenarioImage");
+    const docLabelBadge = document.getElementById("docLabelBadge");
+    const userRoleBadge = document.getElementById("userRoleBadge");
+
+    const studentAnswerEl = document.getElementById("studentAnswer");
+    const charCountEl = document.getElementById("charCount");
+    const generatePromptBtn = document.getElementById("generatePromptBtn");
+    const clearAnswerBtn = document.getElementById("clearAnswerBtn");
+    const copyStatusEl = document.getElementById("copyStatus");
+
+    const aiPromptPanel = document.getElementById("aiPromptPanel");
+    const aiPromptEl = document.getElementById("aiPrompt");
+
+    let currentScenarioKey = "storyboard";
+
+    function loadScenario(key) {
+      if (!scenarios[key]) return;
+      currentScenarioKey = key;
+      const s = scenarios[key];
+
+      scenarioTitleEl.textContent = s.title || "9-mark question";
+      scenarioQuestionEl.innerHTML = s.questionText || "";
+      scenarioImageEl.src = s.imageSrc || "";
+      scenarioImageEl.alt = s.title || "9-mark scenario";
+      docLabelBadge.textContent = s.docLabel ? "Document: " + s.docLabel : "";
+      userRoleBadge.textContent = s.userRoleLabel ? "User: " + s.userRoleLabel : "";
+
+      // Reset answer + prompt when changing scenario
+      studentAnswerEl.value = "";
+      charCountEl.textContent = "0";
+      aiPromptPanel.style.display = "none";
+      copyStatusEl.textContent = "";
+    }
+
+    function getGenericMarkSchemeText(s) {
+      // Generic OCR-style 9-mark level descriptors, tailored to document + user role
+      const doc = s.docLabel || "pre-production document";
+      const userRole = s.userRoleLabel || "user";
+
+      return (
+`Level 3 (7–9 marks):
+- Clear, well-organised discussion of how suitable the ${doc} is for the ${userRole}.
+- Several specific strengths and weaknesses are identified.
+- Multiple realistic improvements are suggested.
+- Each improvement is clearly explained in terms of how it helps the ${userRole} use the ${doc}.
+- Uses correct media / pre-production terminology and shows secure understanding.
+
+Level 2 (4–6 marks):
+- Some relevant comments on suitability with a mix of strengths and weaknesses.
+- At least one or two improvements are given, but explanations may be more general.
+- Some use of appropriate terminology with occasional inaccuracies.
+
+Level 1 (1–3 marks):
+- Basic comments, often descriptive or opinion-based (e.g. “I like it”) with limited focus on suitability.
+- Few or no clear improvements or weak explanations.
+- Limited or incorrect use of terminology.
+
+0 marks:
+- No response or a response that is not worthy of credit.`
+      );
+    }
+
+    function buildAiPrompt(s, studentAnswer) {
+      const markSchemeText = getGenericMarkSchemeText(s);
+
+      return (
+`You are an experienced UK Creative iMedia teacher and OCR examiner for the R093 exam.
+
+Your task is to MARK a 9-mark extended response and give clear, supportive feedback to the student.
+
+Please follow these rules:
+- Use the generic mark scheme guidance below PLUS your own understanding of OCR 9-mark questions.
+- Award a mark out of 9.
+- Explain clearly where the student has gained marks and where they missed marks.
+- Give WWW (What Went Well) and EBI (Even Better If).
+- Give ONE specific, actionable target for their next answer.
+- Use friendly and encouraging language suitable for a Year 10/11 student.
+- At the very end, write: "Score: x/9" with the mark you are giving.
+
+--------------------------------------------------
+QUESTION SCENARIO
+--------------------------------------------------
+Title:
+${s.title || ""}
+
+Document type:
+${s.docLabel || ""}
+
+Main user:
+${s.userRoleLabel || ""}
+
+9-mark question:
+${stripHtml(s.questionText || "")}
+
+--------------------------------------------------
+GENERIC MARK SCHEME SUMMARY (FOR EXAMINER ONLY)
+Do not copy this back to the student. Use it to guide your marking.
+--------------------------------------------------
+${markSchemeText}
+
+--------------------------------------------------
+STUDENT ANSWER
+--------------------------------------------------
+${studentAnswer}
+
+Now, mark the answer and give feedback following the rules above.`
+      );
+    }
+
+    // Basic HTML stripper for question text
+    function stripHtml(html) {
+      const div = document.createElement("div");
+      div.innerHTML = html;
+      return div.textContent || div.innerText || "";
+    }
+
+    // Character counter
+    studentAnswerEl.addEventListener("input", function () {
+      charCountEl.textContent = String(this.value.length);
+      copyStatusEl.textContent = "";
+    });
+
+    // Scenario change
+    scenarioSelect.addEventListener("change", function () {
+      loadScenario(this.value || "storyboard");
+    });
+
+    // Generate AI prompt
+    generatePromptBtn.addEventListener("click", async function () {
+      const s = scenarios[currentScenarioKey];
+      if (!s) return;
+
+      const answer = studentAnswerEl.value.trim();
+      if (!answer) {
+        copyStatusEl.textContent = "Write your answer first before generating the AI prompt.";
+        return;
+      }
+
+      const prompt = buildAiPrompt(s, answer);
+      aiPromptEl.value = prompt;
+      aiPromptPanel.style.display = "block";
+      copyStatusEl.textContent = "";
+
+      // Try to copy to clipboard
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(prompt);
+          copyStatusEl.textContent = "✅ Prompt copied to clipboard! Open an AI below and paste it in.";
+        } else {
+          // Fallback: select text for manual copy
+          aiPromptEl.focus();
+          aiPromptEl.select();
+          copyStatusEl.textContent = "⚠️ Could not copy automatically – the prompt is selected, press Ctrl+C (or ⌘+C) to copy.";
+        }
+      } catch (e) {
+        aiPromptEl.focus();
+        aiPromptEl.select();
+        copyStatusEl.textContent = "⚠️ Could not copy automatically – the prompt is selected, press Ctrl+C (or ⌘+C) to copy.";
+      }
+
+      aiPromptEl.scrollTop = 0;
+      aiPromptPanel.scrollIntoView({ behavior: "smooth" });
+    });
+
+    // Clear answer
+    clearAnswerBtn.addEventListener("click", function () {
+      if (!studentAnswerEl.value.trim() || confirm("Clear your answer?")) {
+        studentAnswerEl.value = "";
+        charCountEl.textContent = "0";
+        aiPromptPanel.style.display = "none";
+        copyStatusEl.textContent = "";
+      }
+    });
+
+    // Helper to re-copy prompt and open AI in new tab
+    window.openAIAndCopy = function (url) {
+      const promptText = aiPromptEl.value;
+
+      if (!promptText.trim()) {
+        copyStatusEl.textContent = "Generate your AI prompt first, then choose an AI.";
+        return;
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(promptText).then(() => {
+          copyStatusEl.textContent = "✅ Prompt copied again! Switch to the new tab and press Ctrl+V.";
+        }).catch(() => {
+          copyStatusEl.textContent = "⚠️ Could not auto-copy. Press Ctrl+C to copy manually.";
+          aiPromptEl.focus();
+          aiPromptEl.select();
+        });
+      } else {
+        aiPromptEl.focus();
+        aiPromptEl.select();
+        copyStatusEl.textContent = "⚠️ Press Ctrl+C to copy manually.";
+      }
+
+      window.open(url, "_blank");
+    };
+
+    // Initial load
+    loadScenario(currentScenarioKey);
+  })();
+</script>
+</body>
+</html>
