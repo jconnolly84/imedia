@@ -89,6 +89,41 @@
     font-size: 1.5rem;
   }
 
+
+
+
+  /* AI exam marker (topic page) */
+  .answer-box{
+    width:100%;margin-top:10px;border-radius:12px;
+    border:1px solid rgba(255,255,255,0.14);
+    background:rgba(0,0,0,0.18);color:#fdf5e6;
+    padding:10px 12px;font:inherit;line-height:1.35;
+  }
+  .answer-box::placeholder{opacity:0.7}
+  .ai-prompt-card{
+    margin-top:18px;border-radius:18px;border:1px solid rgba(255,255,255,0.12);
+    background:rgba(0,0,0,0.12);padding:16px;
+  }
+  .ai-prompt-card .prompt-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px;}
+  .ai-links{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:6px;align-items:center;font-size:0.95rem;}
+  .ai-links-label{opacity:0.85}
+  .btn-link{
+    border-radius:999px;border:1px solid rgba(255,255,255,0.14);
+    padding:6px 12px;font-size:0.92rem;background:rgba(0,0,0,0.18);
+    color:#fdf5e6;cursor:pointer;
+  }
+  .btn-link:hover{background:rgba(0,0,0,0.26);}
+  .copy-status{font-size:0.95rem;margin-top:8px;opacity:0.9;min-height:1.2rem;}
+  .prompt-box{
+    width:100%;margin-top:10px;border-radius:12px;border:1px solid rgba(255,255,255,0.14);
+    background:rgba(0,0,0,0.18);color:#fdf5e6;padding:10px 12px;font:inherit;line-height:1.35;
+  }
+  .boost-card{margin-top:12px;border-radius:16px;border:1px solid rgba(255,255,255,0.12);background:rgba(0,0,0,0.10);padding:12px;}
+  .boost-title{margin:0;font-size:0.95rem;letter-spacing:.06em;text-transform:uppercase;opacity:.9;}
+  .boost-list{margin:10px 0 0 18px;display:grid;gap:6px;}
+  .boost-list li{font-size:0.95rem;}
+  .boost-list li.missing::marker{content:"⚠️  ";}
+  .boost-list li.good::marker{content:"✅  ";}
 </style>
 </head>
 <body>
@@ -202,16 +237,11 @@
 <li>Exam questions often ask you to choose or justify suitable research methods for a scenario.</li>
 </ul>
 </section>
-
 <!-- Infographic Image -->
 <section class="topic-section">
-  <img src="img/topic-14-audience-research-infographic.png"
-       alt="Audience research methods infographic showing surveys, interviews, focus groups and analytics"
-       class="topic-infographic"
-       style="max-width:100%; height:auto; margin:2rem 0; border-radius:12px;
-              box-shadow:0 6px 16px rgba(0,0,0,0.25);" />
+<img alt="Audience research methods infographic showing surveys, interviews, focus groups and analytics" class="topic-infographic" src="img/topic-14-audience-research-infographic.png" style="max-width:100%; height:auto; margin:2rem 0; border-radius:12px;
+              box-shadow:0 6px 16px rgba(0,0,0,0.25);"/>
 </section>
-
 <section class="topic-section">
 <h2>Audience Research at a Glance</h2>
 <p class="topic-intro">
@@ -306,17 +336,15 @@
 <a class="notebook-btn" href="https://notebooklm.google.com/notebook/64ce7c9a-d99a-44d7-9385-0a84c8ccc19c" rel="noopener" target="_blank">
             📘 Open NotebookLM for Audience Research
           </a>
-
 <section class="notebooklm-box">
-  <h3>Topic Slides</h3>
-  <p>
+<h3>Topic Slides</h3>
+<p>
     Download these slides for an in-depth look at the topic — ideal for revising key ideas and strengthening your understanding.
   </p>
-  <a class="notebook-btn" href="img/topic-14-audience-research-slides.pdf" rel="noopener" target="_blank">
+<a class="notebook-btn" href="img/topic-14-audience-research-slides.pdf" rel="noopener" target="_blank">
     📑 Download Topic Slides (PDF)
   </a>
 </section>
-
 </section>
 </div>
 </section>
@@ -390,14 +418,14 @@
 <!-- Exam practice -->
 <section class="topic-section exam-practice">
 <h2>Exam Practice – Audience Research</h2>
-<article class="exam-card">
+<article class="ai-exam-card exam-card">
 <h3>Q1. State one method of audience research. (1 mark)</h3>
 <p class="technique">
 <strong>Technique:</strong> Give one clear method such as a survey, interview,
           focus group or questionnaire.
         </p>
-</article>
-<article class="exam-card">
+<textarea class="answer-box" data-q="Q1" placeholder="Type your answer…" rows="2"></textarea></article>
+<article class="ai-exam-card exam-card">
 <h3>Q2. Explain one reason why a games company might use a questionnaire before releasing a new game. (2 marks)</h3>
 <p class="technique">
 <strong>Technique:</strong> Make one point about feedback on features, preferences or price,
@@ -406,22 +434,22 @@
 <p class="model-stem">
 <em>Example structure:</em> “A questionnaire helps because… This means that…”
         </p>
-</article>
-<article class="exam-card">
+<textarea class="answer-box" data-q="Q2" placeholder="Type your answer…" rows="3"></textarea></article>
+<article class="ai-exam-card exam-card">
 <h3>Q3. Describe one advantage and one disadvantage of using focus groups for audience research. (3 marks)</h3>
 <p class="technique">
 <strong>Technique:</strong> Give a paired answer. Advantage: detailed opinions, group discussion.
           Disadvantage: small sample, not fully representative. Develop each point briefly.
         </p>
-</article>
-<article class="exam-card">
+<textarea class="answer-box" data-q="Q3" placeholder="Type your answer…" rows="5"></textarea></article>
+<article class="ai-exam-card exam-card">
 <h3>Q4. Explain two reasons why a large, varied sample is important when carrying out audience research. (4 marks)</h3>
 <p class="technique">
 <strong>Technique:</strong> Give two separate reasons (e.g. more reliable results,
           better representation of the target audience). For each, explain the impact on the final product.
         </p>
-</article>
-<article class="exam-card">
+<textarea class="answer-box" data-q="Q4a" placeholder="Part 1…" rows="3"></textarea><textarea class="answer-box" data-q="Q4b" placeholder="Part 2…" rows="3"></textarea></article>
+<article class="ai-exam-card exam-card">
 <h3>
           Q5. A production company is planning a new social media campaign for a streaming service.
           Discuss which research methods they could use to find out more about their audience, and
@@ -438,8 +466,35 @@
 <li>Paragraph 3: Explain how research reduces risk and improves campaign effectiveness.</li>
 <li>Final paragraph: Conclusion – which methods are most useful and why.</li>
 </ul>
-</article>
+<textarea class="answer-box" data-q="Q5" placeholder="Write your 9-mark answer…" rows="8"></textarea>
+<section class="boost-card" id="boostCard_Q5">
+<div class="boost-header">
+<h3 class="boost-title">Level 2 → Level 3 Boost (Q5)</h3>
+<p class="hint">As you type, this will spot what’s missing for top-band answers.</p>
+</div>
+<ul class="boost-list" id="l2l3Tips_Q5">
+<li class="hint">Start typing your answer to see tailored targets.</li>
+</ul>
 </section>
+</article>
+<div class="prompt-card ai-prompt-card">
+<div class="prompt-actions">
+<button class="random-btn" id="buildPrompt_Topic" type="button"><span class="icon">✨</span> Build &amp; Copy AI Marking Prompt</button>
+<button class="filter-btn" id="saveAnswers_Topic" type="button">Save</button>
+<button class="filter-btn" id="loadAnswers_Topic" type="button">Load</button>
+<button class="filter-btn" id="resetAnswers_Topic" type="button">Reset</button>
+</div>
+<div class="ai-links">
+<span class="ai-links-label">Open an AI tool:</span>
+<button class="btn-link" data-ai="https://chat.openai.com/" type="button">ChatGPT</button>
+<button class="btn-link" data-ai="https://gemini.google.com/" type="button">Gemini</button>
+<button class="btn-link" data-ai="https://claude.ai/" type="button">Claude</button>
+<button class="btn-link" data-ai="https://copilot.microsoft.com/" type="button">Copilot</button>
+<button class="btn-link" id="copyAnswersOnly_Topic" type="button">Copy answers only</button>
+</div>
+<div aria-live="polite" class="copy-status" id="copyStatus_Topic"></div>
+<textarea class="prompt-box" id="aiPrompt_Topic" placeholder="Your AI marking prompt will appear here…" rows="12"></textarea>
+</div></section>
 <!-- Quick check -->
 <section class="topic-section quick-check">
 <h2>Can You Now…?</h2>
@@ -449,13 +504,190 @@
 <li>Choose suitable research methods for different media projects and justify your choices.</li>
 </ul>
 </section>
-
 <footer>
 <p>© 2025 iMedia Genius · R093 Revision Arcade</p>
 <p class="footer-note">This is an independent teacher-created resource for OCR Cambridge National in Creative iMedia (R093). It is not affiliated with, endorsed by or approved by OCR.</p>
 </footer>
-
 </div>
-<script src="host.js"></script>
+<script>
+(function(){
+  const STORAGE_KEY = "imediagenius_topic-14-audience-research_exam_practice_v2";
+  const BASE_TO_KEYS = {"Q1": ["Q1"], "Q2": ["Q2"], "Q3": ["Q3"], "Q4": ["Q4a", "Q4b"], "Q5": ["Q5"]};
+  const LOR_BASES = ["Q5"];
+
+  const q = (sel) => document.querySelector(sel);
+  const qa = (sel) => Array.from(document.querySelectorAll(sel));
+
+  const elPrompt = q('#aiPrompt_Topic');
+  const elStatus = q('#copyStatus_Topic');
+
+  function getAnswers(){
+    const out = {};
+    qa('textarea.answer-box').forEach(t => { out[t.dataset.q] = t.value || ''; });
+    return out;
+  }
+
+  function setAnswers(data){
+    qa('textarea.answer-box').forEach(t => { t.value = (data && data[t.dataset.q]) ? data[t.dataset.q] : ''; });
+    wireBoosters();
+  }
+
+  async function copyText(text){
+    try{
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        await navigator.clipboard.writeText(text);
+        return true;
+      }
+    }catch(e){}
+    return false;
+  }
+
+  function buildPromptText(){
+    const a = getAnswers();
+    let txt = "You are a TRAINED OCR Cambridge National Creative iMedia R093 examiner.\n\nOCR STANDARDISATION DIRECTIVE \u2013 MUST FOLLOW\n1. CREDIT IMPLIED KNOWLEDGE: If understanding is clear, award marks even if keywords are missing.\n2. SHORT ANSWERS (1\u20132 marks): be generous where meaning is clear.\n3. Examples in mark schemes are NON-EXHAUSTIVE unless stated otherwise.\n4. 4\u20136 mark questions: award partial credit for reasonable comparisons; reward development/justification.\n5. 9-mark questions: reward balance, development and a justified conclusion. If unsure between two marks/levels, award the higher.\n6. CONSISTENCY: apply the same strictness across the whole paper.\n\nTask: Mark this exam practice set question-by-question using ONLY the mark schemes provided.\nOUTPUT: Provide marks per question, total /19, then WWW, EBI, and 1\u20132 targets. Use UK English.\n\n[Q1] (1 marks)\nQUESTION: State one method of audience research.\nMARK SCHEME:\nAward 1 mark for any valid correct response that fits the question.\nIndicative content (non-exhaustive):\n\u2022 any valid correct response that fits the question\nSTUDENT ANSWER:\n{{Q1}}\n\n---\n\n[Q2] (2 marks)\nQUESTION: Explain one reason why a games company might use a questionnaire before releasing a new game.\nMARK SCHEME:\n1 mark for a valid point/idea. +1 mark for development explaining impact (because/so/this means).\nIndicative content (non-exhaustive):\n\u2022 one valid point\n\u2022 development showing impact (because/so/this means)\nSTUDENT ANSWER:\n{{Q2}}\n\n---\n\n[Q3] (3 marks)\nQUESTION: Describe one advantage and one disadvantage of using focus groups for audience research.\nMARK SCHEME:\nAward up to 3 marks: 1 for a valid point, 2 for explained impact, 3 for fully developed justification linked to the scenario.\nIndicative content (non-exhaustive):\n\u2022 one clear advantage/limitation\n\u2022 comparison implied\n\u2022 developed impact\nSTUDENT ANSWER:\n{{Q3}}\n\n---\n\n[Q4] (4 marks)\nQUESTION: Explain two reasons why a large, varied sample is important when carrying out audience research.\nMARK SCHEME:\nAward up to 2 marks per point. Credit two DISTINCT points only. For each: 1 mark for a valid point + marks for development/justification up to 2.\nIndicative content (non-exhaustive):\n\u2022 two distinct points\n\u2022 each explained with impact\n\u2022 do not repeat the same idea\nSTUDENT ANSWER:\n{{Q4}}\n\n---\n\n[Q5] (9 marks)\nQUESTION: A production company is planning a new social media campaign for a streaming service. Discuss which research methods they could use to find out more about their audience, and explain how the results would help them design an effective campaign.\nMARK SCHEME:\nLEVEL OF RESPONSE (9 marks):\nLevel 3 (7\u20139): balanced, well-developed points; accurate subject terminology; clear links to audience/purpose/constraints; justified conclusion.\nLevel 2 (4\u20136): relevant points with some development; limited evaluation or weaker conclusion.\nLevel 1 (1\u20133): basic points, limited development; little/no conclusion.\nLevel 0 (0): nothing worthy of credit.\nIndicative content (non-exhaustive):\n\u2022 likes/shares/comments\n\u2022 hashtags/links\n\u2022 targeted ads\n\u2022 analytics (reach/engagement)\nSTUDENT ANSWER:\n{{Q5}}\n\n---";
+    Object.keys(BASE_TO_KEYS).forEach(base=>{
+      const keys = BASE_TO_KEYS[base] || [];
+      let ans = '';
+      if (keys.length === 1){
+        ans = a[keys[0]] || '(no answer)';
+      } else {
+        ans = keys.map((k,i)=>`Part ${i+1}: ${a[k] || '(no answer)'}`).join('\n');
+      }
+      const needle = `{{${base}}}`;
+      txt = txt.split(needle).join(ans);
+    });
+    return txt.trim();
+  }
+
+  function buildAnswersOnly(){
+    const a = getAnswers();
+    const bases = Object.keys(BASE_TO_KEYS).sort((x,y)=>parseInt(x.replace('Q',''))-parseInt(y.replace('Q','')));
+    const lines = ['R093 Exam Practice – Student Answers', ''];
+    bases.forEach(base=>{
+      const keys = BASE_TO_KEYS[base] || [];
+      if (keys.length === 1){
+        lines.push(`[${base}] ` + (a[keys[0]] || '(no answer)'));
+      } else {
+        lines.push(`[${base}]`);
+        keys.forEach((k,i)=> lines.push(`• Part ${i+1}: ` + (a[k] || '(no answer)')));
+      }
+      lines.push('');
+    });
+    return lines.join('\n');
+  }
+
+  async function buildAndCopyPrompt(){
+    const prompt = buildPromptText();
+    if (elPrompt) elPrompt.value = prompt;
+    const ok = await copyText(prompt);
+    if (ok){
+      if (elStatus) elStatus.textContent = '✅ Prompt copied. Next: click an AI tool above, paste (Ctrl+V / ⌘+V) and press Enter.';
+    } else {
+      if (elPrompt){ elPrompt.focus(); elPrompt.select(); }
+      if (elStatus) elStatus.textContent = '⚠️ Auto-copy blocked. The prompt is selected — press Ctrl+C / ⌘+C, then click an AI tool and paste.';
+    }
+  }
+
+  function save(){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(getAnswers()));
+    if (elStatus) elStatus.textContent = '✅ Saved on this device/browser.';
+  }
+  function load(){
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw){ if (elStatus) elStatus.textContent = 'Nothing saved yet.'; return; }
+    try{ setAnswers(JSON.parse(raw)); if (elStatus) elStatus.textContent = '✅ Loaded saved answers.'; }
+    catch(e){ if (elStatus) elStatus.textContent = '⚠️ Could not load saved answers.'; }
+  }
+  function reset(){
+    setAnswers({});
+    localStorage.removeItem(STORAGE_KEY);
+    if (elPrompt) elPrompt.value = '';
+    if (elStatus) elStatus.textContent = 'Reset complete.';
+  }
+
+  async function openAI(url){
+    if (!elPrompt.value.trim()) await buildAndCopyPrompt();
+    window.open(url, '_blank');
+  }
+
+  function updateBooster(base){
+    const tipsEl = document.getElementById(`l2l3Tips_${base}`);
+    if (!tipsEl) return;
+    const keys = BASE_TO_KEYS[base] || [base];
+    const t = (q(`textarea[data-q="${keys[0]}"]`)?.value || '').trim().toLowerCase();
+    tipsEl.innerHTML = '';
+    if (!t){
+      tipsEl.innerHTML = '<li class="hint">Start typing your answer to see tailored targets.</li>';
+      return;
+    }
+
+    const checks = [
+      {k:['audience','target','demographic','purpose','message','tone'], label:'Link points to audience and purpose (who it’s for and what it needs to achieve).'},
+      {k:['advantage','disadvantage','however','whereas','on the other hand','pros','cons'], label:'Include a balanced discussion (advantages AND disadvantages).'},
+      {k:['because','so that','this means','therefore','as a result'], label:'Develop each point with impact language (“because / so that / this means”).'},
+      {k:['cost','budget','time','deadline','constraints','resources'], label:'Mention constraints (time, cost, resources) and how they affect decisions.'},
+      {k:['interactivity','engagement','reach','targeting','analytics','distribution','platform'], label:'Use subject terminology (reach, targeting, engagement, analytics, distribution, platform).'},
+      {k:['conclusion','overall','recommend','best','most suitable','in summary'], label:'Finish with a justified conclusion recommending the best option/mix.'},
+    ];
+
+    const missing = [];
+    for (const c of checks){
+      const ok = c.k.some(x => t.includes(x));
+      if (!ok) missing.push(c.label);
+    }
+
+    missing.slice(0,6).forEach(msg=>{
+      const li = document.createElement('li');
+      li.className = 'missing';
+      li.textContent = msg;
+      tipsEl.appendChild(li);
+    });
+
+    const li = document.createElement('li');
+    li.className = 'good';
+    li.textContent = missing.length <= 2
+      ? 'You’re close to Level 3. Next: add specific examples and justify each point clearly.'
+      : 'Top tip: for every point, add one sentence explaining the impact on the product/campaign/user.';
+    tipsEl.appendChild(li);
+  }
+
+  function wireBoosters(){
+    (LOR_BASES || []).forEach(base=>{
+      const keys = BASE_TO_KEYS[base] || [];
+      if (!keys.length) return;
+      const box = q(`textarea[data-q="${keys[0]}"]`);
+      if (!box) return;
+      box.addEventListener('input', ()=>updateBooster(base));
+      updateBooster(base);
+    });
+  }
+
+  q('#buildPrompt_Topic')?.addEventListener('click', buildAndCopyPrompt);
+  q('#saveAnswers_Topic')?.addEventListener('click', save);
+  q('#loadAnswers_Topic')?.addEventListener('click', load);
+  q('#resetAnswers_Topic')?.addEventListener('click', reset);
+
+  q('#copyAnswersOnly_Topic')?.addEventListener('click', async ()=>{
+    const text = buildAnswersOnly();
+    const ok = await copyText(text);
+    if (ok){ if (elStatus) elStatus.textContent = '✅ Answers copied.'; }
+    else {
+      if (elPrompt){ elPrompt.value = text; elPrompt.focus(); elPrompt.select(); }
+      if (elStatus) elStatus.textContent = '⚠️ Auto-copy blocked. Your answers are selected — press Ctrl+C / ⌘+C.';
+    }
+  });
+
+  qa('.btn-link[data-ai]').forEach(btn=>{
+    btn.addEventListener('click', ()=>openAI(btn.getAttribute('data-ai')));
+  });
+
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) setAnswers(JSON.parse(raw));
+  }catch(e){}
+
+  wireBoosters();
+})();
+</script><script src="host.js"></script>
 </body>
 </html>

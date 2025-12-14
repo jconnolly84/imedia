@@ -89,6 +89,40 @@
     font-size: 1.5rem;
   }
 
+
+  /* AI exam marker (topic page) */
+  .ai-exam-grid{display:grid;gap:18px;}
+  .ai-exam-card textarea.answer-box{
+    width:100%;margin-top:10px;border-radius:12px;
+    border:1px solid rgba(255,255,255,0.14);
+    background:rgba(0,0,0,0.18);color:#fdf5e6;
+    padding:10px 12px;font:inherit;line-height:1.35;
+  }
+  .ai-exam-card textarea.answer-box::placeholder{opacity:0.7}
+  .ai-prompt-card{
+    margin-top:18px;border-radius:18px;border:1px solid rgba(255,255,255,0.12);
+    background:rgba(0,0,0,0.12);padding:16px;
+  }
+  .ai-prompt-card .prompt-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px;}
+  .ai-links{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:6px;align-items:center;font-size:0.95rem;}
+  .ai-links-label{opacity:0.85}
+  .btn-link{
+    border-radius:999px;border:1px solid rgba(255,255,255,0.14);
+    padding:6px 12px;font-size:0.92rem;background:rgba(0,0,0,0.18);
+    color:#fdf5e6;cursor:pointer;
+  }
+  .btn-link:hover{background:rgba(0,0,0,0.26);}
+  .copy-status{font-size:0.95rem;margin-top:8px;opacity:0.9;min-height:1.2rem;}
+  .prompt-box{
+    width:100%;margin-top:10px;border-radius:12px;border:1px solid rgba(255,255,255,0.14);
+    background:rgba(0,0,0,0.18);color:#fdf5e6;padding:10px 12px;font:inherit;line-height:1.35;
+  }
+  .boost-card{margin-top:12px;border-radius:16px;border:1px solid rgba(255,255,255,0.12);background:rgba(0,0,0,0.10);padding:12px;}
+  .boost-title{margin:0;font-size:0.95rem;letter-spacing:.06em;text-transform:uppercase;opacity:.9;}
+  .boost-list{margin:10px 0 0 18px;display:grid;gap:6px;}
+  .boost-list li{font-size:0.95rem;}
+  .boost-list li.missing::marker{content:"⚠️  ";}
+  .boost-list li.good::marker{content:"✅  ";}
 </style>
 </head>
 <body>
@@ -202,12 +236,8 @@
 </section>
 <!-- Infographic Image Inserted Here -->
 <div class="topic-section">
-  <img src="img/topic-01-traditional-media-infographic.png"
-       alt="Traditional Media infographic showing print, broadcast, and outdoor media along with strengths and limitations"
-       class="topic-infographic"
-       style="max-width: 100%; height: auto; margin: 2rem 0; border-radius: 12px; box-shadow: 0 6px 16px rgba(0,0,0,0.25);" />
+<img alt="Traditional Media infographic showing print, broadcast, and outdoor media along with strengths and limitations" class="topic-infographic" src="img/topic-01-traditional-media-infographic.png" style="max-width: 100%; height: auto; margin: 2rem 0; border-radius: 12px; box-shadow: 0 6px 16px rgba(0,0,0,0.25);"/>
 </div>
-
 <section class="topic-section">
 <h2>Traditional Media at a Glance</h2>
 <p class="topic-intro">
@@ -305,7 +335,6 @@
             📘 Open NotebookLM for Traditional Media
           </a>
 </section>
-
 <section class="notebooklm-box">
 <h3>Topic Slides</h3>
 <p>
@@ -315,7 +344,6 @@
             📑 Download Topic Slides (PDF)
           </a>
 </section>
-
 </div>
 </section>
 <!-- Linked games -->
@@ -385,59 +413,78 @@
 </article>
 </div>
 </section>
-<!-- Exam practice -->
-<section class="topic-section exam-practice">
-<h2>Exam Practice – Traditional Media</h2>
-<article class="exam-card">
+<!-- Exam practice (AI marker) -->
+<!-- Exam practice (AI marker) -->
+<section class="topic-section exam-practice" id="exam-practice-ai">
+<h2>Exam Practice – Traditional Media (AI Marker)</h2>
+<p class="topic-intro">
+    Write your answers in the boxes below, then click <strong>Build &amp; Copy AI Marking Prompt</strong>.
+    Choose an AI tool and paste the prompt to get examiner-style marking and feedback.
+  </p>
+<div class="ai-exam-grid">
+<article class="ai-exam-card exam-card">
 <h3>Q1. Define “traditional media”. (1 mark)</h3>
-<p class="technique">
-<strong>Technique:</strong> Give a short, clear definition in one sentence.
-        </p>
-<p class="model-stem">
-<em>Example start:</em> “Traditional media is non-digital mass communication
-          such as print, radio and TV.”
-        </p>
-</article>
-<article class="exam-card">
+<p class="technique"><strong>Technique:</strong> One clear sentence.</p>
+
+<textarea class="answer-box" data-q="Q1" placeholder="Type your answer…" rows="2"></textarea></article>
+<article class="ai-exam-card exam-card">
 <h3>Q2. State one traditional media format that could be used to promote a new theatre show. (1 mark)</h3>
-<p class="technique">
-<strong>Technique:</strong> Just name a valid format, e.g. poster, radio advert,
-          TV advert, newspaper advert.
-        </p>
-</article>
-<article class="exam-card">
+<p class="technique"><strong>Technique:</strong> Just name one valid format.</p>
+
+<textarea class="answer-box" data-q="Q2" placeholder="Type your answer…" rows="2"></textarea></article>
+<article class="ai-exam-card exam-card">
 <h3>Q3. Explain one advantage of using a TV advert instead of a social media advert to promote a charity appeal. (2 marks)</h3>
-<p class="technique">
-<strong>Technique:</strong> Make one clear point, then explain the impact on the
-          audience using “because” or “so”.
-        </p>
-<p class="model-stem">
-<em>Example structure:</em> “One advantage is… This means that… so the charity can…”
-        </p>
-</article>
-<article class="exam-card">
+<p class="technique"><strong>Technique:</strong> Make one point and develop it with “because / so”.</p>
+
+<textarea class="answer-box" data-q="Q3" placeholder="Type your answer…" rows="3"></textarea></article>
+<article class="ai-exam-card exam-card">
 <h3>Q4. Describe two limitations of using posters instead of online adverts to target teenagers. (4 marks)</h3>
-<p class="technique">
-<strong>Technique:</strong> Give <strong>two separate</strong> limitations. For
-          each one, say what the problem is and how it affects the campaign.
-        </p>
-</article>
-<article class="exam-card">
-<h3>
-          Q5. A company is launching a new sports drink. Discuss the advantages and disadvantages
-          of using both traditional media and new media to promote the product. (9 marks)
-        </h3>
-<p class="technique">
-<strong>Technique:</strong> Use a balanced structure: traditional media pros/cons,
-          new media pros/cons, then a justified conclusion recommending the best mix.
-        </p>
+<p class="technique"><strong>Technique:</strong> Two separate limitations. For each: problem + impact.</p>
+
+
+<textarea class="answer-box" data-q="Q4a" placeholder="Part 1…" rows="3"></textarea><textarea class="answer-box" data-q="Q4b" placeholder="Part 2…" rows="3"></textarea></article>
+<article class="ai-exam-card exam-card">
+<h3>Q5. A company is launching a new sports drink. Discuss the advantages and disadvantages of using both traditional media and new media to promote the product. (9 marks)</h3>
+<p class="technique"><strong>Technique:</strong> Balanced discussion + justified conclusion.</p>
 <ul class="answer-steps">
-<li>Paragraph 1–2: Benefits and drawbacks of TV, radio and posters.</li>
-<li>Paragraph 3–4: Benefits and drawbacks of websites, apps and social media.</li>
-<li>Final paragraph: Decide which mix is best for the target audience and explain why.</li>
+<li>Traditional media: pros + cons (TV / radio / posters)</li>
+<li>New media: pros + cons (websites / apps / social media)</li>
+<li>Conclusion: best mix for the target audience (explain why)</li>
 </ul>
-</article>
+
+
+<textarea class="answer-box" data-q="Q5" placeholder="Write your 9-mark answer…" rows="8"></textarea>
+<section class="boost-card" id="boostCard_Q5">
+<div class="boost-header">
+<h3 class="boost-title">Level 2 → Level 3 Boost (Q5)</h3>
+<p class="hint">As you type, this will spot what’s missing for top-band answers.</p>
+</div>
+<ul class="boost-list" id="l2l3Tips_Q5">
+<li class="hint">Start typing your answer to see tailored targets.</li>
+</ul>
 </section>
+</article>
+</div>
+
+<div class="prompt-card ai-prompt-card">
+<div class="prompt-actions">
+<button class="random-btn" id="buildPromptTM" type="button"><span class="icon">✨</span> Build &amp; Copy AI Marking Prompt</button>
+<button class="filter-btn" id="saveAnswersTM" type="button">Save</button>
+<button class="filter-btn" id="loadAnswersTM" type="button">Load</button>
+<button class="filter-btn" id="resetAnswersTM" type="button">Reset</button>
+</div>
+<div class="ai-links">
+<span class="ai-links-label">Open an AI tool:</span>
+<button class="btn-link" data-ai="https://chat.openai.com/" type="button">ChatGPT</button>
+<button class="btn-link" data-ai="https://gemini.google.com/" type="button">Gemini</button>
+<button class="btn-link" data-ai="https://claude.ai/" type="button">Claude</button>
+<button class="btn-link" data-ai="https://copilot.microsoft.com/" type="button">Copilot</button>
+<button class="btn-link" id="copyAnswersOnlyTM" type="button">Copy answers only</button>
+</div>
+<div aria-live="polite" class="copy-status" id="copyStatusTM"></div>
+<textarea class="prompt-box" id="aiPromptTM" placeholder="Your AI marking prompt will appear here…" rows="10"></textarea>
+</div></section>
+<!-- Quick check -->
 <!-- Quick check -->
 <section class="topic-section quick-check">
 <h2>Can You Now…?</h2>
@@ -452,6 +499,396 @@
 <p class="footer-note">This is an independent teacher-created resource for OCR Cambridge National in Creative iMedia (R093). It is not affiliated with, endorsed by or approved by OCR.</p>
 </footer>
 </div>
-<script src="host.js"></script>
+<script>
+(function(){
+  const STORAGE_KEY = 'imediagenius_topic01_exam_practice_v1';
+  const q = (sel) => document.querySelector(sel);
+  const qa = (sel) => Array.from(document.querySelectorAll(sel));
+  const elPrompt = q('#aiPromptTM');
+  const elStatus = q('#copyStatusTM');
+  const elTips = q('#l2l3TipsTM');
+
+  function getAnswers(){
+    const out = {};
+    qa('textarea.answer-box').forEach(t => { out[t.dataset.q] = t.value || ''; });
+    return out;
+  }
+  function setAnswers(data){
+    qa('textarea.answer-box').forEach(t => { t.value = (data && data[t.dataset.q]) ? data[t.dataset.q] : ''; });
+    updateL2L3Tips();
+  }
+
+  async function copyText(text){
+    try{
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        await navigator.clipboard.writeText(text);
+        return true;
+      }
+    }catch(e){}
+    return false;
+  }
+
+  function buildAnswersOnly(){
+    const a = getAnswers();
+    return [
+      'R093 Topic 01 – Traditional Media (Exam Practice) – Student Answers',
+      '',
+      '[Q1] (1) ' + (a.Q1 || '(no answer)'),
+      '',
+      '[Q2] (1) ' + (a.Q2 || '(no answer)'),
+      '',
+      '[Q3] (2) ' + (a.Q3 || '(no answer)'),
+      '',
+      '[Q4] (4)',
+      '• Limitation 1: ' + (a.Q4a || '(no answer)'),
+      '• Limitation 2: ' + (a.Q4b || '(no answer)'),
+      '',
+      '[Q5] (9)',
+      (a.Q5 || '(no answer)'),
+    ].join('\n');
+  }
+
+  function updateL2L3Tips(){
+    if (!elTips) return;
+    const text = (q('textarea[data-q="Q5"]')?.value || '').trim().toLowerCase();
+    elTips.innerHTML = '';
+    if (!text){
+      elTips.innerHTML = '<li class="hint">Start typing your Q5 answer to see tailored targets.</li>';
+      return;
+    }
+    const checks = [
+      {k:['target audience','teen','young','adult','sports','gym','athlete','demographic'], label:'Name a target audience and link choices to them.'},
+      {k:['traditional','tv','radio','poster','billboard','print'], label:'Give clear pros AND cons for traditional media (reach/trust vs cost/one‑way).'},
+      {k:['new media','social','website','app','online','digital'], label:'Give clear pros AND cons for new media (targeting/engagement vs risks).'},
+      {k:['cost','expensive','budget'], label:'Discuss cost/budget trade‑offs.'},
+      {k:['interact','interactive','engage','share','comment'], label:'Mention interactivity/engagement and why it matters.'},
+      {k:['measure','analytics','track','data'], label:'Mention tracking/analytics (clicks/views/engagement).'},
+      {k:['conclusion','overall','recommend','best mix','therefore'], label:'Finish with a justified conclusion recommending the best mix.'},
+      {k:['because','so that','this means'], label:'Develop points with impact language (“because / so that / this means”).'},
+    ];
+    const missing = [];
+    for (const c of checks){
+      const ok = c.k.some(x => text.includes(x));
+      if (!ok) missing.push(c.label);
+    }
+    missing.slice(0,6).forEach(t => {
+      const li = document.createElement('li');
+      li.className = 'missing';
+      li.textContent = t;
+      elTips.appendChild(li);
+    });
+    const li = document.createElement('li');
+    li.className = 'good';
+    li.textContent = missing.length <= 2
+      ? 'You’re close to Level 3. Next: add specific examples and justify each point clearly.'
+      : 'Top tip: for every pro/con, add one sentence explaining the impact on the campaign.';
+    elTips.appendChild(li);
+  }
+
+  function save(){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(getAnswers()));
+    if (elStatus) elStatus.textContent = '✅ Saved on this device/browser.';
+  }
+  function load(){
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw){ if (elStatus) elStatus.textContent = 'Nothing saved yet.'; return; }
+    try{ setAnswers(JSON.parse(raw)); if (elStatus) elStatus.textContent = '✅ Loaded saved answers.'; }
+    catch(e){ if (elStatus) elStatus.textContent = '⚠️ Could not load saved answers.'; }
+  }
+  function reset(){
+    setAnswers({});
+    localStorage.removeItem(STORAGE_KEY);
+    if (elPrompt) elPrompt.value = '';
+    if (elStatus) elStatus.textContent = 'Reset complete.';
+  }
+
+  async function buildPrompt(){
+    const a = getAnswers();
+    const prompt =
+`You are a TRAINED OCR Cambridge National Creative iMedia R093 examiner.
+
+OCR STANDARDISATION DIRECTIVE – MUST FOLLOW
+1. CREDIT IMPLIED KNOWLEDGE: If understanding is clear, award marks even if keywords are missing.
+2. SHORT ANSWERS (1–2 marks): be generous where meaning is clear.
+3. Examples in mark schemes are NON-EXHAUSTIVE unless stated.
+4. 4–6 mark explain/differences: award partial credit for reasonable comparisons; do not require perfect spec recall.
+5. 9-mark rule: reward balance, development and a justified conclusion. If unsure between two marks/levels, award the higher.
+6. CONSISTENCY: apply the same strictness across all questions.
+
+Task: Mark this 17-mark mini set (1+1+2+4+9) question-by-question using ONLY the mark schemes provided.
+Output marks per question, total /17, then WWW, EBI, and 1–2 targets. Use UK English.
+
+[Q1] (1 mark) Define “traditional media”.
+MARK SCHEME:
+Award 1 for a clear definition of non-digital / pre-internet mass communication channels (e.g. print, radio, TV, posters/billboards). Implied meaning is acceptable.
+
+STUDENT ANSWER:
+${a.Q1 || '(no answer)'}
+
+---
+[Q2] (1 mark) State one traditional media format to promote a new theatre show.
+MARK SCHEME:
+Award 1 for any valid traditional format (e.g. poster, newspaper advert, radio advert, TV advert, flyer/billboard).
+
+STUDENT ANSWER:
+${a.Q2 || '(no answer)'}
+
+---
+[Q3] (2 marks) Explain one advantage of TV advert instead of social media advert for a charity appeal.
+MARK SCHEME:
+1 mark for a valid advantage (e.g. mass reach, perceived credibility, older audiences, scheduled broadcast).
++1 for development explaining impact (because/so/this means…).
+
+STUDENT ANSWER:
+${a.Q3 || '(no answer)'}
+
+---
+[Q4] (4 marks) Describe two limitations of posters instead of online adverts to target teenagers.
+MARK SCHEME:
+Up to 2 marks per limitation:
+• 1 for identifying a valid limitation (e.g. harder targeting, limited interactivity, no click-through, limited tracking, can be ignored, location dependent).
+• +1 for impact on campaign (how/why it reduces effectiveness for teens).
+Mark two limitations only.
+
+STUDENT ANSWERS:
+Limitation 1: ${a.Q4a || '(no answer)'}
+Limitation 2: ${a.Q4b || '(no answer)'}
+
+---
+[Q5] (9 marks) Sports drink promotion: discuss advantages and disadvantages of using BOTH traditional and new media, with a justified conclusion.
+LEVEL OF RESPONSE MARK SCHEME (summary):
+Level 3 (7–9): balanced discussion of both, clear pros/cons, uses subject terminology (reach, targeting, interactivity, engagement, analytics, cost), links to audience/purpose, ends with a justified recommendation.
+Level 2 (4–6): some balanced points but less developed/less evaluative; limited conclusion.
+Level 1 (1–3): basic points, little balance, weak/no conclusion.
+Level 0: nothing worthy of credit.
+
+STUDENT ANSWER:
+${a.Q5 || '(no answer)'}
+
+`;
+    if (elPrompt) elPrompt.value = prompt.trim();
+    const ok = await copyText(elPrompt.value);
+    if (ok){
+      if (elStatus) elStatus.textContent = '✅ Prompt copied. Next: click an AI tool above, paste (Ctrl+V / ⌘+V) and press Enter.';
+    } else {
+      elPrompt.focus(); elPrompt.select();
+      if (elStatus) elStatus.textContent = '⚠️ Auto-copy blocked. The prompt is selected — press Ctrl+C / ⌘+C, then click an AI tool and paste.';
+    }
+  }
+
+  async function openAI(url){
+    if (!elPrompt.value.trim()) await buildPrompt();
+    window.open(url, '_blank');
+  }
+
+  q('#buildPromptTM')?.addEventListener('click', buildPrompt);
+  q('#saveAnswersTM')?.addEventListener('click', save);
+  q('#loadAnswersTM')?.addEventListener('click', load);
+  q('#resetAnswersTM')?.addEventListener('click', reset);
+
+  q('#copyAnswersOnlyTM')?.addEventListener('click', async () => {
+    const text = buildAnswersOnly();
+    const ok = await copyText(text);
+    if (ok){
+      if (elStatus) elStatus.textContent = '✅ Answers copied.';
+    } else {
+      if (elPrompt) { elPrompt.value = text; elPrompt.focus(); elPrompt.select(); }
+      if (elStatus) elStatus.textContent = '⚠️ Auto-copy blocked. Your answers are selected — press Ctrl+C / ⌘+C.';
+    }
+  });
+
+  qa('.btn-link[data-ai]').forEach(btn => {
+    btn.addEventListener('click', () => openAI(btn.getAttribute('data-ai')));
+  });
+
+  q('textarea[data-q="Q5"]')?.addEventListener('input', updateL2L3Tips);
+  updateL2L3Tips();
+
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) setAnswers(JSON.parse(raw));
+  }catch(e){}
+})();
+</script>
+<script>
+(function(){
+  const STORAGE_KEY = "imediagenius_topic-01-traditional-media_exam_practice_v2";
+  const BASE_TO_KEYS = {"Q1": ["Q1"], "Q2": ["Q2"], "Q3": ["Q3"], "Q4": ["Q4a", "Q4b"], "Q5": ["Q5"]};
+  const LOR_BASES = ["Q5"];
+
+  const q = (sel) => document.querySelector(sel);
+  const qa = (sel) => Array.from(document.querySelectorAll(sel));
+
+  const elPrompt = q('#aiPrompt_Topic');
+  const elStatus = q('#copyStatus_Topic');
+
+  function getAnswers(){
+    const out = {};
+    qa('textarea.answer-box').forEach(t => { out[t.dataset.q] = t.value || ''; });
+    return out;
+  }
+
+  function setAnswers(data){
+    qa('textarea.answer-box').forEach(t => { t.value = (data && data[t.dataset.q]) ? data[t.dataset.q] : ''; });
+    wireBoosters();
+  }
+
+  async function copyText(text){
+    try{
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        await navigator.clipboard.writeText(text);
+        return true;
+      }
+    }catch(e){}
+    return false;
+  }
+
+  function buildPromptText(){
+    const a = getAnswers();
+    let txt = "You are a TRAINED OCR Cambridge National Creative iMedia R093 examiner.\n\nOCR STANDARDISATION DIRECTIVE \u2013 MUST FOLLOW\n1. CREDIT IMPLIED KNOWLEDGE: If understanding is clear, award marks even if keywords are missing.\n2. SHORT ANSWERS (1\u20132 marks): be generous where meaning is clear.\n3. Examples in mark schemes are NON-EXHAUSTIVE unless stated otherwise.\n4. 4\u20136 mark questions: award partial credit for reasonable comparisons; reward development/justification.\n5. 9-mark questions: reward balance, development and a justified conclusion. If unsure between two marks/levels, award the higher.\n6. CONSISTENCY: apply the same strictness across the whole paper.\n\nTask: Mark this exam practice set question-by-question using ONLY the mark schemes provided.\nOUTPUT: Provide marks per question, total /17, then WWW, EBI, and 1\u20132 targets. Use UK English.\n\n[Q1] (1 marks)\nQUESTION: Define \u201ctraditional media\u201d.\nMARK SCHEME:\nAward 1 mark for a clear, accurate definition that matches the question. Credit implied meaning if clear.\nIndicative content (non-exhaustive):\n\u2022 non-digital mass communication\n\u2022 print (newspapers, magazines)\n\u2022 radio\n\u2022 broadcast TV\n\u2022 posters/billboards\nSTUDENT ANSWER:\n{{Q1}}\n\n---\n\n[Q2] (1 marks)\nQUESTION: State one traditional media format that could be used to promote a new theatre show.\nMARK SCHEME:\nAward 1 mark for any valid correct response that fits the question.\nIndicative content (non-exhaustive):\n\u2022 non-digital mass communication\n\u2022 print (newspapers, magazines)\n\u2022 radio\n\u2022 broadcast TV\n\u2022 posters/billboards\nSTUDENT ANSWER:\n{{Q2}}\n\n---\n\n[Q3] (2 marks)\nQUESTION: Explain one advantage of using a TV advert instead of a social media advert to promote a charity appeal.\nMARK SCHEME:\n1 mark for a valid point/idea. +1 mark for development explaining impact (because/so/this means).\nIndicative content (non-exhaustive):\n\u2022 non-digital mass communication\n\u2022 print (newspapers, magazines)\n\u2022 radio\n\u2022 broadcast TV\n\u2022 posters/billboards\n\u2022 likes/shares/comments\n\u2022 hashtags/links\n\u2022 targeted ads\nSTUDENT ANSWER:\n{{Q3}}\n\n---\n\n[Q4] (4 marks)\nQUESTION: Describe two limitations of using posters instead of online adverts to target teenagers.\nMARK SCHEME:\nAward up to 2 marks per point. Credit two DISTINCT points only. For each: 1 mark for a valid point + marks for development/justification up to 2.\nIndicative content (non-exhaustive):\n\u2022 non-digital mass communication\n\u2022 print (newspapers, magazines)\n\u2022 radio\n\u2022 broadcast TV\n\u2022 posters/billboards\n\u2022 static message\n\u2022 location dependent\n\u2022 limited targeting\n\u2022 no click-through/limited tracking\nSTUDENT ANSWER:\n{{Q4}}\n\n---\n\n[Q5] (9 marks)\nQUESTION: A company is launching a new sports drink. Discuss the advantages and disadvantages of using both traditional media and new media to promote the product.\nMARK SCHEME:\nLEVEL OF RESPONSE (9 marks):\nLevel 3 (7\u20139): balanced advantages AND disadvantages, clear comparison linked to audience and purpose; uses correct terminology (reach, targeting, engagement, analytics, cost, credibility); evaluates and ends with a justified recommendation.\nLevel 2 (4\u20136): some balance and relevant points but less developed; limited evaluation or weaker conclusion.\nLevel 1 (1\u20133): basic points, limited comparison/balance; weak/no conclusion.\nLevel 0 (0): nothing worthy of credit.\nIndicative content (non-exhaustive):\n\u2022 non-digital mass communication\n\u2022 print (newspapers, magazines)\n\u2022 radio\n\u2022 broadcast TV\n\u2022 posters/billboards\n\u2022 interactive digital media\n\u2022 distributed electronically\n\u2022 websites/apps\n\u2022 social media/streaming\n\u2022 user interaction/on-demand\nSTUDENT ANSWER:\n{{Q5}}\n\n---";
+    Object.keys(BASE_TO_KEYS).forEach(base=>{
+      const keys = BASE_TO_KEYS[base] || [];
+      let ans = '';
+      if (keys.length === 1){
+        ans = a[keys[0]] || '(no answer)';
+      } else {
+        ans = keys.map((k,i)=>`Part ${i+1}: ${a[k] || '(no answer)'}`).join('\n');
+      }
+      const needle = `{{${base}}}`;
+      txt = txt.split(needle).join(ans);
+    });
+    return txt.trim();
+  }
+
+  function buildAnswersOnly(){
+    const a = getAnswers();
+    const bases = Object.keys(BASE_TO_KEYS).sort((x,y)=>parseInt(x.replace('Q',''))-parseInt(y.replace('Q','')));
+    const lines = ['R093 Exam Practice – Student Answers', ''];
+    bases.forEach(base=>{
+      const keys = BASE_TO_KEYS[base] || [];
+      if (keys.length === 1){
+        lines.push(`[${base}] ` + (a[keys[0]] || '(no answer)'));
+      } else {
+        lines.push(`[${base}]`);
+        keys.forEach((k,i)=> lines.push(`• Part ${i+1}: ` + (a[k] || '(no answer)')));
+      }
+      lines.push('');
+    });
+    return lines.join('\n');
+  }
+
+  async function buildAndCopyPrompt(){
+    const prompt = buildPromptText();
+    if (elPrompt) elPrompt.value = prompt;
+    const ok = await copyText(prompt);
+    if (ok){
+      if (elStatus) elStatus.textContent = '✅ Prompt copied. Next: click an AI tool above, paste (Ctrl+V / ⌘+V) and press Enter.';
+    } else {
+      if (elPrompt){ elPrompt.focus(); elPrompt.select(); }
+      if (elStatus) elStatus.textContent = '⚠️ Auto-copy blocked. The prompt is selected — press Ctrl+C / ⌘+C, then click an AI tool and paste.';
+    }
+  }
+
+  function save(){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(getAnswers()));
+    if (elStatus) elStatus.textContent = '✅ Saved on this device/browser.';
+  }
+  function load(){
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw){ if (elStatus) elStatus.textContent = 'Nothing saved yet.'; return; }
+    try{ setAnswers(JSON.parse(raw)); if (elStatus) elStatus.textContent = '✅ Loaded saved answers.'; }
+    catch(e){ if (elStatus) elStatus.textContent = '⚠️ Could not load saved answers.'; }
+  }
+  function reset(){
+    setAnswers({});
+    localStorage.removeItem(STORAGE_KEY);
+    if (elPrompt) elPrompt.value = '';
+    if (elStatus) elStatus.textContent = 'Reset complete.';
+  }
+
+  async function openAI(url){
+    if (!elPrompt.value.trim()) await buildAndCopyPrompt();
+    window.open(url, '_blank');
+  }
+
+  function updateBooster(base){
+    const tipsEl = document.getElementById(`l2l3Tips_${base}`);
+    if (!tipsEl) return;
+    const keys = BASE_TO_KEYS[base] || [base];
+    const t = (q(`textarea[data-q="${keys[0]}"]`)?.value || '').trim().toLowerCase();
+    tipsEl.innerHTML = '';
+    if (!t){
+      tipsEl.innerHTML = '<li class="hint">Start typing your answer to see tailored targets.</li>';
+      return;
+    }
+
+    const checks = [
+      {k:['audience','target','demographic','purpose','message','tone'], label:'Link points to audience and purpose (who it’s for and what it needs to achieve).'},
+      {k:['advantage','disadvantage','however','whereas','on the other hand','pros','cons'], label:'Include a balanced discussion (advantages AND disadvantages).'},
+      {k:['because','so that','this means','therefore','as a result'], label:'Develop each point with impact language (“because / so that / this means”).'},
+      {k:['cost','budget','time','deadline','constraints','resources'], label:'Mention constraints (time, cost, resources) and how they affect decisions.'},
+      {k:['interactivity','engagement','reach','targeting','analytics','distribution','platform'], label:'Use subject terminology (reach, targeting, engagement, analytics, distribution, platform).'},
+      {k:['conclusion','overall','recommend','best','most suitable','in summary'], label:'Finish with a justified conclusion recommending the best option/mix.'},
+    ];
+
+    const missing = [];
+    for (const c of checks){
+      const ok = c.k.some(x => t.includes(x));
+      if (!ok) missing.push(c.label);
+    }
+
+    missing.slice(0,6).forEach(msg=>{
+      const li = document.createElement('li');
+      li.className = 'missing';
+      li.textContent = msg;
+      tipsEl.appendChild(li);
+    });
+
+    const li = document.createElement('li');
+    li.className = 'good';
+    li.textContent = missing.length <= 2
+      ? 'You’re close to Level 3. Next: add specific examples and justify each point clearly.'
+      : 'Top tip: for every point, add one sentence explaining the impact on the product/campaign/user.';
+    tipsEl.appendChild(li);
+  }
+
+  function wireBoosters(){
+    (LOR_BASES || []).forEach(base=>{
+      const keys = BASE_TO_KEYS[base] || [];
+      if (!keys.length) return;
+      const box = q(`textarea[data-q="${keys[0]}"]`);
+      if (!box) return;
+      box.addEventListener('input', ()=>updateBooster(base));
+      updateBooster(base);
+    });
+  }
+
+  q('#buildPrompt_Topic')?.addEventListener('click', buildAndCopyPrompt);
+  q('#saveAnswers_Topic')?.addEventListener('click', save);
+  q('#loadAnswers_Topic')?.addEventListener('click', load);
+  q('#resetAnswers_Topic')?.addEventListener('click', reset);
+
+  q('#copyAnswersOnly_Topic')?.addEventListener('click', async ()=>{
+    const text = buildAnswersOnly();
+    const ok = await copyText(text);
+    if (ok){ if (elStatus) elStatus.textContent = '✅ Answers copied.'; }
+    else {
+      if (elPrompt){ elPrompt.value = text; elPrompt.focus(); elPrompt.select(); }
+      if (elStatus) elStatus.textContent = '⚠️ Auto-copy blocked. Your answers are selected — press Ctrl+C / ⌘+C.';
+    }
+  });
+
+  qa('.btn-link[data-ai]').forEach(btn=>{
+    btn.addEventListener('click', ()=>openAI(btn.getAttribute('data-ai')));
+  });
+
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) setAnswers(JSON.parse(raw));
+  }catch(e){}
+
+  wireBoosters();
+})();
+</script><script src="host.js"></script>
 </body>
 </html>
