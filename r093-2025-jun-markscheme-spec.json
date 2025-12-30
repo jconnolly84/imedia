@@ -1,0 +1,664 @@
+{
+  "exam_id": "R093-2025-JUN",
+  "paper_code": "R093/01",
+  "series": "June 2025",
+  "total_marks": 70,
+  "spec_version": "mspec-1.0",
+  "assets": [
+    {
+      "id": "IMG_Q4_WORKPLAN",
+      "type": "image",
+      "src": "img/jun_25_04_workplan.jpg"
+    },
+    {
+      "id": "IMG_Q10_COVER",
+      "type": "image",
+      "src": "img/jun_25_10_workplan.jpg"
+    },
+    {
+      "id": "IMG_Q12_ASSETLOG",
+      "type": "image",
+      "src": "img/jun_25_12b_workplan.jpg"
+    },
+    {
+      "id": "IMG_Q14_WIREFRAME",
+      "type": "image",
+      "src": "img/jun_25_14_workplan.jpg"
+    }
+  ],
+  "global_marking_rules": [
+    "Mark ONLY what the student has written. Do not credit implied knowledge.",
+    "If a question requires two responses, mark only the required number, in order.",
+    "For MCQ: award 1 only for the correct option; if multiple selected award 0.",
+    "For level-of-response questions: decide level then choose a mark within the level; use best-fit."
+  ],
+  "questions": [
+    {
+      "id": "JUN25-Q1",
+      "qnum": "1",
+      "marks": 1,
+      "command_word": "Identify",
+      "question": "Action, arcade, first person, puzzle and RPG are examples of which new media product?",
+      "response_type": "short_text",
+      "marking": {
+        "type": "short_answer",
+        "max": 1,
+        "accept_any": [
+          "games",
+          "gaming",
+          "computer games",
+          "digital games"
+        ]
+      }
+    },
+    {
+      "id": "JUN25-Q2",
+      "qnum": "2",
+      "marks": 2,
+      "command_word": "Complete",
+      "question": "Complete the sentences using job roles from the list: content creator, graphic designer, web designer, web developer.",
+      "response_type": "two_blanks",
+      "marking": {
+        "type": "per_blank",
+        "max": 2,
+        "blanks": [
+          {
+            "label": "1",
+            "accept_exact": [
+              "web designer"
+            ],
+            "marks": 1,
+            "guidance": "planning the style and layout of a website"
+          },
+          {
+            "label": "2",
+            "accept_exact": [
+              "web developer"
+            ],
+            "marks": 1,
+            "guidance": "creating/building the website"
+          }
+        ]
+      }
+    },
+    {
+      "id": "JUN25-Q3",
+      "qnum": "3",
+      "marks": 1,
+      "command_word": "Select",
+      "question": "Which lighting position is used to create a shadow effect from behind?",
+      "response_type": "mcq_single",
+      "marking": {
+        "type": "mcq",
+        "max": 1,
+        "correct": "A",
+        "options": {
+          "A": "Back light",
+          "B": "Low angle",
+          "C": "Practical lighting",
+          "D": "Side angle"
+        }
+      }
+    },
+    {
+      "id": "JUN25-Q4",
+      "qnum": "4",
+      "marks": 2,
+      "command_word": "Identify",
+      "question": "Identify the components of the workplan labelled A and B.",
+      "response_type": "two_blanks",
+      "assets": [
+        "IMG_Q4_WORKPLAN"
+      ],
+      "marking": {
+        "type": "per_blank",
+        "max": 2,
+        "blanks": [
+          {
+            "label": "A",
+            "accept_exact": [
+              "task"
+            ],
+            "reject": [
+              "activities"
+            ],
+            "marks": 1
+          },
+          {
+            "label": "B",
+            "accept_exact": [
+              "milestone"
+            ],
+            "marks": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "JUN25-Q5",
+      "qnum": "5",
+      "marks": 1,
+      "command_word": "Identify",
+      "question": "Which intellectual property gives exclusive rights to the creator of a design?",
+      "response_type": "short_text",
+      "marking": {
+        "type": "short_answer",
+        "max": 1,
+        "accept_any": [
+          "patent",
+          "patents"
+        ]
+      }
+    },
+    {
+      "id": "JUN25-Q6",
+      "qnum": "6",
+      "marks": 1,
+      "command_word": "Identify",
+      "question": "Which property of digital audio files counts the number of pieces of data captured each second?",
+      "response_type": "short_text",
+      "marking": {
+        "type": "short_answer",
+        "max": 1,
+        "accept_any": [
+          "sample rate",
+          "sample frequency"
+        ]
+      }
+    },
+    {
+      "id": "JUN25-Q7",
+      "qnum": "7",
+      "marks": 1,
+      "command_word": "Complete",
+      "question": "MP4 is an example of a file format used for ________. (icons, posters, still images, videos)",
+      "response_type": "short_text",
+      "marking": {
+        "type": "short_answer",
+        "max": 1,
+        "accept_any": [
+          "videos",
+          "video"
+        ]
+      }
+    },
+    {
+      "id": "JUN25-Q8",
+      "qnum": "8",
+      "marks": 1,
+      "command_word": "Select",
+      "question": "Which is an example of quantitative information?",
+      "response_type": "mcq_single",
+      "marking": {
+        "type": "mcq",
+        "max": 1,
+        "correct": "A",
+        "options": {
+          "A": "33",
+          "B": "Blue",
+          "C": "Television",
+          "D": "Workflow"
+        }
+      }
+    },
+    {
+      "id": "JUN25-Q9a",
+      "qnum": "9a",
+      "marks": 1,
+      "command_word": "Identify",
+      "question": "Identify the purpose of the interactive travel magazine.",
+      "response_type": "short_text",
+      "marking": {
+        "type": "short_answer",
+        "max": 1,
+        "accept_any": [
+          "educate",
+          "entertain",
+          "influence",
+          "inform",
+          "promote",
+          "advertise"
+        ]
+      }
+    },
+    {
+      "id": "JUN25-Q9b",
+      "qnum": "9b",
+      "marks": 2,
+      "command_word": "Explain",
+      "question": "Explain what is meant by interactive media.",
+      "response_type": "long_text",
+      "marking": {
+        "type": "point_based",
+        "max": 2,
+        "guidance": "Up to 2 marks: define interactive media and/or explain user interaction (click/touch/controls, responds to user)."
+      }
+    },
+    {
+      "id": "JUN25-Q9c",
+      "qnum": "9c",
+      "marks": 1,
+      "command_word": "Identify",
+      "question": "Identify one example of traditional media other than print publishing.",
+      "response_type": "short_text",
+      "marking": {
+        "type": "short_answer",
+        "max": 1,
+        "accept_any": [
+          "film",
+          "television",
+          "tv",
+          "radio"
+        ],
+        "reject": [
+          "print",
+          "magazine",
+          "newspaper"
+        ]
+      }
+    },
+    {
+      "id": "JUN25-Q10a",
+      "qnum": "10a",
+      "marks": 2,
+      "command_word": "Describe",
+      "question": "Describe one way the typography changes on the front cover of this magazine.",
+      "response_type": "long_text",
+      "assets": [
+        "IMG_Q10_COVER"
+      ],
+      "marking": {
+        "type": "point_based",
+        "max": 2,
+        "guidance": "1 mark for identifying a typography change (font/size/colour/case/weight); 1 mark for describing how it changes."
+      }
+    },
+    {
+      "id": "JUN25-Q10b",
+      "qnum": "10b",
+      "marks": 2,
+      "command_word": "Describe",
+      "question": "Describe one way the elements are positioned to meet the purpose of this magazine cover.",
+      "response_type": "long_text",
+      "assets": [
+        "IMG_Q10_COVER"
+      ],
+      "marking": {
+        "type": "point_based",
+        "max": 2,
+        "guidance": "1 mark for positioning feature (hierarchy/alignment/layering/placement); 1 mark for link to purpose."
+      }
+    },
+    {
+      "id": "JUN25-Q10c",
+      "qnum": "10c",
+      "marks": 2,
+      "command_word": "Explain",
+      "question": "Explain one way informal language is used on this magazine cover.",
+      "response_type": "long_text",
+      "assets": [
+        "IMG_Q10_COVER"
+      ],
+      "marking": {
+        "type": "point_based",
+        "max": 2,
+        "guidance": "1 mark for example of informal language; 1 mark for explanation of why/how it helps (tone, engagement)."
+      }
+    },
+    {
+      "id": "JUN25-Q10d",
+      "qnum": "10d",
+      "marks": 2,
+      "command_word": "Identify",
+      "question": "Identify two secondary research sources, other than magazines, that could be used to help plan the next issue.",
+      "response_type": "short_list",
+      "marking": {
+        "type": "list_1_each",
+        "max": 2,
+        "reject": [
+          "magazines"
+        ],
+        "examples": [
+          "websites",
+          "newspapers",
+          "TV",
+          "radio",
+          "podcasts",
+          "blogs",
+          "reviews",
+          "reports",
+          "social media",
+          "documentaries",
+          "journals",
+          "books"
+        ]
+      }
+    },
+    {
+      "id": "JUN25-Q10e",
+      "qnum": "10e",
+      "marks": 2,
+      "command_word": "Describe",
+      "question": "Describe what is meant by symbolic media codes.",
+      "response_type": "long_text",
+      "marking": {
+        "type": "point_based",
+        "max": 2,
+        "guidance": "1 mark for defining symbolic codes (signs/symbols like colours/icons/objects); 1 mark for explaining conveyed meaning/message."
+      }
+    },
+    {
+      "id": "JUN25-Q11a",
+      "qnum": "11a",
+      "marks": 6,
+      "command_word": "Explain",
+      "question": "Explain two ways that a production manager could contribute to the production of the interactive travel magazine.",
+      "response_type": "long_text",
+      "marking": {
+        "type": "levels",
+        "max": 6,
+        "levels": [
+          {
+            "level": 3,
+            "marks": "5-6",
+            "desc": "Two ways + detailed explanations; clear contribution; appropriate terminology."
+          },
+          {
+            "level": 2,
+            "marks": "3-4",
+            "desc": "Two ways; at least one developed explanation; sound understanding."
+          },
+          {
+            "level": 1,
+            "marks": "1-2",
+            "desc": "At least one way; limited explanation; limited understanding."
+          },
+          {
+            "level": 0,
+            "marks": "0",
+            "desc": "Not worthy of credit."
+          }
+        ],
+        "indicative": [
+          "timelines/scheduling",
+          "budget/resources",
+          "permissions/locations",
+          "risk assessment",
+          "liaising with team",
+          "quality control/review"
+        ]
+      }
+    },
+    {
+      "id": "JUN25-Q11b",
+      "qnum": "11b",
+      "marks": 2,
+      "command_word": "Identify",
+      "question": "Identify two responsibilities of a creative director.",
+      "response_type": "short_list",
+      "marking": {
+        "type": "list_1_each",
+        "max": 2,
+        "examples": [
+          "come up with ideas",
+          "lead a team",
+          "keep up with trends",
+          "pitch ideas",
+          "oversee branding",
+          "monitor progress",
+          "manage time",
+          "manage budget",
+          "design concept with client"
+        ]
+      }
+    },
+    {
+      "id": "JUN25-Q12a",
+      "qnum": "12a",
+      "marks": 1,
+      "command_word": "Identify",
+      "question": "Identify the phase of production in which a graphic artist is involved.",
+      "response_type": "short_text",
+      "marking": {
+        "type": "short_answer",
+        "max": 1,
+        "accept_any": [
+          "pre-production",
+          "production"
+        ]
+      }
+    },
+    {
+      "id": "JUN25-Q12b",
+      "qnum": "12b",
+      "marks": 9,
+      "command_word": "Discuss",
+      "question": "Discuss the suitability of the asset log for use by the graphic artist. Suggest improvements and explain how they help.",
+      "response_type": "long_text",
+      "assets": [
+        "IMG_Q12_ASSETLOG"
+      ],
+      "marking": {
+        "type": "levels",
+        "max": 9,
+        "levels": [
+          {
+            "level": 3,
+            "marks": "7-9",
+            "desc": "Thorough discussion; range of improvements; clear role-focused justifications; appropriate terminology."
+          },
+          {
+            "level": 2,
+            "marks": "4-6",
+            "desc": "Some discussion; some improvements; some justification; generally relevant."
+          },
+          {
+            "level": 1,
+            "marks": "1-3",
+            "desc": "Limited discussion; few improvements; weak justification."
+          },
+          {
+            "level": 0,
+            "marks": "0",
+            "desc": "Not worthy of credit."
+          }
+        ],
+        "indicative": [
+          "missing headings/fields",
+          "file format/location",
+          "copyright/licence",
+          "asset owner/source",
+          "resolution/size",
+          "status/version",
+          "notes for use",
+          "clarity/consistency for graphic artist"
+        ]
+      }
+    },
+    {
+      "id": "JUN25-Q12c",
+      "qnum": "12c",
+      "marks": 1,
+      "command_word": "Identify",
+      "question": "Identify one piece of software that could be used to create an asset log.",
+      "response_type": "short_text",
+      "marking": {
+        "type": "short_answer",
+        "max": 1,
+        "accept_any": [
+          "database",
+          "dtp",
+          "spreadsheet",
+          "word processor",
+          "excel",
+          "google sheets",
+          "word",
+          "google docs"
+        ],
+        "reject": [
+          "google workspace",
+          "office 365"
+        ]
+      }
+    },
+    {
+      "id": "JUN25-Q13a",
+      "qnum": "13a",
+      "marks": 2,
+      "command_word": "Describe",
+      "question": "Describe one action to ensure photographs can be used for commercial purposes.",
+      "response_type": "long_text",
+      "marking": {
+        "type": "point_based",
+        "max": 2,
+        "guidance": "1 mark for action (permission/licence/model release/pay photographer/use correctly licensed images); 1 mark for why it enables commercial use."
+      }
+    },
+    {
+      "id": "JUN25-Q13b",
+      "qnum": "13b",
+      "marks": 2,
+      "command_word": "Explain",
+      "question": "Explain one way a photographer can protect photographs from being used illegally.",
+      "response_type": "long_text",
+      "marking": {
+        "type": "point_based",
+        "max": 2,
+        "guidance": "1 mark for method (watermark/low-res/metadata/copyright notice/licensing); 1 mark for explanation how it deters/helps prove ownership."
+      }
+    },
+    {
+      "id": "JUN25-Q13c",
+      "qnum": "13c",
+      "marks": 2,
+      "command_word": "Explain",
+      "question": "Explain one reason why pixels per inch (PPI) should be considered when choosing photographs.",
+      "response_type": "long_text",
+      "marking": {
+        "type": "point_based",
+        "max": 2,
+        "guidance": "1 mark for linking PPI to resolution/quality; 1 mark for impact (pixelation/clarity/file size/loading)."
+      }
+    },
+    {
+      "id": "JUN25-Q13d",
+      "qnum": "13d",
+      "marks": 4,
+      "command_word": "Identify and Describe",
+      "question": "Identify two online distribution platforms. Describe one way each could be used to distribute a digital product.",
+      "response_type": "long_text",
+      "marking": {
+        "type": "paired",
+        "max": 4,
+        "guidance": "For EACH platform: 1 mark for naming an online platform + 1 mark for describing how it distributes (upload/sell/share/stream/email/link/download)."
+      }
+    },
+    {
+      "id": "JUN25-Q13e",
+      "qnum": "13e",
+      "marks": 2,
+      "command_word": "Explain",
+      "question": "Explain one difference between lossy and lossless compression.",
+      "response_type": "long_text",
+      "marking": {
+        "type": "linked_points",
+        "max": 2,
+        "guidance": "Both points must be linked: lossy removes data/quality loss but smaller; lossless keeps all data/no quality loss but larger than lossy."
+      }
+    },
+    {
+      "id": "JUN25-Q14a",
+      "qnum": "14a",
+      "marks": 9,
+      "command_word": "Discuss",
+      "question": "ONLINE VERSION: Discuss improvements to the wireframe (you cannot annotate). Explain how each improvement helps the graphic artist.",
+      "response_type": "long_text",
+      "assets": [
+        "IMG_Q14_WIREFRAME"
+      ],
+      "marking": {
+        "type": "levels",
+        "max": 9,
+        "levels": [
+          {
+            "level": 3,
+            "marks": "7-9",
+            "desc": "Comprehensive improvements; range of components/conventions; detailed role-focused justification."
+          },
+          {
+            "level": 2,
+            "marks": "4-6",
+            "desc": "Some improvements; some conventions/components; some justification."
+          },
+          {
+            "level": 1,
+            "marks": "1-3",
+            "desc": "Limited improvements; minimal justification."
+          },
+          {
+            "level": 0,
+            "marks": "0",
+            "desc": "Not worthy of credit."
+          }
+        ],
+        "indicative": [
+          "layout/structure",
+          "navigation/links",
+          "interactive elements",
+          "image placeholders",
+          "text headings/body placement",
+          "annotations for colours/fonts/sizes",
+          "consistent conventions",
+          "clarity for graphic artist"
+        ]
+      }
+    },
+    {
+      "id": "JUN25-Q14b",
+      "qnum": "14b",
+      "marks": 2,
+      "command_word": "Identify",
+      "question": "Identify two pieces of hardware required to create a wireframe.",
+      "response_type": "short_list",
+      "marking": {
+        "type": "list_1_each",
+        "max": 2,
+        "examples": [
+          "computer",
+          "laptop",
+          "tablet",
+          "drawing tablet",
+          "monitor",
+          "keyboard",
+          "mouse"
+        ]
+      }
+    },
+    {
+      "id": "JUN25-Q14c",
+      "qnum": "14c",
+      "marks": 2,
+      "command_word": "Identify and Explain",
+      "question": "Identify one category of audience segmentation. Explain how it could influence the design.",
+      "response_type": "long_text",
+      "marking": {
+        "type": "point_based",
+        "max": 2,
+        "guidance": "1 mark for category (age/gender/location/income/interests etc); 1 mark for design influence (tone, layout, interactivity, content, accessibility)."
+      }
+    },
+    {
+      "id": "JUN25-Q15",
+      "qnum": "15",
+      "marks": 2,
+      "command_word": "Explain",
+      "question": "Explain one way libel laws could affect the content of a magazine.",
+      "response_type": "long_text",
+      "marking": {
+        "type": "point_based",
+        "max": 2,
+        "guidance": "1 mark for what libel is (written false statement damaging reputation); 1 mark for how it affects content (fact-checking/avoid unproven claims/seek consent/accurate reporting)."
+      }
+    }
+  ]
+}

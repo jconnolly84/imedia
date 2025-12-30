@@ -3,6 +3,8 @@ import { GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https:/
 import { collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const EXAM_ID = "R093-2025-JUN";
+const MARKSPEC_URL = "/r093-2025-jun-markscheme-spec.json";
+let MARKSPEC = null;
 
 const els = {
   signInBtn: document.getElementById("signInBtn"),
@@ -95,13 +97,51 @@ async function copyText(t){
   }
 }
 
+
+async function ensureMarkspec(){
+  if (MARKSPEC) return MARKSPEC;
+  const res = await fetch(MARKSPEC_URL, { cache: "no-store" });
+  if (!res.ok) throw new Error(`Failed to load markscheme spec (${res.status})`);
+  MARKSPEC = await res.json();
+  return MARKSPEC;
+}
+
+function buildFullPrompt(sub){
+  if (!MARKSPEC) return "";
+  const rules = (MARKSPEC.global_marking_rules || []).map(r=>`- ${r}`).join("\n");
+  const qBlocks = (MARKSPEC.questions || []).map(q=>{
+    const ans = (sub.answers && sub.answers[q.id] !== undefined) ? sub.answers[q.id] : "";
+    let ansText = "";
+    if (Array.isArray(ans)) ansText = ans.map((v,i)=>`${i+1}. ${v}`).join("\n");
+    else if (ans && typeof ans === "object") ansText = Object.entries(ans).map(([k,v])=>`${k}: ${v}`).join("\n");
+    else ansText = String(ans || "");
+    const ms = q.marking ? JSON.stringify(q.marking, null, 2) : "";
+    const header = `[${q.qnum}] (${q.marks} marks) ${q.command_word}\nQUESTION:\n${q.question}\n\nMARK SCHEME (AI spec):\n${ms}\n\nSTUDENT ANSWER:\n${ansText}\n`;
+    return header;
+  }).join("\n---\n\n");
+
+  return `You are an OCR Cambridge National Creative iMedia R093 examiner.\n\nTask: Mark this full 70-mark paper question-by-question using ONLY the mark scheme specifications provided below.\n\nMARKING RULES (OCR-style)\n${rules}\n\nOUTPUT:\n- Give a mark for each question part.\n- Provide total /70.\n- Provide WWW, EBI, and 2 targets for improvement.\n- Use UK English.\n\n${qBlocks}`;
+}
+
 els.copyAnswersBtn2?.addEventListener("click", ()=>{
   if (!current) return;
   copyText(answersOnlyText(current));
 });
 
-els.copyPromptBtn2?.addEventListener("click", ()=>{
+els.copyPromptBtn2?.addEventListener("click", async ()=>{
   if (!current) return;
+  try {
+    await ensureMarkspec();
+    const generated = buildFullPrompt(current);
+    if (generated){
+      current.prompt = generated;
+      return copyText(generated);
+    }
+  } catch(e){
+    console.error(e);
+    els.authStatus.textContent = "Could not build prompt (markscheme spec missing).";
+    return;
+  }
   if (current.prompt) return copyText(current.prompt);
   if (current.promptUrl){
     els.authStatus.textContent = "Prompt stored in Storage — click “Open stored prompt”.";
