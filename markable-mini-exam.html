@@ -176,7 +176,7 @@
       <section class="mini-exam-controls">
         <div class="controls">
           <span class="pill"><strong>Paper:</strong> <span id="paperId">Pre‑Mock 01</span></span>
-          <span class="pill"><strong>Total:</strong> <span id="totalMarks">0</span>/30</span>
+          <span class="pill"><strong>Total:</strong> <span id="totalMarks">0</span>/31</span>
           <span class="pill"><strong>Timer:</strong> <span id="timer">30:00</span></span>
 
           <button class="random-btn" id="startBtn" type="button"><span class="icon">⏱️</span>Start</button>
@@ -209,6 +209,13 @@
       </div>
 
       <section id="questions" class="exam-stack"></section>
+      <section class="submit-card submit-card-bottom" aria-label="Submit answers for marking (bottom)">
+        <div class="submit-row" style="justify-content:flex-end">
+          <button class="copy-btn" id="submitAttemptBtnBottom" type="button"><span class="icon">📤</span>Submit for marking</button>
+        </div>
+        <div id="submitStatusBottom" class="copy-status" aria-live="polite"></div>
+      </section>
+
 
       
         <section class="boost-card" id="boostCard">

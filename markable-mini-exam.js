@@ -292,7 +292,7 @@ function buildPrompt() {
   const answers = collectAnswers();
 
   let prompt = `You are an OCR Cambridge National Creative iMedia R093 examiner.\n\n`
-    + `Task: Mark this 30-mark mini exam question-by-question using ONLY the mark schemes provided.\n\n`
+    + `Task: Mark this 31-mark mini exam question-by-question using ONLY the mark schemes provided.\n\n`
     + `MARKING RULES (OCR-style)\n`
     + `- Mark ONLY what the student has written. Do not credit implied knowledge.\n`
     + `- If a short question requires two responses, mark only the required number, in order.\n`
@@ -300,7 +300,7 @@ function buildPrompt() {
     + `- For the 9-mark question, apply a level-of-response judgement (Level 3/2/1/0) then choose a mark within the level.\n`
     + `- Reward role-specific improvements and clear justification.\n`
     + `- Use UK English.\n\n`
-    + `OUTPUT: Provide marks per question, total /30, then WWW, EBI, and 1–2 targets.\n\n`;
+    + `OUTPUT: Provide marks per question, total /31, then WWW, EBI, and 1–2 targets.\n\n`;
 
   QUESTIONS.forEach((q,i)=>{
     const qKey = `Q${i+1}`;
@@ -478,7 +478,8 @@ function reset() {
 
 
 async function submitAttemptToFirebase(){
-  const statusEl = document.getElementById('submitStatus');
+  const statusEls = [document.getElementById('submitStatus'), document.getElementById('submitStatusBottom')].filter(Boolean);
+  const setStatus = (msg) => { statusEls.forEach(el => { el.textContent = msg; }); };
   const nameEl = document.getElementById('studentName');
   const classEl = document.getElementById('classCode');
 
@@ -486,7 +487,7 @@ async function submitAttemptToFirebase(){
   const classCode = (classEl?.value || '').trim();
 
   if (!studentName || !classCode){
-    if (statusEl) statusEl.textContent = 'Please enter your name and class before submitting.';
+    setStatus('Please enter your name and class before submitting.');
     return;
   }
 
@@ -502,7 +503,7 @@ async function submitAttemptToFirebase(){
     promptText = '';
   }
 
-  if (statusEl) statusEl.textContent = 'Submitting…';
+  setStatus('Submitting…');
 
   try{
     const payload = {
@@ -536,12 +537,12 @@ async function submitAttemptToFirebase(){
 
     await addDoc(collection(db, 'exams', EXAM_ID, 'submissions'), payload);
 
-    if (statusEl) statusEl.textContent = '✅ Submitted. You can close this tab now.';
+    setStatus('✅ Submitted. You can close this tab now.');
   } catch(err){
     console.error(err);
-    if (statusEl) {
+    {
       const msg = (err && (err.code || err.message)) ? (err.code || err.message) : 'Unknown error';
-      statusEl.textContent = '❌ Submit failed: ' + msg;
+      setStatus('❌ Submit failed: ' + msg);
     }
   }
 }
@@ -611,4 +612,10 @@ function wireQ11Booster(){
 
 (() => { const el = document.getElementById('copyAnswersBtn'); if (el) el.addEventListener('click', copyAnswersOnly); })();
 
-(() => { const el = document.getElementById('submitAttemptBtn'); if (el) el.addEventListener('click', submitAttemptToFirebase); })();
+(() => {
+  const btns = [
+    document.getElementById('submitAttemptBtn'),
+    document.getElementById('submitAttemptBtnBottom')
+  ].filter(Boolean);
+  btns.forEach(b => b.addEventListener('click', submitAttemptToFirebase));
+})();
