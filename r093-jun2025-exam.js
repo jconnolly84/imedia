@@ -1,3 +1,13 @@
+
+function ensureSubmitAtBottom() {
+  const qWrap = document.getElementById('questions');
+  const submitBtn = document.getElementById('submitAttemptBtn');
+  if (!qWrap || !submitBtn) return;
+  const submitCard = submitBtn.closest('section') || submitBtn.closest('.submit-card') || submitBtn.parentElement;
+  if (!submitCard) return;
+  qWrap.insertAdjacentElement('afterend', submitCard);
+}
+
 import { db, storage } from "./firebaseConfig.js";
 import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 import { ref as storageRef, uploadString, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
@@ -32,6 +42,7 @@ const elPrompt = document.getElementById('promptBox');
 const SAVE_KEY = 'R093-2025-JUN_savedAnswers_v1';
 
 // Firebase submission settings
+const DEFAULT_SECONDS = 90 * 60;
 const EXAM_ID = 'R093-2025-JUN';
 const PROMPT_VERSION = 'PM01-v1';
 
@@ -489,3 +500,33 @@ function wireQ11Booster(){
   const btn = document.getElementById('submitAttemptBtn');
   if (btn) btn.addEventListener('click', submitAttemptToFirebase);
 })();
+
+
+function onReady(fn){
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
+  else fn();
+}
+onReady(() => {
+  // Ensure the submit button card sits after questions (bottom of page)
+  try {
+    const qWrap = document.getElementById('questions');
+    const submitBtn = document.getElementById('submitAttemptBtn');
+    if (qWrap && submitBtn) {
+      const submitCard = submitBtn.closest('section') || submitBtn.closest('.submit-card') || submitBtn.parentElement;
+      if (submitCard && submitCard.previousElementSibling !== qWrap) {
+        // We'll move the entire submit card to immediately after questions
+        qWrap.insertAdjacentElement('afterend', submitCard);
+      }
+    }
+  } catch(e){}
+
+  // Kick off load/render
+  try {
+    if (typeof init === 'function') init();
+  } catch (e) {
+    const el = document.getElementById('examLoadError');
+    if (el) el.textContent = '❌ Exam initialisation failed: ' + (e?.message || e);
+    console.error(e);
+  }
+});
+
