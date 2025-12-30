@@ -4,13 +4,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>R093/01 June 2025 Full Exam (Markable)</title>
-  
-  <link href="host.css" rel="stylesheet"/>
-  <link href="topic.css" rel="stylesheet"/>
-  <link href="nav.css" rel="stylesheet"/>
-  <link href="markable-mini-exam.css" rel="stylesheet"/>
-
-<link rel="stylesheet" href="markable-mini-exam.css">
+  <link rel="stylesheet" href="markable-mini-exam.css">
   <style>
     /* Safety styles if your CSS is missing bits */
     .container { max-width: 980px; margin: 0 auto; padding: 18px; }
@@ -117,7 +111,7 @@
     meta.className="qmeta";
     const qnum = document.createElement("div");
     qnum.className="qnum";
-    qnum.textContent = `Q${idx+1}`;
+    qnum.textContent = `Q${q.qnum || (idx+1)}`;
     const marks = document.createElement("div");
     marks.className="qmarks";
     marks.textContent = `[${q.marks}]`;
@@ -152,11 +146,18 @@
 
     let control;
 
-    if(q.response_type === "mcq"){
+    if(q.response_type === "mcq" || q.response_type === "mcq_single"){
       control = document.createElement("div");
       control.className="mcq";
       const saved = getAns(q.id, "");
-      (q.options||[]).forEach(opt=>{
+      const opts = q.options || [];
+      if(!opts.length){
+        const warn = document.createElement("div");
+        warn.style.opacity = "0.85";
+        warn.textContent = "MCQ options missing in question spec.";
+        control.appendChild(warn);
+      }
+      opts.forEach(opt=>{
         const lab = document.createElement("label");
         const r = document.createElement("input");
         r.type="radio";
