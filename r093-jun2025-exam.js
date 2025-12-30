@@ -1,4 +1,3 @@
-
 function ensureSubmitAtBottom() {
   const qWrap = document.getElementById('questions');
   const submitBtn = document.getElementById('submitAttemptBtn');
@@ -550,4 +549,3 @@ onReady(() => {
     console.error(e);
   }
 });
-
