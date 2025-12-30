@@ -247,6 +247,267 @@
 </footer>
 </div>
 <script src="host.js"></script>
-<script type="module" type="module" src="r093-jun2025-exam.final.js?v=1"></script>
+
+<script type="module">
+  import { db } from "./firebaseConfig.js";
+  import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+  const EXAM_ID = "R093-2025-JUN";
+  const SPEC_URL = "./r093-2025-jun-questions.json";
+  const LS_KEY = `${EXAM_ID}::answers_v1`;
+
+  let SPEC = { questions: [], assets: [] };
+  let ANSWERS = {};
+
+  const $ = (id) => document.getElementById(id);
+
+  function showError(msg){
+    const box = $("examLoadError");
+    if (!box) { console.error(msg); return; }
+    box.style.display = "block";
+    box.textContent = msg;
+  }
+  function clearError(){
+    const box = $("examLoadError");
+    if (box){ box.style.display = "none"; box.textContent = ""; }
+  }
+
+  function normaliseSpec(raw){
+    if (raw && Array.isArray(raw.questions)) return raw;
+    if (Array.isArray(raw)) return { questions: raw, assets: [] };
+    return { questions: [], assets: [] };
+  }
+
+  function loadSaved(){
+    try{
+      const raw = localStorage.getItem(LS_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === "object") ANSWERS = parsed;
+    }catch(e){}
+  }
+  function saveSaved(){
+    try{ localStorage.setItem(LS_KEY, JSON.stringify(ANSWERS)); }catch(e){}
+  }
+  function setAns(qid, val){ ANSWERS[qid] = val; saveSaved(); }
+  function getAns(qid, defVal){ return (qid in ANSWERS) ? ANSWERS[qid] : defVal; }
+
+  function assetById(id){
+    return (SPEC.assets || []).find(a => a.id === id);
+  }
+
+  function renderQuestion(q){
+    const card = document.createElement("div");
+    card.className = "question-card";
+
+    const header = document.createElement("div");
+    header.className = "question-header";
+    const qLabel = q.part ? `Q${q.qnum}${q.part}` : `Q${q.qnum}`;
+    header.innerHTML = `
+      <div class="question-meta">
+        <div class="question-number">${qLabel}</div>
+        <div class="question-marks">[${q.marks}]</div>
+      </div>
+      <div class="command-word">${q.command_word || ""}</div>
+    `;
+    card.appendChild(header);
+
+    const prompt = document.createElement("div");
+    prompt.className = "question-text";
+    prompt.textContent = q.prompt || "";
+    card.appendChild(prompt);
+
+    (q.assets || []).forEach(aid => {
+      const a = assetById(aid);
+      if (!a || a.type !== "image") return;
+      const wrap = document.createElement("div");
+      wrap.className = "question-asset";
+      const img = document.createElement("img");
+      img.src = a.src;
+      img.alt = a.alt || "";
+      img.loading = "lazy";
+      img.style.maxWidth = "100%";
+      img.style.borderRadius = "12px";
+      wrap.appendChild(img);
+      card.appendChild(wrap);
+    });
+
+    const aw = document.createElement("div");
+    aw.className = "answer-wrap";
+
+    let control;
+    switch(q.response_type){
+      case "short_text":{
+        control = document.createElement("input");
+        control.type = "text";
+        control.className = "answer-input";
+        control.value = getAns(q.id, "") || "";
+        control.addEventListener("input", ()=> setAns(q.id, control.value));
+        break;
+      }
+      case "mcq_single":{
+        control = document.createElement("div");
+        control.className = "mcq-wrap";
+        const saved = getAns(q.id, "");
+        (q.options || []).forEach(opt => {
+          const label = document.createElement("label");
+          label.className = "mcq-option";
+          const r = document.createElement("input");
+          r.type = "radio";
+          r.name = `mcq_${q.id}`;
+          r.value = opt.key;
+          r.checked = saved === opt.key;
+          r.addEventListener("change", ()=> setAns(q.id, opt.key));
+          const span = document.createElement("span");
+          span.textContent = `${opt.key}. ${opt.text}`;
+          label.appendChild(r);
+          label.appendChild(span);
+          control.appendChild(label);
+        });
+        break;
+      }
+      case "two_blanks":{
+        control = document.createElement("div");
+        control.className = "two-blanks";
+        const saved = getAns(q.id, {}) || {};
+        (q.blanks || []).forEach((b, idx) => {
+          const row = document.createElement("div");
+          row.className = "blank-row";
+          const lab = document.createElement("div");
+          lab.className = "blank-label";
+          lab.textContent = (b.label || `Blank ${idx+1}`) + ":";
+          const inp = document.createElement("input");
+          inp.type = "text";
+          inp.className = "answer-input";
+          inp.value = saved[b.label] || "";
+          inp.addEventListener("input", ()=> {
+            const next = { ...(getAns(q.id, {}) || {}) };
+            next[b.label] = inp.value;
+            setAns(q.id, next);
+          });
+          row.appendChild(lab);
+          row.appendChild(inp);
+          control.appendChild(row);
+        });
+        break;
+      }
+      case "short_list":{
+        control = document.createElement("div");
+        control.className = "short-list";
+        const count = q.expected_count || 2;
+        const saved = getAns(q.id, []);
+        for (let i=0;i<count;i++){
+          const inp = document.createElement("input");
+          inp.type = "text";
+          inp.className = "answer-input";
+          inp.placeholder = `Answer ${i+1}...`;
+          inp.value = Array.isArray(saved) ? (saved[i] || "") : "";
+          inp.addEventListener("input", ()=> {
+            const arr = Array.isArray(getAns(q.id, [])) ? [...getAns(q.id, [])] : [];
+            arr[i] = inp.value;
+            setAns(q.id, arr);
+          });
+          control.appendChild(inp);
+        }
+        break;
+      }
+      default:{
+        control = document.createElement("textarea");
+        control.className = "answer-textarea";
+        control.rows = 5;
+        control.value = getAns(q.id, "") || "";
+        control.addEventListener("input", ()=> setAns(q.id, control.value));
+      }
+    }
+
+    aw.appendChild(control);
+    card.appendChild(aw);
+    return card;
+  }
+
+  function updateTotal(){
+    // This full exam is teacher-marked; keep 0/70 until marking desk.
+    const totalEl = $("totalMarks");
+    if (totalEl) totalEl.textContent = "0";
+  }
+
+  function renderAll(){
+    const container = $("questions");
+    if (!container){
+      showError("Missing <section id=\"questions\"> in the HTML.");
+      return;
+    }
+    container.innerHTML = "";
+    if (!SPEC.questions || !SPEC.questions.length){
+      showError("Loaded spec, but it contains no questions.");
+      return;
+    }
+    clearError();
+    SPEC.questions.forEach(q => container.appendChild(renderQuestion(q)));
+    updateTotal();
+
+    // push submit to the bottom (after questions)
+    const submitBtn = $("submitAttemptBtn");
+    if (submitBtn){
+      const submitCard = submitBtn.closest(".submit-card") || submitBtn.parentElement;
+      if (submitCard && container.parentElement) container.parentElement.appendChild(submitCard);
+    }
+  }
+
+  async function loadSpec(){
+    try{
+      const res = await fetch(SPEC_URL, { cache: "no-store" });
+      if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+      SPEC = normaliseSpec(await res.json());
+    }catch(e){
+      SPEC = { questions: [], assets: [] };
+      showError(`Failed to load ${SPEC_URL}. Ensure it exists in the repo root. (${e.message})`);
+    }
+  }
+
+  async function submit(){
+    const studentName = ($("studentName")?.value || "").trim();
+    const classCode = ($("classCode")?.value || $("className")?.value || $("class")?.value || "").trim();
+    if (!studentName || !classCode){
+      alert("Please enter Student name and Class.");
+      return;
+    }
+    const colRef = collection(db, "exams", EXAM_ID, "submissions");
+    await addDoc(colRef, {
+      examId: EXAM_ID,
+      studentName,
+      classCode,
+      answers: ANSWERS,
+      submittedAt: serverTimestamp(),
+      specVersion: SPEC.spec_version || SPEC.specVersion || "unknown"
+    });
+    alert("Submitted ✅");
+  }
+
+  function wire(){
+    $("saveBtn")?.addEventListener("click", ()=> { saveSaved(); alert("Saved ✅"); });
+    $("loadBtn")?.addEventListener("click", ()=> { loadSaved(); renderAll(); alert("Loaded ✅"); });
+    $("resetBtn")?.addEventListener("click", ()=> {
+      if (confirm("Reset all answers for this paper?")){
+        ANSWERS = {};
+        saveSaved();
+        renderAll();
+      }
+    });
+    $("submitAttemptBtn")?.addEventListener("click", async ()=> {
+      try{ await submit(); }catch(e){ console.error(e); alert("Submit failed (check Firestore rules)."); }
+    });
+  }
+
+  async function init(){
+    loadSaved();
+    await loadSpec();
+    renderAll();
+    wire();
+  }
+
+  document.addEventListener("DOMContentLoaded", init);
+</script>
+
 </body>
 </html>
