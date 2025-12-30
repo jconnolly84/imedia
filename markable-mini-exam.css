@@ -1,0 +1,37 @@
+@import url("mini-exam.css");
+
+/* Extra UI for Firebase submission (non-destructive) */
+.submit-card{
+  margin: 14px 0 10px;
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(43, 52, 88, 0.85);
+  background: rgba(3, 5, 14, 0.55);
+  padding: 14px;
+}
+.submit-row{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:flex-end;
+}
+.submit-field{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  min-width: 180px;
+  flex: 1 1 220px;
+}
+.submit-field span{
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.submit-field input{
+  width:100%;
+  background: rgba(5,8,17,.85);
+  border: 1px solid rgba(43,52,88,.85);
+  border-radius: 14px;
+  padding: 10px 12px;
+  color: var(--text-main);
+  font-size: .95rem;
+  outline: none;
+}

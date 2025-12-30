@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>iMedia Genius · Marking Desk · Markable Mini Exam</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link href="host.css" rel="stylesheet"/>
+  <link href="topic.css" rel="stylesheet"/>
+  <link href="nav.css" rel="stylesheet"/>
+  <link href="markable-mini-exam.css" rel="stylesheet"/>
+  <style>
+    .desk{display:grid;grid-template-columns: 320px 1fr; gap:14px; margin-top:14px;}
+    .card{border-radius:var(--radius-xl);border:1px solid rgba(43,52,88,.85);background:rgba(3,5,14,.55);padding:14px}
+    .list{display:grid;gap:8px;max-height:70vh;overflow:auto}
+    .row{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px;border-radius:14px;border:1px solid rgba(43,52,88,.85);background:rgba(5,8,17,.65);cursor:pointer}
+    .row:hover{background:rgba(20,26,51,.9)}
+    .row small{color:var(--text-muted)}
+    .k{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:var(--text-muted)}
+    .ansbox{white-space:pre-wrap;background:rgba(5,8,17,.85);border:1px solid rgba(43,52,88,.85);border-radius:14px;padding:10px}
+    .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+    select,input{background:rgba(5,8,17,.85);border:1px solid rgba(43,52,88,.85);border-radius:14px;padding:8px 10px;color:var(--text-main)}
+  </style>
+</head>
+<body>
+<div class="page">
+  <header class="topic-header">
+    <div class="brand">
+      <div class="brand-text">
+        <h1><span>Marking Desk</span> <span class="highlight">Pre‑Mock 01</span></h1>
+        <p>Teacher-only view: load student submissions from Firestore and copy prompts/answers for marking.</p>
+      </div>
+    </div>
+    <a class="back-link" href="index.html">← Back to iMedia Genius</a>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="toolbar">
+        <button class="random-btn" id="signInBtn" type="button"><span class="icon">🔐</span>Sign in (Google)</button>
+        <button class="filter-btn" id="refreshBtn" type="button">Refresh</button>
+        <label>Class:
+          <input id="classFilter" placeholder="e.g. 10OP3"/>
+        </label>
+        <label>Status:
+          <select id="statusFilter">
+            <option value="">All</option>
+            <option value="unmarked">Unmarked</option>
+            <option value="in-progress">In progress</option>
+            <option value="complete">Complete</option>
+          </select>
+        </label>
+        <span id="authStatus" class="copy-status"></span>
+      </div>
+    </section>
+
+    <div class="desk">
+      <section class="card">
+        <h3 class="prompt-title">Submissions</h3>
+        <div id="subList" class="list"></div>
+      </section>
+
+      <section class="card">
+        <h3 class="prompt-title">Selected submission</h3>
+        <div id="subMeta" class="k">Pick a submission…</div>
+        <div style="height:10px"></div>
+        <div class="toolbar">
+          <button class="btn-link" id="copyAnswersBtn2" type="button">Copy answers only</button>
+          <button class="btn-link" id="copyPromptBtn2" type="button">Copy full prompt</button>
+          <a class="btn-link" id="openPromptUrl" target="_blank" rel="noopener" style="display:none">Open stored prompt</a>
+        </div>
+        <div style="height:10px"></div>
+        <div id="answersBox" class="ansbox"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> iMedia Genius · R093 Revision Arcade</p>
+  </footer>
+</div>
+
+<script type="module" src="marking-desk.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
