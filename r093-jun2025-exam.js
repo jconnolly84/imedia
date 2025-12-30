@@ -35,10 +35,9 @@ async function loadQuestions() {
 }
 
 
-const elQuestions = document.getElementById('questions');
-const elTotal = document.getElementById('totalMarks');
-const elPrompt = document.getElementById('promptBox');
-
+let elQuestions;
+let elTotal;
+let elPrompt;
 const SAVE_KEY = 'R093-2025-JUN_savedAnswers_v1';
 
 // Firebase submission settings
@@ -485,35 +484,45 @@ function wireQ11Booster(){
   updateL2L3Tips();
 }
 
-(function init(){
+
+async function initExam(){
+  // Bind DOM elements (must happen after DOM is ready)
+  elQuestions = document.getElementById('questions');
+  elTotal = document.getElementById('totalMarks');
+  elPrompt = document.getElementById('promptBox');
+
   const y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 
-  // Load question spec first, then render the paper
-  loadQuestions().then(() => {
-    // Ensure timer is initialised to 90 minutes on first load
-    secondsLeft = DEFAULT_SECONDS;
-    renderTimer();
+  // Defensive: if key containers missing, show an on-page error
+  if (!elQuestions) {
+    const err = document.getElementById('examLoadError');
+    if (err) err.textContent = '❌ Cannot render exam: #questions container not found in the HTML.';
+    console.error('Missing #questions container');
+    return;
+  }
+  if (!elTotal) {
+    const err = document.getElementById('examLoadError');
+    if (err) err.textContent = '❌ Cannot render exam: #totalMarks element not found in the HTML.';
+    console.error('Missing #totalMarks element');
+    return;
+  }
 
-    render();
-    load(); // restore saved answers into rendered inputs
-    ensureSubmitAtBottom();
-    wireQ11Booster();
-  }).catch((e) => {
-    console.error(e);
-    const el = document.getElementById('examLoadError') || document.getElementById('promptBox');
-    if (el) el.innerHTML = `<div class="error-box"><strong>❌ Failed to load exam questions</strong><br>${(e && (e.message || e))}<br><small>Expected: <code>${SPEC_URL}</code> in the repository root.</small></div>`;
-  });
-})();
+  // Ensure 90 minutes for full paper
+  secondsLeft = DEFAULT_SECONDS;
+  renderTimer();
 
-(() => { const el = document.getElementById('copyAnswersBtn'); if (el) el.addEventListener('click', copyAnswersOnly); })();
+  // Load spec then render
+  const ok = await loadQuestions();
+  if (!ok) return;
 
-(() => {
-  const btn = document.getElementById('submitAttemptBtn');
-  if (btn) btn.addEventListener('click', submitAttemptToFirebase);
-})();
+  render();
+  loadSaved();
+  wireQ11Booster();
 
-
+  // Force submit card to bottom (after questions)
+  try { ensureSubmitAtBottom(); } catch(e) {}
+}
 function onReady(fn){
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
   else fn();
@@ -534,7 +543,7 @@ onReady(() => {
 
   // Kick off load/render
   try {
-    if (typeof init === 'function') init();
+    initExam();
   } catch (e) {
     const el = document.getElementById('examLoadError');
     if (el) el.textContent = '❌ Exam initialisation failed: ' + (e?.message || e);
