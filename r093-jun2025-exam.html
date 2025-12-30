@@ -1,485 +1,261 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<title>iMedia Genius · Markable Full Exam (Firebase) · R093/01 June 2025</title><meta content="R093 · 01 – Traditional Media revision page for OCR Creative iMedia R093 with clear notes, examples and practice questions." name="description"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<!-- Existing site styles -->
-<link href="host.css" rel="stylesheet"/>
-<!-- Extra topic-page styles -->
-<link href="topic.css" rel="stylesheet"/>
-<link href="nav.css" rel="stylesheet"/>
-<link href="favicon.ico" rel="icon" type="image/x-icon"/><link href="https://imediagenius.co.uk/topic-01-traditional-media.html" rel="canonical"/>
-<style>
-  /* Inline infographic styles – shared across topics */
-  .infographic-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    align-items: stretch;
-    margin-top: 1.5rem;
-  }
-  .infographic-card {
-    flex: 1 1 320px;
-    background: #004556;
-    border-radius: 18px;
-    padding: 1.75rem 2rem;
-    color: #fdf5e6;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
-  }
-  .infographic-card h3 {
-    margin-top: 0;
-    margin-bottom: 0.75rem;
-    font-size: 1.5rem;
-  }
-  .infographic-tagline {
-    font-size: 0.95rem;
-    opacity: 0.85;
-    margin-bottom: 1rem;
-  }
-  .infographic-list {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-  }
-  .infographic-list li {
-    position: relative;
-    padding-left: 1.6rem;
-    margin-bottom: 0.6rem;
-    line-height: 1.4;
-  }
-  .infographic-list li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: #f4b163;
-    font-size: 1.4rem;
-    line-height: 1;
-  }
-  .infographic-pill {
-    display: inline-block;
-    margin-top: 0.5rem;
-    padding: 0.25rem 0.75rem;
-    border-radius: 999px;
-    background: rgba(244, 177, 99, 0.18);
-    font-size: 0.85rem;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-  }
-
-  .infographic-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.9rem;
-    margin-bottom: 0.75rem;
-  }
-  .infographic-icon {
-    flex: 0 0 40px;
-  }
-  .infographic-icon svg {
-    display: block;
-    width: 40px;
-    height: 40px;
-  }
-  .infographic-card h3 {
-    margin-top: 0;
-    margin-bottom: 0.25rem;
-    font-size: 1.5rem;
-  }
-
-</style>
-<link href="markable-mini-exam.css" rel="stylesheet"/>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>R093/01 June 2025 Full Exam (Markable)</title>
+  <link rel="stylesheet" href="markable-mini-exam.css">
+  <style>
+    /* Safety styles if your CSS is missing bits */
+    .container { max-width: 980px; margin: 0 auto; padding: 18px; }
+    .topbar { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; }
+    .pill { padding:6px 10px; border-radius:999px; background:rgba(255,255,255,0.06); }
+    .question-card { margin: 14px 0; padding: 14px; border-radius: 14px; background: rgba(255,255,255,0.04); }
+    .qhead { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }
+    .qmeta { display:flex; gap:10px; align-items:baseline; }
+    .qnum { font-weight:700; }
+    .qmarks { opacity:0.9; }
+    .qcmd { opacity:0.85; font-size:0.95rem; }
+    .qtext { margin-top:10px; white-space:pre-wrap; }
+    .qfigure { margin-top:12px; }
+    .qfigure img { max-width:100%; border-radius:12px; }
+    .answer { margin-top:12px; }
+    .answer input[type="text"]{ width:100%; padding:10px; border-radius:10px; }
+    .answer textarea{ width:100%; padding:10px; border-radius:10px; min-height:120px; }
+    .mcq { display:grid; gap:8px; margin-top:8px; }
+    .mcq label{ display:flex; gap:10px; align-items:flex-start; padding:8px 10px; border-radius:12px; background:rgba(255,255,255,0.03); }
+    .submit-card { margin-top:18px; padding:16px; border-radius:14px; background: rgba(255,105,180,0.08); border: 1px solid rgba(255,105,180,0.35); }
+    .btn-row { display:flex; flex-wrap:wrap; gap:10px; }
+    button { cursor:pointer; }
+    #examLoadError { display:none; margin: 12px 0; padding: 12px; border-radius: 12px; background: rgba(255,0,0,0.12); border: 1px solid rgba(255,0,0,0.35); }
+    .formrow { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+    .formrow input{ flex:1; min-width:240px; padding:10px; border-radius:10px; }
+  </style>
 </head>
 <body>
-<div class="page">
-<header class="topic-header">
-<!-- Global site navigation -->
-<nav aria-label="Main navigation" class="site-nav">
-<div class="site-nav-inner">
-<a class="site-nav-brand" href="index.html">
-<img alt="iMedia Genius logo" class="site-nav-logo-img" src="imedia_genius_logo_transparent.png"/>
-<span class="site-nav-title">
-            iMedia Genius
-            <span class="site-nav-subtitle">R093 Revision Arcade</span>
-</span>
-</a>
-<div class="site-nav-topic-jump">
-<label class="topic-jump-label" for="topicJump">Jump to topic</label>
-<select aria-label="Jump directly to a topic page" class="topic-jump-select" id="topicJump">
-<option value="">Select a topic…</option>
-<option value="topic-01-traditional-media.html">01 – Traditional Media</option>
-<option value="topic-02-new-media.html">02 – New Media</option>
-<option value="topic-03-video-audio-music.html">03 – Video, Audio &amp; Music</option>
-<option value="topic-04-animation-sfx-vfx.html">04 – Animation, SFX &amp; VFX</option>
-<option value="topic-05-social-media.html">05 – Social Media</option>
-<option value="topic-06-website-assets.html">06 – Website Assets</option>
-<option value="topic-07-creative-job-roles.html">07 – Creative Job Roles</option>
-<option value="topic-08-technical-job-roles.html">08 – Technical Job Roles</option>
-<option value="topic-09-senior-job-roles.html">09 – Senior Job Roles</option>
-<option value="topic-10-purpose-of-media-products.html">10 – Purpose of Media Products</option>
-<option value="topic-11-client-requirements.html">11 – Client Requirements</option>
-<option value="topic-12-client-brief-formats.html">12 – Client Brief Formats</option>
-<option value="topic-13-audience-segmentation.html">13 – Audience Segmentation</option>
-<option value="topic-14-audience-research.html">14 – Audience Research</option>
-<option value="topic-15-primary-research.html">15 – Primary Research</option>
-<option value="topic-16-secondary-research.html">16 – Secondary Research</option>
-<option value="topic-17-understanding-media-codes.html">17 – Understanding Media Codes</option>
-<option value="topic-18-camera-and-lighting.html">18 – Camera and Lighting</option>
-<option value="topic-19-mise-en-scene-audio-animation.html">19 – Mise en Scene, Audio and Animation</option>
-<option value="topic-20-movement-transitions-interactivity.html">20 – Movement, Transitions &amp; Interactivity</option>
-<option value="topic-21-colour-graphics-typography.html">21 – Colour, Graphics &amp; Typography</option>
-<option value="topic-22-components-of-work-plans.html">22 – Components of Work Plans</option>
-<option value="topic-23-mind-maps-mood-boards.html">23 – Mind Maps &amp; Mood Boards</option>
-<option value="topic-24-asset-logs-flow-charts-scripts.html">24 – Asset Logs, Flow Charts &amp; Scripts</option>
-<option value="topic-25-storyboards-visualisations-wireframes.html">25 – Storyboards, Visualisations &amp; Wireframes</option>
-<option value="topic-26-legal-considerations-protect-individuals.html">26 – Legal Considerations to Protect Individuals</option>
-<option value="topic-27-intellectual-property-rights.html">27 – Intellectual Property Rights</option>
-<option value="topic-28-regulation-certification-classification.html">28 – Regulation, Certification &amp; Classification</option>
-<option value="topic-29-health-and-safety.html">29 – Health &amp; Safety</option>
-<option value="topic-30-distribution-platforms-media.html">30 – Distribution Platforms &amp; Media</option>
-<option value="topic-31-file-compression.html">31 – File Compression</option>
-<option value="topic-32-image-files.html">32 – Image Files</option>
-<option value="topic-33-audio-files.html">33 – Audio Files</option>
-<option value="topic-34-moving-image-files.html">34 – Moving Image Files</option>
-<option value="topic-35-hardware-and-software.html">35 – Hardware &amp; Software</option>
-</select>
-</div>
-</div>
-</nav>
-<script>
-      (function() {
-        var jump = document.getElementById('topicJump');
-        if (jump) {
-          jump.addEventListener('change', function() {
-            if (this.value) {
-              window.location.href = this.value;
-            }
-          });
-        }
-      })();
-    </script>
-<div class="brand">
-<div class="brand-text">
-<h1>
-<span>R093/01 · June 2025</span>
-<span class="highlight">Full Exam</span>
-</h1>
-<p>Markable mini‑exam: student answers can be submitted to Firebase for later marking.</p>
-<div class="exam-pill">Markable Full Exam · Paper 1</div>
-</div>
-</div>
-<a class="back-link" href="index.html">← Back to iMedia Genius – R093 Revision Arcade</a>
-</header>
-<main>
+  <div class="container">
+    <h1>R093/01 · June 2025 Full Exam</h1>
 
-      <section class="mini-exam-controls">
-        <div class="controls">
-          <span class="pill"><strong>Paper:</strong> <span id="paperId">R093/01 June 2025</span></span>
-          <span class="pill"><strong>Total:</strong> <span id="totalMarks">0</span>/70</span>
-          <span class="pill"><strong>Timer:</strong> <span id="timer">90:00</span></span>
-
-          <button class="random-btn" id="startBtn" type="button"><span class="icon">⏱️</span>Start</button>
-          <button class="filter-btn" id="pauseBtn" type="button">Pause</button>
-          <button class="filter-btn" id="saveBtn" type="button">Save</button>
-          <button class="filter-btn" id="loadBtn" type="button">Load</button>
-          <button class="filter-btn" id="resetBtn" type="button">Reset</button>
-        </div>
-      </section>
-
-
-      <section class="submit-card" aria-label="Submit answers for marking">
-        <div class="submit-row">
-          <label class="submit-field">
-            <span>Student name</span>
-            <input id="studentName" type="text" placeholder="e.g. Jack D" autocomplete="name"/>
-          </label>
-          <label class="submit-field">
-            <span>Class</span>
-            <input id="classCode" type="text" placeholder="e.g. 10OP3" autocomplete="off"/>
-          </label>
-</div>
-</section>
-
-      <div class="grid-header">
-        <h2>Answer all questions</h2>
-        <small class="hint">When finished, click <strong>Submit for marking</strong>.</small>
+    <div class="topbar">
+      <div class="pill">Total: <strong id="totalMarks">0</strong>/70</div>
+      <div class="pill">Timer: <strong id="timer">90:00</strong></div>
+      <div class="btn-row">
+        <button id="startBtn">Start</button>
+        <button id="pauseBtn">Pause</button>
+        <button id="saveBtn">Save</button>
+        <button id="loadBtn">Load</button>
+        <button id="resetBtn">Reset</button>
       </div>
+    </div>
 
-      <div id="examLoadError" class="exam-load-error" style="margin:10px 0; color:#ff6b6b; font-weight:600;"></div>
-      <section id="questions" class="exam-stack"></section>
-      <section class="submit-card submit-card-bottom" aria-label="Submit answers for marking (bottom)">
-        <div class="submit-row" style="justify-content:flex-end">
-          <button class="random-btn" id="submitAttemptBtn" type="button"><span class="icon">📤</span>Submit for marking</button>
-        </div>
-        <div id="submitStatus" class="copy-status" aria-live="polite"></div>
-        <div id="submitStatusBottom" class="copy-status" aria-live="polite" style="display:none"></div>
-      </section>
-<section class="prompt-card teacher-only">
-        <div class="prompt-header">
-          <div>
-            <h3 class="prompt-title">AI Marking Prompt</h3>
-            <p class="hint">This compiles questions + mark schemes + your answers into one examiner-style prompt.</p>
-          </div>
-          <div class="prompt-actions">
-            <button class="random-btn" id="buildPromptBtn" type="button"><span class="icon">🧠</span>Build & Copy AI Marking Prompt</button>
-            <button class="filter-btn" id="copyPromptBtn" type="button">Copy</button>
-          </div>
-        </div>
+    <div class="formrow">
+      <input id="studentName" type="text" placeholder="Student name">
+      <input id="classCode" type="text" placeholder="Class">
+    </div>
 
-        <div class="ai-links">
-          <span class="ai-links-label">Open an AI tool:</span>
-          <button type="button" class="btn-link" onclick="openAIAndCopy('https://chat.openai.com/')">ChatGPT</button>
-          <button type="button" class="btn-link" onclick="openAIAndCopy('https://gemini.google.com/')">Gemini</button>
-          <button type="button" class="btn-link" onclick="openAIAndCopy('https://claude.ai/')">Claude</button>
-          <button type="button" class="btn-link" onclick="openAIAndCopy('https://copilot.microsoft.com/')">Copilot</button>
-          <button type="button" class="btn-link" id="copyAnswersBtn">Copy answers only</button>
-        </div>
-        <div id="copyStatus" class="copy-status" aria-live="polite"></div>
-        <div id="l2l3Tips" class="hint" style="margin:8px 0 10px 0;"></div>
+    <div id="examLoadError"></div>
 
-        <textarea id="promptBox" class="prompt-box" placeholder="Your AI marking prompt will appear here after you click Build & Copy AI Marking Prompt…" spellcheck="false"></textarea>
-      </section>
-    </main>
-<footer>
-<p>© <span id="year"></span> iMedia Genius · R093 Revision Arcade</p>
-<p class="footer-note">This is an independent teacher-created resource for OCR Cambridge National in Creative iMedia (R093). It is not affiliated with, endorsed by or approved by OCR.</p>
-</footer>
-</div>
-<script src="host.js"></script>
+    <h2>Answer all questions</h2>
+
+    <section id="questions"></section>
+
+    <div class="submit-card" id="submitCard">
+      <p>When finished, click <strong>Submit for marking</strong>.</p>
+      <button id="submitAttemptBtn" style="background:#ff4fa1;color:white;border:none;padding:12px 16px;border-radius:12px;font-weight:700;">
+        Submit for marking
+      </button>
+    </div>
+  </div>
 
 <script type="module">
   const EXAM_ID = "R093-2025-JUN";
-  const SPEC_URL = "/r093-2025-jun-questions.json";
   const LS_KEY = `${EXAM_ID}::answers_v1`;
 
-  let SPEC = { questions: [], assets: [] };
-  let ANSWERS = {};
+  const QUESTIONS = [{"id": "JUN25-Q1", "marks": 1, "command_word": "Identify", "text": "Action, arcade, first person, puzzle and RPG are examples of which new media product?", "response_type": "short_text"}, {"id": "JUN25-Q2", "marks": 2, "command_word": "Complete", "text": "Complete the sentences. Write a job role from the list in each of the two spaces.\ncontent creator, graphic designer, web designer, web developer\n\nA ________ is responsible for planning the style and layout of a website.\nA ________ is responsible for creating the website.", "response_type": "short_list", "responses_required": 2}, {"id": "JUN25-Q3", "marks": 1, "command_word": "Select", "text": "Which lighting position is used to create a shadow effect from behind?", "response_type": "mcq_single", "options": ["Back light", "Low angle", "Practical lighting", "Side angle"], "answer": "Back light"}, {"id": "JUN25-Q4", "marks": 2, "command_word": "Identify", "text": "Identify the components of the workplan labelled A and B.", "response_type": "short_list", "responses_required": 2, "figure": {"src": "img/jun_25_04_workplan.jpg", "alt": "Workplan labelled A and B"}}, {"id": "JUN25-Q5", "marks": 1, "command_word": "Identify", "text": "Which intellectual property gives exclusive rights to the creator of a design?", "response_type": "short_text"}, {"id": "JUN25-Q6", "marks": 1, "command_word": "Identify", "text": "Which property of digital audio files counts the number of pieces of data captured each second?", "response_type": "short_text"}, {"id": "JUN25-Q7", "marks": 1, "command_word": "Complete", "text": "Complete the sentence. Write one word or phrase from the list: icons, posters, still images, videos.\n\nMP4 is an example of a file format used for __________.", "response_type": "mcq_single", "options": ["icons", "posters", "still images", "videos"], "answer": "videos"}, {"id": "JUN25-Q8", "marks": 1, "command_word": "Select", "text": "Which is an example of quantitative information?", "response_type": "mcq_single", "options": ["33", "Blue", "Television", "Workflow"], "answer": "33"}, {"id": "JUN25-Q9a", "marks": 1, "command_word": "Identify", "text": "Identify the purpose of the interactive travel magazine.", "response_type": "short_text"}, {"id": "JUN25-Q9b", "marks": 2, "command_word": "Explain", "text": "Explain what is meant by interactive media.", "response_type": "long_text"}, {"id": "JUN25-Q9c", "marks": 1, "command_word": "Identify", "text": "Identify one example of traditional media other than print publishing.", "response_type": "short_text"}, {"id": "JUN25-Q10a", "marks": 2, "command_word": "Describe", "text": "Describe one way the typography changes on the front cover of this magazine.", "response_type": "long_text", "figure": {"src": "img/jun_25_10_workplan.jpg", "alt": "Magazine cover (Question 10)"}}, {"id": "JUN25-Q10b", "marks": 2, "command_word": "Describe", "text": "Describe one way the elements are positioned to meet the purpose of this magazine cover.", "response_type": "long_text", "figure": {"src": "img/jun_25_10_workplan.jpg", "alt": "Magazine cover (Question 10)"}}, {"id": "JUN25-Q10c", "marks": 2, "command_word": "Explain", "text": "Explain one way informal language is used on this magazine cover.", "response_type": "long_text", "figure": {"src": "img/jun_25_10_workplan.jpg", "alt": "Magazine cover (Question 10)"}}, {"id": "JUN25-Q10d", "marks": 2, "command_word": "Identify", "text": "Identify two secondary research sources, other than magazines, that could be used to help plan the next issue of the interactive travel magazine.", "response_type": "short_list", "responses_required": 2}, {"id": "JUN25-Q10e", "marks": 2, "command_word": "Describe", "text": "Describe what is meant by symbolic media codes.", "response_type": "long_text"}, {"id": "JUN25-Q11a", "marks": 6, "command_word": "Explain", "text": "Explain two ways that a production manager could contribute to the production of the interactive travel magazine.", "response_type": "long_text"}, {"id": "JUN25-Q11b", "marks": 2, "command_word": "Identify", "text": "Identify two responsibilities of a creative director.", "response_type": "short_list", "responses_required": 2}, {"id": "JUN25-Q12a", "marks": 1, "command_word": "Identify", "text": "Identify the phase of production in which a graphic artist is involved.", "response_type": "short_text"}, {"id": "JUN25-Q12b", "marks": 9, "command_word": "Discuss", "text": "An asset log has been provided for the graphic artist.\n\nDiscuss the suitability of the asset log for use by the graphic artist.\n\nMarks will be awarded for:\n• Suggesting changes that improve the asset log.\n• Explaining how the changes you suggest will improve the effectiveness of the asset log for the graphic artist.", "response_type": "long_text", "figure": {"src": "img/jun_25_12b_workplan.jpg", "alt": "Asset log table"}}, {"id": "JUN25-Q12c", "marks": 1, "command_word": "Identify", "text": "Identify one piece of software that could be used to create an asset log.", "response_type": "short_text"}, {"id": "JUN25-Q13a", "marks": 2, "command_word": "Describe", "text": "Describe one action UniqJny must take to ensure photographs included in the interactive travel magazine can be used for commercial purposes.", "response_type": "long_text"}, {"id": "JUN25-Q13b", "marks": 2, "command_word": "Explain", "text": "Explain one way a photographer can protect the photographs they take from being used illegally.", "response_type": "long_text"}, {"id": "JUN25-Q13c", "marks": 2, "command_word": "Explain", "text": "Explain one reason why pixels per inch (PPI) should be considered when choosing photographs to use in the interactive magazine.", "response_type": "long_text"}, {"id": "JUN25-Q13d", "marks": 4, "command_word": "Identify/Describe", "text": "Identify two online distribution platforms. Describe one way each platform could be used to distribute a digital product.", "response_type": "short_list_with_explain", "responses_required": 2}, {"id": "JUN25-Q13e", "marks": 2, "command_word": "Explain", "text": "Explain one difference between lossy and lossless compression.", "response_type": "long_text"}, {"id": "JUN25-Q14a", "marks": 9, "command_word": "Discuss", "text": "A wireframe of the interactive index double page of the next issue of the interactive travel magazine is given to the graphic artist.\n\nONLINE VERSION NOTE: You cannot draw/annotate directly on the wireframe here.\nInstead, DISCUSS how you would improve the effectiveness of the wireframe for use by the graphic artist, describing specific improvements and explaining how each one would help.\n\nMarks will be awarded for:\n• Relevant components and conventions used\n• Layout\n• Clear justification of how your improvements help the graphic artist", "response_type": "long_text", "figure": {"src": "img/jun_25_14_workplan.jpg", "alt": "Wireframe of interactive index double page"}}, {"id": "JUN25-Q14b", "marks": 2, "command_word": "Identify", "text": "Identify two pieces of hardware required to create a wireframe.", "response_type": "short_list", "responses_required": 2}, {"id": "JUN25-Q14c", "marks": 2, "command_word": "Identify/Explain", "text": "Identify one category of audience segmentation. Explain one way this category could influence the design of the interactive travel magazine.", "response_type": "long_text"}, {"id": "JUN25-Q15", "marks": 2, "command_word": "Explain", "text": "Explain one way libel laws could affect the content of a magazine.", "response_type": "long_text"}];
+  let answers = {};
 
-  const $ = (id) => document.getElementById(id);
+  const $ = (id)=>document.getElementById(id);
 
   function showError(msg){
     const box = $("examLoadError");
-    if (!box) { console.error(msg); return; }
-    box.style.display = "block";
+    if(!box) return console.error(msg);
+    box.style.display="block";
     box.textContent = msg;
   }
   function clearError(){
     const box = $("examLoadError");
-    if (box){ box.style.display = "none"; box.textContent = ""; }
-  }
-
-  function normaliseSpec(raw){
-    if (raw && Array.isArray(raw.questions)) return raw;
-    if (Array.isArray(raw)) return { questions: raw, assets: [] };
-    return { questions: [], assets: [] };
+    if(!box) return;
+    box.style.display="none";
+    box.textContent="";
   }
 
   function loadSaved(){
-    try{
+    try {
       const raw = localStorage.getItem(LS_KEY);
-      if (!raw) return;
-      const parsed = JSON.parse(raw);
-      if (parsed && typeof parsed === "object") ANSWERS = parsed;
-    }catch(e){}
+      if(raw) answers = JSON.parse(raw) || {};
+    } catch(e) {}
   }
   function saveSaved(){
-    try{ localStorage.setItem(LS_KEY, JSON.stringify(ANSWERS)); }catch(e){}
+    try { localStorage.setItem(LS_KEY, JSON.stringify(answers)); } catch(e) {}
   }
-  function setAns(qid, val){ ANSWERS[qid] = val; saveSaved(); }
-  function getAns(qid, defVal){ return (qid in ANSWERS) ? ANSWERS[qid] : defVal; }
+  function setAns(qid, val){ answers[qid] = val; saveSaved(); }
+  function getAns(qid, defVal){ return (qid in answers) ? answers[qid] : defVal; }
 
-  function assetById(id){
-    return (SPEC.assets || []).find(a => a.id === id);
-  }
-
-  function renderQuestion(q){
+  function renderQuestion(q, idx){
     const card = document.createElement("div");
-    card.className = "question-card";
+    card.className="question-card";
 
-    const header = document.createElement("div");
-    header.className = "question-header";
-    const qLabel = q.part ? `Q${q.qnum}${q.part}` : `Q${q.qnum}`;
-    header.innerHTML = `
-      <div class="question-meta">
-        <div class="question-number">${qLabel}</div>
-        <div class="question-marks">[${q.marks}]</div>
-      </div>
-      <div class="command-word">${q.command_word || ""}</div>
-    `;
-    card.appendChild(header);
+    const head = document.createElement("div");
+    head.className="qhead";
+    const meta = document.createElement("div");
+    meta.className="qmeta";
+    const qnum = document.createElement("div");
+    qnum.className="qnum";
+    qnum.textContent = `Q${idx+1}`;
+    const marks = document.createElement("div");
+    marks.className="qmarks";
+    marks.textContent = `[${q.marks}]`;
+    meta.appendChild(qnum);
+    meta.appendChild(marks);
 
-    const prompt = document.createElement("div");
-    prompt.className = "question-text";
-    prompt.textContent = q.prompt || "";
-    card.appendChild(prompt);
+    const cmd = document.createElement("div");
+    cmd.className="qcmd";
+    cmd.textContent = q.command_word || "";
+    head.appendChild(meta);
+    head.appendChild(cmd);
 
-    (q.assets || []).forEach(aid => {
-      const a = assetById(aid);
-      if (!a || a.type !== "image") return;
-      const wrap = document.createElement("div");
-      wrap.className = "question-asset";
+    const text = document.createElement("div");
+    text.className="qtext";
+    text.textContent = q.text || "";
+
+    card.appendChild(head);
+    card.appendChild(text);
+
+    if(q.figure && q.figure.src){
+      const fig = document.createElement("div");
+      fig.className="qfigure";
       const img = document.createElement("img");
-      img.src = a.src;
-      img.alt = a.alt || "";
-      img.loading = "lazy";
-      img.style.maxWidth = "100%";
-      img.style.borderRadius = "12px";
-      wrap.appendChild(img);
-      card.appendChild(wrap);
-    });
-
-    const aw = document.createElement("div");
-    aw.className = "answer-wrap";
-
-    let control;
-    switch(q.response_type){
-      case "short_text":{
-        control = document.createElement("input");
-        control.type = "text";
-        control.className = "answer-input";
-        control.value = getAns(q.id, "") || "";
-        control.addEventListener("input", ()=> setAns(q.id, control.value));
-        break;
-      }
-      case "mcq_single":{
-        control = document.createElement("div");
-        control.className = "mcq-wrap";
-        const saved = getAns(q.id, "");
-        (q.options || []).forEach(opt => {
-          const label = document.createElement("label");
-          label.className = "mcq-option";
-          const r = document.createElement("input");
-          r.type = "radio";
-          r.name = `mcq_${q.id}`;
-          r.value = opt.key;
-          r.checked = saved === opt.key;
-          r.addEventListener("change", ()=> setAns(q.id, opt.key));
-          const span = document.createElement("span");
-          span.textContent = `${opt.key}. ${opt.text}`;
-          label.appendChild(r);
-          label.appendChild(span);
-          control.appendChild(label);
-        });
-        break;
-      }
-      case "two_blanks":{
-        control = document.createElement("div");
-        control.className = "two-blanks";
-        const saved = getAns(q.id, {}) || {};
-        (q.blanks || []).forEach((b, idx) => {
-          const row = document.createElement("div");
-          row.className = "blank-row";
-          const lab = document.createElement("div");
-          lab.className = "blank-label";
-          lab.textContent = (b.label || `Blank ${idx+1}`) + ":";
-          const inp = document.createElement("input");
-          inp.type = "text";
-          inp.className = "answer-input";
-          inp.value = saved[b.label] || "";
-          inp.addEventListener("input", ()=> {
-            const next = { ...(getAns(q.id, {}) || {}) };
-            next[b.label] = inp.value;
-            setAns(q.id, next);
-          });
-          row.appendChild(lab);
-          row.appendChild(inp);
-          control.appendChild(row);
-        });
-        break;
-      }
-      case "short_list":{
-        control = document.createElement("div");
-        control.className = "short-list";
-        const count = q.expected_count || 2;
-        const saved = getAns(q.id, []);
-        for (let i=0;i<count;i++){
-          const inp = document.createElement("input");
-          inp.type = "text";
-          inp.className = "answer-input";
-          inp.placeholder = `Answer ${i+1}...`;
-          inp.value = Array.isArray(saved) ? (saved[i] || "") : "";
-          inp.addEventListener("input", ()=> {
-            const arr = Array.isArray(getAns(q.id, [])) ? [...getAns(q.id, [])] : [];
-            arr[i] = inp.value;
-            setAns(q.id, arr);
-          });
-          control.appendChild(inp);
-        }
-        break;
-      }
-      default:{
-        control = document.createElement("textarea");
-        control.className = "answer-textarea";
-        control.rows = 5;
-        control.value = getAns(q.id, "") || "";
-        control.addEventListener("input", ()=> setAns(q.id, control.value));
-      }
+      img.src = q.figure.src;
+      img.alt = q.figure.alt || "";
+      fig.appendChild(img);
+      card.appendChild(fig);
     }
 
-    aw.appendChild(control);
-    card.appendChild(aw);
-    return card;
-  }
+    const ansWrap = document.createElement("div");
+    ansWrap.className="answer";
 
-  function updateTotal(){
-    // This full exam is teacher-marked; keep 0/70 until marking desk.
-    const totalEl = $("totalMarks");
-    if (totalEl) totalEl.textContent = "0";
+    let control;
+
+    if(q.response_type === "mcq"){
+      control = document.createElement("div");
+      control.className="mcq";
+      const saved = getAns(q.id, "");
+      (q.options||[]).forEach(opt=>{
+        const lab = document.createElement("label");
+        const r = document.createElement("input");
+        r.type="radio";
+        r.name = `mcq_${q.id}`;
+        r.value = opt.key;
+        r.checked = saved === opt.key;
+        r.addEventListener("change", ()=> setAns(q.id, opt.key));
+        const span = document.createElement("span");
+        span.textContent = `${opt.key}. ${opt.text}`;
+        lab.appendChild(r);
+        lab.appendChild(span);
+        control.appendChild(lab);
+      });
+    } else if(q.response_type === "short_list") {
+      const n = q.responses_required || q.expected_responses || 2;
+      control = document.createElement("div");
+      const saved = getAns(q.id, []);
+      for(let i=0;i<n;i++) {
+        const inp = document.createElement("input");
+        inp.type="text";
+        inp.placeholder = `Answer ${i+1}...`;
+        inp.value = Array.isArray(saved) ? (saved[i] || "") : "";
+        inp.addEventListener("input", ()=> {
+          const arr = Array.isArray(getAns(q.id, [])) ? [...getAns(q.id, [])] : [];
+          arr[i] = inp.value;
+          setAns(q.id, arr);
+        });
+        inp.style.marginBottom = "8px";
+        control.appendChild(inp);
+      }
+    } else if(q.response_type === "short_text") {
+      control = document.createElement("input");
+      control.type="text";
+      control.value = getAns(q.id, "") || "";
+      control.addEventListener("input", ()=> setAns(q.id, control.value));
+    } else {
+      // long_text fallback
+      control = document.createElement("textarea");
+      control.value = getAns(q.id, "") || "";
+      control.addEventListener("input", ()=> setAns(q.id, control.value));
+    }
+
+    ansWrap.appendChild(control);
+    card.appendChild(ansWrap);
+
+    return card;
   }
 
   function renderAll(){
     const container = $("questions");
-    if (!container){
-      showError("Missing <section id=\"questions\"> in the HTML.");
+    if(!container) {
+      showError("Missing #questions container in HTML.");
       return;
     }
     container.innerHTML = "";
-    if (!SPEC.questions || !SPEC.questions.length){
-      showError("Loaded spec, but it contains no questions.");
+    clearError();
+
+    if(!Array.isArray(QUESTIONS) || !QUESTIONS.length) {
+      showError("Embedded question list is empty.");
       return;
     }
-    clearError();
-    SPEC.questions.forEach(q => container.appendChild(renderQuestion(q)));
-    updateTotal();
 
-    // push submit to the bottom (after questions)
-    const submitBtn = $("submitAttemptBtn");
-    if (submitBtn){
-      const submitCard = submitBtn.closest(".submit-card") || submitBtn.parentElement;
-      if (submitCard && container.parentElement) container.parentElement.appendChild(submitCard);
-    }
+    QUESTIONS.forEach((q, idx)=> container.appendChild(renderQuestion(q, idx)));
+
+    // force submit to bottom
+    const submitCard = $("submitCard");
+    if(submitCard && container.parentElement) container.parentElement.appendChild(submitCard);
   }
 
-  async function loadSpec(){
-    try{
-      const res = await fetch(SPEC_URL, { cache: "no-store" });
-      if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-      SPEC = normaliseSpec(await res.json());
-    }catch(e){
-      SPEC = { questions: [], assets: [] };
-      showError(`Failed to load ${SPEC_URL}. Ensure it exists in the repo root. (${e.message})`);
-    }
+  // Timer
+  let seconds = 90*60;
+  let timerInterval = null;
+  function updateTimer(){
+    const m = Math.floor(seconds/60);
+    const s = seconds%60;
+    $("timer").textContent = `${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+  }
+  function startTimer(){
+    if(timerInterval) return;
+    timerInterval = setInterval(()=> {
+      if(seconds>0) seconds--;
+      updateTimer();
+    }, 1000);
+  }
+  function pauseTimer(){
+    if(timerInterval) clearInterval(timerInterval);
+    timerInterval = null;
   }
 
-  async function submit(){
-    const studentName = ($("studentName")?.value || "").trim();
-    const classCode = ($("classCode")?.value || $("className")?.value || $("class")?.value || "").trim();
-    if (!studentName || !classCode){
+  async function submitToFirestore(){
+    const studentName = ($("studentName").value || "").trim();
+    const classCode = ($("classCode").value || "").trim();
+    if(!studentName || !classCode) {
       alert("Please enter Student name and Class.");
       return;
     }
 
-    // Lazy-load Firebase only when submitting (so rendering still works even if Firebase fails)
-    let db;
-    let addDoc, collection, serverTimestamp;
-    try{
+    let db, collection, addDoc, serverTimestamp;
+    try {
       const cfg = await import("./firebaseConfig.js");
       db = cfg.db;
       ({ collection, addDoc, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"));
-    }catch(e){
+    } catch(e) {
       console.error(e);
-      alert("Firebase failed to load. The paper will still work locally, but cannot submit for marking until firebaseConfig.js is reachable.");
+      alert("Firebase failed to load. Check firebaseConfig.js is in the repo root and accessible.");
       return;
     }
 
@@ -488,37 +264,38 @@
       examId: EXAM_ID,
       studentName,
       classCode,
-      answers: ANSWERS,
-      submittedAt: serverTimestamp(),
-      specVersion: SPEC.spec_version || SPEC.specVersion || "unknown"
+      answers,
+      submittedAt: serverTimestamp()
     });
     alert("Submitted ✅");
   }
 
   function wire(){
-    $("saveBtn")?.addEventListener("click", ()=> { saveSaved(); alert("Saved ✅"); });
-    $("loadBtn")?.addEventListener("click", ()=> { loadSaved(); renderAll(); alert("Loaded ✅"); });
-    $("resetBtn")?.addEventListener("click", ()=> {
-      if (confirm("Reset all answers for this paper?")){
-        ANSWERS = {};
+    $("startBtn").addEventListener("click", startTimer);
+    $("pauseBtn").addEventListener("click", pauseTimer);
+
+    $("saveBtn").addEventListener("click", ()=> { saveSaved(); alert("Saved ✅"); });
+    $("loadBtn").addEventListener("click", ()=> { loadSaved(); renderAll(); alert("Loaded ✅"); });
+    $("resetBtn").addEventListener("click", ()=> {
+      if(confirm("Reset all answers for this paper?")) {
+        answers = {};
         saveSaved();
         renderAll();
       }
     });
-    $("submitAttemptBtn")?.addEventListener("click", async ()=> {
-      try{ await submit(); }catch(e){ console.error(e); alert("Submit failed (check Firestore rules)."); }
+
+    $("submitAttemptBtn").addEventListener("click", async ()=> {
+      try { await submitToFirestore(); }
+      catch(e) { console.error(e); alert("Submit failed. Check Firestore rules/network."); }
     });
   }
 
-  async function init(){
+  document.addEventListener("DOMContentLoaded", ()=> {
     loadSaved();
-    await loadSpec();
+    updateTimer();
     renderAll();
     wire();
-  }
-
-  document.addEventListener("DOMContentLoaded", init);
+  });
 </script>
-
 </body>
 </html>
