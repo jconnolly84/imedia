@@ -249,11 +249,8 @@
 <script src="host.js"></script>
 
 <script type="module">
-  import { db } from "./firebaseConfig.js";
-  import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
   const EXAM_ID = "R093-2025-JUN";
-  const SPEC_URL = "./r093-2025-jun-questions.json";
+  const SPEC_URL = "/r093-2025-jun-questions.json";
   const LS_KEY = `${EXAM_ID}::answers_v1`;
 
   let SPEC = { questions: [], assets: [] };
@@ -472,6 +469,20 @@
       alert("Please enter Student name and Class.");
       return;
     }
+
+    // Lazy-load Firebase only when submitting (so rendering still works even if Firebase fails)
+    let db;
+    let addDoc, collection, serverTimestamp;
+    try{
+      const cfg = await import("./firebaseConfig.js");
+      db = cfg.db;
+      ({ collection, addDoc, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"));
+    }catch(e){
+      console.error(e);
+      alert("Firebase failed to load. The paper will still work locally, but cannot submit for marking until firebaseConfig.js is reachable.");
+      return;
+    }
+
     const colRef = collection(db, "exams", EXAM_ID, "submissions");
     await addDoc(colRef, {
       examId: EXAM_ID,
