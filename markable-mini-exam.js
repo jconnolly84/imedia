@@ -539,7 +539,10 @@ async function submitAttemptToFirebase(){
     if (statusEl) statusEl.textContent = '✅ Submitted. You can close this tab now.';
   } catch(err){
     console.error(err);
-    if (statusEl) statusEl.textContent = '❌ Submit failed. Check your connection and try again.';
+    if (statusEl) {
+      const msg = (err && (err.code || err.message)) ? (err.code || err.message) : 'Unknown error';
+      statusEl.textContent = '❌ Submit failed: ' + msg;
+    }
   }
 }
 
