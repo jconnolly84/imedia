@@ -47,7 +47,7 @@ const EXAM_ID = 'R093-2025-JUN';
 const PROMPT_VERSION = 'PM01-v1';
 
 
-let secondsLeft = 30 * 60;
+let secondsLeft = DEFAULT_SECONDS;
 let running = false;
 let timerHandle = null;
 
@@ -488,10 +488,22 @@ function wireQ11Booster(){
 (function init(){
   const y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
-  renderTimer();
-  render();
-  load();
-  wireQ11Booster();
+
+  // Load question spec first, then render the paper
+  loadQuestions().then(() => {
+    // Ensure timer is initialised to 90 minutes on first load
+    secondsLeft = DEFAULT_SECONDS;
+    renderTimer();
+
+    render();
+    load(); // restore saved answers into rendered inputs
+    ensureSubmitAtBottom();
+    wireQ11Booster();
+  }).catch((e) => {
+    console.error(e);
+    const el = document.getElementById('examLoadError') || document.getElementById('promptBox');
+    if (el) el.innerHTML = `<div class="error-box"><strong>❌ Failed to load exam questions</strong><br>${(e && (e.message || e))}<br><small>Expected: <code>${SPEC_URL}</code> in the repository root.</small></div>`;
+  });
 })();
 
 (() => { const el = document.getElementById('copyAnswersBtn'); if (el) el.addEventListener('click', copyAnswersOnly); })();
