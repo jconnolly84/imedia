@@ -613,9 +613,6 @@ function wireQ11Booster(){
 (() => { const el = document.getElementById('copyAnswersBtn'); if (el) el.addEventListener('click', copyAnswersOnly); })();
 
 (() => {
-  const btns = [
-    document.getElementById('submitAttemptBtn'),
-    document.getElementById('submitAttemptBtnBottom')
-  ].filter(Boolean);
-  btns.forEach(b => b.addEventListener('click', submitAttemptToFirebase));
+  const btn = document.getElementById('submitAttemptBtn');
+  if (btn) btn.addEventListener('click', submitAttemptToFirebase);
 })();
