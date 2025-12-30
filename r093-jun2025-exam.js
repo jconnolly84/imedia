@@ -3,434 +3,40 @@ import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/fir
 import { ref as storageRef, uploadString, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
 
 
-const QUESTIONS = [
-  {
-    "id": "JUN25-Q1",
-    "marks": 1,
-    "command_word": "Identify",
-    "text": "Action, arcade, first person, puzzle and RPG are examples of which new media product?",
-    "response_type": "short_text",
-    "mark_scheme": [
-      "Correct answer: computer/digital games (accept 'gaming', 'video games')."
-    ]
-  },
-  {
-    "id": "JUN25-Q2",
-    "marks": 2,
-    "command_word": "Complete",
-    "text": "Complete the sentences.
+const SPEC_URL = './r093-2025-jun-questions.json';
+let QUESTIONS = [];
 
-Write a job role from the list in each of the two spaces. You can use each job role only once or not at all.
-
-content creator • graphic designer • web designer • web developer
-
-A __________________________ is responsible for planning the style and layout of a website.
-
-A __________________________ is responsible for creating the website.",
-    "response_type": "short_list",
-    "expected_responses": 2,
-    "mark_scheme": [
-      "1 mark: Web designer",
-      "1 mark: Web developer",
-      "Correct answers only (no half marks)."
-    ]
-  },
-  {
-    "id": "JUN25-Q3",
-    "marks": 1,
-    "command_word": "Select",
-    "text": "Which lighting position is used to create a shadow effect from behind?",
-    "response_type": "mcq_single",
-    "options": [
-      {
-        "key": "A",
-        "text": "Back light"
-      },
-      {
-        "key": "B",
-        "text": "Low angle"
-      },
-      {
-        "key": "C",
-        "text": "Practical lighting"
-      },
-      {
-        "key": "D",
-        "text": "Side angle"
-      }
-    ],
-    "mark_scheme": [
-      "Correct answer: A (Back light)."
-    ]
-  },
-  {
-    "id": "JUN25-Q4",
-    "marks": 2,
-    "command_word": "Identify",
-    "text": "Identify the components of the workplan labelled A and B.",
-    "response_type": "short_list",
-    "expected_responses": 2,
-    "figure": {
-      "src": "img/jun_25_04_workplan.jpg",
-      "label": "Fig. 1",
-      "caption": "Workplan labelled A and B.",
-      "alt": "A workplan with labels A and B."
-    },
-    "mark_scheme": [
-      "A: Task / production process (do not accept 'activities').",
-      "B: Milestone."
-    ]
-  },
-  {
-    "id": "JUN25-Q5",
-    "marks": 1,
-    "command_word": "Identify",
-    "text": "Which intellectual property gives exclusive rights to the creator of a design?",
-    "response_type": "short_text",
-    "mark_scheme": [
-      "Patent / patents (1)."
-    ]
-  },
-  {
-    "id": "JUN25-Q6",
-    "marks": 1,
-    "command_word": "Identify",
-    "text": "Which property of digital audio files counts the number of pieces of data captured each second?",
-    "response_type": "short_text",
-    "mark_scheme": [
-      "Sample rate / sample frequency (1)."
-    ]
-  },
-  {
-    "id": "JUN25-Q7",
-    "marks": 1,
-    "command_word": "Complete",
-    "text": "Complete the sentence.
-
-Write one word or phrase from the list in the space.
-
-icons • posters • still images • videos
-
-MP4 is an example of a file format used for __________________________.",
-    "response_type": "mcq_single",
-    "options": [
-      {
-        "key": "A",
-        "text": "icons"
-      },
-      {
-        "key": "B",
-        "text": "posters"
-      },
-      {
-        "key": "C",
-        "text": "still images"
-      },
-      {
-        "key": "D",
-        "text": "videos"
-      }
-    ],
-    "mark_scheme": [
-      "Correct answer: D (videos)."
-    ]
-  },
-  {
-    "id": "JUN25-Q8",
-    "marks": 1,
-    "command_word": "Select",
-    "text": "Which is an example of quantitative information?",
-    "response_type": "mcq_single",
-    "options": [
-      {
-        "key": "A",
-        "text": "33"
-      },
-      {
-        "key": "B",
-        "text": "Blue"
-      },
-      {
-        "key": "C",
-        "text": "Television"
-      },
-      {
-        "key": "D",
-        "text": "Workflow"
-      }
-    ],
-    "mark_scheme": [
-      "Correct answer: A (33)."
-    ]
-  },
-  {
-    "id": "JUN25-Q9a",
-    "marks": 1,
-    "command_word": "Identify",
-    "text": "Identify the purpose of the interactive travel magazine.",
-    "response_type": "short_text",
-    "mark_scheme": [
-      "Any valid purpose e.g. inform / entertain / educate / promote (1)."
-    ]
-  },
-  {
-    "id": "JUN25-Q9b",
-    "marks": 2,
-    "command_word": "Explain",
-    "text": "Explain what is meant by interactive media.",
-    "response_type": "long_text",
-    "mark_scheme": [
-      "1 mark: identifies user interaction/control OR gives a valid example.",
-      "2 marks: explains media responds to user input/actions (e.g. click/touch/swipe, links, controls)."
-    ]
-  },
-  {
-    "id": "JUN25-Q9c",
-    "marks": 1,
-    "command_word": "Identify",
-    "text": "Identify one example of traditional media other than print publishing.",
-    "response_type": "short_text",
-    "mark_scheme": [
-      "Any valid example e.g. radio / television / film (1)."
-    ]
-  },
-  {
-    "id": "JUN25-Q10a",
-    "marks": 2,
-    "command_word": "Describe",
-    "text": "Describe one way the typography changes on the front cover of this magazine.",
-    "response_type": "long_text",
-    "figure": {
-      "src": "img/jun_25_10_workplan.jpg",
-      "label": "Fig. 2",
-      "caption": "Magazine cover.",
-      "alt": "A magazine cover image."
-    },
-    "mark_scheme": [
-      "1 mark: identifies a typography feature (font/size/weight/case/colour).",
-      "2 marks: describes how it changes and effect/purpose."
-    ]
-  },
-  {
-    "id": "JUN25-Q10b",
-    "marks": 2,
-    "command_word": "Describe",
-    "text": "Describe one way the elements are positioned to meet the purpose of this magazine cover.",
-    "response_type": "long_text",
-    "figure": {
-      "src": "img/jun_25_10_workplan.jpg",
-      "label": "Fig. 2",
-      "caption": "Magazine cover.",
-      "alt": "A magazine cover image."
-    },
-    "mark_scheme": [
-      "1 mark: identifies positioning/layout choice.",
-      "2 marks: describes how positioning supports purpose (inform/attract)."
-    ]
-  },
-  {
-    "id": "JUN25-Q10c",
-    "marks": 2,
-    "command_word": "Explain",
-    "text": "Explain one way informal language is used on this magazine cover.",
-    "response_type": "long_text",
-    "figure": {
-      "src": "img/jun_25_10_workplan.jpg",
-      "label": "Fig. 2",
-      "caption": "Magazine cover.",
-      "alt": "A magazine cover image."
-    },
-    "mark_scheme": [
-      "1 mark: identifies informal language feature/example.",
-      "2 marks: explains how/why it targets audience/purpose."
-    ]
-  },
-  {
-    "id": "JUN25-Q10d",
-    "marks": 2,
-    "command_word": "Identify",
-    "text": "Identify two secondary research sources, other than magazines, that could be used to help plan the next issue of the interactive travel magazine.",
-    "response_type": "short_list",
-    "expected_responses": 2,
-    "mark_scheme": [
-      "1 mark per valid secondary source (max 2). Do not credit magazines."
-    ]
-  },
-  {
-    "id": "JUN25-Q10e",
-    "marks": 2,
-    "command_word": "Describe",
-    "text": "Describe what is meant by symbolic media codes.",
-    "response_type": "long_text",
-    "mark_scheme": [
-      "1 mark: identifies symbolic codes are signs/symbols that carry meaning.",
-      "2 marks: describes how they communicate ideas/associations/mood."
-    ]
-  },
-  {
-    "id": "JUN25-Q11a",
-    "marks": 6,
-    "command_word": "Explain",
-    "text": "Explain two ways that a production manager could contribute to the production of the interactive travel magazine.",
-    "response_type": "long_text",
-    "mark_scheme": [
-      "Level of response (6). Credit two contributions with explanation (e.g. schedules/budgets/resources, coordinating staff, workflow, quality control, risk management, liaising with stakeholders)."
-    ]
-  },
-  {
-    "id": "JUN25-Q11b",
-    "marks": 2,
-    "command_word": "Identify",
-    "text": "Identify two responsibilities of a creative director.",
-    "response_type": "short_list",
-    "expected_responses": 2,
-    "mark_scheme": [
-      "1 mark per valid responsibility (max 2)."
-    ]
-  },
-  {
-    "id": "JUN25-Q12a",
-    "marks": 1,
-    "command_word": "Identify",
-    "text": "Identify the phase of production in which a graphic artist is involved.",
-    "response_type": "short_text",
-    "mark_scheme": [
-      "Pre-production OR production (1)."
-    ]
-  },
-  {
-    "id": "JUN25-Q12b",
-    "marks": 9,
-    "command_word": "Discuss",
-    "text": "An asset log has been provided for the graphic artist.
-
-Discuss the suitability of the asset log for use by the graphic artist.
-
-Marks will be awarded for:
-• Suggesting changes that improve the asset log.
-• Explaining how the changes you suggest will improve the effectiveness of the asset log for the graphic artist.",
-    "response_type": "long_text",
-    "figure": {
-      "src": "img/jun_25_12b_workplan.jpg",
-      "label": "Fig. 3",
-      "caption": "Asset log.",
-      "alt": "An asset log table."
-    },
-    "mark_scheme": [
-      "Level of response (9). Improvements + explained impact for a graphic artist (clarity, consistency, completeness, copyright/source, file formats, resolution, naming, location)."
-    ]
-  },
-  {
-    "id": "JUN25-Q12c",
-    "marks": 1,
-    "command_word": "Identify",
-    "text": "Identify one piece of software that could be used to create an asset log.",
-    "response_type": "short_text",
-    "mark_scheme": [
-      "Spreadsheet / database / word processor / DTP (or named software such as Excel) (1)."
-    ]
-  },
-  {
-    "id": "JUN25-Q13a",
-    "marks": 2,
-    "command_word": "Describe",
-    "text": "Describe one action UniqJny must take to ensure photographs included in the interactive travel magazine can be used for commercial purposes.",
-    "response_type": "long_text",
-    "mark_scheme": [
-      "1 mark: identifies an action (permission/licence/pay/contract/model release/royalty-free/take own photos).",
-      "2 marks: explains why it makes commercial use legal."
-    ]
-  },
-  {
-    "id": "JUN25-Q13b",
-    "marks": 2,
-    "command_word": "Explain",
-    "text": "Explain one way a photographer can protect the photographs they take from being used illegally.",
-    "response_type": "long_text",
-    "mark_scheme": [
-      "1 mark: identifies a method (watermark/metadata/low-res/licensing/copyright notice).",
-      "2 marks: explains how it reduces illegal use."
-    ]
-  },
-  {
-    "id": "JUN25-Q13c",
-    "marks": 2,
-    "command_word": "Explain",
-    "text": "Explain one reason why pixels per inch (PPI) should be considered when choosing photographs to use in the interactive magazine.",
-    "response_type": "long_text",
-    "mark_scheme": [
-      "1 mark: links PPI to resolution/quality.",
-      "2 marks: explains impact (too low = pixelated; too high = larger files/slow loading)."
-    ]
-  },
-  {
-    "id": "JUN25-Q13d",
-    "marks": 4,
-    "command_word": "Identify & Describe",
-    "text": "Identify two online distribution platforms. Describe one way each platform could be used to distribute a digital product.",
-    "response_type": "short_list_with_explain",
-    "expected_responses": 2,
-    "mark_scheme": [
-      "For each platform: 1 mark identify + 1 mark describe use (max 4)."
-    ]
-  },
-  {
-    "id": "JUN25-Q13e",
-    "marks": 2,
-    "command_word": "Explain",
-    "text": "Explain one difference between lossy and lossless compression.",
-    "response_type": "long_text",
-    "mark_scheme": [
-      "1 mark: identifies a correct difference.",
-      "2 marks: explains difference (lossy removes data/quality loss vs lossless keeps data/no quality loss)."
-    ]
-  },
-  {
-    "id": "JUN25-Q14",
-    "marks": 9,
-    "command_word": "Discuss",
-    "text": "A wireframe of the interactive index double page of the next issue of the interactive travel magazine is shown.
-
-You cannot draw/annotate directly on the wireframe here. Instead, discuss how the effectiveness of the wireframe could be improved for use in the interactive travel magazine.
-
-Marks will be awarded for:
-• Suggesting improvements to the wireframe layout, structure and content.
-• Explaining how each improvement would improve usability, navigation or user experience for the audience.",
-    "response_type": "long_text",
-    "figure": {
-      "src": "img/jun_25_14_workplan.jpg",
-      "label": "Fig. 4",
-      "caption": "Wireframe.",
-      "alt": "A wireframe titled Contents with layout boxes."
-    },
-    "mark_scheme": [
-      "Level of response (9). Range of relevant improvements + clear explanation of impact (usability/navigation/UX), using appropriate terminology."
-    ]
-  },
-  {
-    "id": "JUN25-Q15",
-    "marks": 2,
-    "command_word": "Explain",
-    "text": "Explain one way libel laws could affect the content of a magazine.",
-    "response_type": "long_text",
-    "mark_scheme": [
-      "1 mark: identifies what libel is OR gives a relevant impact.",
-      "2 marks: explains impact (check facts/avoid false statements/fairness)."
-    ]
+async function loadQuestions() {
+  try {
+    const res = await fetch(SPEC_URL, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`Failed to load spec: ${res.status}`);
+    const data = await res.json();
+    QUESTIONS = Array.isArray(data) ? data : (data.questions || []);
+    if (!Array.isArray(QUESTIONS) || QUESTIONS.length === 0) throw new Error('Spec loaded but contained no questions');
+    return true;
+  } catch (err) {
+    console.error(err);
+    const el = document.getElementById('submitStatus');
+    if (el) el.textContent = '❌ Could not load the June 2025 exam questions. Check the JSON file path and try refreshing.';
+    const qWrap = document.getElementById('questions');
+    if (qWrap) qWrap.innerHTML = `<div class="q-card"><h3>Exam content failed to load</h3><p>${String(err).replace(/</g,'&lt;')}</p><p>Expected: <code>${SPEC_URL}</code> in the repository root.</p></div>`;
+    return false;
   }
-];
+}
+
+
 const elQuestions = document.getElementById('questions');
 const elTotal = document.getElementById('totalMarks');
 const elPrompt = document.getElementById('promptBox');
 
-const SAVE_KEY = 'imediagenius_r093_jun2025_save';
+const SAVE_KEY = 'R093-2025-JUN_savedAnswers_v1';
 
 // Firebase submission settings
 const EXAM_ID = 'R093-2025-JUN';
-const PROMPT_VERSION = 'R093-2025-JUN-v1';
+const PROMPT_VERSION = 'PM01-v1';
 
 
-let secondsLeft = 90 * 60;
+let secondsLeft = 30 * 60;
 let running = false;
 let timerHandle = null;
 
@@ -506,15 +112,6 @@ function render() {
 }
 
 function renderAnswer(container, q, i) {
-  if (q.response_type === 'short_text') {
-    const inp = document.createElement('input');
-    inp.type = 'text';
-    inp.placeholder = 'Write your answer…';
-    inp.dataset.key = getAnswerKey(i);
-    container.appendChild(inp);
-    return;
-  }
-
   if (q.response_type === 'mcq_single') {
     const group = `mcq-${i}`;
     const mcq = document.createElement('div');
@@ -529,22 +126,6 @@ function renderAnswer(container, q, i) {
       `);
     });
     container.appendChild(mcq);
-    return;
-  }
-
-  if (q.response_type === 'short_list_with_explain') {
-    const n = q.expected_responses || 2;
-    for (let k=1;k<=n;k++) {
-      const inp = document.createElement('input');
-      inp.type = 'text';
-      inp.placeholder = `Platform ${k}…`;
-      inp.dataset.key = getAnswerKey(i, `p${k}`);
-      container.appendChild(inp);
-      const ta = document.createElement('textarea');
-      ta.placeholder = 'Describe how this platform could be used to distribute the digital product…';
-      ta.dataset.key = getAnswerKey(i, `e${k}`);
-      container.appendChild(ta);
-    }
     return;
   }
 
@@ -584,7 +165,7 @@ function buildPrompt() {
   const answers = collectAnswers();
 
   let prompt = `You are an OCR Cambridge National Creative iMedia R093 examiner.\n\n`
-    + `Task: Mark this 70-mark exam paper question-by-question using ONLY the mark schemes provided.\n\n`
+    + `Task: Mark this 31-mark mini exam question-by-question using ONLY the mark schemes provided.\n\n`
     + `MARKING RULES (OCR-style)\n`
     + `- Mark ONLY what the student has written. Do not credit implied knowledge.\n`
     + `- If a short question requires two responses, mark only the required number, in order.\n`
@@ -592,38 +173,12 @@ function buildPrompt() {
     + `- For the 9-mark question, apply a level-of-response judgement (Level 3/2/1/0) then choose a mark within the level.\n`
     + `- Reward role-specific improvements and clear justification.\n`
     + `- Use UK English.\n\n`
-    + `OUTPUT: Provide marks per question, total /70, then WWW, EBI, and 1–2 targets.\n\n`;
+    + `OUTPUT: Provide marks per question, total /31, then WWW, EBI, and 1–2 targets.\n\n`;
 
   QUESTIONS.forEach((q,i)=>{
     const qKey = `Q${i+1}`;
     let studentAnswer = '';
-    if (q.response_type === 'short_list_with_explain') {
-    const n = q.expected_responses || 2;
-    for (let k=1;k<=n;k++) {
-      const inp = document.createElement('input');
-      inp.type = 'text';
-      inp.placeholder = `Platform ${k}…`;
-      inp.dataset.key = getAnswerKey(i, `p${k}`);
-      container.appendChild(inp);
-      const ta = document.createElement('textarea');
-      ta.placeholder = 'Describe how this platform could be used to distribute the digital product…';
-      ta.dataset.key = getAnswerKey(i, `e${k}`);
-      container.appendChild(ta);
-    }
-    return;
-  }
-
-    if (q.response_type === 'short_list_with_explain') {
-      const n = q.expected_responses || 2;
-      const items = [];
-      for (let k=1;k<=n;k++) {
-        const p = answers[getAnswerKey(i, `p${k}`)] || '';
-        const e = answers[getAnswerKey(i, `e${k}`)] || '';
-        items.push(`${k}) ${p}\n   ${e}`);
-      }
-      studentAnswer = items.join('\n');
-    } else 
-  if (q.response_type === 'short_list') {
+    if (q.response_type === 'short_list') {
       const n = q.expected_responses || 2;
       const items = [];
       for (let k=1;k<=n;k++) items.push(`${k}) ${answers[getAnswerKey(i,k)] || ''}`);
@@ -709,33 +264,7 @@ function buildAnswersOnlyText(){
   QUESTIONS.forEach((q,i)=>{
     const qKey = `Q${i+1}`;
     let studentAnswer = '';
-    if (q.response_type === 'short_list_with_explain') {
-    const n = q.expected_responses || 2;
-    for (let k=1;k<=n;k++) {
-      const inp = document.createElement('input');
-      inp.type = 'text';
-      inp.placeholder = `Platform ${k}…`;
-      inp.dataset.key = getAnswerKey(i, `p${k}`);
-      container.appendChild(inp);
-      const ta = document.createElement('textarea');
-      ta.placeholder = 'Describe how this platform could be used to distribute the digital product…';
-      ta.dataset.key = getAnswerKey(i, `e${k}`);
-      container.appendChild(ta);
-    }
-    return;
-  }
-
-    if (q.response_type === 'short_list_with_explain') {
-      const n = q.expected_responses || 2;
-      const items = [];
-      for (let k=1;k<=n;k++) {
-        const p = answers[getAnswerKey(i, `p${k}`)] || '';
-        const e = answers[getAnswerKey(i, `e${k}`)] || '';
-        items.push(`${k}) ${p}\n   ${e}`);
-      }
-      studentAnswer = items.join('\n');
-    } else 
-  if (q.response_type === 'short_list') {
+    if (q.response_type === 'short_list') {
       const n = q.expected_responses || 2;
       const items = [];
       for (let k=1;k<=n;k++) items.push(`${k}) ${answers[getAnswerKey(i,k)] || ''}`);

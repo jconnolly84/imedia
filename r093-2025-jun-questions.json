@@ -1,0 +1,263 @@
+[
+  {
+    "id": "JUN25-Q1",
+    "marks": 1,
+    "command_word": "Identify",
+    "text": "Action, arcade, first person, puzzle and RPG are examples of which new media product?",
+    "response_type": "short_text"
+  },
+  {
+    "id": "JUN25-Q2",
+    "marks": 2,
+    "command_word": "Complete",
+    "text": "Complete the sentences. Write a job role from the list in each of the two spaces.\ncontent creator, graphic designer, web designer, web developer\n\nA ________ is responsible for planning the style and layout of a website.\nA ________ is responsible for creating the website.",
+    "response_type": "short_list",
+    "responses_required": 2
+  },
+  {
+    "id": "JUN25-Q3",
+    "marks": 1,
+    "command_word": "Select",
+    "text": "Which lighting position is used to create a shadow effect from behind?",
+    "response_type": "mcq_single",
+    "options": [
+      "Back light",
+      "Low angle",
+      "Practical lighting",
+      "Side angle"
+    ],
+    "answer": "Back light"
+  },
+  {
+    "id": "JUN25-Q4",
+    "marks": 2,
+    "command_word": "Identify",
+    "text": "Identify the components of the workplan labelled A and B.",
+    "response_type": "short_list",
+    "responses_required": 2,
+    "figure": {
+      "src": "img/jun_25_04_workplan.jpg",
+      "alt": "Workplan labelled A and B"
+    }
+  },
+  {
+    "id": "JUN25-Q5",
+    "marks": 1,
+    "command_word": "Identify",
+    "text": "Which intellectual property gives exclusive rights to the creator of a design?",
+    "response_type": "short_text"
+  },
+  {
+    "id": "JUN25-Q6",
+    "marks": 1,
+    "command_word": "Identify",
+    "text": "Which property of digital audio files counts the number of pieces of data captured each second?",
+    "response_type": "short_text"
+  },
+  {
+    "id": "JUN25-Q7",
+    "marks": 1,
+    "command_word": "Complete",
+    "text": "Complete the sentence. Write one word or phrase from the list: icons, posters, still images, videos.\n\nMP4 is an example of a file format used for __________.",
+    "response_type": "mcq_single",
+    "options": [
+      "icons",
+      "posters",
+      "still images",
+      "videos"
+    ],
+    "answer": "videos"
+  },
+  {
+    "id": "JUN25-Q8",
+    "marks": 1,
+    "command_word": "Select",
+    "text": "Which is an example of quantitative information?",
+    "response_type": "mcq_single",
+    "options": [
+      "33",
+      "Blue",
+      "Television",
+      "Workflow"
+    ],
+    "answer": "33"
+  },
+  {
+    "id": "JUN25-Q9a",
+    "marks": 1,
+    "command_word": "Identify",
+    "text": "Identify the purpose of the interactive travel magazine.",
+    "response_type": "short_text"
+  },
+  {
+    "id": "JUN25-Q9b",
+    "marks": 2,
+    "command_word": "Explain",
+    "text": "Explain what is meant by interactive media.",
+    "response_type": "long_text"
+  },
+  {
+    "id": "JUN25-Q9c",
+    "marks": 1,
+    "command_word": "Identify",
+    "text": "Identify one example of traditional media other than print publishing.",
+    "response_type": "short_text"
+  },
+  {
+    "id": "JUN25-Q10a",
+    "marks": 2,
+    "command_word": "Describe",
+    "text": "Describe one way the typography changes on the front cover of this magazine.",
+    "response_type": "long_text",
+    "figure": {
+      "src": "img/jun_25_10_workplan.jpg",
+      "alt": "Magazine cover (Question 10)"
+    }
+  },
+  {
+    "id": "JUN25-Q10b",
+    "marks": 2,
+    "command_word": "Describe",
+    "text": "Describe one way the elements are positioned to meet the purpose of this magazine cover.",
+    "response_type": "long_text",
+    "figure": {
+      "src": "img/jun_25_10_workplan.jpg",
+      "alt": "Magazine cover (Question 10)"
+    }
+  },
+  {
+    "id": "JUN25-Q10c",
+    "marks": 2,
+    "command_word": "Explain",
+    "text": "Explain one way informal language is used on this magazine cover.",
+    "response_type": "long_text",
+    "figure": {
+      "src": "img/jun_25_10_workplan.jpg",
+      "alt": "Magazine cover (Question 10)"
+    }
+  },
+  {
+    "id": "JUN25-Q10d",
+    "marks": 2,
+    "command_word": "Identify",
+    "text": "Identify two secondary research sources, other than magazines, that could be used to help plan the next issue of the interactive travel magazine.",
+    "response_type": "short_list",
+    "responses_required": 2
+  },
+  {
+    "id": "JUN25-Q10e",
+    "marks": 2,
+    "command_word": "Describe",
+    "text": "Describe what is meant by symbolic media codes.",
+    "response_type": "long_text"
+  },
+  {
+    "id": "JUN25-Q11a",
+    "marks": 6,
+    "command_word": "Explain",
+    "text": "Explain two ways that a production manager could contribute to the production of the interactive travel magazine.",
+    "response_type": "long_text"
+  },
+  {
+    "id": "JUN25-Q11b",
+    "marks": 2,
+    "command_word": "Identify",
+    "text": "Identify two responsibilities of a creative director.",
+    "response_type": "short_list",
+    "responses_required": 2
+  },
+  {
+    "id": "JUN25-Q12a",
+    "marks": 1,
+    "command_word": "Identify",
+    "text": "Identify the phase of production in which a graphic artist is involved.",
+    "response_type": "short_text"
+  },
+  {
+    "id": "JUN25-Q12b",
+    "marks": 9,
+    "command_word": "Discuss",
+    "text": "An asset log has been provided for the graphic artist.\n\nDiscuss the suitability of the asset log for use by the graphic artist.\n\nMarks will be awarded for:\n• Suggesting changes that improve the asset log.\n• Explaining how the changes you suggest will improve the effectiveness of the asset log for the graphic artist.",
+    "response_type": "long_text",
+    "figure": {
+      "src": "img/jun_25_12b_workplan.jpg",
+      "alt": "Asset log table"
+    }
+  },
+  {
+    "id": "JUN25-Q12c",
+    "marks": 1,
+    "command_word": "Identify",
+    "text": "Identify one piece of software that could be used to create an asset log.",
+    "response_type": "short_text"
+  },
+  {
+    "id": "JUN25-Q13a",
+    "marks": 2,
+    "command_word": "Describe",
+    "text": "Describe one action UniqJny must take to ensure photographs included in the interactive travel magazine can be used for commercial purposes.",
+    "response_type": "long_text"
+  },
+  {
+    "id": "JUN25-Q13b",
+    "marks": 2,
+    "command_word": "Explain",
+    "text": "Explain one way a photographer can protect the photographs they take from being used illegally.",
+    "response_type": "long_text"
+  },
+  {
+    "id": "JUN25-Q13c",
+    "marks": 2,
+    "command_word": "Explain",
+    "text": "Explain one reason why pixels per inch (PPI) should be considered when choosing photographs to use in the interactive magazine.",
+    "response_type": "long_text"
+  },
+  {
+    "id": "JUN25-Q13d",
+    "marks": 4,
+    "command_word": "Identify/Describe",
+    "text": "Identify two online distribution platforms. Describe one way each platform could be used to distribute a digital product.",
+    "response_type": "short_list_with_explain",
+    "responses_required": 2
+  },
+  {
+    "id": "JUN25-Q13e",
+    "marks": 2,
+    "command_word": "Explain",
+    "text": "Explain one difference between lossy and lossless compression.",
+    "response_type": "long_text"
+  },
+  {
+    "id": "JUN25-Q14a",
+    "marks": 9,
+    "command_word": "Discuss",
+    "text": "A wireframe of the interactive index double page of the next issue of the interactive travel magazine is given to the graphic artist.\n\nONLINE VERSION NOTE: You cannot draw/annotate directly on the wireframe here.\nInstead, DISCUSS how you would improve the effectiveness of the wireframe for use by the graphic artist, describing specific improvements and explaining how each one would help.\n\nMarks will be awarded for:\n• Relevant components and conventions used\n• Layout\n• Clear justification of how your improvements help the graphic artist",
+    "response_type": "long_text",
+    "figure": {
+      "src": "img/jun_25_14_workplan.jpg",
+      "alt": "Wireframe of interactive index double page"
+    }
+  },
+  {
+    "id": "JUN25-Q14b",
+    "marks": 2,
+    "command_word": "Identify",
+    "text": "Identify two pieces of hardware required to create a wireframe.",
+    "response_type": "short_list",
+    "responses_required": 2
+  },
+  {
+    "id": "JUN25-Q14c",
+    "marks": 2,
+    "command_word": "Identify/Explain",
+    "text": "Identify one category of audience segmentation. Explain one way this category could influence the design of the interactive travel magazine.",
+    "response_type": "long_text"
+  },
+  {
+    "id": "JUN25-Q15",
+    "marks": 2,
+    "command_word": "Explain",
+    "text": "Explain one way libel laws could affect the content of a magazine.",
+    "response_type": "long_text"
+  }
+]
