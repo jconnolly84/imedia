@@ -104,7 +104,15 @@
   function saveSaved(){
     try { localStorage.setItem(LS_KEY, JSON.stringify(answers)); } catch(e) {}
   }
-  function setAns(qid, val){ answers[qid] = val; saveSaved(); }
+  function setAns(qid, val){
+    if (val === undefined || val === null){
+      delete answers[qid];
+      saveSaved();
+      return;
+    }
+    answers[qid] = val;
+    saveSaved();
+  }
   function getAns(qid, defVal){ return (qid in answers) ? answers[qid] : defVal; }
 
   function renderQuestion(q, idx){
@@ -182,7 +190,7 @@
 
         r.value = key;
         r.checked = saved === key;
-        r.addEventListener("change", ()=> setAns(q.id, opt.key));
+        r.addEventListener("change", ()=> setAns(q.id, r.value));
         const span = document.createElement("span");
         span.textContent = `${key}. ${text}`;
         lab.appendChild(r);
@@ -285,11 +293,31 @@
     }
 
     const colRef = collection(db, "exams", EXAM_ID, "submissions");
+    function sanitise(v){
+      if (v === undefined) return undefined;
+      if (v === null) return null;
+      if (Array.isArray(v)){
+        const arr = v.map(sanitise).filter(x => x !== undefined);
+        return arr;
+      }
+      if (typeof v === "object"){
+        const out = {};
+        Object.keys(v).forEach(k=>{
+          const sv = sanitise(v[k]);
+          if (sv !== undefined) out[k] = sv;
+        });
+        return out;
+      }
+      return v;
+    }
+
+    const cleanAnswers = sanitise(answers) || {};
+
     await addDoc(colRef, {
       examId: EXAM_ID,
       studentName,
       classCode,
-      answers,
+      answers: cleanAnswers,
       submittedAt: serverTimestamp()
     });
     alert("Submitted ✅");
