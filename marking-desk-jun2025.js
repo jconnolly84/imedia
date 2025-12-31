@@ -55,7 +55,7 @@ async function deleteAttempt(sub){
 
 async function deleteAllAttempts(){
   // Double confirmation because this is destructive.
-  const first = confirm("Delete ALL submissions for this June 2025 paper? This cannot be undone.");
+  const first = confirm("Delete ALL submissions for this paper? This cannot be undone.");
   if(!first) return;
   const second = prompt("Type DELETE to confirm:");
   if(second !== "DELETE"){
@@ -64,37 +64,40 @@ async function deleteAllAttempts(){
   }
 
   els.authStatus.textContent = "Deleting all…";
-  const colRef = collection(db, "exams", EXAM_ID, "submissions");
 
-  // Paginate in chunks to avoid huge reads.
-  let last = null;
-  let total = 0;
+  try{
+    // Use the SAME delete pathway as individual deletes (more compatible with rules than batched deletes).
+    // Delete currently loaded records (cache) one-by-one.
+    // If cache is empty, load first.
+    if (!cache || !cache.length){
+      await load(false);
+    }
+    const ids = (cache || []).map(s=>s.id);
 
-  while(true){
-    const q = last
-      ? query(colRef, orderBy("submittedAt","desc"), startAfter(last), limit(400))
-      : query(colRef, orderBy("submittedAt","desc"), limit(400));
+    let deleted = 0;
+    for (const id of ids){
+      try{
+        await deleteDoc(doc(db, "exams", EXAM_ID, "submissions", id));
+        deleted++;
+      }catch(e){
+        console.error("Failed to delete", id, e);
+      }
+    }
 
-    const snap = await getDocs(q);
-    if(snap.empty) break;
-
-    const batch = writeBatch(db);
-    snap.docs.forEach(d=>batch.delete(d.ref));
-    await batch.commit();
-
-    total += snap.size;
-    last = snap.docs[snap.docs.length - 1];
-    // Safety: stop if something weird
-    if (snap.size < 400) break;
+    cache = [];
+    current = null;
+    renderList(cache);
+    els.subMeta.innerHTML = "";
+    els.answersBox.textContent = "";
+    els.authStatus.textContent = `Deleted ${deleted} submissions.`;
+  }catch(err){
+    console.error(err);
+    alert("Delete all failed. Check Firestore rules/network.");
+    els.authStatus.textContent = "Delete all failed.";
   }
-
-  cache = [];
-  current = null;
-  renderList(cache);
-  els.subMeta.innerHTML = "";
-  els.promptOut.value = "";
-  els.authStatus.textContent = `Deleted ${total} submissions.`;
 }
+
+
 
 function renderList(items){
   els.subList.innerHTML = "";
@@ -278,6 +281,8 @@ els.signInBtn?.addEventListener("click", async ()=>{
 });
 
 els.refreshBtn?.addEventListener("click", ()=>load());
+
+els.deleteAllBtn?.addEventListener("click", ()=>deleteAllAttempts());
 
 els.classFilter?.addEventListener("input", ()=>load(true));
 els.statusFilter?.addEventListener("change", ()=>load(true));

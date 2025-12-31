@@ -22,11 +22,15 @@
   
     .row-actions{display:flex;gap:8px;align-items:center;justify-content:flex-end}
     .btn.small{padding:6px 10px;font-size:12px;border-radius:10px}
-    .btn.danger{background:rgba(255,0,0,.12);border:1px solid rgba(255,0,0,.35)}
+    .btn.danger{background:rgba(255,45,85,.95);border:1px solid rgba(255,45,85,1);color:#fff;font-weight:800}
     .status-pill{padding:4px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.18)}
     .status-pill.marked{background:rgba(0,200,0,.12);border-color:rgba(0,200,0,.35)}
     .status-pill.unmarked{background:rgba(255,165,0,.10);border-color:rgba(255,165,0,.30)}
-</style>
+
+    .btn.danger:hover{filter:brightness(1.08)}
+    .btn.danger:focus{outline:2px solid rgba(255,45,85,.6);outline-offset:2px}
+    #deleteAllBtn{padding:10px 14px;border-radius:14px}
+    .row-actions .btn{min-width:92px}</style>
 </head>
 <body>
 <div class="page">
@@ -53,8 +57,7 @@
           <select id="statusFilter">
             <option value="">All</option>
             <option value="unmarked">Unmarked</option>
-            <option value="in-progress">In progress</option>
-            <option value="complete">Complete</option>
+            <option value="marked">Marked</option>
           </select>
         </label>
         <span id="authStatus" class="copy-status"></span>
