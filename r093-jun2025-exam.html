@@ -4,7 +4,13 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>R093/01 June 2025 Full Exam (Markable)</title>
-  <link rel="stylesheet" href="markable-mini-exam.css">
+  
+  <link href="host.css" rel="stylesheet"/>
+  <link href="topic.css" rel="stylesheet"/>
+  <link href="nav.css" rel="stylesheet"/>
+  <link href="markable-mini-exam.css" rel="stylesheet"/>
+
+<link rel="stylesheet" href="markable-mini-exam.css">
   <style>
     /* Safety styles if your CSS is missing bits */
     .container { max-width: 980px; margin: 0 auto; padding: 18px; }
@@ -162,11 +168,23 @@
         const r = document.createElement("input");
         r.type="radio";
         r.name = `mcq_${q.id}`;
-        r.value = opt.key;
-        r.checked = saved === opt.key;
+        // Normalise option shape (supports {key,text}, {option,text}, {label,text}, or "A. Something")
+        let key = (opt && typeof opt === "object") ? (opt.key || opt.option || opt.letter || opt.id || opt.value) : null;
+        let text = (opt && typeof opt === "object") ? (opt.text || opt.labelText || opt.label || opt.answer || opt.valueText || opt.name) : null;
+
+        if (typeof opt === "string"){
+          const m = opt.match(/^\s*([A-D])\s*[\.|\)]\s*(.+)$/i);
+          if (m){ key = m[1].toUpperCase(); text = m[2]; }
+          else { text = opt; }
+        }
+        if (!key){ key = String.fromCharCode(65 + (opts.indexOf(opt))); } // A,B,C,D fallback
+        if (!text){ text = (typeof opt === "string") ? opt : ""; }
+
+        r.value = key;
+        r.checked = saved === key;
         r.addEventListener("change", ()=> setAns(q.id, opt.key));
         const span = document.createElement("span");
-        span.textContent = `${opt.key}. ${opt.text}`;
+        span.textContent = `${key}. ${text}`;
         lab.appendChild(r);
         lab.appendChild(span);
         control.appendChild(lab);
