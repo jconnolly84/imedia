@@ -1,6 +1,6 @@
 import { auth, db } from "./firebaseConfig.js";
 import { GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-import { collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+import { collection, getDocs, query, orderBy, doc, updateDoc, deleteDoc, writeBatch, limit, startAfter, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const EXAM_ID = "R093-2025-JUN";
 const MARKSPEC_URL = "/r093-2025-jun-markscheme-spec.json";
@@ -9,6 +9,7 @@ let MARKSPEC = null;
 const els = {
   signInBtn: document.getElementById("signInBtn"),
   refreshBtn: document.getElementById("refreshBtn"),
+  deleteAllBtn: document.getElementById("deleteAllBtn"),
   classFilter: document.getElementById("classFilter"),
   statusFilter: document.getElementById("statusFilter"),
   authStatus: document.getElementById("authStatus"),
@@ -37,6 +38,64 @@ function matchesFilters(sub){
   return true;
 }
 
+
+async function setMarked(sub, marked){
+  const ref = doc(db, "exams", EXAM_ID, "submissions", sub.id);
+  const nextStatus = marked ? "marked" : "unmarked";
+  const patch = marked ? { status: nextStatus, markedAt: serverTimestamp() } : { status: nextStatus, markedAt: null };
+  await updateDoc(ref, patch);
+  sub.status = nextStatus;
+}
+
+async function deleteAttempt(sub){
+  const ref = doc(db, "exams", EXAM_ID, "submissions", sub.id);
+  await deleteDoc(ref);
+  cache = cache.filter(x=>x.id !== sub.id);
+}
+
+async function deleteAllAttempts(){
+  // Double confirmation because this is destructive.
+  const first = confirm("Delete ALL submissions for this June 2025 paper? This cannot be undone.");
+  if(!first) return;
+  const second = prompt("Type DELETE to confirm:");
+  if(second !== "DELETE"){
+    alert("Cancelled.");
+    return;
+  }
+
+  els.authStatus.textContent = "Deleting all…";
+  const colRef = collection(db, "exams", EXAM_ID, "submissions");
+
+  // Paginate in chunks to avoid huge reads.
+  let last = null;
+  let total = 0;
+
+  while(true){
+    const q = last
+      ? query(colRef, orderBy("submittedAt","desc"), startAfter(last), limit(400))
+      : query(colRef, orderBy("submittedAt","desc"), limit(400));
+
+    const snap = await getDocs(q);
+    if(snap.empty) break;
+
+    const batch = writeBatch(db);
+    snap.docs.forEach(d=>batch.delete(d.ref));
+    await batch.commit();
+
+    total += snap.size;
+    last = snap.docs[snap.docs.length - 1];
+    // Safety: stop if something weird
+    if (snap.size < 400) break;
+  }
+
+  cache = [];
+  current = null;
+  renderList(cache);
+  els.subMeta.innerHTML = "";
+  els.promptOut.value = "";
+  els.authStatus.textContent = `Deleted ${total} submissions.`;
+}
+
 function renderList(items){
   els.subList.innerHTML = "";
   const filtered = items.filter(matchesFilters);
@@ -47,14 +106,67 @@ function renderList(items){
   filtered.forEach(sub=>{
     const div = document.createElement("div");
     div.className = "row";
+    const status = (sub.status || "unmarked").toLowerCase();
+    const isMarked = status === "marked";
+
     div.innerHTML = `
       <div>
         <div><strong>${sub.studentName || "Unknown"}</strong> <small>${sub.classCode || ""}</small></div>
         <small>${fmtTime(sub.submittedAt)}</small>
       </div>
-      <div class="k">${sub.status || "unmarked"}</div>
+      <div class="row-actions">
+        <span class="k status-pill ${isMarked ? "marked" : "unmarked"}">${status}</span>
+        <button class="btn small" data-action="toggleMarked" data-id="${sub.id}">
+          ${isMarked ? "Unmark" : "Mark"}
+        </button>
+        <button class="btn small danger" data-action="deleteAttempt" data-id="${sub.id}">
+          Delete
+        </button>
+      </div>
     `;
-    div.addEventListener("click", ()=>selectSub(sub));
+
+    // Row click selects; action buttons do not.
+    div.addEventListener("click", (e)=>{
+      const btn = e.target?.closest?.("button[data-action]");
+      if (btn) return;
+      selectSub(sub);
+    });
+
+    // Button handlers
+    div.querySelectorAll("button[data-action]").forEach(btn=>{
+      btn.addEventListener("click", async (e)=>{
+        e.preventDefault();
+        e.stopPropagation();
+
+        const action = btn.dataset.action;
+        try{
+          if (action === "toggleMarked"){
+            btn.disabled = true;
+            await setMarked(sub, !isMarked);
+            renderList(cache);
+          }
+          if (action === "deleteAttempt"){
+            const ok = confirm(`Delete submission from ${sub.studentName || "Unknown"}? This cannot be undone.`);
+            if(!ok) return;
+            btn.disabled = true;
+            await deleteAttempt(sub);
+            renderList(cache);
+            // If we deleted the selected one, clear panel
+            if (current && current.id === sub.id){
+              current = null;
+              els.subMeta.innerHTML = "";
+              els.promptOut.value = "";
+            }
+          }
+        }catch(err){
+          console.error(err);
+          alert("Action failed. Check console / Firestore rules.");
+        }finally{
+          btn.disabled = false;
+        }
+      });
+    });
+
     els.subList.appendChild(div);
   });
 }
