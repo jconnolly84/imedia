@@ -104,6 +104,57 @@
   function saveSaved(){
     try { localStorage.setItem(LS_KEY, JSON.stringify(answers)); } catch(e) {}
   }
+
+  // --- Autosave (every 60 seconds) ---
+  const AUTOSAVE_KEY = `${EXAM_ID}::autosave_v1`;
+
+  function buildAutoSavePayload(){
+    return {
+      examId: EXAM_ID,
+      savedAt: Date.now(),
+      answers,
+      timeRemaining: seconds,
+      studentName: ($("studentName")?.value || "").trim(),
+      classCode: ($("classCode")?.value || "").trim()
+    };
+  }
+
+  function restoreAutoSave(){
+    try{
+      const raw = localStorage.getItem(AUTOSAVE_KEY);
+      if(!raw) return false;
+      const data = JSON.parse(raw);
+      if(data && typeof data === "object"){
+        if(data.answers && typeof data.answers === "object") answers = data.answers;
+        if(typeof data.timeRemaining === "number") seconds = data.timeRemaining;
+        if(data.studentName && $("studentName")) $("studentName").value = data.studentName;
+        if(data.classCode && $("classCode")) $("classCode").value = data.classCode;
+        return true;
+      }
+    }catch(e){
+      console.warn("Failed to restore autosave", e);
+    }
+    return false;
+  }
+
+  function autoSave(){
+    try{
+      localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(buildAutoSavePayload()));
+    }catch(e){
+      console.warn("Autosave failed", e);
+    }
+  }
+
+  function startAutoSave(){
+    // Save immediately, then every 60 seconds
+    autoSave();
+    setInterval(autoSave, 60000);
+    // Also save if the tab is closed/refreshed
+    window.addEventListener("beforeunload", ()=>{
+      try{ autoSave(); }catch(e){}
+    });
+  }
+
   function setAns(qid, val){
     if (val === undefined || val === null){
       delete answers[qid];
@@ -345,9 +396,12 @@
 
   document.addEventListener("DOMContentLoaded", ()=> {
     loadSaved();
+    // Prefer autosave if present (e.g. after refresh/crash)
+    restoreAutoSave();
     updateTimer();
     renderAll();
     wire();
+    startAutoSave();
   });
 </script>
 </body>
