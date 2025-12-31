@@ -120,7 +120,17 @@ function buildFullPrompt(sub){
     return header;
   }).join("\n---\n\n");
 
-  return `You are an OCR Cambridge National Creative iMedia R093 examiner.\n\nTask: Mark this full 70-mark paper question-by-question using ONLY the mark scheme specifications provided below.\n\nMARKING RULES (OCR-style)\n${rules}\n\nOUTPUT:\n- Give a mark for each question part.\n- Provide total /70.\n- Provide WWW, EBI, and 2 targets for improvement.\n- Use UK English.\n\n${qBlocks}`;
+  return `You are an OCR Cambridge National Creative iMedia R093 examiner.\n\nTask: Mark this full 70-mark paper question-by-question using ONLY the mark scheme specifications provided below.\n\nMARKING RULES (OCR-style)\n${rules}\n\nOUTPUT:\n- Give a mark for each question part.\n- Provide total /70.\n- Provide WWW, EBI, and 2 targets for improvement.\n- Use UK English.\n\nAt the very end, output JSON (no commentary) exactly in this shape:
+{
+  "awarded_by_part": { "Q1": 1, "Q2": 2, "Q9a": 1 },
+  "sum_check_1": X,
+  "sum_check_2": X,
+  "final_total": X,
+  "max_total": 70
+}
+Rules: sum_check_1 MUST equal sum_check_2 MUST equal final_total.
+
+${qBlocks}`;
 }
 
 els.copyAnswersBtn2?.addEventListener("click", ()=>{
