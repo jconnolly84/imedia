@@ -151,15 +151,35 @@ function renderList(items){
           if (action === "deleteAttempt"){
             const ok = confirm(`Delete submission from ${sub.studentName || "Unknown"}? This cannot be undone.`);
             if(!ok) return;
+
             btn.disabled = true;
-            await deleteAttempt(sub);
-            renderList(cache);
-            // If we deleted the selected one, clear panel
-            if (current && current.id === sub.id){
-              current = null;
-              els.subMeta.innerHTML = "";
-              els.promptOut.value = "";
+
+            // Delete first (this is the only part that must succeed).
+            try{
+              await deleteAttempt(sub);
+            }catch(err){
+              console.error(err);
+              alert("Delete failed. Check console / Firestore rules.");
+              return;
+            }finally{
+              btn.disabled = false;
             }
+
+            // UI refresh (do not treat UI issues as a failed delete)
+            try{
+              renderList(cache);
+
+              // If we deleted the selected one, clear panel
+              if (current && current.id === sub.id){
+                current = null;
+                els.subMeta.innerHTML = "";
+                els.promptOut.value = "";
+                if (els.answersBox) els.answersBox.textContent = "";
+              }
+            }catch(e){
+              console.warn("UI refresh after delete had an issue (delete succeeded).", e);
+            }
+          }
           }
         }catch(err){
           console.error(err);
