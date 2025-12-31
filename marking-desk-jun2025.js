@@ -154,16 +154,28 @@ function renderList(items){
 
             btn.disabled = true;
 
-            // Delete first (this is the only part that must succeed).
+            // Perform delete; only alert if the delete itself fails.
             try{
               await deleteAttempt(sub);
             }catch(err){
               console.error(err);
               alert("Delete failed. Check console / Firestore rules.");
               return;
-            }finally{
-              btn.disabled = false;
             }
+
+            // Refresh UI (do not alert if UI refresh has a minor issue)
+            try{
+              renderList(cache);
+              if (current && current.id === sub.id){
+                current = null;
+                els.subMeta.innerHTML = "";
+                if (els.promptOut) els.promptOut.value = "";
+                if (els.answersBox) els.answersBox.textContent = "";
+              }
+            }catch(e){
+              console.warn("UI refresh after delete had an issue (delete succeeded).", e);
+            }
+          }
 
             // UI refresh (do not treat UI issues as a failed delete)
             try{
@@ -179,7 +191,6 @@ function renderList(items){
             }catch(e){
               console.warn("UI refresh after delete had an issue (delete succeeded).", e);
             }
-          }
           }
         }catch(err){
           console.error(err);
