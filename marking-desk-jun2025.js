@@ -1,6 +1,9 @@
 import { auth, db } from "./firebaseConfig.js";
 import { GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-import { collection, getDocs, query, orderBy, doc, updateDoc, deleteDoc, writeBatch, limit, startAfter, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+import {
+  collection, getDocs, query, orderBy,
+  doc, updateDoc, deleteDoc, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const EXAM_ID = "R093-2025-JUN";
 const MARKSPEC_URL = "/r093-2025-jun-markscheme-spec.json";
@@ -21,28 +24,32 @@ const els = {
   openPromptUrl: document.getElementById("openPromptUrl"),
 };
 
+let cache = [];
 let current = null;
 
 function fmtTime(ts){
   try{
     const d = ts?.toDate ? ts.toDate() : null;
     return d ? d.toLocaleString() : "";
-  } catch { return ""; }
+  } catch {
+    return "";
+  }
 }
 
 function matchesFilters(sub){
-  const c = (els.classFilter.value || "").trim().toLowerCase();
-  const s = (els.statusFilter.value || "").trim().toLowerCase();
+  const c = (els.classFilter?.value || "").trim().toLowerCase();
+  const s = (els.statusFilter?.value || "").trim().toLowerCase();
   if (c && (sub.classCode || "").toLowerCase() !== c) return false;
-  if (s && (sub.status || "").toLowerCase() !== s) return false;
+  if (s && (sub.status || "unmarked").toLowerCase() !== s) return false;
   return true;
 }
-
 
 async function setMarked(sub, marked){
   const ref = doc(db, "exams", EXAM_ID, "submissions", sub.id);
   const nextStatus = marked ? "marked" : "unmarked";
-  const patch = marked ? { status: nextStatus, markedAt: serverTimestamp() } : { status: nextStatus, markedAt: null };
+  const patch = marked
+    ? { status: nextStatus, markedAt: serverTimestamp() }
+    : { status: nextStatus, markedAt: null };
   await updateDoc(ref, patch);
   sub.status = nextStatus;
 }
@@ -50,13 +57,13 @@ async function setMarked(sub, marked){
 async function deleteAttempt(sub){
   const ref = doc(db, "exams", EXAM_ID, "submissions", sub.id);
   await deleteDoc(ref);
-  cache = cache.filter(x=>x.id !== sub.id);
+  cache = cache.filter(x => x.id !== sub.id);
 }
 
 async function deleteAllAttempts(){
-  // Double confirmation because this is destructive.
   const first = confirm("Delete ALL submissions for this paper? This cannot be undone.");
   if(!first) return;
+
   const second = prompt("Type DELETE to confirm:");
   if(second !== "DELETE"){
     alert("Cancelled.");
@@ -66,29 +73,25 @@ async function deleteAllAttempts(){
   els.authStatus.textContent = "Deleting all…";
 
   try{
-    // Use the SAME delete pathway as individual deletes (more compatible with rules than batched deletes).
-    // Delete currently loaded records (cache) one-by-one.
-    // If cache is empty, load first.
-    if (!cache || !cache.length){
+    if (!cache.length){
       await load(false);
     }
-    const ids = (cache || []).map(s=>s.id);
 
     let deleted = 0;
-    for (const id of ids){
+    for (const sub of [...cache]){
       try{
-        await deleteDoc(doc(db, "exams", EXAM_ID, "submissions", id));
+        await deleteDoc(doc(db, "exams", EXAM_ID, "submissions", sub.id));
         deleted++;
       }catch(e){
-        console.error("Failed to delete", id, e);
+        console.error("Failed to delete", sub.id, e);
       }
     }
 
     cache = [];
     current = null;
     renderList(cache);
-    els.subMeta.innerHTML = "";
-    els.answersBox.textContent = "";
+    els.subMeta.textContent = "Pick a submission…";
+    if (els.answersBox) els.answersBox.textContent = "";
     els.authStatus.textContent = `Deleted ${deleted} submissions.`;
   }catch(err){
     console.error(err);
@@ -97,18 +100,19 @@ async function deleteAllAttempts(){
   }
 }
 
-
-
 function renderList(items){
   els.subList.innerHTML = "";
   const filtered = items.filter(matchesFilters);
+
   if (!filtered.length){
     els.subList.innerHTML = "<div class='k'>No submissions match your filters.</div>";
     return;
   }
+
   filtered.forEach(sub=>{
     const div = document.createElement("div");
     div.className = "row";
+
     const status = (sub.status || "unmarked").toLowerCase();
     const isMarked = status === "marked";
 
@@ -119,78 +123,52 @@ function renderList(items){
       </div>
       <div class="row-actions">
         <span class="k status-pill ${isMarked ? "marked" : "unmarked"}">${status}</span>
-        <button class="btn small" data-action="toggleMarked" data-id="${sub.id}">
-          ${isMarked ? "Unmark" : "Mark"}
-        </button>
-        <button class="btn small danger" data-action="deleteAttempt" data-id="${sub.id}">
-          Delete
-        </button>
+        <button class="btn small" data-action="toggleMarked">${isMarked ? "Unmark" : "Mark"}</button>
+        <button class="btn small danger" data-action="deleteAttempt">🗑️ Delete</button>
       </div>
     `;
 
-    // Row click selects; action buttons do not.
+    // Select on row click (not on buttons)
     div.addEventListener("click", (e)=>{
       const btn = e.target?.closest?.("button[data-action]");
       if (btn) return;
       selectSub(sub);
     });
 
-    // Button handlers
+    // Button actions
     div.querySelectorAll("button[data-action]").forEach(btn=>{
       btn.addEventListener("click", async (e)=>{
         e.preventDefault();
         e.stopPropagation();
 
         const action = btn.dataset.action;
+        btn.disabled = true;
+
         try{
           if (action === "toggleMarked"){
-            btn.disabled = true;
             await setMarked(sub, !isMarked);
             renderList(cache);
+            return;
           }
+
           if (action === "deleteAttempt"){
             const ok = confirm(`Delete submission from ${sub.studentName || "Unknown"}? This cannot be undone.`);
             if(!ok) return;
 
-            btn.disabled = true;
+            await deleteAttempt(sub);
 
-            // Perform delete; only alert if the delete itself fails.
-            try{
-              await deleteAttempt(sub);
-            }catch(err){
-              console.error(err);
-              alert("Delete failed. Check console / Firestore rules.");
-              return;
-            }
-
-            // Refresh UI (do not alert if UI refresh has a minor issue)
+            // Refresh list + clear panel if needed (no scary alert if UI has a hiccup)
             try{
               renderList(cache);
               if (current && current.id === sub.id){
                 current = null;
-                els.subMeta.innerHTML = "";
-                if (els.promptOut) els.promptOut.value = "";
+                els.subMeta.textContent = "Pick a submission…";
                 if (els.answersBox) els.answersBox.textContent = "";
               }
-            }catch(e){
-              console.warn("UI refresh after delete had an issue (delete succeeded).", e);
+            }catch(uiErr){
+              console.warn("UI refresh after delete had an issue (delete succeeded).", uiErr);
             }
-          }
-
-            // UI refresh (do not treat UI issues as a failed delete)
-            try{
-              renderList(cache);
-
-              // If we deleted the selected one, clear panel
-              if (current && current.id === sub.id){
-                current = null;
-                els.subMeta.innerHTML = "";
-                els.promptOut.value = "";
-                if (els.answersBox) els.answersBox.textContent = "";
-              }
-            }catch(e){
-              console.warn("UI refresh after delete had an issue (delete succeeded).", e);
-            }
+            return;
           }
         }catch(err){
           console.error(err);
@@ -211,12 +189,13 @@ function answersOnlyText(sub){
     const ax = x.match(/\d+/)?.[0] || "0";
     const ay = y.match(/\d+/)?.[0] || "0";
     const nx = parseInt(ax,10), ny = parseInt(ay,10);
-    if (nx !== ny) return nx-ny;
+    if (nx !== ny) return nx - ny;
     return x.localeCompare(y);
   });
+
   let out = `Exam: ${sub.examId || EXAM_ID}\nStudent: ${sub.studentName || ""} (${sub.classCode || ""})\n\n`;
   keys.forEach(k=>{
-    out += `[${k}]\n${a[k] || ""}\n\n---\n\n`;
+    out += `[${k}]\n${a[k] ?? ""}\n\n---\n\n`;
   });
   return out.trim();
 }
@@ -224,7 +203,7 @@ function answersOnlyText(sub){
 async function selectSub(sub){
   current = sub;
   els.subMeta.textContent = `Student: ${sub.studentName || ""} | Class: ${sub.classCode || ""} | Submitted: ${fmtTime(sub.submittedAt)} | Status: ${sub.status || "unmarked"}`;
-  els.answersBox.textContent = answersOnlyText(sub);
+  if (els.answersBox) els.answersBox.textContent = answersOnlyText(sub);
 
   if (sub.promptUrl){
     els.openPromptUrl.style.display = "inline-block";
@@ -243,7 +222,6 @@ async function copyText(t){
   }
 }
 
-
 async function ensureMarkspec(){
   if (MARKSPEC) return MARKSPEC;
   const res = await fetch(MARKSPEC_URL, { cache: "no-store" });
@@ -254,19 +232,44 @@ async function ensureMarkspec(){
 
 function buildFullPrompt(sub){
   if (!MARKSPEC) return "";
+
   const rules = (MARKSPEC.global_marking_rules || []).map(r=>`- ${r}`).join("\n");
+
   const qBlocks = (MARKSPEC.questions || []).map(q=>{
     const ans = (sub.answers && sub.answers[q.id] !== undefined) ? sub.answers[q.id] : "";
     let ansText = "";
     if (Array.isArray(ans)) ansText = ans.map((v,i)=>`${i+1}. ${v}`).join("\n");
     else if (ans && typeof ans === "object") ansText = Object.entries(ans).map(([k,v])=>`${k}: ${v}`).join("\n");
-    else ansText = String(ans || "");
+    else ansText = String(ans ?? "");
+
     const ms = q.marking ? JSON.stringify(q.marking, null, 2) : "";
-    const header = `[${q.qnum}] (${q.marks} marks) ${q.command_word}\nQUESTION:\n${q.question}\n\nMARK SCHEME (AI spec):\n${ms}\n\nSTUDENT ANSWER:\n${ansText}\n`;
-    return header;
+
+    return `[${q.qnum}] (${q.marks} marks) ${q.command_word}
+QUESTION:
+${q.question}
+
+MARK SCHEME (AI spec):
+${ms}
+
+STUDENT ANSWER:
+${ansText}
+`;
   }).join("\n---\n\n");
 
-  return `You are an OCR Cambridge National Creative iMedia R093 examiner.\n\nTask: Mark this full 70-mark paper question-by-question using ONLY the mark scheme specifications provided below.\n\nMARKING RULES (OCR-style)\n${rules}\n\nOUTPUT:\n- Give a mark for each question part.\n- Provide total /70.\n- Provide WWW, EBI, and 2 targets for improvement.\n- Use UK English.\n\nAt the very end, output JSON (no commentary) exactly in this shape:
+  return `You are an OCR Cambridge National Creative iMedia R093 examiner.
+
+Task: Mark this full 70-mark paper question-by-question using ONLY the mark scheme specifications provided below.
+
+MARKING RULES (OCR-style)
+${rules}
+
+OUTPUT:
+- Give a mark for each question part.
+- Provide total /70.
+- Provide WWW, EBI, and 2 targets for improvement.
+- Use UK English.
+
+At the very end, output JSON (no commentary) exactly in this shape:
 {
   "awarded_by_part": { "Q1": 1, "Q2": 2, "Q9a": 1 },
   "sum_check_1": X,
@@ -279,6 +282,7 @@ Rules: sum_check_1 MUST equal sum_check_2 MUST equal final_total.
 ${qBlocks}`;
 }
 
+// UI hooks
 els.copyAnswersBtn2?.addEventListener("click", ()=>{
   if (!current) return;
   copyText(answersOnlyText(current));
@@ -286,21 +290,22 @@ els.copyAnswersBtn2?.addEventListener("click", ()=>{
 
 els.copyPromptBtn2?.addEventListener("click", async ()=>{
   if (!current) return;
-  try {
+  try{
     await ensureMarkspec();
-    const generated = buildFullPrompt(current);
-    if (generated){
-      current.prompt = generated;
-      return copyText(generated);
+    const prompt = buildFullPrompt(current);
+    if (prompt){
+      current.prompt = prompt;
+      return copyText(prompt);
     }
-  } catch(e){
+  }catch(e){
     console.error(e);
     els.authStatus.textContent = "Could not build prompt (markscheme spec missing).";
     return;
   }
+
   if (current.prompt) return copyText(current.prompt);
   if (current.promptUrl){
-    els.authStatus.textContent = "Prompt stored in Storage — click “Open stored prompt”.";
+    els.authStatus.textContent = "Prompt stored — click “Open stored prompt”.";
   } else {
     els.authStatus.textContent = "No stored prompt found for this submission.";
   }
@@ -311,14 +316,11 @@ els.signInBtn?.addEventListener("click", async ()=>{
   await signInWithPopup(auth, provider);
 });
 
-els.refreshBtn?.addEventListener("click", ()=>load());
-
+els.refreshBtn?.addEventListener("click", ()=>load(false));
 els.deleteAllBtn?.addEventListener("click", ()=>deleteAllAttempts());
 
-els.classFilter?.addEventListener("input", ()=>load(true));
-els.statusFilter?.addEventListener("change", ()=>load(true));
-
-let cache = [];
+els.classFilter?.addEventListener("input", ()=>renderList(cache));
+els.statusFilter?.addEventListener("change", ()=>renderList(cache));
 
 async function load(useCache=false){
   if (useCache && cache.length){
@@ -328,7 +330,7 @@ async function load(useCache=false){
   els.authStatus.textContent = "Loading…";
   const q = query(collection(db, "exams", EXAM_ID, "submissions"), orderBy("submittedAt","desc"));
   const snap = await getDocs(q);
-  cache = snap.docs.map(d=>({ id:d.id, ...d.data() }));
+  cache = snap.docs.map(d=>({ id: d.id, ...d.data() }));
   renderList(cache);
   els.authStatus.textContent = "";
 }
@@ -337,4 +339,5 @@ onAuthStateChanged(auth, (user)=>{
   els.authStatus.textContent = user ? `Signed in: ${user.email}` : "Not signed in.";
 });
 
-load();
+// initial load
+load(false);
