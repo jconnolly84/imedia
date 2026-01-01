@@ -163,6 +163,84 @@ const EXAM_ID = 'R093-PM01';
 const PROMPT_VERSION = 'PM01-v1';
 
 
+
+// --- Autosave (every 60 seconds) ---
+const AUTOSAVE_KEY = `${EXAM_ID}::autosave_v1`;
+
+function buildAutoSavePayload(){
+  return {
+    examId: EXAM_ID,
+    savedAt: Date.now(),
+    answers: collectAnswers(),
+    timeRemaining: secondsLeft,
+    studentName: (document.getElementById("studentName")?.value || "").trim(),
+    classCode: (document.getElementById("classCode")?.value || "").trim()
+  };
+}
+
+function restoreAutoSave(){
+  try{
+    const raw = localStorage.getItem(AUTOSAVE_KEY);
+    if(!raw) return false;
+    const data = JSON.parse(raw);
+    if(data && typeof data === "object"){
+      // restore timer
+      if(typeof data.timeRemaining === "number") secondsLeft = data.timeRemaining;
+
+      // restore answers into controls after render()
+      window.__AUTOSAVE_ANSWERS__ = (data.answers && typeof data.answers === "object") ? data.answers : null;
+
+      // restore name/class
+      const nameEl = document.getElementById("studentName");
+      const classEl = document.getElementById("classCode");
+      if(data.studentName && nameEl) nameEl.value = data.studentName;
+      if(data.classCode && classEl) classEl.value = data.classCode;
+      return true;
+    }
+  }catch(e){
+    console.warn("Failed to restore autosave", e);
+  }
+  return false;
+}
+
+function applyAutoSaveAnswers(){
+  const a = window.__AUTOSAVE_ANSWERS__;
+  if(!a) return;
+  try{
+    // text inputs & textareas
+    document.querySelectorAll('textarea[data-key], input[type="text"][data-key]').forEach(el => {
+      el.value = a[el.dataset.key] ?? '';
+    });
+    // MCQs
+    QUESTIONS.forEach((q,i)=>{
+      if (q.response_type !== 'mcq_single') return;
+      const val = a[getAnswerKey(i)] ?? '';
+      const radio = document.querySelector(`input[name="mcq-${i}"][value="${val}"]`);
+      if (radio) radio.checked = true;
+    });
+  }catch(e){
+    console.warn("Failed applying autosave answers", e);
+  } finally {
+    window.__AUTOSAVE_ANSWERS__ = null;
+  }
+}
+
+function autoSave(){
+  try{
+    localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(buildAutoSavePayload()));
+  }catch(e){
+    console.warn("Autosave failed", e);
+  }
+}
+
+function startAutoSave(){
+  autoSave();
+  setInterval(autoSave, 60000);
+  window.addEventListener("beforeunload", ()=>{
+    try{ autoSave(); }catch(e){}
+  });
+}
+
 let secondsLeft = 30 * 60;
 let running = false;
 let timerHandle = null;
