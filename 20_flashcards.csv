@@ -1,0 +1,54 @@
+"In digital media, what three elements are used to guide the audience, create engagement, and make navigation intuitive?","Movement, transitions, and interactivity."
+What is 'movement' in the context of a digital product?,"It refers to any animated motion within a digital product, used to attract attention, show change, or bring a design to life."
+What is a primary purpose of using movement in a digital design?,To draw focus to important information.
+How can movement assist a user in navigating a layout?,It can be used to guide the user’s eye across the layout.
+A loading bar filling up is an example of movement used to show what?,Progression.
+What effect does well-implemented movement have on the feel of an interface?,It makes interfaces feel smoother and more modern.
+Animated icons or buttons are a common example of what digital design element?,Movement.
+What is the name for the movement seen while a digital product is loading content?,Loading animations.
+What is the name for the scrolling effect where background images move slower than foreground images?,Parallax scrolling.
+The animation of a button when a user's cursor is over it is known as a _____ animation.,hover
+Graphics that appear on screen by sliding in from the side are an example of what?,Movement.
+What is a key best practice regarding the frequency of movement in a design?,Use movement sparingly to avoid overwhelming the user.
+"According to best practice, what should be consistent about animations in a digital product?",Animation timings.
+What is the main principle for ensuring motion is effective and not distracting?,Ensure the motion supports the message.
+What are 'transitions' in digital media?,"Effects used to move between different screens, sections, or scenes in a digital product."
+What is a key purpose of transitions in relation to user navigation?,To create a logical flow and smooth movement between pages or states.
+How do transitions help reduce the cognitive load on a user?,They prevent sudden jumps between screens that can confuse users.
+"Besides flow, what other aspect of a digital product can transitions help to reinforce?",The visual branding and overall tone.
+A _____ is a common transition where one scene gradually appears as another disappears.,cross dissolve
+"What is the term for a simple, fast switch between scenes with no visual effect?",A cut transition.
+In which type of digital product are page flip animations commonly used as transitions?,Slideshows and presentations.
+Zoom in/out effects are a common example of what digital design element?,Transitions.
+Swipe or slide effects are commonly used as _____ in mobile apps and websites.,transitions
+What is a core best practice for the visual intensity of transitions?,Keep transitions subtle so they don't distract from the content.
+How should the style of a transition relate to the content it is being used for?,"The transition should match the tone of the content (e.g., slow fade for formal, quick swipe for gaming)."
+What is 'interactivity' in a digital product?,"It is when the user can control or influence the digital product, making them feel involved."
+What is a primary purpose of interactivity in relation to the user?,To engage the user and make them feel involved.
+How does interactivity allow for a more personalised user experience?,It can adapt the content based on the user's choices and input.
+What role does interactivity play in helping a user find information?,It allows for navigation and exploration of the content.
+"In eLearning platforms, interactivity is used to support what two things?",Learning and feedback.
+Buttons and menus are common forms of what digital design element?,Interactivity.
+What is the name for a clickable area on an image or graphic that reveals more information?,A hotspot.
+Content that allows a user to make choices which affect the subsequent content is known as _____ content.,branching / choice-based
+"Sliders, toggles, and scrollbars are all examples of what form of design element?",Interactivity.
+What is a key best practice for designing interactive elements like buttons or links?,Make them obvious and visually consistent throughout the product.
+"What should happen when a user interacts with an element, such as hovering over a button?","The element should provide feedback, such as a colour change."
+"When designing interactive controls, what important factor related to devices must be considered?","Ensuring the controls are accessible and usable on different devices (e.g., desktop and mobile)."
+What is a best practice regarding the number of interactive choices presented to a user at one time?,Avoid overwhelming the user with too many choices.
+"In a mobile app, when a button gently animates upon being tapped, which design principle is being demonstrated?",Movement.
+"In a mobile app, using a left-to-right swipe to switch between pages is an example of what?",A transition.
+"When a user navigates an app by choosing options from menus and tapping icons, what are they using?",Interactivity.
+"In an interactive infographic, what is it called when hotspots are used to reveal more information upon clicking?",Interactivity.
+What is the key difference between movement and transitions?,"Movement happens within a screen or element, while transitions happen between screens, sections, or scenes."
+Why is it important for R093 students to be able to justify their design decisions?,To demonstrate they understand the purpose of design features and how they affect the audience.
+"For the R093 exam, what key phrase describes the overall improvement these features make for the user?",“Enhances user experience”.
+What key phrase for the R093 exam explains how these features help users move through a product?,“Supports navigation”.
+What exam phrase describes the effect of using movement to highlight a specific button or message?,“Focuses attention on key information”.
+"According to key R093 exam terminology, transitions are used to improve _____ and _____.",clarity and flow
+What is a key phrase used in the R093 exam to describe the effect of interactivity on a user?,“Encourages engagement”.
+"Why, from a design best practice perspective, should transitions often be subtle?",To prevent them from distracting the user from the main content and to maintain a professional tone.
+"How can movement, such as a loading animation, improve the user experience?","It provides feedback that the system is working, which can reduce user frustration during waits."
+Which element is defined as animated components that guide the user within a scene?,Movement.
+Which element is defined as the effects used between different sections or scenes?,Transitions.
+Which element is defined as user-controlled components that influence the product?,Interactivity.

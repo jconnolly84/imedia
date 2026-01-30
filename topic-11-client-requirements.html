@@ -127,6 +127,41 @@
 
 
 .exam-intro{margin:8px 0 14px;opacity:0.92;}
+
+/* Flashcards */
+.flashcard-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:18px;
+  margin-top:1.5rem;
+}
+.flashcard{perspective:1000px;}
+.flashcard-inner{
+  position:relative;
+  width:100%;
+  height:180px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor:pointer;
+}
+.flashcard.flipped .flashcard-inner{transform: rotateY(180deg);}
+.flashcard-front,.flashcard-back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:18px;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  box-shadow:0 6px 16px rgba(0,0,0,0.35);
+  font-weight:600;
+}
+.flashcard-front{background:#004556;color:#fdf5e6;}
+.flashcard-back{background:#f4b163;color:#004556;transform: rotateY(180deg);}
+
 </style>
 
 <link href="lightbox.css" rel="stylesheet"/>
@@ -354,6 +389,15 @@
 </section>
 </div>
 </section>
+
+<!-- Flashcards -->
+<section class="topic-section topic-flashcards">
+  <h2>Revision Flashcards – Client Requirements</h2>
+  <p class="topic-intro">Click a card to flip it. Test yourself before revealing the answer.</p>
+  <p class="topic-intro" id="flashcardCount" style="opacity:0.75;margin-top:-6px;"></p>
+  <div class="flashcard-grid" id="flashcardGrid"></div>
+</section>
+
 <!-- Linked games -->
 <section class="topic-section topic-games">
 <h2>Games to Practise Client Requirements</h2>
@@ -713,5 +757,164 @@
   wireBoosters();
 })();
 </script><script src="host.js"></script>
+<script id="flashcardsCsv" type="text/plain">
+"In the context of media production, what is a client?","A client is the company, charity, or person who commissions a product to be made."
+What document clearly outlines the client requirements for a finished product?,A brief or specification.
+"Client requirements will normally include the type of product, its purpose, target audience, content, genre, style, theme, timescale, and the client _____.",ethos
+What is meant by a 'client ethos'?,"The values of a company that guide their vision, direction, and the products they create."
+Which of Apple's values is cited as an example of client ethos?,"We believe in the simple, not the complex."
+How do Apple mice often reflect the company's ethos of simplicity?,"They often have only one button, not two."
+"Besides selling more products, what is another purpose of an advert, for example for a charity?",To increase charity donations.
+What is the purpose of government advertising?,To increase public awareness.
+What technique will many adverts use to try and achieve their purpose?,They will use emotions.
+Client requirements may dictate that the content of a film must be based on a _____.,novel
+Name three examples of film genres.,"Comedy, Action, Drama, Thriller, Science Fiction, or Documentary."
+Name two genres of computer games.,"Action, Adventure, Educational, MMO, Puzzle, RPG, Simulation, Sports, or Strategy."
+Name three genres of music listed in the source material.,"Blues, Classical, Country, Electronic, Folk, Hip-hop, Jazz, Pop, Reggae, Religious, Rock, R&B, or Rap."
+Name two genres of podcasts.,"Comedy, Current affairs, Educational, Music, News, Politics, Religion, or Sports."
+Name three genres of magazines.,"Men’s, Women’s, Teen, Cars, Comics, Computers, Fashion, Food, Gaming, Gardening, Music, Political, or Travel."
+What is a 'house style' or 'brand guideline'?,"A set of rules that a company follows for its branding, including colours, fonts, and logo usage."
+What specific information about colours might be included in brand guidelines?,A specific set of colours and their hex code or pantone reference.
+List two ways of using a logo that brand guidelines may not allow.,"Distorting the logo, changing its colour, moving parts around, or using text without the graphic."
+To what might a particular 'theme' in a client's requirements relate?,It may relate to a specific product line.
+A _____ will be specified for both pre-production and product production stages.,timescale
+Give an example of when a fixed deadline is essential for a media product.,"The release of a film, a TV soap opera slot, or an advert for a magazine going to print."
+What term describes the particular types of people that a media product is aimed at?,The target audience.
+What is 'audience segmentation'?,"The process of categorising an audience by characteristics such as interests, income, age, or gender."
+Name three categories used for audience segmentation.,"Age, gender, occupation, income, education, location, interests, or lifestyle."
+Why is it important to segment audiences for a media product?,"It allows the product to focus on a particular audience, making it more effective."
+How do audience characteristics influence the design of media products?,"They guide design choices, such as an expensive restaurant using elegant advertising in an affluent area."
+What happens to a script or visualisation diagram after it has been produced?,It will be reviewed by the client to ensure the brief has been fully met.
+What might be required if a client's budget is not sufficient for their expectations?,Negotiation may be required.
+List four items likely to be included in a client brief or specification.,"The product's purpose, target audience, product type, content outline, deadline, or brand image requirements."
+"In the provided case study, who is the client of the 'Home' advertising agency?",Jet2holidays.
+What was the core concept of the Jet2holidays adverts designed by the 'Home' agency?,The 'Hold my hand' concept.
+What was the purpose of the 'Hold My Hand' theme in the Jet2holidays adverts?,To make people feel inspired and show many 'magical holiday moments'.
+How did the Jet2holidays adverts achieve their purpose of showing 'magical holiday moments'?,By using an uplifting soundtrack and showing lots of energy and experiences.
+How did the Jet2holidays adverts cater to different audiences?,"Different versions were made for different audiences, such as families, younger couples, and older couples."
+What are the two main types of constraints mentioned in the mark scheme for the exam question?,Time scale and budget.
+"According to the mark scheme, what is needed for a 'comprehensive explanation' of the impact of client requirements on planning?","A deep understanding of the interplay between requirements and the process, including examples and specific details."
+A designer or art director should ensure that their interpretation of the brief is correct and appropriate for the _____.,target audience
+What is the term for the different versions of a design that are discussed with the client?,Iterations.
+How are client briefs usually presented?,They will usually be written documents.
+</script>
+
+
+<script>
+/* Flashcards loader (external CSV + embedded fallback) */
+(async function(){
+  const grid = document.getElementById('flashcardGrid');
+  const countEl = document.getElementById('flashcardCount');
+  if (!grid) return;
+
+  function parseCSV(text){
+    const rows = [];
+    let row = [];
+    let cur = '';
+    let inQuotes = false;
+
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      const next = text[i + 1];
+
+      if (ch === '"') {
+        if (inQuotes && next === '"') { cur += '"'; i++; }
+        else { inQuotes = !inQuotes; }
+        continue;
+      }
+
+      if (ch === ',' && !inQuotes) {
+        row.push(cur);
+        cur = '';
+        continue;
+      }
+
+      if ((ch === '\n' || ch === '\r') && !inQuotes) {
+        if (ch === '\r' && next === '\n') i++;
+        row.push(cur);
+        rows.push(row);
+        row = [];
+        cur = '';
+        continue;
+      }
+
+      cur += ch;
+    }
+
+    if (cur.length || row.length) {
+      row.push(cur);
+      rows.push(row);
+    }
+    return rows.map(r => r.map(c => (c ?? '').trim()));
+  }
+
+  function escapeHTML(str){
+    return (str || '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;');
+  }
+
+  const embeddedEl = document.getElementById('flashcardsCsv');
+  const embeddedText = embeddedEl ? embeddedEl.textContent : '';
+
+  let text = '';
+
+  try {
+    if (location.protocol.startsWith('http')) {
+      const res = await fetch('11_flashcards.csv', { cache: 'no-store' });
+      if (res.ok) text = await res.text();
+    }
+  } catch (e) {
+    // ignore and fall back to embedded
+  }
+
+  if (!text) text = embeddedText;
+  if (!text) return;
+
+  const rows = parseCSV(text);
+  if (!rows.length) return;
+
+  // Optional headers: Question,Answer
+  const header = rows[0].map(h => (h || '').trim().toLowerCase());
+  const qIdx = header.indexOf('question');
+  const aIdx = header.indexOf('answer');
+  const dataRows = (qIdx !== -1 && aIdx !== -1) ? rows.slice(1) : rows;
+
+  let shown = 0;
+  dataRows.forEach(r => {
+    const q = r[0] ?? '';
+    const a = r[1] ?? '';
+    if (!q || !a) return;
+
+    const card = document.createElement('div');
+    card.className = 'flashcard';
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', 'Flip flashcard');
+
+    card.innerHTML = `
+      <div class="flashcard-inner">
+        <div class="flashcard-front">${escapeHTML(q)}</div>
+        <div class="flashcard-back">${escapeHTML(a)}</div>
+      </div>`;
+
+    const toggle = () => card.classList.toggle('flipped');
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+
+    grid.appendChild(card);
+    shown++;
+  });
+
+  if (countEl) countEl.textContent = shown ? `${shown} cards loaded.` : 'No flashcards found.';
+})();
+</script>
+
 </body>
 </html>

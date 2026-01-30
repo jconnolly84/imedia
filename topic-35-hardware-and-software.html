@@ -127,6 +127,41 @@
 
 
 .exam-intro{margin:8px 0 14px;opacity:0.92;}
+
+/* Flashcards */
+.flashcard-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:18px;
+  margin-top:1.5rem;
+}
+.flashcard{perspective:1000px;}
+.flashcard-inner{
+  position:relative;
+  width:100%;
+  height:180px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor:pointer;
+}
+.flashcard.flipped .flashcard-inner{transform: rotateY(180deg);}
+.flashcard-front,.flashcard-back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:18px;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  box-shadow:0 6px 16px rgba(0,0,0,0.35);
+  font-weight:600;
+}
+.flashcard-front{background:#004556;color:#fdf5e6;}
+.flashcard-back{background:#f4b163;color:#004556;transform: rotateY(180deg);}
+
 </style>
 
 <link href="lightbox.css" rel="stylesheet"/>
@@ -440,6 +475,15 @@
 </section>
 </div>
 </section>
+
+<!-- Flashcards -->
+<section class="topic-section topic-flashcards">
+  <h2>Revision Flashcards – Hardware &amp; Software</h2>
+  <p class="topic-intro">Click a card to flip it. Test yourself before revealing the answer.</p>
+  <p class="topic-intro" id="flashcardCount" style="opacity:0.75;margin-top:-6px;"></p>
+  <div class="flashcard-grid" id="flashcardGrid"></div>
+</section>
+
 <!-- Linked games -->
 <section class="topic-section topic-games">
 <h2>Games to Practise Hardware &amp; Software</h2>
@@ -805,5 +849,165 @@
   wireBoosters();
 })();
 </script><script src="host.js"></script>
+<script id="flashcardsCsv" type="text/plain">
+What is the definition of hardware in a computer system?,It is any physical part of a computer system.
+"What are hardware parts that plug into a PC, Mac or tablet known as?",Peripheral devices.
+What is the function of a monitor or display when writing a script?,To see the script as it is being written and to ensure the layout is correct.
+What peripheral hardware device is primarily used to type the text of a script?,A keyboard.
+How is a mouse used when editing a script?,To select different sections of the script for actions like adding text or cutting and pasting.
+What specialist input device replicates what a graphic artist or designer draws to the computer?,A graphics tablet.
+"On a graphics tablet, what action is equivalent to pressing the left mouse button?",Touching the stylus to the tablet.
+"Besides acting like a mouse, what other key feature does a stylus for a graphics tablet have?",Pressure sensitivity.
+Name two examples of non-electronic drawing materials that are also considered hardware.,"Pens, pencils, rulers, or paper."
+What is the term for the process of converting pre-production documents created on paper into a digital format?,Digitisation.
+Name three types of pre-production documents that are often created on paper before being digitised.,"Mood boards, mind maps, visualisation diagrams, or storyboards."
+What are the two main hardware devices used to digitise documents?,Scanners and digital cameras.
+A _____ scanner allows a page to be laid flat for scanning.,flat-bed
+What is an advantage of using a scanner with a sheet feeder?,It can automatically scan many pages.
+"Compared to a camera, what advantage does a scanner have regarding lighting conditions?",There are no problems with shadows or poor lighting.
+"What is a quick way to digitise documents, often using a smartphone or tablet?",With a digital camera.
+Why is a digital camera better than a scanner for digitising a physical mood board?,The mood board may not fit in a scanner or may have 3D objects which do not scan well.
+Why would a large mind map created by many people be better digitised by a camera than a scanner?,It is likely too large to fit into a scanner.
+"Microsoft Word, Google Docs and LibreOffice Writer are all examples of what type of software?",Word processing software.
+Why is word processing software well-suited for writing scripts?,It allows users to easily go back and edit text.
+"Besides scripts, what other pre-production document can be created with word processing software by adding images and text?",Visualisation diagrams.
+"Name a type of software, more advanced than a word processor, that can be used for visualisation diagrams.","Image editing software, presentation software, or Desktop Publishing (DTP) software."
+Adobe Photoshop and Serif Affinity Photo are examples of what type of software?,Image editing software.
+Microsoft PowerPoint and Apple Keynote are examples of what software category?,Presentation software.
+Adobe InDesign and Microsoft Publisher are examples of what type of software?,Desktop Publishing (DTP) software.
+"Image editors aimed at graphics made with lines, curves and fills are known as _____ graphics editors.",vector
+Image editors aimed at graphics made up of pixels are known as _____ or bitmap image editors.,raster
+What is the primary purpose of Desktop Publishing (DTP) software?,"To enable the creation of magazines, books, posters, and leaflets."
+What is the main advantage of using DTP software over a word processor for creating a magazine layout?,It has page layout tools that make it easier to arrange images and text.
+What hardware allows images to be drawn directly into a digital storyboard?,A graphics tablet or a touch screen.
+What is a 'dedicated application' in the context of software?,Software made for one particular use.
+Name one example of a dedicated application for creating mind maps.,"Freemind, Coggl, or XMind."
+Name one example of a dedicated application for creating storyboards.,"Frameforge, Toon Boom Storyboard, or storyboarder."
+"In the plenary scenario, which two hardware devices are specifically excluded from a list of tools for *creating* documents, as they are used for digitising instead?",Scanner or digital camera.
+What is an example of dedicated scriptwriting software mentioned in the plenary?,Final Draft.
+"According to the source, what type of software like Photoshop or Publisher could be used to create a storyboard?",Image editing or Desktop Publishing software.
+Adobe Illustrator is an example of an image editor aimed at what type of graphics?,Vector graphics.
+A storyboard that has been arranged in a certain way on a wall is best digitised with a _____.,digital camera
+What type of software allows still images to be inserted into a digital storyboard?,Digital storyboard software.
+"For professional quality, what type of digital camera might be used to digitise documents?",A DSLR camera.
+</script>
+
+
+<script>
+/* Flashcards loader (external CSV + embedded fallback) */
+(async function(){
+  const grid = document.getElementById('flashcardGrid');
+  const countEl = document.getElementById('flashcardCount');
+  if (!grid) return;
+
+  function parseCSV(text){
+    const rows = [];
+    let row = [];
+    let cur = '';
+    let inQuotes = false;
+
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      const next = text[i + 1];
+
+      if (ch === '"') {
+        if (inQuotes && next === '"') { cur += '"'; i++; }
+        else { inQuotes = !inQuotes; }
+        continue;
+      }
+
+      if (ch === ',' && !inQuotes) {
+        row.push(cur);
+        cur = '';
+        continue;
+      }
+
+      if ((ch === '\n' || ch === '\r') && !inQuotes) {
+        if (ch === '\r' && next === '\n') i++;
+        row.push(cur);
+        rows.push(row);
+        row = [];
+        cur = '';
+        continue;
+      }
+
+      cur += ch;
+    }
+
+    if (cur.length || row.length) {
+      row.push(cur);
+      rows.push(row);
+    }
+    return rows.map(r => r.map(c => (c ?? '').trim()));
+  }
+
+  function escapeHTML(str){
+    return (str || '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;');
+  }
+
+  const embeddedEl = document.getElementById('flashcardsCsv');
+  const embeddedText = embeddedEl ? embeddedEl.textContent : '';
+
+  let text = '';
+
+  try {
+    if (location.protocol.startsWith('http')) {
+      const res = await fetch('35_flashcards.csv', { cache: 'no-store' });
+      if (res.ok) text = await res.text();
+    }
+  } catch (e) {
+    // ignore and fall back to embedded
+  }
+
+  if (!text) text = embeddedText;
+  if (!text) return;
+
+  const rows = parseCSV(text);
+  if (!rows.length) return;
+
+  // Optional headers: Question,Answer
+  const header = rows[0].map(h => (h || '').trim().toLowerCase());
+  const qIdx = header.indexOf('question');
+  const aIdx = header.indexOf('answer');
+  const dataRows = (qIdx !== -1 && aIdx !== -1) ? rows.slice(1) : rows;
+
+  let shown = 0;
+  dataRows.forEach(r => {
+    const q = r[0] ?? '';
+    const a = r[1] ?? '';
+    if (!q || !a) return;
+
+    const card = document.createElement('div');
+    card.className = 'flashcard';
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', 'Flip flashcard');
+
+    card.innerHTML = `
+      <div class="flashcard-inner">
+        <div class="flashcard-front">${escapeHTML(q)}</div>
+        <div class="flashcard-back">${escapeHTML(a)}</div>
+      </div>`;
+
+    const toggle = () => card.classList.toggle('flipped');
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+
+    grid.appendChild(card);
+    shown++;
+  });
+
+  if (countEl) countEl.textContent = shown ? `${shown} cards loaded.` : 'No flashcards found.';
+})();
+</script>
+
 </body>
 </html>

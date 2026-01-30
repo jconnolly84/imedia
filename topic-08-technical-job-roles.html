@@ -127,6 +127,41 @@
 
 
 .exam-intro{margin:8px 0 14px;opacity:0.92;}
+
+/* Flashcards */
+.flashcard-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:18px;
+  margin-top:1.5rem;
+}
+.flashcard{perspective:1000px;}
+.flashcard-inner{
+  position:relative;
+  width:100%;
+  height:180px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor:pointer;
+}
+.flashcard.flipped .flashcard-inner{transform: rotateY(180deg);}
+.flashcard-front,.flashcard-back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:18px;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  box-shadow:0 6px 16px rgba(0,0,0,0.35);
+  font-weight:600;
+}
+.flashcard-front{background:#004556;color:#fdf5e6;}
+.flashcard-back{background:#f4b163;color:#004556;transform: rotateY(180deg);}
+
 </style>
 
 <link href="lightbox.css" rel="stylesheet"/>
@@ -355,6 +390,15 @@
 </section>
 </div>
 </section>
+
+<!-- Flashcards -->
+<section class="topic-section topic-flashcards">
+  <h2>Revision Flashcards – Technical Job Roles</h2>
+  <p class="topic-intro">Click a card to flip it. Test yourself before revealing the answer.</p>
+  <p class="topic-intro" id="flashcardCount" style="opacity:0.75;margin-top:-6px;"></p>
+  <div class="flashcard-grid" id="flashcardGrid"></div>
+</section>
+
 <!-- Linked games -->
 <section class="topic-section topic-games">
 <h2>Games to Practise Technical Job Roles</h2>
@@ -696,5 +740,143 @@
   wireBoosters();
 })();
 </script><script src="host.js"></script>
+<script id="flashcardsCsv" type="text/plain">
+During which stages of a media project are technical roles required?,Technical roles are required in both the production and post-production stages.
+Which technical role for film production involves operating camera equipment?,The Camera Operator.
+The technical role responsible for editing audio during post-production is the _____ _____.,Sound Editor
+What is the title of the technical role responsible for microphone setup and sound recording during production?,The Audio Technician.
+Which technical role assembles filmed footage into the correct sequence?,The Video Editor.
+Name the technical role that involves writing computer code for games.,The Games Programmer or Developer.
+What is the primary responsibility of a Web Developer?,To write the computer code for a website.
+A Camera Operator typically works under the supervision of which senior role?,The Director of Photography (DoP).
+Name two pieces of equipment a Camera Operator might use for mounting or moving a camera.,"A tripod, or a track and dolly."
+A Camera Operator works with a '_____' who is responsible for moving camera equipment.,grip
+What is the main task of a Video Editor regarding the sequence of a film?,"To put all the scenes into the correct order, as filming often occurs non-chronologically."
+With whom does a Video Editor work closely to create the 'final cut'?,The director.
+In which phase of a project does an Audio Technician work?,The production phase.
+In which phase of a project does a Sound Editor work?,The post-production phase.
+What does the computer code written by a Games Programmer control within the game?,It controls the objects that appear on screen and how the player interacts with them.
+Identify two specialist programming roles within game development.,Programming artificial intelligence (AI) or physics programming (for bounces and collisions).
+Explain the fundamental difference between an Audio Technician and a Sound Editor.,"An Audio Technician records sound during production, whereas a Sound Editor edits that audio in post-production."
+Which role selects the best shots from all the different footage and assembles them?,The Video Editor.
+</script>
+
+
+<script>
+/* Flashcards loader (external CSV + embedded fallback) */
+(async function(){
+  const grid = document.getElementById('flashcardGrid');
+  const countEl = document.getElementById('flashcardCount');
+  if (!grid) return;
+
+  function parseCSV(text){
+    const rows = [];
+    let row = [];
+    let cur = '';
+    let inQuotes = false;
+
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      const next = text[i + 1];
+
+      if (ch === '"') {
+        if (inQuotes && next === '"') { cur += '"'; i++; }
+        else { inQuotes = !inQuotes; }
+        continue;
+      }
+
+      if (ch === ',' && !inQuotes) {
+        row.push(cur);
+        cur = '';
+        continue;
+      }
+
+      if ((ch === '\n' || ch === '\r') && !inQuotes) {
+        if (ch === '\r' && next === '\n') i++;
+        row.push(cur);
+        rows.push(row);
+        row = [];
+        cur = '';
+        continue;
+      }
+
+      cur += ch;
+    }
+
+    if (cur.length || row.length) {
+      row.push(cur);
+      rows.push(row);
+    }
+    return rows.map(r => r.map(c => (c ?? '').trim()));
+  }
+
+  function escapeHTML(str){
+    return (str || '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;');
+  }
+
+  const embeddedEl = document.getElementById('flashcardsCsv');
+  const embeddedText = embeddedEl ? embeddedEl.textContent : '';
+
+  let text = '';
+
+  try {
+    if (location.protocol.startsWith('http')) {
+      const res = await fetch('08_flashcards.csv', { cache: 'no-store' });
+      if (res.ok) text = await res.text();
+    }
+  } catch (e) {
+    // ignore and fall back to embedded
+  }
+
+  if (!text) text = embeddedText;
+  if (!text) return;
+
+  const rows = parseCSV(text);
+  if (!rows.length) return;
+
+  // Optional headers: Question,Answer
+  const header = rows[0].map(h => (h || '').trim().toLowerCase());
+  const qIdx = header.indexOf('question');
+  const aIdx = header.indexOf('answer');
+  const dataRows = (qIdx !== -1 && aIdx !== -1) ? rows.slice(1) : rows;
+
+  let shown = 0;
+  dataRows.forEach(r => {
+    const q = r[0] ?? '';
+    const a = r[1] ?? '';
+    if (!q || !a) return;
+
+    const card = document.createElement('div');
+    card.className = 'flashcard';
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', 'Flip flashcard');
+
+    card.innerHTML = `
+      <div class="flashcard-inner">
+        <div class="flashcard-front">${escapeHTML(q)}</div>
+        <div class="flashcard-back">${escapeHTML(a)}</div>
+      </div>`;
+
+    const toggle = () => card.classList.toggle('flipped');
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+
+    grid.appendChild(card);
+    shown++;
+  });
+
+  if (countEl) countEl.textContent = shown ? `${shown} cards loaded.` : 'No flashcards found.';
+})();
+</script>
+
 </body>
 </html>

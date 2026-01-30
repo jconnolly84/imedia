@@ -120,6 +120,41 @@
 
 
 .exam-intro{margin:8px 0 14px;opacity:0.92;}
+
+/* Flashcards */
+.flashcard-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:18px;
+  margin-top:1.5rem;
+}
+.flashcard{perspective:1000px;}
+.flashcard-inner{
+  position:relative;
+  width:100%;
+  height:180px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor:pointer;
+}
+.flashcard.flipped .flashcard-inner{transform: rotateY(180deg);}
+.flashcard-front,.flashcard-back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:18px;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  box-shadow:0 6px 16px rgba(0,0,0,0.35);
+  font-weight:600;
+}
+.flashcard-front{background:#004556;color:#fdf5e6;}
+.flashcard-back{background:#f4b163;color:#004556;transform: rotateY(180deg);}
+
 </style>
 
 <link href="lightbox.css" rel="stylesheet"/>
@@ -404,6 +439,15 @@
 </section>
 </div>
 </section>
+
+<!-- Flashcards -->
+<section class="topic-section topic-flashcards">
+  <h2>Revision Flashcards – Website Assets</h2>
+  <p class="topic-intro">Click a card to flip it. Test yourself before revealing the answer.</p>
+  <p class="topic-intro" id="flashcardCount" style="opacity:0.75;margin-top:-6px;"></p>
+  <div class="flashcard-grid" id="flashcardGrid"></div>
+</section>
+
 <!-- Linked games -->
 <section class="topic-section topic-games">
 <h2>
@@ -862,5 +906,159 @@
 })();
 </script><script src="host.js">
 </script>
+<script id="flashcardsCsv" type="text/plain">
+"What three core elements do websites typically contain, according to the source material?","Websites contain text, images, and graphics."
+How are websites delivered to the user?,Websites are delivered via the Internet.
+Multimedia products are delivered via _____ installed on computers.,programs
+What is the key difference in the delivery method between websites and multimedia products?,"Websites are delivered via the Internet, whereas multimedia products are delivered via programs installed on computers."
+Name one type of media asset commonly used when making websites and multimedia products.,Photographs.
+"Besides photographs, name another media asset used in websites and multimedia products.",Video / film.
+What audio-based media assets are used in websites and multimedia products?,"Sound, audio, music, podcasts, or radio."
+"What type of media asset is used for buttons, menus, and layout in websites?",Graphics.
+What specialised file format is mentioned for playing e-books and brochures in dedicated software?,PDFs.
+What type of content do social media platforms primarily allow users to post?,"User-generated content, such as photos and text."
+How are social media platforms usually funded?,They are usually funded by advertising.
+"What term describes applications installed onto smartphones, tablets, and smart televisions?",Apps.
+List two examples of app categories mentioned in the text.,"Games, shopping, navigation, office and work, email, and social media apps."
+Define Augmented Reality (AR).,Augmented Reality (AR) makes use of real-world footage and superimposes digitally created graphics onto it.
+Which social media app is given as an example of AR for adding overlays onto a user's face?,Snapchat.
+Which game is an example of AR that adds digital characters to places in the real world?,Pokemon GO.
+What type of AR application is IKEA Place used for?,"Interior decoration, allowing furniture to be virtually added to a room."
+How does Virtual Reality (VR) differ from Augmented Reality (AR)?,"Virtual Reality (VR) creates an entirely computer-generated world, whereas AR overlays digital elements onto the real world."
+What is the primary design purpose of digital games?,Digital games are designed to entertain.
+Name three types of devices on which digital games are played.,"Consoles, handheld computers, personal computers, smartphones, or tablet computers."
+What is the format of comics and graphic novels?,They are paper-based print published products.
+Comics are described as being similar to what other print product?,Magazines.
+Graphic novels are described as being similar to what other print product?,Illustrated books.
+In which print product are comic strips often contained?,Newspapers.
+What special display technology is characteristic of e-Books?,A special display that uses e-ink.
+What is a key visual limitation of a typical e-ink screen?,The screen is typically limited to black and white.
+What is the main advantage of an e-ink screen for reading outdoors?,"It reflects light like a real book, making it work very well in bright sunlight."
+For what type of written content are e-Books particularly well suited?,Novels.
+"Due to screen limitations, e-Books do not work well for what types of publications?",Magazines or heavily illustrated books.
+"According to the mark scheme, what is a key role of websites in the media industry?",To promote content and engage with users.
+What does the concept of multimedia products involve?,"The integration of various media types like text, images, video, and audio into a single product."
+What is a primary role of eBooks in the media industry?,To facilitate the distribution and consumption of digital written content.
+How has the introduction of eBooks impacted the distribution of content?,"It has enabled instant, global distribution of books digitally, bypassing traditional physical printing and shipping."
+"According to the mark scheme, VR and AR contribute to media sectors by creating what kind of experiences?",Immersive experiences.
+</script>
+
+
+<script>
+/* Flashcards loader (external CSV + embedded fallback) */
+(async function(){
+  const grid = document.getElementById('flashcardGrid');
+  const countEl = document.getElementById('flashcardCount');
+  if (!grid) return;
+
+  function parseCSV(text){
+    const rows = [];
+    let row = [];
+    let cur = '';
+    let inQuotes = false;
+
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      const next = text[i + 1];
+
+      if (ch === '"') {
+        if (inQuotes && next === '"') { cur += '"'; i++; }
+        else { inQuotes = !inQuotes; }
+        continue;
+      }
+
+      if (ch === ',' && !inQuotes) {
+        row.push(cur);
+        cur = '';
+        continue;
+      }
+
+      if ((ch === '\n' || ch === '\r') && !inQuotes) {
+        if (ch === '\r' && next === '\n') i++;
+        row.push(cur);
+        rows.push(row);
+        row = [];
+        cur = '';
+        continue;
+      }
+
+      cur += ch;
+    }
+
+    if (cur.length || row.length) {
+      row.push(cur);
+      rows.push(row);
+    }
+    return rows.map(r => r.map(c => (c ?? '').trim()));
+  }
+
+  function escapeHTML(str){
+    return (str || '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;');
+  }
+
+  const embeddedEl = document.getElementById('flashcardsCsv');
+  const embeddedText = embeddedEl ? embeddedEl.textContent : '';
+
+  let text = '';
+
+  try {
+    if (location.protocol.startsWith('http')) {
+      const res = await fetch('06_flashcards.csv', { cache: 'no-store' });
+      if (res.ok) text = await res.text();
+    }
+  } catch (e) {
+    // ignore and fall back to embedded
+  }
+
+  if (!text) text = embeddedText;
+  if (!text) return;
+
+  const rows = parseCSV(text);
+  if (!rows.length) return;
+
+  // Optional headers: Question,Answer
+  const header = rows[0].map(h => (h || '').trim().toLowerCase());
+  const qIdx = header.indexOf('question');
+  const aIdx = header.indexOf('answer');
+  const dataRows = (qIdx !== -1 && aIdx !== -1) ? rows.slice(1) : rows;
+
+  let shown = 0;
+  dataRows.forEach(r => {
+    const q = r[0] ?? '';
+    const a = r[1] ?? '';
+    if (!q || !a) return;
+
+    const card = document.createElement('div');
+    card.className = 'flashcard';
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', 'Flip flashcard');
+
+    card.innerHTML = `
+      <div class="flashcard-inner">
+        <div class="flashcard-front">${escapeHTML(q)}</div>
+        <div class="flashcard-back">${escapeHTML(a)}</div>
+      </div>`;
+
+    const toggle = () => card.classList.toggle('flipped');
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+
+    grid.appendChild(card);
+    shown++;
+  });
+
+  if (countEl) countEl.textContent = shown ? `${shown} cards loaded.` : 'No flashcards found.';
+})();
+</script>
+
 </body>
 </html>

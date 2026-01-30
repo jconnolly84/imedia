@@ -127,6 +127,41 @@
 
 
 .exam-intro{margin:8px 0 14px;opacity:0.92;}
+
+/* Flashcards */
+.flashcard-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:18px;
+  margin-top:1.5rem;
+}
+.flashcard{perspective:1000px;}
+.flashcard-inner{
+  position:relative;
+  width:100%;
+  height:180px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor:pointer;
+}
+.flashcard.flipped .flashcard-inner{transform: rotateY(180deg);}
+.flashcard-front,.flashcard-back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:18px;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  box-shadow:0 6px 16px rgba(0,0,0,0.35);
+  font-weight:600;
+}
+.flashcard-front{background:#004556;color:#fdf5e6;}
+.flashcard-back{background:#f4b163;color:#004556;transform: rotateY(180deg);}
+
 </style>
 
 <link href="lightbox.css" rel="stylesheet"/>
@@ -437,6 +472,15 @@
 
 </div>
 </section>
+
+<!-- Flashcards -->
+<section class="topic-section topic-flashcards">
+  <h2>Revision Flashcards – Intellectual Property Rights</h2>
+  <p class="topic-intro">Click a card to flip it. Test yourself before revealing the answer.</p>
+  <p class="topic-intro" id="flashcardCount" style="opacity:0.75;margin-top:-6px;"></p>
+  <div class="flashcard-grid" id="flashcardGrid"></div>
+</section>
+
 <!-- Linked games -->
 <section class="topic-section topic-games">
 <h2>Games to Practise Intellectual Property Rights</h2>
@@ -802,5 +846,164 @@
   wireBoosters();
 })();
 </script><script src="host.js"></script>
+<script id="flashcardsCsv" type="text/plain">
+What is intellectual property (IP)?,"IP covers non-physical creations that you cannot touch, such as ideas, brands, styles, and designs."
+"What is the primary UK law that gives creators rights over their music, film, and graphics?","The Copyright, Designs and Patents Act (1988)."
+What is the primary UK law that protects trademarks such as logos and slogans?,The Trade Marks Act (1994).
+"What does the Copyright, Designs and Patents Act (1988) allow creators to do?",It gives them the right to control the ways in which their material may be used and protects them from copying without permission.
+"In the Vanilla Ice case study, which song's bass line was sampled without permission for 'Ice Ice Baby'?",The song was 'Under Pressure' by David Bowie and Queen.
+What are the three steps required to legally use a copyrighted asset?,"Find the owner, contact them for permission, and potentially pay for a licence."
+"For audio, music, and photos, how long does copyright typically last?",It lasts for 70 years from when the work was first published.
+How long does copyright last for films?,"It lasts for 70 years after the death of the director, scriptwriter, and composer."
+"For TV and radio broadcasts, what is the duration of copyright protection?",Copyright lasts for 50 years from the date of the first broadcast.
+When is a creative work automatically copyrighted?,A work is automatically copyrighted as soon as it is produced in a tangible form.
+What three pieces of information are helpful to include in a copyright statement?,"The copyright symbol (©), the year of publication, and the name of the author/creator."
+Does 'royalty free' mean an asset is free to use?,"No, it means a one-off licence fee is paid to use the asset, rather than paying a royalty for each use."
+What is a Creative Commons licence?,"It is a set of copyright licences that allow assets to be used for free, but only in certain specified ways."
+What is the one condition that all Creative Commons licences require?,They always expect that you acknowledge who authored or created the asset.
+What does the Creative Commons 'Attribution' symbol (a person icon) mean?,You must acknowledge who produced the asset.
+What does the Creative Commons 'Non-commercial' symbol (a crossed-out dollar or euro sign) prohibit?,It prohibits the use of the asset for commercial purposes.
+The Creative Commons 'Share alike' symbol (a circular arrow) means that others can create _____ of this asset.,derivatives (alterations)
+What does the Creative Commons 'No derivates' symbol (an equals sign in a circle) mean?,No derivatives or alterations of the original asset are allowed.
+What type of intellectual property do patents protect?,Patents are used to protect inventions.
+What are the three criteria an invention must meet to be granted a patent?,"It must be new, be inventive (not an obvious change), and be for something that is made or used."
+What is the maximum duration for which a patent can last?,A patent can last for up to 20 years.
+Name two types of creations that cannot be patented.,"Any two from: books/plays/music/artwork, medical treatments, scientific theories, or the presentation of information."
+Can the 'idea' for a television quiz show be protected by copyright law?,"No, you cannot protect ideas using copyright law."
+"While an idea for a quiz show cannot be copyrighted, what specific components of the show can be?","The music, styling of the set, graphics, and voiceover scripts can all be individually copyrighted."
+What is the term for the exceptions to copyright law that allow limited use of works without permission?,Fair dealing.
+"Under 'fair dealing', what is a common reason for which you can copy parts of a work?",For non-commercial research or private study.
+What is the main limitation of 'fair dealing' when copying a work for private study?,"You cannot copy the whole work, as this would not be considered fair."
+What is the purpose of using a watermark on images and videos?,Watermarks show that a licence has not yet been paid for and deter illegal copying.
+"What type of intellectual property protects logos, symbols, or slogans that identify a product or service?",Trademarks.
+What does the 'TM' symbol (™) indicate?,"It indicates that the owner is claiming a word, logo, or slogan as a trademark."
+What does the '®' symbol indicate?,It indicates that a trademark has been officially registered at the UK Intellectual Property Office (UKIPO).
+Why couldn't Asda® register the phrase 'SPEC SAVINGS AT ASDA' as a trademark?,It was considered too similar to the existing Specsavers® registered trademark.
+"When producing a compilation album of famous songs, what must the producer do regarding copyright for each song?","They must contact each copyright owner, get permission, and pay a royalty or fee for each song."
+"Intellectual property covers items that aren't physical, such as graphics, video, music, and _____.","ideas, brands, styles and designs"
+What must a user keep a record of after getting permission to use a copyrighted asset?,A record of permissions granted.
+What is a potential reason a copyright owner might refuse permission to use their work?,If the proposed use is controversial or may damage their own brand or reputation.
+"What is a payment made to an author or creator for each copy of their work sold, such as on a DVD?",A royalty.
+"For a patent to be granted, the invention must be new, meaning it has never been described _____ anywhere in the world.",publicly
+"Software for a self-driving car could be patented, but what kind of software is generally not patentable?","Non-technical software, for example, a car game."
+</script>
+
+
+<script>
+/* Flashcards loader (external CSV + embedded fallback) */
+(async function(){
+  const grid = document.getElementById('flashcardGrid');
+  const countEl = document.getElementById('flashcardCount');
+  if (!grid) return;
+
+  function parseCSV(text){
+    const rows = [];
+    let row = [];
+    let cur = '';
+    let inQuotes = false;
+
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      const next = text[i + 1];
+
+      if (ch === '"') {
+        if (inQuotes && next === '"') { cur += '"'; i++; }
+        else { inQuotes = !inQuotes; }
+        continue;
+      }
+
+      if (ch === ',' && !inQuotes) {
+        row.push(cur);
+        cur = '';
+        continue;
+      }
+
+      if ((ch === '\n' || ch === '\r') && !inQuotes) {
+        if (ch === '\r' && next === '\n') i++;
+        row.push(cur);
+        rows.push(row);
+        row = [];
+        cur = '';
+        continue;
+      }
+
+      cur += ch;
+    }
+
+    if (cur.length || row.length) {
+      row.push(cur);
+      rows.push(row);
+    }
+    return rows.map(r => r.map(c => (c ?? '').trim()));
+  }
+
+  function escapeHTML(str){
+    return (str || '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;');
+  }
+
+  const embeddedEl = document.getElementById('flashcardsCsv');
+  const embeddedText = embeddedEl ? embeddedEl.textContent : '';
+
+  let text = '';
+
+  try {
+    if (location.protocol.startsWith('http')) {
+      const res = await fetch('27_flashcards.csv', { cache: 'no-store' });
+      if (res.ok) text = await res.text();
+    }
+  } catch (e) {
+    // ignore and fall back to embedded
+  }
+
+  if (!text) text = embeddedText;
+  if (!text) return;
+
+  const rows = parseCSV(text);
+  if (!rows.length) return;
+
+  // Optional headers: Question,Answer
+  const header = rows[0].map(h => (h || '').trim().toLowerCase());
+  const qIdx = header.indexOf('question');
+  const aIdx = header.indexOf('answer');
+  const dataRows = (qIdx !== -1 && aIdx !== -1) ? rows.slice(1) : rows;
+
+  let shown = 0;
+  dataRows.forEach(r => {
+    const q = r[0] ?? '';
+    const a = r[1] ?? '';
+    if (!q || !a) return;
+
+    const card = document.createElement('div');
+    card.className = 'flashcard';
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', 'Flip flashcard');
+
+    card.innerHTML = `
+      <div class="flashcard-inner">
+        <div class="flashcard-front">${escapeHTML(q)}</div>
+        <div class="flashcard-back">${escapeHTML(a)}</div>
+      </div>`;
+
+    const toggle = () => card.classList.toggle('flipped');
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+
+    grid.appendChild(card);
+    shown++;
+  });
+
+  if (countEl) countEl.textContent = shown ? `${shown} cards loaded.` : 'No flashcards found.';
+})();
+</script>
+
 </body>
 </html>

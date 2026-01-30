@@ -127,6 +127,41 @@
 
 
 .exam-intro{margin:8px 0 14px;opacity:0.92;}
+
+/* Flashcards */
+.flashcard-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:18px;
+  margin-top:1.5rem;
+}
+.flashcard{perspective:1000px;}
+.flashcard-inner{
+  position:relative;
+  width:100%;
+  height:180px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor:pointer;
+}
+.flashcard.flipped .flashcard-inner{transform: rotateY(180deg);}
+.flashcard-front,.flashcard-back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:18px;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  box-shadow:0 6px 16px rgba(0,0,0,0.35);
+  font-weight:600;
+}
+.flashcard-front{background:#004556;color:#fdf5e6;}
+.flashcard-back{background:#f4b163;color:#004556;transform: rotateY(180deg);}
+
 </style>
 
 <link href="lightbox.css" rel="stylesheet"/>
@@ -356,6 +391,15 @@
 </section>
 </div>
 </section>
+
+<!-- Flashcards -->
+<section class="topic-section topic-flashcards">
+  <h2>Revision Flashcards – Purpose of Media Products</h2>
+  <p class="topic-intro">Click a card to flip it. Test yourself before revealing the answer.</p>
+  <p class="topic-intro" id="flashcardCount" style="opacity:0.75;margin-top:-6px;"></p>
+  <div class="flashcard-grid" id="flashcardGrid"></div>
+</section>
+
 <!-- Linked games -->
 <section class="topic-section topic-games">
 <h2>Games to Practise Purpose of Media Products</h2>
@@ -715,5 +759,164 @@
   wireBoosters();
 })();
 </script><script src="host.js"></script>
+<script id="flashcardsCsv" type="text/plain">
+What is one of the primary purposes of media products related to knowledge transfer?,To educate or inform people.
+How might a website for a new smartphone serve the purpose of informing customers?,By providing a technical specification.
+What kind of information does a cereal packet provide to fulfil its purpose of informing?,Nutritional information.
+A news broadcast will inform viewers and listeners about _____ events.,prominent
+What is the primary purpose of a textbook as a media product?,To educate students about a subject.
+"What is a very common purpose for media products, particularly for films and a large proportion of television?",To entertain.
+"Besides drama and comedy, what is another example of television content created to entertain?",Sport.
+What elements might live shows use to enhance the entertainment experience for the audience?,"Audio technicians, special effects like pyrotechnics, lighting, and video."
+What is the objective of many adverts as media products?,To influence the behaviour or choices of viewers or listeners.
+"Besides traditional adverts, what is an example of a media product that aims to influence behaviour?",Videos of influencers reviewing products or government health department leaflets.
+Why is it important for a designer to understand the purpose of a media product?,"It helps in tailoring the content, style, and layout for effective communication."
+"In web design, what meaning is the colour red often used to convey?",Stop or error.
+"What 'feeling' might blue colours create, making them suitable for selling a fridge?",A cold feeling.
+"What feelings are associated with orange and red colours, making them suitable for a heating company?",Warm feelings.
+"The colour green has associations with nature, the environment, and _____.",money
+What rating is a common genre convention found on the spine of Blu-ray Discs in the UK?,A BBFC (British Board of Film Classification) rating.
+"According to genre conventions, how is the title of a film typically oriented on the spine of a Blu-ray case?",With the top of the text at the right of the spine.
+What information is typically found on the front and back covers of a Blu-ray case?,"The film title, photos of actors, a description, and key crew/technical information."
+What is the term for the specific arrangement of elements in a design to help it achieve its purpose?,Positioning.
+"On the mini cereal boxes shown, where is the name of the cereal positioned?",In the top right.
+"On the mini cereal boxes shown, where are the illustrated characters typically placed?",On the left.
+"Besides informing, what other purpose do larger cereal boxes aim to achieve?",To influence customers to choose them over other options.
+"On the larger Kellogg's box, why is the logo made larger across the top?",To increase brand recognition.
+What slogan was added to the larger cereal box to help it achieve its purpose?,“THEY’RE GR-R-REAT!”
+What text was added to the larger cereal box to persuade customers it might be healthy?,“made from REAL GRAIN”.
+What illustrations were added to the larger cereal box to reinforce a healthy image?,An illustration of wheat and sunshine.
+"The style in which graphics, video, photos, or sound is used is important because different styles evoke different _____ from an audience.",emotions and feelings
+"In the example of the magazine article on healthy eating, how is an authentic and natural look achieved in the photograph?",A wooden board is used.
+How does the visual style of the fast-food menu item help inform the customer?,By isolating the item against a white background and showing all ingredients clearly.
+What type of language would a documentary typically use?,Formal language.
+What type of language would a soap opera typically use?,"Informal language, or language appropriate to each character."
+What is the main purpose of the children's workbook shown in the plenary?,To educate.
+"In the children's workbook, what design choice is made with colour to make it appealing?",Bright colours have been used.
+What kind of language is used in the children's workbook to suit its educational purpose?,Simple language for children beginning to read and write.
+What is the style of illustration used in the children's workbook?,A simple style of illustration.
+"In the 8-mark exam question, how many marks are available for showing an 'Understanding the Purpose'?",2 marks.
+"In the 8-mark exam question, how many marks are available for 'Application of Examples'?",3 marks.
+"In the 8-mark exam question, how many marks are awarded for demonstrating understanding of how design elements contribute to the purpose?",2 marks (for 'Integration of Design Elements').
+How many marks are available for a 'Coherent and Well-Structured Response' in the 8-mark exam question?,1 mark.
+</script>
+
+
+<script>
+/* Flashcards loader (external CSV + embedded fallback) */
+(async function(){
+  const grid = document.getElementById('flashcardGrid');
+  const countEl = document.getElementById('flashcardCount');
+  if (!grid) return;
+
+  function parseCSV(text){
+    const rows = [];
+    let row = [];
+    let cur = '';
+    let inQuotes = false;
+
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      const next = text[i + 1];
+
+      if (ch === '"') {
+        if (inQuotes && next === '"') { cur += '"'; i++; }
+        else { inQuotes = !inQuotes; }
+        continue;
+      }
+
+      if (ch === ',' && !inQuotes) {
+        row.push(cur);
+        cur = '';
+        continue;
+      }
+
+      if ((ch === '\n' || ch === '\r') && !inQuotes) {
+        if (ch === '\r' && next === '\n') i++;
+        row.push(cur);
+        rows.push(row);
+        row = [];
+        cur = '';
+        continue;
+      }
+
+      cur += ch;
+    }
+
+    if (cur.length || row.length) {
+      row.push(cur);
+      rows.push(row);
+    }
+    return rows.map(r => r.map(c => (c ?? '').trim()));
+  }
+
+  function escapeHTML(str){
+    return (str || '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;');
+  }
+
+  const embeddedEl = document.getElementById('flashcardsCsv');
+  const embeddedText = embeddedEl ? embeddedEl.textContent : '';
+
+  let text = '';
+
+  try {
+    if (location.protocol.startsWith('http')) {
+      const res = await fetch('10_flashcards.csv', { cache: 'no-store' });
+      if (res.ok) text = await res.text();
+    }
+  } catch (e) {
+    // ignore and fall back to embedded
+  }
+
+  if (!text) text = embeddedText;
+  if (!text) return;
+
+  const rows = parseCSV(text);
+  if (!rows.length) return;
+
+  // Optional headers: Question,Answer
+  const header = rows[0].map(h => (h || '').trim().toLowerCase());
+  const qIdx = header.indexOf('question');
+  const aIdx = header.indexOf('answer');
+  const dataRows = (qIdx !== -1 && aIdx !== -1) ? rows.slice(1) : rows;
+
+  let shown = 0;
+  dataRows.forEach(r => {
+    const q = r[0] ?? '';
+    const a = r[1] ?? '';
+    if (!q || !a) return;
+
+    const card = document.createElement('div');
+    card.className = 'flashcard';
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', 'Flip flashcard');
+
+    card.innerHTML = `
+      <div class="flashcard-inner">
+        <div class="flashcard-front">${escapeHTML(q)}</div>
+        <div class="flashcard-back">${escapeHTML(a)}</div>
+      </div>`;
+
+    const toggle = () => card.classList.toggle('flipped');
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+
+    grid.appendChild(card);
+    shown++;
+  });
+
+  if (countEl) countEl.textContent = shown ? `${shown} cards loaded.` : 'No flashcards found.';
+})();
+</script>
+
 </body>
 </html>

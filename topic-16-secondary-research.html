@@ -127,6 +127,41 @@
 
 
 .exam-intro{margin:8px 0 14px;opacity:0.92;}
+
+/* Flashcards */
+.flashcard-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:18px;
+  margin-top:1.5rem;
+}
+.flashcard{perspective:1000px;}
+.flashcard-inner{
+  position:relative;
+  width:100%;
+  height:180px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor:pointer;
+}
+.flashcard.flipped .flashcard-inner{transform: rotateY(180deg);}
+.flashcard-front,.flashcard-back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:18px;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  box-shadow:0 6px 16px rgba(0,0,0,0.35);
+  font-weight:600;
+}
+.flashcard-front{background:#004556;color:#fdf5e6;}
+.flashcard-back{background:#f4b163;color:#004556;transform: rotateY(180deg);}
+
 </style>
 
 <link href="lightbox.css" rel="stylesheet"/>
@@ -356,6 +391,15 @@
 </section>
 </div>
 </section>
+
+<!-- Flashcards -->
+<section class="topic-section topic-flashcards">
+  <h2>Revision Flashcards – Secondary Research</h2>
+  <p class="topic-intro">Click a card to flip it. Test yourself before revealing the answer.</p>
+  <p class="topic-intro" id="flashcardCount" style="opacity:0.75;margin-top:-6px;"></p>
+  <div class="flashcard-grid" id="flashcardGrid"></div>
+</section>
+
 <!-- Linked games -->
 <section class="topic-section topic-games">
 <h2>Games to Practise Secondary Research</h2>
@@ -699,5 +743,149 @@
   wireBoosters();
 })();
 </script><script src="host.js"></script>
+<script id="flashcardsCsv" type="text/plain">
+What is the defining characteristic of a secondary source?,It contains second-hand information that has undergone interpretation or analysis.
+Secondary sources contain information that has had _____ or analysis of the original information.,interpretation
+Name two examples of secondary sources provided in the 'Pack A' slides.,Books and journals.
+Name three further examples of secondary sources mentioned in the material.,"Internet sites, magazines and newspapers, and television."
+How does a history book typically function as a secondary source?,It gives an interpretation of an event based on primary evidence like diary entries and letters.
+What type of content do academic journals contain?,They contain papers based on research by experts such as doctors and professors.
+"In the context of academic journals, what does 'peer-reviewed' mean?",The research papers have been checked for quality and validity by other experts in the field.
+Why are articles in magazines and newspapers often considered secondary sources?,"Because they frequently reuse, analyse, or comment on other primary sources."
+When can an item in a magazine or newspaper be considered a primary source?,"When it features original content, such as original photographs or a direct interview."
+What determines if an internet website is a primary or secondary source?,The specific content you are looking at on the website determines its classification.
+A video showing the original footage of a person being rescued from a river is what type of source?,A primary source.
+Why is a newspaper article that talks about a football team's performance considered a secondary source?,Because the article is an interpretation or analysis of how the team is performing.
+A magazine article describing what a reviewer thinks of a new games console is what type of source?,"A secondary source, as it contains opinion and interpretation."
+What is quantitative data?,Data that can be measured and is typically numerical.
+The statistic '93% of customers are happy' is an example of what type of data?,Quantitative data.
+What is qualitative data?,"Data that describes the quality of something and is non-numerical, often based on opinions or experiences."
+"A customer review calling a new ride 'incredible, scary and a real rush' is an example of what type of data?",Qualitative data.
+What was the key issue with Colgate's claim that '80% of dentists recommend Colgate toothpaste'?,"The survey allowed dentists to tick more than one option, making the claim misleading."
+What is a significant advantage of using books and academic journals for research?,"They are often written by experts and peer-reviewed, giving them high reliability and credibility."
+What is a common disadvantage of using books and journals for research?,The information can be out of date due to the long publication process.
+Identify a key advantage of using internet sites as a secondary research method.,They provide quick and easy access to a vast amount of up-to-date information.
+What is a major disadvantage of using internet sites for secondary research?,"The information can be unreliable, biased, or inaccurate, requiring careful checking of its validity."
+State an advantage of using newspapers and magazines for research.,They provide current information about recent events and can present a variety of viewpoints.
+What is a primary disadvantage of using newspapers and magazines as research sources?,"They can be biased or sensationalised, and it is important to check the validity of their claims."
+</script>
+
+
+<script>
+/* Flashcards loader (external CSV + embedded fallback) */
+(async function(){
+  const grid = document.getElementById('flashcardGrid');
+  const countEl = document.getElementById('flashcardCount');
+  if (!grid) return;
+
+  function parseCSV(text){
+    const rows = [];
+    let row = [];
+    let cur = '';
+    let inQuotes = false;
+
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      const next = text[i + 1];
+
+      if (ch === '"') {
+        if (inQuotes && next === '"') { cur += '"'; i++; }
+        else { inQuotes = !inQuotes; }
+        continue;
+      }
+
+      if (ch === ',' && !inQuotes) {
+        row.push(cur);
+        cur = '';
+        continue;
+      }
+
+      if ((ch === '\n' || ch === '\r') && !inQuotes) {
+        if (ch === '\r' && next === '\n') i++;
+        row.push(cur);
+        rows.push(row);
+        row = [];
+        cur = '';
+        continue;
+      }
+
+      cur += ch;
+    }
+
+    if (cur.length || row.length) {
+      row.push(cur);
+      rows.push(row);
+    }
+    return rows.map(r => r.map(c => (c ?? '').trim()));
+  }
+
+  function escapeHTML(str){
+    return (str || '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;');
+  }
+
+  const embeddedEl = document.getElementById('flashcardsCsv');
+  const embeddedText = embeddedEl ? embeddedEl.textContent : '';
+
+  let text = '';
+
+  try {
+    if (location.protocol.startsWith('http')) {
+      const res = await fetch('16_flashcards.csv', { cache: 'no-store' });
+      if (res.ok) text = await res.text();
+    }
+  } catch (e) {
+    // ignore and fall back to embedded
+  }
+
+  if (!text) text = embeddedText;
+  if (!text) return;
+
+  const rows = parseCSV(text);
+  if (!rows.length) return;
+
+  // Optional headers: Question,Answer
+  const header = rows[0].map(h => (h || '').trim().toLowerCase());
+  const qIdx = header.indexOf('question');
+  const aIdx = header.indexOf('answer');
+  const dataRows = (qIdx !== -1 && aIdx !== -1) ? rows.slice(1) : rows;
+
+  let shown = 0;
+  dataRows.forEach(r => {
+    const q = r[0] ?? '';
+    const a = r[1] ?? '';
+    if (!q || !a) return;
+
+    const card = document.createElement('div');
+    card.className = 'flashcard';
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', 'Flip flashcard');
+
+    card.innerHTML = `
+      <div class="flashcard-inner">
+        <div class="flashcard-front">${escapeHTML(q)}</div>
+        <div class="flashcard-back">${escapeHTML(a)}</div>
+      </div>`;
+
+    const toggle = () => card.classList.toggle('flipped');
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+
+    grid.appendChild(card);
+    shown++;
+  });
+
+  if (countEl) countEl.textContent = shown ? `${shown} cards loaded.` : 'No flashcards found.';
+})();
+</script>
+
 </body>
 </html>

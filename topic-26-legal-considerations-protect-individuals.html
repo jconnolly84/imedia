@@ -127,6 +127,41 @@
 
 
 .exam-intro{margin:8px 0 14px;opacity:0.92;}
+
+/* Flashcards */
+.flashcard-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:18px;
+  margin-top:1.5rem;
+}
+.flashcard{perspective:1000px;}
+.flashcard-inner{
+  position:relative;
+  width:100%;
+  height:180px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor:pointer;
+}
+.flashcard.flipped .flashcard-inner{transform: rotateY(180deg);}
+.flashcard-front,.flashcard-back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:18px;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  box-shadow:0 6px 16px rgba(0,0,0,0.35);
+  font-weight:600;
+}
+.flashcard-front{background:#004556;color:#fdf5e6;}
+.flashcard-back{background:#f4b163;color:#004556;transform: rotateY(180deg);}
+
 </style>
 
 <link href="lightbox.css" rel="stylesheet"/>
@@ -438,6 +473,15 @@
 
 </div>
 </section>
+
+<!-- Flashcards -->
+<section class="topic-section topic-flashcards">
+  <h2>Revision Flashcards – Legal Considerations to Protect Individuals</h2>
+  <p class="topic-intro">Click a card to flip it. Test yourself before revealing the answer.</p>
+  <p class="topic-intro" id="flashcardCount" style="opacity:0.75;margin-top:-6px;"></p>
+  <div class="flashcard-grid" id="flashcardGrid"></div>
+</section>
+
 <!-- Linked games -->
 <section class="topic-section topic-games">
 <h2>Games to Practise Legal Protection of Individuals</h2>
@@ -804,5 +848,148 @@
   wireBoosters();
 })();
 </script><script src="host.js"></script>
+<script id="flashcardsCsv" type="text/plain">
+"Which UK act establishes the right to respect for private and family life, home, and correspondence?",The Human Rights Act (1998).
+"If individuals in a sensitive environment like a hospital do not consent to be filmed, what technique can be used to protect their privacy?",Their image can be blurred out so their right to privacy is not compromised.
+"Why must a production company be extra cautious when filming children, the elderly, or the very ill?",Because they may not be able to fully understand the situation or provide informed consent.
+What legal consideration determines whether you need permission to film in an area like a town centre or shopping complex?,"Whether the space is public or privately owned, even if it is open to the general public."
+For what purpose are you permitted to take photos and film in public spaces without needing special permissions?,For personal use.
+"For what professional purpose can you photograph a newsworthy event in a public space without special permissions, provided you do not harass people or obstruct the highway?","For editorial use (e.g., news or a current affairs magazine)."
+"For which type of use may photography in a public space require permissions from the council, highways agency, or owners of background buildings?",For commercial use.
+What is always needed to film or photograph within private spaces?,Permission from the owner.
+"If you film or photograph on private property without permission, you are legally considered to be _____.",trespassing.
+What document gives a media producer permission to photograph or film a specific person for commercial purposes?,A model release form.
+"In a commercial photoshoot involving 20 people, how many model release forms are required?","Twenty forms are required, as each person needs to sign one."
+What is the legal term for making false statements that damage a person's or business's reputation?,Defamation.
+What is the term for a verbal statement of defamation?,Slander.
+"What is the term for a statement of defamation published in the media, such as in a newspaper or news broadcast?",Libel.
+"If a photographer is aggressive or intimidating while taking photos of people in public, they could be guilty of _____.",harassment.
+"While a photographer can take a photo of someone in public, entering their _____ or _____ to do so would violate their right to privacy.",garden or home.
+"According to the Data Protection Act (1998/2018), data must be stored fairly, lawfully, accurately, and _____.",securely.
+The Data Protection Act states that companies should only store data for as long as it is _____.,needed.
+What does the Data Protection Act mandate regarding the quantity of personal data stored?,Only the minimum amount of data needed should be stored.
+What right does a 'data subject' have concerning the information a company holds about them?,They have the right to view the data stored about them.
+"Under the Data Protection Act, what right does a person have if a company is storing incorrect data about them?",They have the right to have the incorrect data updated.
+What are the potential maximum fines for breaches of the Data Protection Act?,"Up to £17.5 million or 4% of annual turnover, whichever is higher."
+What is the maximum amount of compensation a person may receive in court for a case of libel?,"Up to £300,000."
+</script>
+
+
+<script>
+/* Flashcards loader (external CSV + embedded fallback) */
+(async function(){
+  const grid = document.getElementById('flashcardGrid');
+  const countEl = document.getElementById('flashcardCount');
+  if (!grid) return;
+
+  function parseCSV(text){
+    const rows = [];
+    let row = [];
+    let cur = '';
+    let inQuotes = false;
+
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      const next = text[i + 1];
+
+      if (ch === '"') {
+        if (inQuotes && next === '"') { cur += '"'; i++; }
+        else { inQuotes = !inQuotes; }
+        continue;
+      }
+
+      if (ch === ',' && !inQuotes) {
+        row.push(cur);
+        cur = '';
+        continue;
+      }
+
+      if ((ch === '\n' || ch === '\r') && !inQuotes) {
+        if (ch === '\r' && next === '\n') i++;
+        row.push(cur);
+        rows.push(row);
+        row = [];
+        cur = '';
+        continue;
+      }
+
+      cur += ch;
+    }
+
+    if (cur.length || row.length) {
+      row.push(cur);
+      rows.push(row);
+    }
+    return rows.map(r => r.map(c => (c ?? '').trim()));
+  }
+
+  function escapeHTML(str){
+    return (str || '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;');
+  }
+
+  const embeddedEl = document.getElementById('flashcardsCsv');
+  const embeddedText = embeddedEl ? embeddedEl.textContent : '';
+
+  let text = '';
+
+  try {
+    if (location.protocol.startsWith('http')) {
+      const res = await fetch('26_flashcards.csv', { cache: 'no-store' });
+      if (res.ok) text = await res.text();
+    }
+  } catch (e) {
+    // ignore and fall back to embedded
+  }
+
+  if (!text) text = embeddedText;
+  if (!text) return;
+
+  const rows = parseCSV(text);
+  if (!rows.length) return;
+
+  // Optional headers: Question,Answer
+  const header = rows[0].map(h => (h || '').trim().toLowerCase());
+  const qIdx = header.indexOf('question');
+  const aIdx = header.indexOf('answer');
+  const dataRows = (qIdx !== -1 && aIdx !== -1) ? rows.slice(1) : rows;
+
+  let shown = 0;
+  dataRows.forEach(r => {
+    const q = r[0] ?? '';
+    const a = r[1] ?? '';
+    if (!q || !a) return;
+
+    const card = document.createElement('div');
+    card.className = 'flashcard';
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', 'Flip flashcard');
+
+    card.innerHTML = `
+      <div class="flashcard-inner">
+        <div class="flashcard-front">${escapeHTML(q)}</div>
+        <div class="flashcard-back">${escapeHTML(a)}</div>
+      </div>`;
+
+    const toggle = () => card.classList.toggle('flipped');
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+
+    grid.appendChild(card);
+    shown++;
+  });
+
+  if (countEl) countEl.textContent = shown ? `${shown} cards loaded.` : 'No flashcards found.';
+})();
+</script>
+
 </body>
 </html>
