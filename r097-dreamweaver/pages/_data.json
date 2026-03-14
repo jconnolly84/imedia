@@ -1,0 +1,20 @@
+{
+  "playlistId": "PLYqgg9Hnackjex-6aul60VGKTYRztk1VU",
+  "videos": [
+    {"n":1, "slug":"01-banner", "title":"Making the Banner", "yt":"yf3Xoynwh18", "goal":"Design a strong banner in Canva and export it ready for web."},
+    {"n":2, "slug":"02-saving-graphics", "title":"Saving Graphics from Canva", "yt":"yf3Xoynwh18", "goal":"Export graphics with sensible file names and sizes for your site."},
+    {"n":3, "slug":"03-buttons", "title":"Creating Website Buttons in Canva", "yt":"j-31FG8TG3U", "goal":"Create consistent navigation buttons that look professional."},
+    {"n":4, "slug":"04-setup-dreamweaver", "title":"Setting up Dreamweaver", "yt":"9-Z_G08yjgw", "goal":"Set up Dreamweaver so files, links and panels behave properly."},
+    {"n":5, "slug":"05-structure", "title":"HTML Layout / Structure", "yt":"nx_oLTOTJ2Y", "goal":"Build the basic page structure (header, nav, main content, footer)."},
+    {"n":6, "slug":"06-template", "title":"Creating a Template HTML Page", "yt":"nx_oLTOTJ2Y", "goal":"Create a reusable template so every page matches your style."},
+    {"n":7, "slug":"07-pages", "title":"Setting up Website Pages", "yt":"oaHTn0s_FPM", "goal":"Create your site pages and link them together properly."},
+    {"n":8, "slug":"08-text-images", "title":"Adding Text and Images", "yt":"3U8slxc5HIk", "goal":"Add content and images neatly so your layout stays consistent."},
+    {"n":9, "slug":"09-more-media", "title":"More Text / Media (Continuation)", "yt":"3U8slxc5HIk", "goal":"Improve content layout and keep pages readable and balanced."},
+    {"n":10, "slug":"10-youtube-video", "title":"Adding a YouTube Video", "yt":"p9559TjSCLk", "goal":"Embed a YouTube video and keep it responsive."},
+    {"n":11, "slug":"11-mp4-video", "title":"Embed an MP4 Video Exported from Canva", "yt":"qouIsKhxpWQ", "goal":"Export an MP4 from Canva and embed it into your site."},
+    {"n":12, "slug":"12-map", "title":"Adding a Map", "yt":"jY8BIXPlcYc", "goal":"Embed a map and make sure it displays properly on all screens."},
+    {"n":13, "slug":"13-form", "title":"Adding a Data Capture Form", "yt":"tFxEIFd8ruQ", "goal":"Add a form safely and understand what data you are collecting."},
+    {"n":14, "slug":"14-extra-1", "title":"Extra Playlist Content #1", "yt":"tFxEIFd8ruQ", "goal":"Complete the extra step(s) needed to finish and polish your site."},
+    {"n":15, "slug":"15-extra-2", "title":"Extra Playlist Content #2", "yt":"jY8BIXPlcYc", "goal":"Final checks, polish and export so your website is ready to submit."}
+  ]
+}

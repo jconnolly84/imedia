@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Using ChatGPT to Build Website Components · iMedia Genius</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html" aria-label="iMedia Genius – Creating a Website with Dreamweaver">
+      <img class="brand-logo" src="../img/imedia_genius_logo_transparent.png" alt="iMedia Genius" />
+      <div class="brand-divider"></div>
+      <div class="brand-text">
+        <span class="brand-name">iMedia Genius</span>
+        <span class="brand-sub-text">Creating a Website with Dreamweaver</span>
+      </div>
+    </a>
+    <nav class="nav"><a class="" href="../index.html">Home</a><a class="active" href="chatgpt-components.html">Using ChatGPT</a></nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="page">
+    <h2>Using ChatGPT to build HTML components (student guide)</h2>
+    <p class="lead">Use ChatGPT to generate small, tidy sections of HTML/CSS (components), then paste them into Dreamweaver safely.</p>
+
+    <div class="columns">
+      <div class="panel">
+        <h3>Rules (non‑negotiable)</h3>
+        <ul>
+          <li><strong>No copying random code</strong> you don’t understand. If you can’t explain it, don’t use it.</li>
+          <li><strong>No JavaScript unless your teacher asks for it.</strong> HTML + CSS is usually enough.</li>
+          <li><strong>Keep everything in your site folder</strong> (images in <span class="code">img/</span>).</li>
+          <li><strong>Use sensible file names</strong> (no spaces, no weird symbols).</li>
+        </ul>
+
+        <h3 style="margin-top:14px">The workflow</h3>
+        <ol style="margin:0;padding-left:18px;color:var(--muted)">
+          <li><strong>Describe the component clearly</strong> (what it must include + where it goes).</li>
+          <li><strong>Ask for two outputs:</strong> (1) HTML snippet and (2) CSS for <span class="code">style.css</span>.</li>
+          <li><strong>Paste HTML into your page</strong> (use Split view if helpful).</li>
+          <li><strong>Paste CSS into style.css</strong> under a comment.</li>
+          <li><strong>Save → Preview → Fix</strong> until it looks right.</li>
+        </ol>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="panel check">
+          <h3>How to paste into Dreamweaver (quick steps)</h3>
+          <ul>
+            <li>Open <span class="code">index.html</span> (or the page you’re editing).</li>
+            <li>Switch to <strong>Design</strong> (or use <strong>Split</strong>).</li>
+            <li>Paste the HTML inside the correct section: <span class="code">&lt;header&gt;</span>, <span class="code">&lt;main&gt;</span>, or <span class="code">&lt;footer&gt;</span>.</li>
+            <li>Open <span class="code">style.css</span> and paste the CSS at the bottom.</li>
+            <li>Preview in browser. If something breaks, undo and try again.</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3>Prompt templates students can copy</h3>
+          <p style="margin:0 0 8px;color:var(--muted)">Tell ChatGPT exactly what you need, and force it to output clean HTML/CSS.</p>
+          <div class="code">Create a simple responsive navigation bar for a school website.
+Pages: Home, About, Gallery, Contact.
+Must work in Dreamweaver.
+Provide (1) HTML snippet and (2) CSS for style.css.
+No external libraries. No JavaScript.
+Use semantic HTML and sensible class names.</div>
+          <div style="height:10px"></div>
+          <div class="code">Create a hero section with background image img/hero.jpg,
+a heading, one short paragraph, and a button.
+Mobile-friendly.
+Provide HTML + CSS only.
+No external libraries.</div>
+          <div style="height:10px"></div>
+          <div class="code">Create a 3-card grid (3 columns desktop, 1 column mobile)
+with title + description in each card.
+Provide HTML + CSS only.
+No external libraries.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pager">
+      <a class="btn" href="../index.html">← Back to Home</a>
+      <a class="btn" href="01-banner.html">Start Step 1 →</a>
+    </div>
+  </section>
+
+  
+<footer class="footer">
+  Built for students • Use the video, pause often, then build. • Hosted on GitHub Pages.
+</footer>
+
+</main>
+</body>
+</html>

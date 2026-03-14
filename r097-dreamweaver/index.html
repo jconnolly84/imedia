@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Website Build Guide · iMedia Genius</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="iMedia Genius – Creating a Website with Dreamweaver">
+      <img class="brand-logo" src="img/imedia_genius_logo_transparent.png" alt="iMedia Genius" />
+      <div class="brand-divider"></div>
+      <div class="brand-text">
+        <span class="brand-name">iMedia Genius</span>
+        <span class="brand-sub-text">Creating a Website with Dreamweaver</span>
+      </div>
+    </a>
+    <nav class="nav">
+      <a class="active" href="index.html">Home</a>
+      <a href="pages/chatgpt-components.html">Using ChatGPT</a>
+      <a href="pages/01-banner.html">Start</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="hero-card">
+      <div class="hero-grid">
+        <div>
+          
+<!-- Dreamweaver Setup Cards -->
+<section class="dw-cards-wrapper" aria-label="Setup overview">
+  <div class="dw-cards">
+    <article class="dw-card dw-card--text">
+      <div class="dw-caption">
+        <h3>Get your assets ready</h3>
+        <p>Export your banner, buttons and images from Canva and save them into <strong>img/</strong>.</p>
+      </div>
+    </article>
+
+    <article class="dw-card dw-card--text">
+      <div class="dw-caption">
+        <h3>Set up your workspace</h3>
+        <p>Dock panels, reset the workspace if needed, and work in <strong>Design</strong> view (not Live View).</p>
+      </div>
+    </article>
+
+    <article class="dw-card dw-card--text">
+      <div class="dw-caption">
+        <h3>Watch • Pause • Do</h3>
+        <p>Watch ~30–60 seconds, pause, build that bit, then repeat.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+
+
+<h2>Build a complete website step-by-step</h2>
+          <p>
+            Use the videos to build your site in small chunks: <strong>watch ~30–60 seconds</strong>, <strong>pause</strong>, build that part in Dreamweaver, then repeat.
+            This is the fastest way to learn without getting overwhelmed.
+          </p>
+
+          <div class="big-warning" aria-label="Essential Dreamweaver setup">
+            <h3>ESSENTIAL DREAMWEAVER SETUP (DO THIS FIRST!)</h3>
+            <div class="big">
+              <strong>1) DEFINE YOUR SITE IN DREAMWEAVER (SO IMAGES + LINKS WORK):</strong>
+              <ul>
+                <li><strong>Site → New Site…</strong></li>
+                <li><strong>Site Name:</strong> e.g. <strong>MyWebsite</strong></li>
+                <li><strong>Local Site Folder:</strong> choose your project folder (the folder containing <strong>index.html</strong>, <strong>style.css</strong>, and <strong>img/</strong>)</li>
+                <li><strong>Save</strong></li>
+              </ul>
+
+              <strong>2) SNAP THE PROPERTIES WINDOW INTO PLACE (SO YOU CAN EDIT QUICKLY):</strong>
+              <ul>
+                <li><strong>Window → Properties</strong> (turn it on if missing)</li>
+                <li><strong>Drag the Properties bar until it docks/snaps</strong> into the workspace (usually along the bottom)</li>
+                <li>If panels are messy: <strong>Window → Workspace Layout → Reset</strong></li>
+              </ul>
+
+              <strong>3) USE STANDARD MODE:</strong>
+              <ul>
+                <li><strong>Make sure you are in a standard workspace layout</strong> (reset if needed)</li>
+              </ul>
+
+              <strong>4) SWITCH TO DESIGN MODE (NOT LIVE VIEW):</strong>
+              <ul>
+                <li>At the top of the document window, choose <strong>Design</strong></li>
+                <li><strong>Turn OFF Live View</strong> (it can make editing confusing)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            <h4>How to use the videos (do this every step)</h4>
+            <p>
+              You cannot watch the whole video and remember every step. Instead: watch ~30–60 seconds, pause, then build that section in Dreamweaver. Repeat.
+              Split your screen so you can see Dreamweaver and the video at the same time.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <!-- Right-hand hero panel (fills the unused space) -->
+          <div class="panel dw-right-panel">
+            <h3>Quick links</h3>
+            <ul>
+              <li><strong>Start the guide:</strong> <a href="pages/01-banner.html">Step 1 (Banner)</a></li>
+              <li><strong>Using ChatGPT:</strong> <a href="pages/chatgpt-components.html">Create HTML components safely</a></li>
+              <li><strong>Most common fix:</strong> define your site + use Design view</li>
+            </ul>
+            <div class="quicklink-images" aria-label="Setup images">
+              <img src="img/setup-assets-for-dreamweaver.png" alt="Get your assets ready">
+              <img src="img/setup-dreamweaver-workspace.png" alt="Set up your workspace">
+              <img src="img/watch-pause-do-instructions.png" alt="Watch • Pause • Do">
+            </div>
+
+
+            <hr class="panel-divider" />
+
+            <h3>Submission tip</h3>
+            <ul>
+              <li><strong>Keep everything in one folder</strong> (pages, css, images).</li>
+              <li><strong>No broken links:</strong> click every nav link before you submit.</li>
+              <li><strong>File names:</strong> no spaces (use dashes).</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <h3 class="section-title">Steps (with tips)</h3>
+  <section class="grid">
+
+    <article class="card">
+      <div class="badge"><span>1</span> Video tutorial</div>
+      <h3>Making the Banner</h3>
+      <p>Design a strong banner in Canva and export it ready for web.</p>
+      <p class="tips"><strong>Tip:</strong> Keep the banner width consistent (1200–1600px). Export PNG for graphics, JPG for photos.</p>
+      <div class="actions"><a class="btn" href="pages/01-banner.html">Open Step 1</a></div>
+    </article>
+
+    <article class="card">
+      <div class="badge"><span>2</span> Video tutorial</div>
+      <h3>Saving Graphics from Canva</h3>
+      <p>Export and organise images so your website stays tidy and easy to build.</p>
+      <p class="tips"><strong>Tip:</strong> Use clear names like <strong>logo.png</strong>. Avoid spaces in file names.</p>
+      <div class="actions"><a class="btn" href="pages/02-saving-graphics.html">Open Step 2</a></div>
+    </article>
+
+    <article class="card">
+      <div class="badge"><span>3</span> Video tutorial</div>
+      <h3>Creating Website Buttons in Canva</h3>
+      <p>Create navigation buttons that look consistent across the whole site.</p>
+      <p class="tips"><strong>Tip:</strong> Make all buttons the same size. Check contrast so text is readable.</p>
+      <div class="actions"><a class="btn" href="pages/03-buttons.html">Open Step 3</a></div>
+    </article>
+
+    <article class="card">
+      <div class="badge"><span>4</span> Video tutorial</div>
+      <h3>Setting up Dreamweaver</h3>
+      <p>Set up Dreamweaver properly so links, images and panels work as expected.</p>
+      <p class="tips"><strong>Tip:</strong> If something is “broken”, it’s usually because the site isn’t defined or you’re in Live View.</p>
+      <div class="actions"><a class="btn" href="pages/04-setup-dreamweaver.html">Open Step 4</a></div>
+    </article>
+
+    <article class="card">
+      <div class="badge"><span>5</span> Video tutorial</div>
+      <h3>HTML Layout / Structure</h3>
+      <p>Build the page layout using header, nav, main content and footer.</p>
+      <p class="tips"><strong>Tip:</strong> Keep content inside a container so it doesn’t stretch too wide.</p>
+      <div class="actions"><a class="btn" href="pages/05-structure.html">Open Step 5</a></div>
+    </article>
+
+    <article class="card">
+      <div class="badge"><span>6</span> Video tutorial</div>
+      <h3>Creating a Template HTML Page</h3>
+      <p>Create a reusable template so every page matches your design.</p>
+      <p class="tips"><strong>Tip:</strong> Copy the template to create new pages (don’t start from scratch each time).</p>
+      <div class="actions"><a class="btn" href="pages/06-template.html">Open Step 6</a></div>
+    </article>
+
+    <article class="card">
+      <div class="badge"><span>7</span> Video tutorial</div>
+      <h3>Setting up Website Pages</h3>
+      <p>Create your site pages and connect them with navigation links.</p>
+      <p class="tips"><strong>Tip:</strong> Use simple names: <strong>about.html</strong>, <strong>gallery.html</strong>, <strong>contact.html</strong>.</p>
+      <div class="actions"><a class="btn" href="pages/07-pages.html">Open Step 7</a></div>
+    </article>
+
+    <article class="card">
+      <div class="badge"><span>8</span> Video tutorial</div>
+      <h3>Adding Text</h3>
+      <p>Add content and images neatly so your layout stays consistent.</p>
+      <p class="tips"><strong>Tip:</strong> Resize images before importing. Add alt text for accessibility.</p>
+      <div class="actions"><a class="btn" href="pages/08-text-images.html">Open Step 8</a></div>
+    </article>
+
+    <article class="card">
+      <div class="badge"><span>9</span> Video tutorial</div>
+      <h3>Adding Images</h3>
+      <p>Improve layout and readability so pages don’t become cluttered.</p>
+      <p class="tips"><strong>Tip:</strong> Use headings (H2/H3) and white space. Keep paragraphs short.</p>
+      <div class="actions"><a class="btn" href="pages/09-more-media.html">Open Step 9</a></div>
+    </article>
+
+    <article class="card">
+      <div class="badge"><span>10</span> Video tutorial</div>
+      <h3>Adding a YouTube Video</h3>
+      <p>Embed a YouTube video and keep it responsive on phones.</p>
+      <p class="tips"><strong>Tip:</strong> Use the embed iframe code. Don’t paste the normal YouTube URL into the page.</p>
+      <div class="actions"><a class="btn" href="pages/10-youtube-video.html">Open Step 10</a></div>
+    </article>
+
+    <article class="card">
+      <div class="badge"><span>11</span> Video tutorial</div>
+      <h3>Embed an MP4 Exported from Canva</h3>
+      <p>Export an MP4 from Canva and embed it into your website.</p>
+      <p class="tips"><strong>Tip:</strong> Keep file sizes sensible (720p is usually enough). Large MP4s load slowly.</p>
+      <div class="actions"><a class="btn" href="pages/11-mp4-video.html">Open Step 11</a></div>
+    </article>
+
+    <article class="card">
+      <div class="badge"><span>12</span> Video tutorial</div>
+      <h3>Adding a Map</h3>
+      <p>Embed a map and make sure it displays correctly on all screens.</p>
+      <p class="tips"><strong>Tip:</strong> Choose a useful zoom level. Check it doesn’t overflow on mobile.</p>
+      <div class="actions"><a class="btn" href="pages/12-map.html">Open Step 12</a></div>
+    </article>
+
+    <article class="card">
+      <div class="badge"><span>13</span> Video tutorial</div>
+      <h3>Adding a Data Capture Form</h3>
+      <p>Add a form and understand what data is being collected and where it goes.</p>
+      <p class="tips"><strong>Tip:</strong> Only collect what you need. Test your form properly.</p>
+      <div class="actions"><a class="btn" href="pages/13-form.html">Open Step 13</a></div>
+    </article>
+
+    <article class="card">
+      <div class="badge"><span>14</span> Video tutorial</div>
+      <h3>Adding an HTML Gallery to a Website</h3>
+      <p>Finish/polish your site: consistency, spelling, spacing, navigation checks.</p>
+      <p class="tips"><strong>Tip:</strong> Click every link. Fix broken images. Preview on a phone-sized screen.</p>
+      <div class="actions"><a class="btn" href="pages/14-extra-1.html">Open Step 14</a></div>
+    </article>
+
+    <article class="card">
+      <div class="badge"><span>15</span> Video tutorial</div>
+      <h3>Building a Whole Website in Canva</h3>
+      <p>Final checks and publish-ready export for GitHub Pages.</p>
+      <p class="tips"><strong>Tip:</strong> Keep a backup. Ensure your homepage is called <strong>index.html</strong>.</p>
+      <div class="actions"><a class="btn" href="pages/15-extra-2.html">Open Step 15</a></div>
+    </article>
+
+  </section>
+
+  <footer class="footer">
+    Built for students • Use the video, pause often, then build • Hosted on GitHub Pages
+  </footer>
+</main>
+</body>
+</html>

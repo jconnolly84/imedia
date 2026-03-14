@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Designing a Website (R097) – 07 – Testing Plan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="js/site.js"></script>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container">
+      <div class="navwrap">
+        <a class="brand" href="index.html" aria-label="iMedia Genius – Creating a Website (R097)">
+          <img class="brand-logo" src="img/imedia_genius_logo_transparent.png" alt="iMedia Genius" />
+          <div class="brand-divider"></div>
+          <div class="brand-text">
+            <span class="brand-name">iMedia Genius</span>
+            <span class="brand-sub">Creating a Website · R097</span>
+          </div>
+        </a>
+        <nav class="nav" aria-label="Site">
+  <select id="pageSelect" onchange="window.location.href = this.value;">
+    <option value="index.html">Home / Overview</option>
+    <option value="01-target-audience.html">01 – Target Audience</option>
+    <option value="02-original-ideas.html">02 – Original Ideas</option>
+    <option value="03-idmp-content.html">03 – IDMP Content Ideas</option>
+    <option value="04-meeting-brief.html">04 – Meeting the Brief</option>
+    <option value="05-preproduction-docs.html">05 – Pre‑production Docs</option>
+    <option value="06-functionality.html">06 – Functionality</option>
+    <option value="07-testing-plan.html" selected>07 – Testing Plan</option>
+    <option value="08-assets-required.html">08 – Assets Required</option>
+    <option value="09-asset-properties.html">09 – Asset Properties</option>
+    <option value="10-create-assets.html">10 – Create Assets</option>
+    <option value="11-repurpose-assets.html">11 – Repurpose Assets</option>
+    <option value="12-interactive-navigation.html">12 – Interactivity + Navigation</option>
+    <option value="13-build-idmp.html">13 – Build the Website</option>
+    <option value="14-export-publish.html">14 – Export / Publish</option>
+    <option value="15-asset-review.html">15 – Review Assets</option>
+    <option value="16-asset-technical.html">16 – Asset Technical Fitness</option>
+    <option value="17-idmp-testing.html">17 – Functionality Testing</option>
+    <option value="18-idmp-review.html">18 – Review the Website</option>
+    <option value="19-improve-assets.html">19 – Improvements to Assets</option>
+    <option value="20-improve-idmp.html">20 – Improvements to Website</option>
+    <option value="21-future-development.html">21 – Future Development</option>
+  </select>
+</nav>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="infographic">
+      <img src="img/07_testing_plan.jpg" alt="Infographic">
+    </div>
+
+    <section class="hero">
+      <h2>Task 1B(iii) Testing documentation</h2>
+      <p class="sub">Decide how you will test/check the website and create a test plan.</p>
+      <div class="chips">
+        <span class="chip">Plan tests before building</span>
+        <span class="chip">Expected vs actual</span>
+        <span class="chip">Fix + retest</span>
+      </div>
+      
+      
+        <div class="callout good">
+          <strong>Use this template:</strong>
+          <div class="small"><a href="downloads/test_table.docx">R097 Test Plan Template</a></div>
+        </div>
+        
+    </section>
+
+    <div class="grid">
+      <section class="section">
+         <h2>Testing Documentation (Planning Stage)</h2>
+  <p>
+    At this stage you are <strong>planning</strong> your testing — you are not testing the finished website yet.
+    Your evidence should be a <strong>blank test table</strong> for <strong>each page</strong> of your IDMP
+    (e.g. Home, About, Quiz, Gallery), created from what you can see in your <strong>wireframes</strong>.
+  </p>
+
+  <h3>What your test plan should cover</h3>
+  <p>
+    Your test tables should include clear tests for each page. Think: <em>“What must work on this page?”</em>
+  </p>
+  <ul>
+    <li><strong>Navigation:</strong> menu links, buttons, back-to-home links, next/previous links (if used)</li>
+    <li><strong>Content display:</strong> headings, images, text blocks, captions load and appear correctly</li>
+    <li><strong>Interactivity:</strong> quizzes, image galleries/lightbox, video play controls, filters/search (if included)</li>
+    <li><strong>Forms & validation:</strong> required fields, correct input types, error messages (e.g. name + class must be entered)</li>
+    <li><strong>Usability:</strong> readability, spacing, consistent layout, clear call-to-action buttons</li>
+    <li><strong>Responsive design:</strong> mobile vs desktop layout still works (no overlapping text, buttons still tappable)</li>
+    <li><strong>Accessibility (basic):</strong> good colour contrast, readable font sizes, clear labels on inputs</li>
+  </ul>
+      </section>
+
+      <section class="section">
+        <h3>How to present evidence</h3>
+  <p>
+    For this task, your evidence is the <strong>test table template</strong> (planned tests) for each page.
+    You will <strong>fill in</strong> Pass/Fail, comments and re-tests later once the IDMP is completed.
+  </p>
+  <ul>
+    <li>Create <strong>one test table per page</strong> (Home, About, Quiz, Gallery, etc.)</li>
+    <li>Use your <strong>wireframes</strong> to decide what should be tested on that page</li>
+    <li>Write tests that are <strong>specific</strong> (avoid vague tests like “works” or “looks good”)</li>
+    <li>Include tests for the page’s <strong>main features</strong> (buttons, links, interactive elements)</li>
+    <li>Leave <strong>Pass/Fail</strong>, <strong>Comments</strong>, <strong>Re-test</strong>, and <strong>Result</strong> blank for now</li>
+    <li>Save/export your test tables (screenshots or document) as evidence in your project log</li>
+  </ul>
+
+  <div class="note">
+    <p>
+      <strong>Tip:</strong> Start each test with “<em>Check that…</em>” and make it measurable, e.g.
+      “Check that the Quiz Submit button shows a score and feedback” rather than “Quiz works”.
+    </p>
+  </div>
+      </section>
+    </div>
+
+    <footer class="site-footer">© Designing a Website (R097)</footer>
+  </main>
+</body>
+</html>
