@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browser Moderation Scanner v8.0</title>
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://unpkg.com/mammoth@1.8.0/mammoth.browser.min.js"></script>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container">
+      <div class="navwrap">
+        <a class="brand" href="index.html" aria-label="iMedia Genius – Moderation Scanner">
+          <img class="brand-logo" src="img/imedia_genius_logo_transparent.png" alt="iMedia Genius" />
+          <div class="brand-divider"></div>
+          <div class="brand-text">
+            <span class="brand-name">iMedia Genius</span>
+            <span class="brand-sub">Moderation Scanner</span>
+          </div>
+        </a>
+
+        <div class="top-actions">
+          <button id="pickFolderBtn" class="primary">Select moderation folder</button>
+          <label class="upload-fallback button-like">
+            <input id="folderInput" type="file" webkitdirectory directory multiple hidden />
+            Fallback folder upload
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="container page-shell">
+    <section class="hero card hero-card">
+      <div class="hero-copy">
+        <h1>Browser Moderation Scanner <span>v8.0</span></h1>
+        <p class="sub">Department moderation dashboard for <b>PPTX</b> and <b>DOCX</b> only, with audited export wiring, primary-file moderation, cleaner AI review, a ChatGPT export pack, and a plagiarism network view.</p>
+        <div class="chips">
+          <span class="chip">Primary-file moderation</span>
+          <span class="chip">ChatGPT pack export</span>
+          <span class="chip">Plagiarism network view</span>
+          <span class="chip">AI signals as review only</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="controls card">
+      <div class="section-head stack-on-mobile compact-gap">
+        <div>
+          <h2>Scan settings</h2>
+          <p class="helper">Adjust the moderation threshold and review options before scanning the folder.</p>
+        </div>
+      </div>
+      <div class="control-grid">
+        <label>
+          Similarity threshold
+          <input id="similarityThreshold" type="range" min="0.45" max="0.95" value="0.72" step="0.01" />
+          <span id="similarityThresholdValue">0.72</span>
+        </label>
+        <label>
+          Minimum paragraph length
+          <input id="minParagraphChars" type="number" min="60" max="500" value="120" step="10" />
+        </label>
+        <label>
+          AI review sensitivity
+          <select id="aiSensitivity">
+            <option value="off">Off</option>
+            <option value="low" selected>Low</option>
+            <option value="normal">Normal</option>
+            <option value="strict">Strict</option>
+          </select>
+        </label>
+        <label>
+          Ignore same student folder
+          <select id="ignoreSameFolder">
+            <option value="yes" selected>Yes</option>
+            <option value="no">No</option>
+          </select>
+        </label>
+      </div>
+      <div class="action-row">
+        <button id="scanBtn" class="primary" disabled>Scan</button>
+        <button id="downloadCsvBtn" disabled>Download CSV</button>
+        <button id="downloadClassReportBtn" disabled>Download class report</button>
+        <button id="downloadStudentReportsBtn" disabled>Download student reports</button>
+      </div>
+      <div id="status" class="status">No folder loaded.</div>
+    </section>
+
+    <section class="summary-grid">
+      <div class="card stat"><span id="statStudents">0</span><small>Students</small></div>
+      <div class="card stat"><span id="statFiles">0</span><small>Primary files</small></div>
+      <div class="card stat"><span id="statCopied">0</span><small>Likely copied matches</small></div>
+      <div class="card stat"><span id="statRed">0</span><small>Plagiarism red flags</small></div>
+      <div class="card stat"><span id="statAiRed">0</span><small>AI red flags</small></div>
+      <div class="card stat"><span id="statExact">0</span><small>Exact reused paragraphs</small></div>
+    </section>
+
+    <section class="card">
+      <h2>Loaded student folders</h2>
+      <p class="helper">Only <b>.pptx</b> and <b>.docx</b> files are scanned. PDFs and other files are ignored.</p>
+      <div id="folderTableWrap" class="table-wrap empty">No folder selected yet.</div>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <div>
+          <h2>Student overview</h2>
+          <p class="helper">Quick moderation summary for each student folder.</p>
+        </div>
+        <input id="studentFilter" type="search" placeholder="Filter by candidate, student, unit or assignment" />
+      </div>
+      <div id="dashboard" class="dashboard empty">Run a scan to see student summaries.</div>
+    </section>
+
+    <section class="card">
+      <div class="section-head stack-on-mobile">
+        <div>
+          <h2>Possible plagiarism</h2>
+          <p class="helper">Copied sections are shown side by side so you can compare them quickly.</p>
+        </div>
+      </div>
+      <div id="possiblePlagiarismSummary" class="summary-note empty">Run a scan to populate the plagiarism review panel.</div>
+      <div id="heatmap" class="empty">Run a scan to generate the heatmap.</div>
+      <div id="sharingClusters" class="empty">Run a scan to find groups of students sharing text.</div>
+      <div id="plagiarismNetwork" class="empty">Run a scan to build the plagiarism network view.</div>
+      <div id="exactReuse" class="empty">Run a scan to detect identical paragraphs reused across students.</div>
+      <div id="clusters" class="empty">Run a scan to see copied sections side by side.</div>
+    </section>
+
+    <section class="card">
+      <div class="section-head stack-on-mobile">
+        <div>
+          <h2>ChatGPT export and prompt</h2>
+          <p class="helper">Export the scan data, generate a review prompt, and open ChatGPT in a new tab with the prompt prefilled.</p>
+        </div>
+      </div>
+      <div class="action-row">
+        <button id="downloadDetailedCsvBtn" disabled>Download detailed CSV</button>
+        <button id="downloadScanTextBtn" disabled>Download scan summary text</button>
+        <button id="downloadExtractedTextBtn" disabled>Download extracted texts</button>
+        <button id="downloadChatgptPackBtn" disabled>Download ChatGPT pack ZIP</button>
+        <button id="copyPromptBtn" disabled>Copy ChatGPT prompt</button>
+        <button id="openChatgptBtn" disabled>Open in ChatGPT</button>
+      </div>
+      <label class="prompt-box-label">
+        Generated prompt
+        <textarea id="promptOutput" rows="12" readonly placeholder="Run a scan to generate a ChatGPT review prompt."></textarea>
+      </label>
+      <p class="helper">Best workflow: download the <b>ChatGPT pack ZIP</b>, open ChatGPT from the button, then upload the ZIP or the extracted-text file into the chat.</p>
+      <div id="exportStatus" class="status small">Export buttons unlock after a successful scan.</div>
+    </section>
+
+    <section class="card">
+      <div class="section-head stack-on-mobile">
+        <div>
+          <h2>AI review</h2>
+          <p class="helper">AI is shown as a review signal only. It is not proof.</p>
+        </div>
+      </div>
+      <div id="aiPanel" class="empty">Run a scan to see AI review flags and reasons.</div>
+    </section>
+
+    <footer class="site-footer">© iMedia Genius Moderation Scanner</footer>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
