@@ -672,3 +672,91 @@ h1, h2, h3, h4, h5 { font-family: 'Outfit', system-ui, sans-serif; line-height: 
     width: 100%;
   }
 }
+
+
+
+
+/* Mobile header alignment to match iMedia Genius main site */
+.jump-label {
+  display: none;
+  color: rgba(255,255,255,0.72);
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .brand-text { display: flex !important; }
+  .brand-divider { display: block !important; }
+  .brand-logo { height: 38px; }
+  .brand-name { font-size: 1rem; }
+  .brand-sub-text { font-size: 0.64rem; letter-spacing: 0.07em; }
+
+  .navwrap,
+  .header-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .nav {
+    width: 100%;
+    margin-left: 0;
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+  }
+
+  .jump-label {
+    display: block;
+  }
+
+  .nav select {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    flex: none;
+    min-height: 52px;
+  }
+
+  .login-btn {
+    width: 62px;
+    min-width: 62px;
+    min-height: 52px;
+    padding: 0;
+    font-size: 0;
+    gap: 0;
+    border-radius: 16px;
+  }
+
+  .login-btn::before {
+    width: 20px;
+    height: 20px;
+    flex-basis: 20px;
+  }
+}
+
+@media (max-width: 520px) {
+  .brand-text { display: flex !important; }
+  .brand-divider { display: block !important; height: 28px; }
+  .brand-logo { height: 34px; }
+  .brand-name { font-size: 0.92rem; }
+  .brand-sub-text { font-size: 0.56rem; letter-spacing: 0.06em; }
+
+  .nav {
+    grid-template-columns: max-content minmax(0, 1fr) auto;
+    gap: 10px;
+  }
+
+  .jump-label {
+    font-size: 0.8rem;
+  }
+
+  .login-btn {
+    width: 58px;
+    min-width: 58px;
+  }
+}
