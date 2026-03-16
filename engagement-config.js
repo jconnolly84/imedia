@@ -4,7 +4,7 @@ window.IMEDIA_ENGAGEMENT_CONFIG = Object.assign({
   storageKey: 'imediaEngagementSession',
   queueKey: 'imediaEngagementQueue',
   verifyEndpoint: 'https://europe-west2-geniusmode-marking.cloudfunctions.net/createEngagementSessionFromToken',
-  ingestEndpoint: 'https://europe-west2-geniusmode-marking.cloudfunctions.net/logEngagementEvent',
+  ingestEndpoint: 'https://europe-west2-geniusmode-marking.cloudfunctions.net/logEngagementEventHttp',
   debug: false,
   heartbeatSeconds: 30,
   maxQueueSize: 150,
