@@ -7,8 +7,5 @@ window.IMEDIA_ENGAGEMENT_CONFIG = Object.assign({
   ingestEndpoint: 'https://europe-west2-imediagenius.cloudfunctions.net/logEngagementEventHttp',
   debug: false,
   heartbeatSeconds: 30,
-  maxQueueSize: 150,
-  autoTrackButtons: true,
-  autoTrackForms: true,
-  autoTrackMedia: true
+  maxQueueSize: 150
 }, window.IMEDIA_ENGAGEMENT_CONFIG || {});

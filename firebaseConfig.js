@@ -7,9 +7,9 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-aut
 
 const firebaseConfig = {
   apiKey: "AIzaSyAYCwA4gKMzZ-W2vAPxwS5mBBEOOI5EKm8",
-  authDomain: "imediagenius.firebaseapp.com",
-  projectId: "imediagenius",
-  storageBucket: "imediagenius.firebasestorage.app",
+  authDomain: "geniusmode-marking.firebaseapp.com",
+  projectId: "geniusmode-marking",
+  storageBucket: "geniusmode-marking.firebasestorage.app",
   messagingSenderId: "664335373954",
   appId: "1:664335373954:web:74f8cf272161ea8096469b"
 };
