@@ -1,5 +1,4 @@
-What is the primary purpose of file compression?,To reduce the size of a file for more efficient storage and transmission.
-"Why is compression particularly useful for files like video, music, or images?",These files are often very large and require a lot of disk space to store.
+﻿"Why is compression important for image, audio, and video files?",Because these files are often large and take up a lot of storage space.
 What are the two different types of compression?,Lossy and lossless compression.
 Which type of compression preserves the file's data so it is exactly the same after being uncompressed?,Lossless compression.
 For which types of files is lossless compression essential?,"Files where the contents must be exactly the same, such as word processed documents or computer game code."
@@ -11,10 +10,10 @@ Is the JPG/JPEG format an example of lossy or lossless compression?,Lossy compre
 What does the music format acronym MP3 stand for?,Motion Picture Electronics Group – Layer 3.
 "Name a music format that uses lossy compression, other than MP3.",Ogg (Ogg Vorbis).
 Name two video formats that use lossy compression.,"MPEG-2, MP4, or H.264."
-"According to the comparison table, how does the file size reduction of lossy compression compare to lossless?","Lossy compression provides a significant reduction in file size, while lossless offers a small reduction (unless compressing text)."
+How does lossy compression usually compare with lossless compression for file size?,Lossy compression usually reduces file size more than lossless compression.
 How does file quality differ between lossy and lossless compression?,"Lossy compression loses some information, whereas with lossless compression, the data is exactly the same after being uncompressed."
 For what general media types is lossy compression typically used?,"Images, photos, video, and music."
-What are some typical applications for lossless compression?,"Text files, zip files, and very high-quality photos, music, and video."
+Give two common uses of lossless compression.,"Text files and zip files, or high-quality media where no data loss is wanted."
 What is the main advantage of lossy compression?,It achieves a significant reduction in file size.
 What is the main drawback associated with lossy compression?,"It results in lower quality, and the original high quality cannot be restored."
 What is the primary advantage of lossless compression?,It allows the ability to restore files to their original quality with no data loss.
