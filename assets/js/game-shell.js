@@ -34,11 +34,39 @@
     return document.querySelector('#leaderboardContainer') || document.querySelector('#leaderboardContainerCard') || document.querySelector('.leaderboard-card');
   }
 
+  function normaliseGameUi(app) {
+    const cardSelectors = ['.question-panel', '.help-panel', '.question-card', '.setup-card', '.game-card', '.leaderboard-card', '.footer-card', '.nine-card', '.interface-panel', '.side-panel', '.panel'];
+    cardSelectors.forEach(function(selector) {
+      app.querySelectorAll(selector).forEach(function(el) { el.classList.add('shared-game-card'); });
+    });
+
+    app.querySelectorAll('.hud').forEach(function(el) { el.classList.add('shared-game-hud'); });
+
+    const resultSelectors = ['.game-over', '.modal', '[id*=gameOver]', '[id*=Result]', '[id*=result]'];
+    resultSelectors.forEach(function(selector) {
+      app.querySelectorAll(selector).forEach(function(el) {
+        if (!el.classList.contains('shared-result-screen')) el.classList.add('shared-result-screen');
+      });
+    });
+
+    const leaderboardSelectors = ['.leaderboard-card', '.leaderboard-list', '#leaderboardContainer', '#leaderboardContainerCard'];
+    leaderboardSelectors.forEach(function(selector) {
+      app.querySelectorAll(selector).forEach(function(el) { el.classList.add('shared-leaderboard-card'); });
+    });
+
+    app.querySelectorAll('.return-menu').forEach(function(el) {
+      el.classList.add('shared-game-footer-actions');
+      el.querySelectorAll('a, button').forEach(function(btn) { if (btn.classList.contains('btn')) return; btn.classList.add('btn', 'secondary'); });
+    });
+  }
+
   function createShell() {
     document.body.classList.add('game-shell-enabled');
     const app = document.querySelector('.app') || document.body;
     const header = app.querySelector('.app-header, header');
     if (!header) return;
+
+    normaliseGameUi(app);
 
     const session = getSession();
     const inWorksheet = !!(session && session.sessionId);

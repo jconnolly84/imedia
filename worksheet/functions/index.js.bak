@@ -1,0 +1,469 @@
+import { onCall, HttpsError } from 'firebase-functions/v2/https';
+import { initializeApp } from 'firebase-admin/app';
+import { getAuth } from 'firebase-admin/auth';
+import { getFirestore, FieldValue } from 'firebase-admin/firestore';
+import strands from './strands.full.json' with { type: 'json' };
+
+initializeApp();
+const db = getFirestore();
+const adminAuth = getAuth();
+const REGION = 'europe-west2';
+const VALID_ROLES = ['admin', 'teacher', 'student', 'teacher_pending'];
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+
+function normaliseText(value = '') {
+  return String(value)
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9%\s-]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+async function requireRole(uid, ...roles) {
+  if (!uid) throw new HttpsError('unauthenticated', 'Sign in first.');
+  const snap = await db.doc(`users/${uid}`).get();
+  const role = snap.data()?.role;
+  if (!roles.includes(role)) {
+    throw new HttpsError('permission-denied', `Requires one of: ${roles.join(', ')}.`);
+  }
+  return role;
+}
+
+
+async function getUserProfile(uid) {
+  if (!uid) return null;
+  const snap = await db.doc(`users/${uid}`).get();
+  return snap.exists ? { uid: snap.id, ...snap.data() } : null;
+}
+
+function isoDateOnly(value) {
+  if (!value) return '';
+  return String(value).slice(0, 10);
+}
+
+function deadlineStatus(deadline) {
+  const today = isoDateOnly(new Date().toISOString());
+  const due = isoDateOnly(deadline);
+  if (!due) return 'no_deadline';
+  if (due < today) return 'overdue';
+  if (due === today) return 'due_today';
+  return 'upcoming';
+}
+
+function buildStudentAssignmentRow(student = {}, assignment = {}, progress = {}) {
+  const strandProgress = progress?.strands?.[assignment.strandId] || {};
+  return {
+    userId: student.uid || student.userId || '',
+    displayName: student.displayName || student.email || 'Student',
+    email: student.email || '',
+    completed: !!strandProgress.completed,
+    score: strandProgress.score ?? null,
+    updatedAt: strandProgress.updatedAt || null
+  };
+}
+
+// ─── Marking helpers ──────────────────────────────────────────────────────────
+
+function scoreContainsAny(answer, keywords = []) {
+  const text = normaliseText(answer);
+  return keywords.some((keyword) => text.includes(normaliseText(keyword))) ? 1 : 0;
+}
+
+function normaliseCriteriaGroups(groups = []) {
+  if (!Array.isArray(groups)) return [];
+  return groups
+    .map((group) => {
+      if (Array.isArray(group)) return { terms: group.filter(Boolean) };
+      if (group && typeof group === 'object') {
+        const terms = Array.isArray(group.terms)
+          ? group.terms.filter(Boolean)
+          : Array.isArray(group.keywords)
+            ? group.keywords.filter(Boolean)
+            : [];
+        return { ...group, terms };
+      }
+      return null;
+    })
+    .filter((group) => group && Array.isArray(group.terms) && group.terms.length);
+}
+
+function sanitiseQuestionForFirestore(question = {}) {
+  const safe = { ...question };
+  if (safe.type === 'explain' && Array.isArray(safe.criteria)) {
+    safe.criteria = normaliseCriteriaGroups(safe.criteria);
+  }
+  return safe;
+}
+
+function scoreKeywordGroups(answer, groups = []) {
+  const text = normaliseText(answer);
+  const safeGroups = normaliseCriteriaGroups(groups);
+  if (!safeGroups.length) return 0;
+  let hits = 0;
+  for (const group of safeGroups) {
+    if (group.terms.some((term) => text.includes(normaliseText(term)))) hits += 1;
+  }
+  return hits;
+}
+
+function hasMeaningfulAnswer(answer) {
+  if (Array.isArray(answer)) {
+    return answer.some((item) => normaliseText(item).length > 0);
+  }
+  return normaliseText(answer).length > 0;
+}
+
+function markQuestion(question, answer) {
+  const response = typeof answer === 'string' ? answer : Array.isArray(answer) ? answer.join(' | ') : '';
+  const safeAnswer = response || '';
+
+  if (!hasMeaningfulAnswer(answer)) {
+    return {
+      awarded: 0,
+      maxMarks: question.marks || 1,
+      confidence: 0.99,
+      feedback: 'No answer given.'
+    };
+  }
+
+  if (question.type === 'mcq') {
+    const awarded = normaliseText(safeAnswer) === normaliseText(question.answer);
+    return { awarded: awarded ? question.marks : 0, maxMarks: question.marks, confidence: awarded ? 1 : 0.5,
+      feedback: awarded ? 'Correct.' : 'The selected answer was not the best match for the topic content.' };
+  }
+  if (question.type === 'multi_select') {
+    const expected = [...question.answer].map(normaliseText).sort().join('|');
+    const actual = [...(Array.isArray(answer) ? answer : [])].map(normaliseText).sort().join('|');
+    const awarded = expected === actual;
+    return { awarded: awarded ? question.marks : 0, maxMarks: question.marks, confidence: awarded ? 1 : 0.6,
+      feedback: awarded ? 'Correct selections.' : 'One or more selections did not match the expected set.' };
+  }
+  if (question.type === 'short_text') {
+    const hits = scoreContainsAny(safeAnswer, question.accepted || []);
+    return { awarded: hits ? question.marks : 0, maxMarks: question.marks, confidence: hits ? 0.88 : 0.64,
+      feedback: hits ? 'Key term identified.' : 'A key term was missing.' };
+  }
+  if (question.type === 'explain') {
+    const criteriaGroups = normaliseCriteriaGroups(question.criteria || []);
+    const hits = scoreKeywordGroups(safeAnswer, criteriaGroups);
+    const awarded = Math.min(question.marks, hits);
+    return { awarded, maxMarks: question.marks, confidence: Math.min(0.95, 0.55 + (hits * 0.18)),
+      feedback: awarded === question.marks ? 'The response covered the main expected ideas.'
+        : `Covered ${hits}/${criteriaGroups.length} key idea groups. Add more specific detail.` };
+  }
+  return { awarded: 0, maxMarks: question.marks || 1, confidence: 0.2, feedback: 'Question type not configured.' };
+}
+
+function markWorksheet(strand, answers = {}) {
+  const results = strand.questions.map((question) => {
+    const answer = answers[question.id];
+    return { id: question.id, prompt: question.prompt, type: question.type, answer, ...markQuestion(question, answer) };
+  });
+  const totalAwarded = results.reduce((sum, row) => sum + row.awarded, 0);
+  const totalMarks = results.reduce((sum, row) => sum + row.maxMarks, 0);
+  const percentage = totalMarks ? Math.round((totalAwarded / totalMarks) * 100) : 0;
+  const weakAreas = results.filter((row) => row.awarded < row.maxMarks).map((row) => row.prompt).slice(0, 3);
+  return { results, totalAwarded, totalMarks, percentage, weakAreas };
+}
+
+function publicStrand(strand) {
+  return { ...strand, questions: strand.questions.map((q) => ({
+    id: q.id, type: q.type, prompt: q.prompt, hint: q.hint || '', marks: q.marks, options: q.options || null
+  })) };
+}
+
+// ─── Worksheet functions ───────────────────────────────────────────────────────
+
+export const seedWorksheetBank = onCall({ region: REGION, cors: true }, async (request) => {
+  await requireRole(request.auth?.uid, 'admin', 'teacher');
+  const batch = db.batch();
+  const now = FieldValue.serverTimestamp();
+  for (const strand of strands) {
+    const safeQuestions = (strand.questions || []).map(sanitiseQuestionForFirestore);
+    batch.set(db.doc(`tasks/${strand.id}`), { ...publicStrand(strand), updatedAt: now, seededBy: request.auth.uid }, { merge: true });
+    batch.set(db.doc(`taskKeys/${strand.id}`), { strandId: strand.id, code: strand.code, title: strand.title,
+      questions: safeQuestions, updatedAt: now, seededBy: request.auth.uid }, { merge: true });
+  }
+  await batch.commit();
+  return { seeded: strands.length };
+});
+
+export const markWorksheetSubmission = onCall({ region: REGION, cors: true }, async (request) => {
+  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'Sign in first.');
+  const { strandId, answers, submit = true } = request.data || {};
+  if (!strandId) throw new HttpsError('invalid-argument', 'strandId is required.');
+  if (!answers || typeof answers !== 'object') throw new HttpsError('invalid-argument', 'answers object is required.');
+
+  const keySnap = await db.doc(`taskKeys/${strandId}`).get();
+  if (!keySnap.exists) throw new HttpsError('failed-precondition', 'Worksheet answer key not seeded yet.');
+  const key = keySnap.data();
+  const marked = markWorksheet({ id: strandId, code: key.code, title: key.title, questions: key.questions || [] }, answers);
+
+  const userSnap = await db.doc(`users/${request.auth.uid}`).get();
+  const profile = userSnap.data() || {};
+  const progressRef = db.doc(`progress/${request.auth.uid}`);
+  const progressSnap = await progressRef.get();
+  const existing = progressSnap.exists ? progressSnap.data() : { userId: request.auth.uid, strands: {} };
+  const strandsMap = { ...(existing.strands || {}) };
+  const existingStrand = strandsMap[strandId] || {};
+  strandsMap[strandId] = { strandId, title: key.title, code: key.code, answers, score: marked.percentage,
+    lastResult: marked, completed: !!submit, startedAt: existingStrand.startedAt || new Date().toISOString(),
+    updatedAt: new Date().toISOString() };
+
+  await progressRef.set({ userId: request.auth.uid,
+    displayName: profile.displayName || request.auth.token.name || request.auth.token.email || 'Student',
+    email: request.auth.token.email || '',
+    teacherId: profile.teacherId || '',
+    classCode: profile.classCode || '',
+    className: profile.className || '',
+    strands: strandsMap,
+    updatedAt: new Date().toISOString() }, { merge: true });
+
+  if (submit) {
+    await db.collection('submissions').add({ userId: request.auth.uid,
+      userName: profile.displayName || request.auth.token.name || request.auth.token.email || 'Student',
+      strandId, strandTitle: key.title, answers, result: marked, createdAt: new Date().toISOString() });
+    await db.collection('markingResults').add({ userId: request.auth.uid, strandId, score: marked.percentage,
+      totalAwarded: marked.totalAwarded, totalMarks: marked.totalMarks, weakAreas: marked.weakAreas,
+      createdAt: new Date().toISOString() });
+  }
+  return { result: marked };
+});
+
+
+// ─── Teacher / Student assignments ───────────────────────────────────────────
+
+export const teacherGetDashboard = onCall({ region: REGION, cors: true }, async (request) => {
+  const callerRole = await requireRole(request.auth?.uid, 'teacher', 'admin');
+  const callerProfile = await getUserProfile(request.auth.uid);
+
+  let studentDocs;
+  if (callerRole === 'admin') {
+    studentDocs = await db.collection('users').where('role', '==', 'student').get();
+  } else {
+    studentDocs = await db.collection('users').where('teacherId', '==', request.auth.uid).get();
+  }
+
+  const students = studentDocs.docs.map((d) => ({ uid: d.id, ...d.data() }));
+  const studentIds = students.map((s) => s.uid);
+
+  const progressDocs = await Promise.all(studentIds.map((uid) => db.doc(`progress/${uid}`).get()));
+  const progressRows = progressDocs.filter((d) => d.exists).map((d) => d.data());
+
+  let submissionQuery = db.collection('submissions').orderBy('createdAt', 'desc').limit(200);
+  const submissionSnap = await submissionQuery.get();
+  const submissionRows = submissionSnap.docs
+    .map((d) => ({ id: d.id, ...d.data() }))
+    .filter((row) => callerRole === 'admin' || studentIds.includes(row.userId));
+
+  let assignmentSnap;
+  if (callerRole === 'admin') {
+    assignmentSnap = await db.collection('assignedTasks').orderBy('createdAt', 'desc').get();
+  } else {
+    assignmentSnap = await db.collection('assignedTasks').where('teacherId', '==', request.auth.uid).get();
+  }
+
+  const assignments = assignmentSnap.docs
+    .map((d) => ({ id: d.id, ...d.data() }))
+    .sort((a, b) => String(b.createdAt || '').localeCompare(String(a.createdAt || '')))
+    .map((assignment) => {
+      const matchingStudents = students.filter((student) => {
+        if (callerRole === 'admin' && assignment.classCode) {
+          return (student.classCode || '') === assignment.classCode;
+        }
+        return (student.classCode || '') === (assignment.classCode || '');
+      });
+      const progressMap = new Map(progressRows.map((row) => [row.userId, row]));
+      const studentStatus = matchingStudents.map((student) => buildStudentAssignmentRow(student, assignment, progressMap.get(student.uid) || {}));
+      const completedCount = studentStatus.filter((row) => row.completed).length;
+      return {
+        ...assignment,
+        deadlineStatus: deadlineStatus(assignment.deadline || ''),
+        targetCount: studentStatus.length,
+        completedCount,
+        pendingCount: Math.max(0, studentStatus.length - completedCount),
+        studentStatus
+      };
+    });
+
+  const classOptions = [...new Map(
+    students
+      .filter((student) => (student.classCode || '').trim())
+      .map((student) => [student.classCode, {
+        classCode: student.classCode,
+        className: student.className || student.classCode,
+        count: students.filter((s) => (s.classCode || '') === student.classCode).length
+      }])
+  ).values()].sort((a, b) => a.className.localeCompare(b.className));
+
+  return {
+    teacher: callerProfile ? {
+      uid: callerProfile.uid,
+      displayName: callerProfile.displayName || callerProfile.email || 'Teacher',
+      email: callerProfile.email || ''
+    } : null,
+    students,
+    progressRows,
+    submissionRows,
+    assignments,
+    classOptions
+  };
+});
+
+export const teacherCreateAssignment = onCall({ region: REGION, cors: true }, async (request) => {
+  const callerRole = await requireRole(request.auth?.uid, 'teacher', 'admin');
+  const { strandId, classCode, className = '', deadline = '' } = request.data || {};
+  if (!strandId) throw new HttpsError('invalid-argument', 'strandId is required.');
+  if (!classCode || !String(classCode).trim()) throw new HttpsError('invalid-argument', 'classCode is required.');
+
+  const taskSnap = await db.doc(`tasks/${strandId}`).get();
+  if (!taskSnap.exists) throw new HttpsError('failed-precondition', 'Strand must be seeded before assignment.');
+  const task = taskSnap.data() || {};
+
+  const assignmentRef = db.collection('assignedTasks').doc();
+  await assignmentRef.set({
+    teacherId: request.auth.uid,
+    teacherRole: callerRole,
+    teacherName: request.auth.token.name || request.auth.token.email || 'Teacher',
+    classCode: String(classCode).trim().toUpperCase(),
+    className: String(className || classCode).trim(),
+    strandId,
+    strandCode: task.code || '',
+    strandTitle: task.title || strandId,
+    deadline: isoDateOnly(deadline),
+    active: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  }, { merge: true });
+
+  return { success: true, id: assignmentRef.id };
+});
+
+export const teacherDeleteAssignment = onCall({ region: REGION, cors: true }, async (request) => {
+  const callerRole = await requireRole(request.auth?.uid, 'teacher', 'admin');
+  const { assignmentId } = request.data || {};
+  if (!assignmentId) throw new HttpsError('invalid-argument', 'assignmentId is required.');
+  const ref = db.doc(`assignedTasks/${assignmentId}`);
+  const snap = await ref.get();
+  if (!snap.exists) throw new HttpsError('not-found', 'Assignment not found.');
+  const data = snap.data() || {};
+  if (callerRole !== 'admin' && data.teacherId !== request.auth.uid) {
+    throw new HttpsError('permission-denied', 'You can only remove your own assignments.');
+  }
+  await ref.delete();
+  return { success: true };
+});
+
+export const studentGetAssignments = onCall({ region: REGION, cors: true }, async (request) => {
+  await requireRole(request.auth?.uid, 'student', 'admin', 'teacher');
+  const profile = await getUserProfile(request.auth.uid);
+  if (!profile) throw new HttpsError('not-found', 'Profile not found.');
+
+  let assignments = [];
+  if (profile.role === 'student') {
+    const classCode = String(profile.classCode || '').trim().toUpperCase();
+    if (!classCode) return { assignments: [], classCode: '', className: profile.className || '', teacherId: profile.teacherId || '' };
+    const snap = await db.collection('assignedTasks').where('classCode', '==', classCode).where('active', '==', true).get();
+    assignments = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    if (profile.teacherId) {
+      assignments = assignments.filter((item) => item.teacherId === profile.teacherId);
+    }
+  } else {
+    const dash = await teacherGetDashboard.run ? [] : [];
+  }
+
+  const progressSnap = await db.doc(`progress/${request.auth.uid}`).get();
+  const progress = progressSnap.exists ? progressSnap.data() : { strands: {} };
+
+  assignments = assignments
+    .sort((a, b) => String(a.deadline || '').localeCompare(String(b.deadline || '')) || String(a.createdAt || '').localeCompare(String(b.createdAt || '')))
+    .map((assignment) => {
+      const strandProgress = progress?.strands?.[assignment.strandId] || {};
+      return {
+        ...assignment,
+        deadlineStatus: deadlineStatus(assignment.deadline || ''),
+        completed: !!strandProgress.completed,
+        score: strandProgress.score ?? null,
+        updatedAt: strandProgress.updatedAt || null
+      };
+    });
+
+  return {
+    assignments,
+    classCode: profile.classCode || '',
+    className: profile.className || '',
+    teacherId: profile.teacherId || ''
+  };
+});
+
+// ─── Admin: User Management ────────────────────────────────────────────────────
+
+export const adminListUsers = onCall({ region: REGION, cors: true }, async (request) => {
+  await requireRole(request.auth?.uid, 'admin');
+  const snap = await db.collection('users').orderBy('email').get();
+  return { users: snap.docs.map((d) => {
+    const data = d.data();
+    return { uid: d.id, email: data.email || '', displayName: data.displayName || '',
+      role: data.role || 'student', approvalStatus: data.approvalStatus || (data.role === 'teacher_pending' ? 'pending' : 'approved'), createdAt: data.createdAt?.toDate?.()?.toISOString?.() || null };
+  }) };
+});
+
+export const adminSetUserRole = onCall({ region: REGION, cors: true }, async (request) => {
+  await requireRole(request.auth?.uid, 'admin');
+  const { targetUid, role } = request.data || {};
+  if (!targetUid || !VALID_ROLES.includes(role)) throw new HttpsError('invalid-argument', 'targetUid and valid role required.');
+  if (targetUid === request.auth.uid && role !== 'admin') throw new HttpsError('failed-precondition', 'You cannot change your own admin role.');
+  await db.doc(`users/${targetUid}`).update({ role, approvalStatus: role === 'teacher_pending' ? 'pending' : 'approved', updatedAt: FieldValue.serverTimestamp() });
+  return { success: true };
+});
+
+export const adminDeleteUser = onCall({ region: REGION, cors: true }, async (request) => {
+  await requireRole(request.auth?.uid, 'admin');
+  const { targetUid } = request.data || {};
+  if (!targetUid) throw new HttpsError('invalid-argument', 'targetUid is required.');
+  if (targetUid === request.auth.uid) throw new HttpsError('failed-precondition', 'You cannot delete your own admin account.');
+
+  const submissionSnap = await db.collection('submissions').where('userId', '==', targetUid).get();
+  const markingSnap = await db.collection('markingResults').where('userId', '==', targetUid).get();
+
+  const batch = db.batch();
+  batch.delete(db.doc(`users/${targetUid}`));
+  batch.delete(db.doc(`progress/${targetUid}`));
+  submissionSnap.docs.forEach((docSnap) => batch.delete(docSnap.ref));
+  markingSnap.docs.forEach((docSnap) => batch.delete(docSnap.ref));
+  await batch.commit();
+
+  try {
+    await adminAuth.deleteUser(targetUid);
+  } catch (err) {
+    console.error('Failed to delete auth user', err);
+  }
+
+  return { success: true, deletedSubmissions: submissionSnap.size, deletedResults: markingSnap.size };
+});
+
+// ─── Admin: Registration Settings ─────────────────────────────────────────────
+
+export const adminGetSettings = onCall({ region: REGION, cors: true }, async (request) => {
+  await requireRole(request.auth?.uid, 'admin');
+  const snap = await db.doc('settings/registration').get();
+  return snap.exists ? snap.data() : { allowedDomains: [] };
+});
+
+export const adminUpdateSettings = onCall({ region: REGION, cors: true }, async (request) => {
+  await requireRole(request.auth?.uid, 'admin');
+  const { allowedDomains } = request.data || {};
+  if (!Array.isArray(allowedDomains)) throw new HttpsError('invalid-argument', 'allowedDomains must be an array.');
+  const cleaned = allowedDomains.map((d) => String(d).toLowerCase().replace(/^@/, '').trim()).filter(Boolean);
+  await db.doc('settings/registration').set({ allowedDomains: cleaned,
+    updatedAt: FieldValue.serverTimestamp(), updatedBy: request.auth.uid }, { merge: true });
+  return { allowedDomains: cleaned };
+});
+
+/** Public – used during registration to validate email domain. */
+export const getRegistrationSettings = onCall({ region: REGION, cors: true }, async () => {
+  const snap = await db.doc('settings/registration').get();
+  return { allowedDomains: snap.exists ? (snap.data().allowedDomains || []) : [] };
+});

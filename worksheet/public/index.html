@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iMedia Genius Worksheets · OCR Creative iMedia R093</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="./styles.css" />
+<style>
+  .nav-link-android { color: #1c7c3e !important; }
+  .nav-link-android svg { stroke: #1c7c3e; }
+  .nav-link-android:hover { background: rgba(61,220,132,0.12) !important; }
+  .android-beta-tag {
+    display: inline-block;
+    margin-left: 5px;
+    padding: 1px 7px;
+    background: #3ddc84;
+    color: #0a2e1a;
+    font-size: 0.7em;
+    font-weight: 800;
+    border-radius: 999px;
+    vertical-align: middle;
+    letter-spacing: 0.03em;
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- ── Top Navigation Bar ─────────────────────────────────────────────────── -->
+  <header class="topbar">
+    <div class="topbar-brand">
+      <img src="./img/imedia_genius_logo_transparent.png" alt="iMedia Genius" class="site-logo" />
+      <div class="brand-divider"></div>
+      <div class="brand-text">
+        <span class="brand-name">iMedia Genius</span>
+        <span class="brand-sub">OCR Creative iMedia · R093</span>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <div id="roleBadge"></div>
+      <button id="btnSignIn"  class="btn primary">Sign in</button>
+      <button id="btnSignOut" class="btn ghost hidden">Sign out</button>
+    </div>
+  </header>
+
+  <!-- ── Main Layout ────────────────────────────────────────────────────────── -->
+  <main class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+      <!-- Navigation — buttons shown/hidden per role via JS -->
+      <div class="section-title">Navigation</div>
+      <nav class="navlist">
+
+        <!-- Student + Admin only -->
+        <button data-route="home" data-roles="student,admin" class="nav-btn active" style="display:none;">
+          <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          </svg>
+          Student home
+          <span id="navTaskBadge" class="nav-task-badge" style="display:none;"></span>
+        </button>
+
+        <!-- Current worksheets — dynamic list injected by JS for students, single button for admin -->
+        <div id="sidebarAssignedNav" data-roles="student" style="display:none;">
+          <div class="section-title" style="padding-top:10px;">My worksheets</div>
+          <div id="sidebarAssignedLinks" class="navlist sidebar-assigned-links"></div>
+        </div>
+        <!-- Teacher + Admin only -->
+        <button data-route="teacher" data-roles="teacher,admin" class="nav-btn" style="display:none;">
+          <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          Teacher dashboard
+        </button>
+
+        <button data-route="engagement" data-roles="teacher,admin" class="nav-btn" style="display:none;">
+          <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 13h4l3-8 4 14 3-6h4"/>
+          </svg>
+          Engagement dashboard
+        </button>
+
+        <!-- Admin only -->
+        <button data-route="admin" data-roles="admin" class="nav-btn nav-btn-admin" style="display:none;">
+          <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          Admin panel
+        </button>
+      </nav>
+
+        <div id="loggedInNavLinks" class="nav-external-group hidden">
+          <div class="divider"></div>
+          <div class="section-title nav-subtitle">Useful links</div>
+          <a class="nav-btn nav-link-external" href="https://imediagenius.co.uk/" data-track-handoff="true" target="_blank" rel="noopener noreferrer">
+            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v11.494m-5.747-8.62l11.494 6.746m-11.494 0l11.494-6.746"/>
+            </svg>
+            R093 Exam
+          </a>
+          <a class="nav-btn nav-link-external" href="https://imediagenius.co.uk/r094/" data-track-handoff="true" target="_blank" rel="noopener noreferrer">
+            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v11.494m-5.747-8.62l11.494 6.746m-11.494 0l11.494-6.746"/>
+            </svg>
+            R094 Graphics Unit
+          </a>
+          <a class="nav-btn nav-link-external" href="https://imediagenius.co.uk/r097/" data-track-handoff="true" target="_blank" rel="noopener noreferrer">
+            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v11.494m-5.747-8.62l11.494 6.746m-11.494 0l11.494-6.746"/>
+            </svg>
+            R097 IDMP Multimedia
+          </a>
+          <a class="nav-btn nav-link-external" href="https://imediagenius.co.uk/r097-dreamweaver/" data-track-handoff="true" target="_blank" rel="noopener noreferrer">
+            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+            </svg>
+            R097 Dreamweaver Guide
+          </a>
+          <a class="nav-btn nav-link-external" href="https://camnat.web.app/" target="_blank" rel="noopener noreferrer">
+            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-6m3 6V7m3 10v-4m3 4V5M5 19h14"/>
+            </svg>
+            CAMNAT Marking
+          </a>
+          <a class="nav-btn nav-link-external" href="https://imediagenius.co.uk/plagiarism_ai_detector/" data-track-handoff="true" target="_blank" rel="noopener noreferrer">
+            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 18a7.5 7.5 0 1 1 5.303-2.197L21 21"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75h1.5v4.5h-1.5z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 6.75h1.5v1.5h-1.5z"/>
+            </svg>
+            Plagiarism and AI Detector
+          </a>
+          <a class="nav-btn nav-link-external nav-link-android" href="https://imediagenius.co.uk/imediagenius_beta_v1.apk" target="_blank" rel="noopener noreferrer">
+            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 17H5a2 2 0 01-2-2V9a2 2 0 012-2h14a2 2 0 012 2v6a2 2 0 01-2 2h-3"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 17v4m-2-2h4"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 5.5 6 4M16.5 5.5 18 4M9 5h6"/>
+            </svg>
+            Android App <span class="android-beta-tag">Beta</span>
+          </a>
+        </div>
+
+      <div class="divider"></div>
+
+      <!-- Auth panel (hidden when signed in via JS) -->
+      <div id="authPanel" class="auth-panel">
+        <div class="section-title" id="authPanelHeading">Sign in</div>
+
+        <div>
+          <label class="field-label" for="email">Email</label>
+          <input id="email" class="input" type="email" placeholder="name@school.co.uk" autocomplete="email" />
+        </div>
+        <div>
+          <label class="field-label" for="password">Password</label>
+          <input id="password" class="input" type="password" placeholder="Password" autocomplete="current-password" />
+        </div>
+
+        <div id="registerExtras" class="hidden">
+          <div id="registerRoleField">
+            <label class="field-label">Register as</label>
+            <div class="segmented-toggle" id="registerRoleToggle" role="tablist" aria-label="Register account type">
+              <button type="button" class="segmented-option active" data-register-role="student">Student</button>
+              <button type="button" class="segmented-option" data-register-role="teacher">Teacher</button>
+            </div>
+            <p id="registerRoleHelp" class="small subtle" style="margin-top:8px;">Students join a class using a class code.</p>
+            <p id="teacherApprovalNote" class="small subtle hidden" style="margin-top:6px;">New teacher accounts must verify their email and then be approved by an admin before they can log in.</p>
+          </div>
+
+          <!-- Display name — shown only in register mode via JS -->
+          <div id="displayNameField">
+            <label class="field-label" for="displayName">Full name</label>
+            <input id="displayName" class="input" type="text" placeholder="e.g. Jamie Smith" autocomplete="name" />
+          </div>
+
+          <div id="classCodeField">
+            <label class="field-label" for="classCode">Class code</label>
+            <input id="classCode" class="input" type="text" placeholder="Enter your class code" autocomplete="off" />
+          </div>
+        </div>
+
+        <!-- Login button (default visible) -->
+        <button id="btnEmailLogin" class="btn primary" style="width:100%;">Log in</button>
+
+        <!-- Forgot password -->
+        <p class="small subtle" id="forgotPasswordBlock" style="text-align:center;margin:2px 0 0;">
+          <span id="btnForgotPassword" style="color:var(--accent);cursor:pointer;font-weight:600;">Forgot password?</span>
+        </p>
+
+        <!-- Register button (hidden until switched) -->
+        <button id="btnRegister" class="btn primary hidden" style="width:100%;">Create account</button>
+
+        <!-- Switch mode links -->
+        <p class="small subtle" style="text-align:center;margin:4px 0 0;">
+          <span id="btnSwitchToRegister" style="color:var(--accent);cursor:pointer;font-weight:700;">New user? Create account</span>
+          <span id="btnSwitchToLogin"    style="color:var(--accent);cursor:pointer;font-weight:700;" class="hidden">Already have an account? Log in</span>
+        </p>
+
+        <!-- Resend verification (shown after failed login due to unverified email) -->
+        <div id="verifyResendBlock" class="verify-notice hidden">
+          <p class="small">Didn't receive the email or it expired?</p>
+          <button id="btnResendVerification" class="btn" style="width:100%;">Resend verification email</button>
+        </div>
+      </div>
+
+    </aside><!-- /sidebar -->
+
+    <!-- ── Content ──────────────────────────────────────────────────────────── -->
+    <section class="content">
+      <div id="alert"></div>
+
+
+      <!-- ── Home View (Student / Admin) ───────────────────────────────────── -->
+      <section id="homeView" class="view active">
+
+        <!-- Logged-out landing hero (hidden when signed in) -->
+        <div id="loggedOutHero" class="logged-out-hero">
+          <div class="logged-out-hero-content">
+            <p class="eyebrow">OCR Creative iMedia · R093</p>
+            <h2>Revise every R093 topic in one place</h2>
+            <p class="subtle">Use each strand to revise the topic, test your understanding, and build confidence for the exam. Read the content, complete the worksheet, and get instant feedback as you go.</p>
+            <div class="logged-out-features">
+              <div class="lof-item">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>Revise all 35 R093 strands in one place</span>
+              </div>
+              <div class="lof-item">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                <span>Check your understanding with instant feedback</span>
+              </div>
+              <div class="lof-item">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                <span>See your set tasks and keep track of your progress</span>
+              </div>
+            </div>
+            <div class="logged-out-cta">
+              <button id="btnGetStarted" class="btn primary btn-lg">Get started — sign in</button>
+              <button id="btnCreateAccount" class="btn btn-lg">New user? Create account</button>
+            </div>
+          </div>
+          <div id="previewGrid" class="preview-grid"></div>
+        </div>
+
+        <!-- Signed-in student hero (hidden when signed out) -->
+        <div id="loggedInHero" class="hidden">
+          <div class="hero">
+            <div style="position:relative;z-index:1;">
+              <p class="eyebrow">Student workspace</p>
+              <h2>Read the strand. Complete the worksheet. Let the system mark it.</h2>
+              <p class="subtle">Each worksheet mirrors real iMedia Genius topic content. Marking runs server-side so answer keys are never exposed.</p>
+              <div id="progressSummary" class="progress-summary"></div>
+            </div>
+            <div class="hero-metrics">
+              <div class="metric-card"><span>Total strands</span><strong id="metricTotalStrands">35</strong></div>
+              <div class="metric-card"><span>Completed</span><strong id="metricCompleted">0</strong></div>
+              <div class="metric-card"><span>Average score</span><strong id="metricAverage">0%</strong></div>
+            </div>
+          </div>
+          <!-- Task notification panel — injected by JS when urgent tasks exist -->
+          <div id="taskNotifications" style="display:none; margin-top:20px;"></div>
+
+          <div id="studentAssignments" class="assignment-stack" style="margin-top:20px;"></div>
+        </div>
+
+        <div id="studentClassPanel" class="card" style="padding:24px 26px;margin-top:20px;display:none;">
+          <div class="split-head" style="align-items:flex-start;gap:16px;">
+            <div>
+              <p class="eyebrow">Your class</p>
+              <h3 style="margin:8px 0 10px;">Linked teacher class</h3>
+              <p class="subtle" style="margin:0;">Check your linked class code and update it if needed.</p>
+            </div>
+            <button id="btnEditStudentClass" class="btn">Edit class code</button>
+          </div>
+          <div class="teacher-metrics" style="margin-top:18px;">
+            <div class="metric-card"><span>Class</span><strong id="studentClassName">—</strong></div>
+            <div class="metric-card"><span>Class code</span><strong id="studentClassCodeDisplay">—</strong></div>
+            <div class="metric-card"><span>Teacher</span><strong id="studentTeacherName">—</strong></div>
+          </div>
+          <div id="studentClassEditWrap" class="stack-inline" style="margin-top:16px;display:none;flex-wrap:wrap;">
+            <input id="studentClassCodeInput" class="input" type="text" placeholder="Enter new class code" style="flex:1;min-width:220px;" />
+            <button id="btnSaveStudentClass" class="btn primary">Save class code</button>
+            <button id="btnCancelStudentClass" class="btn">Cancel</button>
+          </div>
+        </div>
+
+        <div id="studentCamnatPinPanel" class="card" style="padding:24px 26px;margin-top:20px;display:none;">
+          <div class="split-head" style="align-items:flex-start;gap:16px;">
+            <div>
+              <p class="eyebrow">CAMNAT marker</p>
+              <h3 style="margin:8px 0 10px;">Saved results PIN</h3>
+              <p class="subtle" style="margin:0;">Store your 6-digit CAMNAT marker PIN here so you can quickly check your results on the separate site.</p>
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;">
+              <a class="btn" href="https://camnat.web.app/" target="_blank" rel="noopener noreferrer">Open CAMNAT marker</a>
+              <button id="btnEditStudentCamnatPin" class="btn">Edit PIN</button>
+            </div>
+          </div>
+          <div class="teacher-metrics" style="margin-top:18px;">
+            <div class="metric-card"><span>Saved PIN</span><strong id="studentCamnatPinDisplay">Not saved</strong></div>
+            <div class="metric-card"><span>Status</span><strong id="studentCamnatPinStatus">Add your 6-digit PIN</strong></div>
+          </div>
+          <div id="studentCamnatPinEditWrap" class="stack-inline" style="margin-top:16px;display:none;flex-wrap:wrap;">
+            <input id="studentCamnatPinInput" class="input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6" placeholder="Enter 6-digit PIN" style="flex:1;min-width:220px;" />
+            <button id="btnSaveStudentCamnatPin" class="btn primary">Save PIN</button>
+            <button id="btnClearStudentCamnatPin" class="btn btn-danger">Clear PIN</button>
+            <button id="btnCancelStudentCamnatPin" class="btn">Cancel</button>
+          </div>
+        </div>
+
+        
+        <div id="studentBadgesCard" class="card" style="padding:24px 26px;margin-top:20px;display:none;">
+          <div class="split-head" style="align-items:flex-start;gap:16px;">
+            <div>
+              <p class="eyebrow">My badges</p>
+              <h3 style="margin:8px 0 10px;">Rewards for revision and worksheet progress</h3>
+              <p class="subtle" style="margin:0;">Unlock badges by completing worksheets and using iMedia Genius content.</p>
+            </div>
+          </div>
+          <div id="studentBadges" style="margin-top:18px;"></div>
+        </div>
+
+        <div id="studentEngagementBoard" class="card" style="padding:24px 26px;margin-top:20px;display:none;">
+          <div class="split-head" style="align-items:flex-start;gap:16px;">
+            <div>
+              <p class="eyebrow">My engagement</p>
+              <h3 style="margin:8px 0 10px;">Activity on iMedia Genius</h3>
+              <p class="subtle" style="margin:0;">Tracks visits from worksheet links into the iMedia Genius site. Student names are only shown within their own class leaderboard.</p>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;"><div id="studentEngagementRank" class="badge">Class-only leaderboard</div><div id="studentEngagementClassRank" class="badge">No class rank yet</div></div>
+          </div>
+          <div id="studentEngagementSummary" class="teacher-metrics" style="margin-top:18px;"></div>
+          <div class="td-two-col" style="margin-top:18px;">
+            <div class="card" style="padding:18px 20px;">
+              <h4 style="margin:0 0 10px;font-size:1rem;">Recent activity</h4>
+              <div id="studentEngagementRecent"></div>
+            </div>
+            <div class="card" style="padding:18px 20px;">
+              <h4 style="margin:0 0 10px;font-size:1rem;">Leaderboard privacy</h4>
+              <div id="studentEngagementLeaderboard"><p class="subtle">Only your own class leaderboard is shown to students.</p></div>
+            </div>
+            <div class="card" style="padding:18px 20px;">
+              <h4 style="margin:0 0 10px;font-size:1rem;">Top 5 in your class</h4>
+              <div id="studentEngagementClassLeaderboard"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="strandGrid" class="strand-grid"></div>
+      </section>
+
+      <!-- ── Worksheet View (Student / Admin) ──────────────────────────────── -->
+      <section id="worksheetView" class="view">
+        <div id="worksheetContainer"></div>
+      </section>
+
+      <!-- ── Teacher View ───────────────────────────────────────────────────── -->
+      <section id="teacherView" class="view">
+
+        <!-- Header -->
+        <div class="card teacher-shell-card" style="padding:24px 28px;">
+          <div class="split-head">
+            <div>
+              <p class="eyebrow">Teacher dashboard</p>
+              <h2 style="margin:8px 0 8px;">Class progress &amp; worksheet outcomes</h2>
+              <p class="subtle">Create classes, share class codes with students, assign worksheets and track progress.</p>
+            </div>
+            <button id="btnRefreshTeacher" class="btn">Refresh</button>
+          </div>
+        </div>
+
+        <!-- Key metrics -->
+        <div class="teacher-metrics">
+          <div class="metric-card"><span>Students</span><strong id="teacherStudentCount">0</strong></div>
+          <div class="metric-card"><span>Submissions</span><strong id="teacherSubmissionCount">0</strong></div>
+          <div class="metric-card"><span>Average score</span><strong id="teacherAverageScore">0%</strong></div>
+          <div class="metric-card"><span>Completion rate</span><strong id="teacherCompletionRate">0%</strong></div>
+        </div>
+
+        <div class="card" style="padding:22px 24px; margin-top:20px;">
+          <div style="display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap;">
+            <div>
+              <h3 style="margin:0 0 6px;">Badge rewards</h3>
+              <p class="small subtle" style="margin:0;">See badge totals by student and class. This section follows the current class filter on the teacher dashboard.</p>
+            </div>
+            <div id="teacherBadgeMeta" class="badge-row"></div>
+          </div>
+          <div id="teacherBadgeSummary" class="teacher-metrics" style="margin-top:16px;"></div>
+          <div class="td-two-col" style="margin-top:18px; align-items:start;">
+            <div class="card" style="padding:18px 20px;">
+              <h4 style="margin:0 0 10px;font-size:1rem;">Top students by badges</h4>
+              <div id="teacherBadgeLeaderboard"></div>
+            </div>
+            <div class="card" style="padding:18px 20px;">
+              <h4 style="margin:0 0 10px;font-size:1rem;">Class badge totals</h4>
+              <div id="teacherBadgeClasses"></div>
+            </div>
+          </div>
+          <div class="td-two-col" style="margin-top:18px; align-items:start;">
+            <div class="card" style="padding:18px 20px; min-width:0;">
+              <h4 style="margin:0 0 10px;font-size:1rem;">Student badge view</h4>
+              <p class="small subtle" style="margin:0 0 12px;">Badge counts, points and latest unlocked badges for each student.</p>
+              <div class="teacher-badge-student-toolbar">
+                <select id="teacherBadgeStudentSort">
+                  <option value="badges-desc">Most badges</option>
+                  <option value="points-desc">Most points</option>
+                  <option value="name-asc">A–Z</option>
+                  <option value="badges-asc">Fewest badges</option>
+                </select>
+                <input id="teacherBadgeStudentSearch" type="search" placeholder="Search student, email or class..." />
+                <button id="btnTeacherBadgeToggleAll" type="button" class="btn btn-ghost" hidden>Show all</button>
+              </div>
+              <div id="teacherBadgeStudentSummary"></div>
+              <div id="teacherBadgeStudents"></div>
+            </div>
+            <div class="card" style="padding:18px 20px;">
+              <h4 style="margin:0 0 10px;font-size:1rem;">Students needing follow-up</h4>
+              <div id="teacherBadgeFollowUp"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 1: Classes + Assign task side by side -->
+        <div class="td-two-col">
+
+          <!-- Classes -->
+          <div class="card" style="padding:22px 24px;">
+            <h3>Classes</h3>
+            <p class="small subtle" style="margin-bottom:14px;">Create a class and share its code with your students so they can link to you.</p>
+            <div class="stack-inline" style="margin-bottom:16px;">
+              <input id="teacherCreateClassName" class="input" type="text" placeholder="New class name e.g. 9A iMedia" style="flex:1;min-width:180px;" />
+              <button id="btnTeacherCreateClass" class="btn primary">Create class</button>
+            </div>
+            <div id="teacherClassList"></div>
+          </div>
+
+          <!-- Assign task -->
+          <div class="card" style="padding:22px 24px;">
+            <h3>Assign worksheet</h3>
+            <p class="small subtle" style="margin-bottom:14px;">Set a strand worksheet for a class. Students see assigned tasks on their home screen.</p>
+            <div class="td-assign-form">
+              <div>
+                <label class="field-label" for="teacherAssignClass">Class</label>
+                <select id="teacherAssignClass" class="input"></select>
+              </div>
+              <div>
+                <label class="field-label" for="teacherAssignStrand">Strand</label>
+                <select id="teacherAssignStrand" class="input"></select>
+              </div>
+              <div>
+                <label class="field-label" for="teacherAssignDeadline">Deadline (optional)</label>
+                <input id="teacherAssignDeadline" class="input" type="date" />
+              </div>
+              <button id="btnTeacherAssignTask" class="btn primary" style="align-self:flex-end;">Assign</button>
+            </div>
+            <div style="margin-top:20px;">
+              <h4 style="font-size:.88rem;font-weight:700;color:var(--navy);margin-bottom:12px;">Active assignments</h4>
+              <div id="teacherAssignments"></div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Section 2: Students + Strand breakdown side by side -->
+        <div class="td-two-col">
+
+          <!-- Students -->
+          <div class="card" style="padding:22px 24px;">
+            <h3>Students</h3>
+            <div class="td-filters" style="margin-bottom:14px;">
+              <select id="teacherClassFilter" class="input">
+                <option value="all">All classes</option>
+              </select>
+              <select id="teacherClassSort" class="input">
+                <option value="name-asc">A – Z</option>
+                <option value="name-desc">Z – A</option>
+                <option value="score-desc">Highest score</option>
+                <option value="score-asc">Lowest score</option>
+                <option value="completed-desc">Most completed</option>
+              </select>
+              <input id="teacherStudentSearch" class="input" type="text" placeholder="Search student…" />
+            </div>
+            <div id="teacherStudents"></div>
+          </div>
+
+          <!-- Strand breakdown -->
+          <div class="card" style="padding:22px 24px;">
+            <h3>Strand breakdown</h3>
+            <p class="small subtle" style="margin-bottom:14px;">Aggregated attempt, completion and average score per strand across your classes.</p>
+            <div id="teacherStrandBreakdown"></div>
+          </div>
+        </div>
+
+        <!-- Section 3: RAG tracking sheet — full width -->
+        <div class="card" style="padding:22px 24px;overflow:hidden;min-width:0;">
+          <div class="split-head" style="align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
+            <div>
+              <h3 style="margin:0;border-bottom:none;padding-bottom:0;">RAG tracking sheet</h3>
+              <p class="small subtle" style="margin-top:4px;">Red &lt;40% · Amber 40–69% · Green ≥70%</p>
+            </div>
+            <div class="td-rag-controls">
+              <select id="teacherRagClassFilter" class="input" style="width:auto;min-width:180px;">
+                <option value="all">All classes</option>
+              </select>
+              <div id="teacherRagSummary" class="badge-row"></div>
+            </div>
+          </div>
+          <div id="teacherRagSheet"></div>
+        </div>
+
+      </section>
+
+      <!-- ── Admin View (Admin only) ────────────────────────────────────────── -->
+            <section id="engagementView" class="view">
+        <div class="card" style="padding:28px 30px;">
+          <div style="display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap;">
+            <div>
+              <p class="eyebrow">Engagement dashboard</p>
+              <h2 style="margin:8px 0 8px;">Student participation & iMedia Genius usage</h2>
+              <p class="subtle">Visible only to teacher and admin accounts. Use this area to monitor who is using iMedia Genius, what they opened, and where follow-up may be needed.</p>
+            </div>
+            <button id="btnRefreshEngagement" class="btn">Refresh</button>
+          </div>
+        </div>
+
+        <div class="card" style="padding:22px 24px; margin-top:20px;">
+          <div style="display:flex;justify-content:space-between;gap:16px;align-items:flex-end;flex-wrap:wrap;">
+            <div>
+              <p class="eyebrow">Filter</p>
+              <h3 style="margin:6px 0 6px;">Focus the analysis</h3>
+              <p class="small subtle" style="margin:0;">Filter the engagement board by class to see the students and pages that matter most.</p>
+            </div>
+            <div style="min-width:240px;">
+              <label class="field-label" for="engagementClassFilter">Class</label>
+              <select id="engagementClassFilter" class="input">
+                <option value="all">All classes</option>
+              </select>
+            </div>
+          </div>
+          <div id="teacherEngagementMeta" class="badge-row" style="margin-top:14px;"></div>
+        </div>
+
+        <div id="teacherEngagementBoard" class="card" style="padding:22px 24px; margin-top:20px;">
+          <div class="teacher-metrics" id="teacherEngagementSummary"></div>
+          <div class="td-two-col" style="margin-top:18px; align-items:start;">
+            <div class="card" style="padding:18px 20px;">
+              <h4 style="margin:0 0 10px;font-size:1rem;">Top 5 students overall</h4>
+              <div id="teacherEngagementLeaderboard"></div>
+            </div>
+            <div class="card" style="padding:18px 20px;">
+              <h4 style="margin:0 0 10px;font-size:1rem;">Most visited iMedia Genius pages</h4>
+              <div id="teacherEngagementTopPages"></div>
+            </div>
+          </div>
+          <div class="td-two-col" style="margin-top:18px; align-items:start;">
+            <div class="card" style="padding:18px 20px;">
+              <h4 style="margin:0 0 10px;font-size:1rem;">Most active classes</h4>
+              <div id="teacherEngagementClasses"></div>
+            </div>
+            <div class="card" style="padding:18px 20px;">
+              <h4 style="margin:0 0 10px;font-size:1rem;">Students needing follow-up</h4>
+              <div id="teacherEngagementFollowUp"></div>
+            </div>
+          </div>
+          <div class="td-two-col" style="margin-top:18px; align-items:start;">
+            <div class="card" style="padding:18px 20px; min-width:0;">
+              <h4 style="margin:0 0 10px;font-size:1rem;">Student participation</h4>
+              <p class="small subtle" style="margin:0 0 12px;">See who is using iMedia Genius, how much they are using it, and the main content they are visiting.</p>
+              <div id="teacherEngagementParticipation"></div>
+            </div>
+            <div class="card" style="padding:18px 20px; min-width:0;">
+              <h4 style="margin:0 0 10px;font-size:1rem;">What students viewed</h4>
+              <p class="small subtle" style="margin:0 0 12px;">Latest tracked page visits across your students.</p>
+              <div id="teacherEngagementPageWatch"></div>
+            </div>
+          </div>
+          <div class="card" style="padding:18px 20px; margin-top:18px;">
+            <h4 style="margin:0 0 10px;font-size:1rem;">Recent tracked activity</h4>
+            <div id="teacherEngagementRecent"></div>
+          </div>
+        </div>
+      </section><!-- /engagementView -->
+
+      <section id="adminView" class="view">
+
+        <!-- Admin header -->
+        <div class="card admin-header-card" style="padding:28px 30px;">
+          <div class="split-head">
+            <div>
+              <p class="eyebrow">Administration</p>
+              <h2 style="margin:8px 0 10px;">Site management &amp; user control</h2>
+              <p class="subtle">Manage users, roles, email domain allowlists and worksheet seeding. This area is only visible to admin accounts.</p>
+            </div>
+            <button id="btnRefreshAdmin" class="btn">Refresh</button>
+          </div>
+        </div>
+
+        <div id="adminApprovalBanner" class="card" style="padding:22px 24px; margin-bottom:18px; display:none;">
+          <div class="split-head" style="align-items:flex-start; gap:16px;">
+            <div>
+              <p class="eyebrow">Teacher approvals</p>
+              <h3 style="margin:8px 0 8px;">Pending teacher requests</h3>
+              <p class="small subtle" style="margin:0;">New teacher accounts must verify their email and then be approved by an admin.</p>
+            </div>
+            <div id="adminPendingCountBadge" class="badge warn">0 pending</div>
+          </div>
+          <div id="adminPendingApprovals" style="margin-top:14px;"></div>
+        </div>
+
+        <!-- Admin metrics -->
+        <div class="teacher-metrics">
+          <div class="metric-card"><span>Total users</span><strong id="adminUserCount">—</strong></div>
+          <div class="metric-card"><span>Teachers</span><strong id="adminTeacherCount">—</strong></div>
+          <div class="metric-card"><span>Students</span><strong id="adminStudentCount">—</strong></div>
+        </div>
+
+        <!-- Admin grid: Users + Settings -->
+        <div class="admin-grid">
+
+          <!-- User Management -->
+          <div class="card" style="padding:24px 26px;">
+            <h3 style="margin-bottom:6px;">User accounts</h3>
+            <p class="small subtle" style="margin-bottom:16px;">Approve new teachers, change account roles, search users and delete accounts when needed.</p>
+            <input id="adminUserSearch" class="input" type="text" placeholder="Search users by name, email or role" autocomplete="off" style="margin-bottom:14px;" />
+            <div id="adminUserList"><p class="subtle">Loading users…</p></div>
+          </div>
+
+          <!-- Settings: Domain Allowlist + Worksheet Seeding -->
+          <div style="display:grid;gap:20px;align-content:start;">
+
+            <!-- Email domain allowlist -->
+            <div class="card" style="padding:24px 26px;">
+              <h3 style="margin-bottom:6px;">Registration allowlist</h3>
+              <p class="small subtle" style="margin-bottom:14px;">Only email addresses from these domains can create new accounts.</p>
+              <div id="domainWarning" class="domain-empty-warning hidden">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:16px;height:16px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+                <span>No domain restrictions — anyone can register. We recommend adding your school domain.</span>
+              </div>
+              <div id="adminDomainList"><p class="subtle">Loading…</p></div>
+              <div class="stack-inline" style="margin-top:14px;">
+                <input id="adminNewDomain" class="input" type="text" placeholder="e.g. garibaldischool.co.uk" style="flex:1;" />
+                <button id="btnAdminAddDomain" class="btn primary">Add domain</button>
+              </div>
+            </div>
+
+            <!-- Worksheet Bank -->
+            <div class="card" style="padding:24px 26px;">
+              <h3 style="margin-bottom:6px;">Worksheet bank</h3>
+              <p class="small subtle" style="margin-bottom:14px;">Push all 35 strand worksheets to Firestore with server-side answer keys. Safe to run multiple times.</p>
+              <p id="lastSeededNote" class="small subtle" style="margin-bottom:12px;"></p>
+              <button id="btnAdminSeedWorksheets" class="btn primary">Seed worksheet bank</button>
+            </div>
+
+          </div>
+        </div><!-- /admin-grid -->
+
+      </section><!-- /adminView -->
+
+    </section><!-- /content -->
+  
+
+<div id="studentTrackingNotice" class="hidden" style="position:fixed;inset:0;background:rgba(6,16,38,.62);z-index:9999;padding:20px;align-items:center;justify-content:center;">
+  <div class="card" style="max-width:620px;width:100%;padding:24px 24px 20px;box-shadow:0 24px 60px rgba(0,0,0,.28);">
+    <p class="eyebrow">Usage tracking</p>
+    <h3 style="margin:6px 0 10px;">Stay logged in before opening R093 Exam</h3>
+    <p class="small subtle" style="margin:0 0 12px;">To record your iMedia Genius usage and build your student progress, you need to be logged in first and then click the <strong>R093 Exam</strong> link from the Useful Links area.</p>
+    <p class="small subtle" style="margin:0 0 16px;">If you use iMedia Genius without being logged in, your page visits and activity will not be linked to your account, so your progress will not be recorded.</p>
+    <label style="display:flex;align-items:flex-start;gap:10px;margin:0 0 18px;cursor:pointer;">
+      <input id="studentTrackingNoticeHideFuture" type="checkbox" style="margin-top:3px;" />
+      <span class="small subtle">Don’t show this message again on this device.</span>
+    </label>
+    <div style="display:flex;justify-content:flex-end;gap:12px;flex-wrap:wrap;">
+      <button id="btnStudentTrackingNoticeR093" type="button" class="btn">Open R093 Exam</button>
+      <button id="btnStudentTrackingNoticeClose" type="button" class="btn primary">Got it</button>
+    </div>
+  </div>
+</div>
+
+</main>
+</div><!-- /#app -->
+
+<script type="module" src="./app.v4.js"></script>
+</body>
+</html>

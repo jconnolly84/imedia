@@ -1,0 +1,1333 @@
+console.log('IMEDIA GENIUS APP V4 LOADED — role-based access');
+
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js';
+import {
+  getAuth, onAuthStateChanged,
+  createUserWithEmailAndPassword, signInWithEmailAndPassword,
+  signOut, updateProfile, sendEmailVerification, sendPasswordResetEmail
+} from 'https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js';
+import {
+  getFirestore, doc, getDoc, setDoc, serverTimestamp,
+  collection, getDocs, query, orderBy
+} from 'https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js';
+import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/12.10.0/firebase-functions.js';
+import { firebaseConfig } from './firebase-config.js';
+
+// ─── Bootstrap ─────────────────────────────────────────────────────────────────
+
+const ADMIN_EMAIL = 'jconnolly@garibaldischool.co.uk';
+const REGION      = 'europe-west2';
+
+const app  = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db   = getFirestore(app);
+const fns  = getFunctions(app, REGION);
+
+const callSeedWorksheetBank        = httpsCallable(fns, 'seedWorksheetBank');
+const callMarkWorksheetSubmission  = httpsCallable(fns, 'markWorksheetSubmission');
+const callAdminListUsers           = httpsCallable(fns, 'adminListUsers');
+const callAdminSetUserRole         = httpsCallable(fns, 'adminSetUserRole');
+const callAdminGetSettings         = httpsCallable(fns, 'adminGetSettings');
+const callAdminUpdateSettings      = httpsCallable(fns, 'adminUpdateSettings');
+const callGetRegistrationSettings  = httpsCallable(fns, 'getRegistrationSettings');
+const callTeacherGetDashboard      = httpsCallable(fns, 'teacherGetDashboard');
+const callTeacherCreateAssignment  = httpsCallable(fns, 'teacherCreateAssignment');
+const callTeacherDeleteAssignment  = httpsCallable(fns, 'teacherDeleteAssignment');
+const callStudentGetAssignments    = httpsCallable(fns, 'studentGetAssignments');
+const callAdminDeleteUser         = httpsCallable(fns, 'adminDeleteUser');
+
+let registerRole = 'student';
+const PENDING_TEACHER_ROLE = 'teacher_pending';
+
+// ─── State ─────────────────────────────────────────────────────────────────────
+
+const state = {
+  currentUser:        null,
+  currentUserProfile: null,
+  strands:            [],
+  filteredStrands:    [],
+  progress:           null,
+  activeStrandId:     null,
+  route:              'home',
+  teacherRows:        [],
+  markingResults:     [],
+  teacherAssignments: [],
+  classOptions:       [],
+  assignedTasks:      [],
+  allowedDomains:     [],  // cached from Firestore for registration validation
+  adminUsers:         []
+};
+
+// ─── DOM refs ──────────────────────────────────────────────────────────────────
+
+const els = {
+  alert:                   document.getElementById('alert'),
+  homeView:                document.getElementById('homeView'),
+  worksheetView:           document.getElementById('worksheetView'),
+  teacherView:             document.getElementById('teacherView'),
+  adminView:               document.getElementById('adminView'),
+  strandGrid:              document.getElementById('strandGrid'),
+  worksheetContainer:      document.getElementById('worksheetContainer'),
+  teacherStudents:         document.getElementById('teacherStudents'),
+  teacherStrandBreakdown:  document.getElementById('teacherStrandBreakdown'),
+  teacherAssignments:      document.getElementById('teacherAssignments'),
+  studentAssignments:      document.getElementById('studentAssignments'),
+  loggedInNavLinks:        document.getElementById('loggedInNavLinks'),
+  btnSignIn:               document.getElementById('btnSignIn'),
+  btnSignOut:              document.getElementById('btnSignOut'),
+  btnEmailLogin:           document.getElementById('btnEmailLogin'),
+  btnRegister:             document.getElementById('btnRegister'),
+  btnRefreshTeacher:       document.getElementById('btnRefreshTeacher'),
+  email:                   document.getElementById('email'),
+  password:                document.getElementById('password'),
+  displayName:             document.getElementById('displayName'),
+  classCode:               document.getElementById('classCode'),
+  searchStrands:           document.getElementById('searchStrands'),
+  metricTotalStrands:      document.getElementById('metricTotalStrands'),
+  metricCompleted:         document.getElementById('metricCompleted'),
+  metricAverage:           document.getElementById('metricAverage'),
+  teacherStudentCount:     document.getElementById('teacherStudentCount'),
+  teacherSubmissionCount:  document.getElementById('teacherSubmissionCount'),
+  teacherAverageScore:     document.getElementById('teacherAverageScore'),
+  teacherCompletionRate:   document.getElementById('teacherCompletionRate'),
+  teacherRagSheet:         document.getElementById('teacherRagSheet'),
+  teacherRagSummary:       document.getElementById('teacherRagSummary'),
+  teacherAssignClass:      document.getElementById('teacherAssignClass'),
+  teacherAssignStrand:     document.getElementById('teacherAssignStrand'),
+  teacherAssignDeadline:   document.getElementById('teacherAssignDeadline'),
+  btnTeacherAssignTask:    document.getElementById('btnTeacherAssignTask'),
+  // Admin DOM refs
+  adminUserList:           document.getElementById('adminUserList'),
+  adminUserSearch:         document.getElementById('adminUserSearch'),
+  adminDomainList:         document.getElementById('adminDomainList'),
+  adminNewDomain:          document.getElementById('adminNewDomain'),
+  btnAdminAddDomain:       document.getElementById('btnAdminAddDomain'),
+  btnAdminSeedWorksheets:  document.getElementById('btnAdminSeedWorksheets'),
+  btnRefreshAdmin:         document.getElementById('btnRefreshAdmin'),
+  adminUserCount:          document.getElementById('adminUserCount'),
+  adminTeacherCount:       document.getElementById('adminTeacherCount'),
+  adminStudentCount:       document.getElementById('adminStudentCount'),
+  loggedOutHero:           document.getElementById('loggedOutHero'),
+  loggedInHero:            document.getElementById('loggedInHero'),
+  progressSummary:         document.getElementById('progressSummary'),
+  onboardingNudge:         document.getElementById('onboardingNudge'),
+  previewGrid:             document.getElementById('previewGrid'),
+  lastSeededNote:          document.getElementById('lastSeededNote'),
+  domainWarning:           document.getElementById('domainWarning'),
+};
+
+// ─── Utilities ─────────────────────────────────────────────────────────────────
+
+function escapeHtml(value = '') {
+  return String(value)
+    .replaceAll('&', '&amp;').replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
+}
+
+function normaliseText(value = '') {
+  return String(value).toLowerCase()
+    .replace(/&/g, ' and ').replace(/[^a-z0-9%\s-]/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function showAlert(message, level = 'good') {
+  els.alert.innerHTML = `<div class="alert ${level}">${escapeHtml(message)}</div>`;
+  window.clearTimeout(showAlert._t);
+  showAlert._t = window.setTimeout(() => { els.alert.innerHTML = ''; }, 5000);
+}
+
+
+function todayIsoDate() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function formatDeadline(deadline = '') {
+  if (!deadline) return 'No deadline';
+  const d = new Date(`${deadline}T00:00:00`);
+  if (Number.isNaN(d.getTime())) return deadline;
+  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
+function deadlineTone(deadline = '') {
+  const due = String(deadline || '').slice(0, 10);
+  if (!due) return 'badge';
+  const today = todayIsoDate();
+  if (due < today) return 'badge danger';
+  if (due === today) return 'badge warn';
+  return 'badge good';
+}
+
+function isAssignedToStudent(strandId) {
+  if (!isStudent()) return true;
+  return state.assignedTasks.some((task) => task.strandId === strandId);
+}
+
+const role = () => state.currentUserProfile?.role || null;
+const isAdmin   = () => role() === 'admin';
+const isTeacher = () => role() === 'teacher';
+const isStudent = () => role() === 'student';
+const isPendingTeacher = () => role() === PENDING_TEACHER_ROLE;
+
+// ─── Role-based nav visibility ─────────────────────────────────────────────────
+
+function updateNavVisibility() {
+  const r = role();
+
+  // Each nav button has data-roles="admin,teacher" etc.
+  document.querySelectorAll('.nav-btn[data-roles]').forEach((btn) => {
+    const allowed = btn.dataset.roles.split(',');
+    const visible = r && allowed.includes(r);
+    btn.style.display = visible ? '' : 'none';
+  });
+
+  // Auth section only shown when signed out
+  const authPanel = document.getElementById('authPanel');
+  if (authPanel) authPanel.style.display = state.currentUser ? 'none' : '';
+
+  // Search only shown to student/admin
+  const searchBlock = document.getElementById('searchBlock');
+  if (searchBlock) searchBlock.style.display = (r === 'student' || r === 'admin') ? '' : 'none';
+
+  // Logged-in sidebar links for all signed-in users
+  if (els.loggedInNavLinks) {
+    els.loggedInNavLinks.classList.toggle('hidden', !state.currentUser);
+  }
+
+  // Role badge in header
+  renderRoleBadge();
+}
+
+function renderRoleBadge() {
+  const badge = document.getElementById('roleBadge');
+  if (!badge) return;
+  if (!state.currentUser) { badge.innerHTML = ''; return; }
+  const r = role() || 'student';
+  const colours = { admin: 'badge-admin', teacher: 'badge-teacher', student: 'badge-student' };
+  badge.innerHTML = `<span class="role-badge ${colours[r]}">${r.charAt(0).toUpperCase() + r.slice(1)}</span>`;
+}
+
+// ─── Route ─────────────────────────────────────────────────────────────────────
+
+const ROUTE_TITLES = {
+  home:      'Student Home | iMedia Genius',
+  worksheet: 'Worksheet | iMedia Genius',
+  teacher:   'Teacher Dashboard | iMedia Genius',
+  admin:     'Admin Panel | iMedia Genius',
+};
+
+function setRoute(newRoute) {
+  state.route = newRoute;
+  document.title = ROUTE_TITLES[newRoute] || 'iMedia Genius Worksheets';
+  document.querySelectorAll('.view').forEach((v) => v.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach((b) => b.classList.remove('active'));
+  document.querySelector(`.nav-btn[data-route="${newRoute}"]`)?.classList.add('active');
+  if (newRoute === 'home')      els.homeView?.classList.add('active');
+  if (newRoute === 'worksheet') els.worksheetView?.classList.add('active');
+  if (newRoute === 'teacher')   els.teacherView?.classList.add('active');
+  if (newRoute === 'admin')     els.adminView?.classList.add('active');
+}
+
+// ─── Auth redirect helpers ─────────────────────────────────────────────────────
+
+function renderAuthRequired(title = 'Sign in required', msg = 'Please sign in.') {
+  return `<div class="card" style="padding:28px;">
+    <p class="eyebrow">Secure access</p>
+    <h2>${escapeHtml(title)}</h2>
+    <p class="subtle">${escapeHtml(msg)}</p>
+    <div class="stack-inline" style="margin-top:14px;">
+      <button id="btnJumpToLogin" class="btn primary" type="button">Go to sign in</button>
+    </div>
+  </div>`;
+}
+
+function renderAccessDenied(requiredRole) {
+  return `<div class="card" style="padding:28px;">
+    <p class="eyebrow">Access denied</p>
+    <h2>This area requires ${escapeHtml(requiredRole)} access</h2>
+    <p class="subtle">Your account does not have permission to view this page. 
+       Contact your administrator if you believe this is an error.</p>
+  </div>`;
+}
+
+function wireJumpToLogin() {
+  document.getElementById('btnJumpToLogin')?.addEventListener('click', () => {
+    document.getElementById('authPanel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
+
+// ─── Student metrics ───────────────────────────────────────────────────────────
+
+function updateStudentMetrics() {
+  const rows = Object.values(state.progress?.strands || {});
+  const completed = rows.filter((r) => r.completed).length;
+  const started   = rows.filter((r) => r.startedAt && !r.completed).length;
+  const total     = state.strands.length || 35;
+  const average = rows.length
+    ? Math.round(rows.reduce((s, r) => s + (r.score || 0), 0) / rows.length) : 0;
+  els.metricCompleted.textContent = String(completed);
+  els.metricAverage.textContent = `${average}%`;
+
+  if (els.progressSummary) {
+    const pct = total ? Math.round((completed / total) * 100) : 0;
+    const startedPct = total ? Math.round(((completed + started) / total) * 100) : 0;
+    if (completed === 0 && started === 0) {
+      els.progressSummary.innerHTML = '';
+      return;
+    }
+    els.progressSummary.innerHTML = `
+      <div class="progress-bar-row">
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill progress-bar-started" style="width:${startedPct}%"></div>
+          <div class="progress-bar-fill progress-bar-done" style="width:${pct}%"></div>
+        </div>
+        <span class="small subtle">${completed} of ${total} completed${started ? ` · ${started} in progress` : ''}</span>
+      </div>`;
+  }
+}
+
+// ─── Strands ───────────────────────────────────────────────────────────────────
+
+async function loadStrands() {
+  let rows = [];
+  if (state.currentUser) {
+    try {
+      const snap = await getDocs(query(collection(db, 'tasks'), orderBy('topicNumber', 'asc')));
+      rows = snap.docs.map((d) => d.data());
+    } catch { /* fallback below */ }
+  }
+  if (!rows.length) {
+    const res = await fetch('./data/strands.public.json');
+    rows = await res.json();
+  }
+  state.strands = rows;
+  state.filteredStrands = isStudent() ? rows.filter((s) => isAssignedToStudent(s.id)) : [...rows];
+  els.metricTotalStrands.textContent = String(rows.length || 35);
+}
+
+function renderPreviewGrid() {
+  if (!els.previewGrid) return;
+  const preview = state.strands.slice(0, 6);
+  if (!preview.length) { els.previewGrid.innerHTML = ''; return; }
+  els.previewGrid.innerHTML = preview.map((strand) => `
+    <article class="preview-strand-card">
+      <div class="preview-lock">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+      </div>
+      <div class="preview-content">
+        <span class="badge">${escapeHtml(strand.code)}</span>
+        <h3>${escapeHtml(strand.title)}</h3>
+        <p class="subtle">${escapeHtml(strand.summary)}</p>
+      </div>
+    </article>`).join('');
+}
+
+function renderStrands() {
+  if (!state.currentUser) {
+    // Show logged-out landing, hide logged-in hero
+    els.loggedOutHero?.classList.remove('hidden');
+    els.loggedInHero?.classList.add('hidden');
+    renderPreviewGrid();
+    els.strandGrid.innerHTML = '';
+    return;
+  }
+  // Show logged-in hero, hide logged-out
+  els.loggedOutHero?.classList.add('hidden');
+  els.loggedInHero?.classList.remove('hidden');
+
+  if (!isStudent() && !isAdmin()) {
+    els.strandGrid.innerHTML = renderAccessDenied('student'); return;
+  }
+
+  if (isStudent()) {
+    els.strandGrid.innerHTML = '';
+    return;
+  }
+
+  const visibleStrands = state.filteredStrands;
+  const rows = visibleStrands.map((strand) => {
+    const prog  = state.progress?.strands?.[strand.id];
+    const score = prog?.score || 0;
+    const label = prog?.completed ? 'Completed' : prog?.startedAt ? 'In progress' : 'Not started';
+    const cls   = prog?.completed ? 'good' : prog?.startedAt ? 'warn' : '';
+    return `<article class="strand-card card">
+      <div class="badge-row">
+        <span class="badge">${escapeHtml(strand.code)}</span>
+        <span class="badge ${cls}">${label}</span>
+      </div>
+      <div>
+        <h3>${escapeHtml(strand.title)}</h3>
+        <p class="subtle">${escapeHtml(strand.summary)}</p>
+      </div>
+      <div class="chip-row">
+        ${(strand.tags || []).slice(0, 3).map((t) => `<span class="chip">${escapeHtml(t)}</span>`).join('')}
+      </div>
+      <div>
+        <div class="small subtle">Score</div>
+        <div class="progressbar"><span style="width:${score}%"></span></div>
+        <div class="small subtle" style="margin-top:6px;">${score}% · ${(strand.questions || []).length} questions</div>
+      </div>
+      <button class="btn primary" data-open-strand="${escapeHtml(strand.id)}">Open worksheet</button>
+    </article>`;
+  }).join('');
+
+  const emptyMessage = 'No strands matched your search.';
+  els.strandGrid.innerHTML = rows || `<div class="card" style="padding:18px;">${escapeHtml(emptyMessage)}</div>`;
+  document.querySelectorAll('[data-open-strand]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      state.activeStrandId = btn.dataset.openStrand;
+      setRoute('worksheet');
+      renderWorksheet();
+    });
+  });
+}
+
+// ─── Worksheet ─────────────────────────────────────────────────────────────────
+
+function renderQuestionInput(question, existing) {
+  if (question.type === 'mcq') {
+    return (question.options || []).map((opt) =>
+      `<label class="option"><input type="radio" name="${question.id}" value="${escapeHtml(opt)}" ${existing === opt ? 'checked' : ''} /><span>${escapeHtml(opt)}</span></label>`
+    ).join('');
+  }
+  if (question.type === 'multi_select') {
+    const vals = Array.isArray(existing) ? existing : [];
+    return (question.options || []).map((opt) =>
+      `<label class="option"><input type="checkbox" name="${question.id}" value="${escapeHtml(opt)}" ${vals.includes(opt) ? 'checked' : ''} /><span>${escapeHtml(opt)}</span></label>`
+    ).join('');
+  }
+  return `<textarea name="${question.id}" placeholder="Type your answer here...">${escapeHtml(existing || '')}</textarea>`;
+}
+
+function renderWorksheet() {
+  if (!state.currentUser) {
+    els.worksheetContainer.innerHTML = renderAuthRequired('Worksheet locked', 'Students must sign in to open worksheets.');
+    wireJumpToLogin(); return;
+  }
+  if (!isStudent() && !isAdmin()) {
+    els.worksheetContainer.innerHTML = renderAccessDenied('student'); return;
+  }
+
+  const strand = state.strands.find((s) => s.id === state.activeStrandId) || state.strands[0];
+  if (!strand) {
+    els.worksheetContainer.innerHTML = '<div class="card" style="padding:18px;">No worksheet available yet.</div>';
+    return;
+  }
+  state.activeStrandId = strand.id;
+  const saved   = state.progress?.strands?.[strand.id];
+  const answers = saved?.answers || {};
+  const result  = saved?.lastResult || null;
+  const assignedTask = (state.assignedTasks || []).find((task) => task.strandId === strand.id) || null;
+  if (isStudent() && !assignedTask) {
+    els.worksheetContainer.innerHTML = `
+      <div class="card" style="padding:24px;">
+        <h3>This worksheet is not currently assigned</h3>
+        <p class="subtle">Students can only open worksheets that have been assigned by their teacher.</p>
+      </div>`;
+    return;
+  }
+
+  els.worksheetContainer.innerHTML = `
+    <div class="worksheet-shell">
+      <section class="worksheet-header card">
+        <div class="split-head">
+          <div>
+            <p class="eyebrow">${escapeHtml(strand.code)}</p>
+            <h2>${escapeHtml(strand.title)}</h2>
+            <p class="subtle">Source: <a href="${escapeHtml(strand.sourceUrl)}" target="_blank" rel="noreferrer">${escapeHtml(strand.sourceUrl)}</a></p>
+            ${assignedTask ? `<p class="small subtle" style="margin-top:8px;">Assigned for ${escapeHtml(assignedTask.className || assignedTask.classCode || '')} · Deadline ${escapeHtml(formatDeadline(assignedTask.deadline))}</p>` : ''}
+            <p>${escapeHtml(strand.summary)}</p>
+          </div>
+          <div class="metric-card"><span>Latest score</span><strong>${saved?.score || 0}%</strong></div>
+        </div>
+      </section>
+      <section class="worksheet-body card">
+        <h3>Read first</h3>
+        ${(strand.reading || []).map((b) => `
+          <div class="reading-block">
+            <h4>${escapeHtml(b.heading)}</h4>
+            <p>${escapeHtml(b.body)}</p>
+            ${b.bullets?.length ? `<ul>${b.bullets.map((bl) => `<li>${escapeHtml(bl)}</li>`).join('')}</ul>` : ''}
+          </div>`).join('')}
+      </section>
+      <form id="worksheetForm" class="worksheet-body card">
+        <h3>Complete the worksheet</h3>
+        <p class="small subtle">Marking runs server-side — answer keys are never exposed in the browser.</p>
+        ${(strand.questions || []).map((q, i) => `
+          <div class="question-block">
+            <div class="badge-row">
+              <span class="badge">Q${i + 1}</span>
+              <span class="badge">${q.marks} mark${q.marks === 1 ? '' : 's'}</span>
+              <span class="badge">${escapeHtml(q.type)}</span>
+            </div>
+            <div><strong>${escapeHtml(q.prompt)}</strong></div>
+            <div class="small subtle">${escapeHtml(q.hint || '')}</div>
+            <div>${renderQuestionInput(q, answers[q.id])}</div>
+          </div>`).join('')}
+        <div class="stack-inline">
+          <button type="submit" class="btn primary">Mark worksheet</button>
+          <button id="btnSaveDraft" type="button" class="btn">Save draft</button>
+        </div>
+      </form>
+      ${result ? `
+        <section class="worksheet-body card">
+          <h3>Latest feedback</h3>
+          <div class="hero-metrics">
+            <div class="metric-card"><span>Marks</span><strong>${result.totalAwarded}/${result.totalMarks}</strong></div>
+            <div class="metric-card"><span>Score</span><strong>${result.percentage}%</strong></div>
+            <div class="metric-card"><span>Weak areas</span><strong>${result.weakAreas?.length || 0}</strong></div>
+          </div>
+          ${result.results.map((row) => `
+            <div class="question-block" style="margin-top:10px;">
+              <div class="badge-row">
+                <span class="badge ${row.awarded === row.maxMarks ? 'good' : 'warn'}">${row.awarded}/${row.maxMarks}</span>
+                <span class="badge">Confidence ${Math.round((row.confidence || 0) * 100)}%</span>
+              </div>
+              <div><strong>${escapeHtml(row.prompt)}</strong></div>
+              <div class="small subtle">Your answer: ${escapeHtml(Array.isArray(row.answer) ? row.answer.join(', ') : row.answer || '—')}</div>
+              <div>${escapeHtml(row.feedback)}</div>
+            </div>`).join('')}
+        </section>` : ''}
+    </div>`;
+
+  document.getElementById('worksheetForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    try {
+      const ans = readFormAnswers(strand);
+      const res = await callMarkWorksheetSubmission({ strandId: strand.id, answers: ans, submit: true });
+      await loadProgress(); await loadStudentAssignments(); renderStrands(); renderWorksheet();
+      showAlert(`Worksheet marked. Score: ${res.data.result.percentage}%`, 'good');
+    } catch (err) { showAlert(err.message || 'Unable to mark worksheet.', 'error'); }
+  });
+
+  document.getElementById('btnSaveDraft')?.addEventListener('click', async () => {
+    try {
+      const ans = readFormAnswers(strand);
+      await callMarkWorksheetSubmission({ strandId: strand.id, answers: ans, submit: false });
+      await loadProgress(); await loadStudentAssignments(); renderStrands(); renderWorksheet();
+      showAlert('Draft saved.', 'good');
+    } catch (err) { showAlert(err.message || 'Unable to save draft.', 'error'); }
+  });
+}
+
+function readFormAnswers(strand) {
+  const answers = {};
+  for (const q of strand.questions) {
+    if (q.type === 'mcq') {
+      answers[q.id] = document.querySelector(`input[name="${q.id}"]:checked`)?.value || '';
+    } else if (q.type === 'multi_select') {
+      answers[q.id] = [...document.querySelectorAll(`input[name="${q.id}"]:checked`)].map((n) => n.value);
+    } else {
+      answers[q.id] = document.querySelector(`[name="${q.id}"]`)?.value || '';
+    }
+  }
+  return answers;
+}
+
+// ─── Teacher dashboard ─────────────────────────────────────────────────────────
+
+async function loadTeacherDashboard() {
+  if (!state.currentUser || (!isTeacher() && !isAdmin())) {
+    els.teacherStudents.innerHTML = renderAccessDenied('teacher');
+    els.teacherStrandBreakdown.innerHTML = '';
+    if (els.teacherAssignments) els.teacherAssignments.innerHTML = '';
+    ['teacherStudentCount','teacherSubmissionCount','teacherAverageScore','teacherCompletionRate']
+      .forEach((k) => { if (els[k]) els[k].textContent = '—'; });
+    return;
+  }
+
+  const res = await callTeacherGetDashboard({});
+  const progressRows = res.data.progressRows || [];
+  const submissionRows = res.data.submissionRows || [];
+  const students = res.data.students || [];
+  state.teacherRows = progressRows;
+  state.markingResults = submissionRows;
+  state.teacherAssignments = res.data.assignments || [];
+  state.classOptions = res.data.classOptions || [];
+
+  if (els.teacherAssignClass) {
+    const opts = state.classOptions.map((row) => `<option value="${escapeHtml(row.classCode)}" data-name="${escapeHtml(row.className || row.classCode)}">${escapeHtml(row.className || row.classCode)} (${row.count})</option>`).join('');
+    els.teacherAssignClass.innerHTML = opts || '<option value="">No classes found</option>';
+  }
+  if (els.teacherAssignStrand) {
+    els.teacherAssignStrand.innerHTML = state.strands.map((strand) => `<option value="${escapeHtml(strand.id)}">${escapeHtml(strand.code)} · ${escapeHtml(strand.title)}</option>`).join('');
+  }
+
+  els.teacherStudents.innerHTML = students.map((student) => {
+    const row = progressRows.find((item) => item.userId === student.uid) || { strands: {} };
+    const sr = Object.values(row.strands || {});
+    const completed = sr.filter((s) => s.completed).length;
+    const average = sr.length ? Math.round(sr.reduce((sum, item) => sum + (item.score || 0), 0) / sr.length) : 0;
+    return `<div class="teacher-row">
+      <strong>${escapeHtml(student.displayName || student.email || student.uid)}</strong>
+      <div class="small subtle">${escapeHtml(student.email || '')}</div>
+      <div class="small subtle">${escapeHtml(student.className || student.classCode || 'No class')}</div>
+      <div class="badge-row" style="margin-top:8px;">
+        <span class="badge">Completed ${completed}</span>
+        <span class="badge">Average ${average}%</span>
+      </div>
+    </div>`;
+  }).join('') || '<p class="subtle">No students linked to your classes yet.</p>';
+
+  const strandSummary = {};
+  for (const row of progressRows) {
+    for (const s of Object.values(row.strands || {})) {
+      if (!strandSummary[s.strandId]) strandSummary[s.strandId] = { title: s.title, attempts: 0, completed: 0, totalScore: 0 };
+      strandSummary[s.strandId].attempts += 1;
+      strandSummary[s.strandId].totalScore += s.score || 0;
+      if (s.completed) strandSummary[s.strandId].completed += 1;
+    }
+  }
+  els.teacherStrandBreakdown.innerHTML = Object.values(strandSummary)
+    .sort((a, b) => b.attempts - a.attempts || a.title.localeCompare(b.title))
+    .map((row) => {
+      const avg = row.attempts ? Math.round(row.totalScore / row.attempts) : 0;
+      return `<div class="teacher-row"><strong>${escapeHtml(row.title)}</strong><div class="badge-row" style="margin-top:8px;"><span class="badge">Attempts ${row.attempts}</span><span class="badge">Completed ${row.completed}</span><span class="badge">Average ${avg}%</span></div></div>`;
+    }).join('') || '<p class="subtle">No strand data yet.</p>';
+
+  if (els.teacherAssignments) {
+    els.teacherAssignments.innerHTML = state.teacherAssignments.map((assignment) => `<article class="assignment-card"><div><div class="badge-row"><span class="badge">${escapeHtml(assignment.className || assignment.classCode || '')}</span><span class="badge">${escapeHtml(assignment.strandCode || '')}</span><span class="${deadlineTone(assignment.deadline)}">Due ${escapeHtml(formatDeadline(assignment.deadline))}</span><span class="badge ${assignment.pendingCount ? 'warn' : 'good'}">${assignment.completedCount}/${assignment.targetCount} complete</span></div><strong style="display:block; margin-top:8px;">${escapeHtml(assignment.strandTitle || assignment.strandId)}</strong><div class="small subtle">${assignment.pendingCount} not completed</div><div class="assignment-students">${(assignment.studentStatus || []).map((student) => `<span class="chip ${student.completed ? 'chip-good' : 'chip-warn'}">${escapeHtml(student.displayName)}${student.completed ? ` · ${student.score ?? 0}%` : ' · pending'}</span>`).join('') || '<span class="small subtle">No students matched this class yet.</span>'}</div></div><div><button class="btn btn-delete-assignment" data-assignment-id="${escapeHtml(assignment.id)}">Remove</button></div></article>`).join('') || '<p class="subtle">No class tasks assigned yet.</p>';
+    document.querySelectorAll('.btn-delete-assignment').forEach((btn) => btn.addEventListener('click', async () => {
+      try {
+        btn.disabled = true;
+        await callTeacherDeleteAssignment({ assignmentId: btn.dataset.assignmentId });
+        await loadTeacherDashboard();
+        showAlert('Assignment removed.', 'good');
+      } catch (err) {
+        showAlert(err.message || 'Unable to remove assignment.', 'error');
+      } finally {
+        btn.disabled = false;
+      }
+    }));
+  }
+
+  renderTeacherRagSheet(progressRows, students);
+
+  els.teacherStudentCount.textContent = String(students.length);
+  els.teacherSubmissionCount.textContent = String(submissionRows.length);
+  const avgScore = submissionRows.length ? Math.round(submissionRows.reduce((sum, row) => sum + (row.result?.percentage || 0), 0) / submissionRows.length) : 0;
+  els.teacherAverageScore.textContent = `${avgScore}%`;
+  const totalAssignedTargets = state.teacherAssignments.reduce((sum, row) => sum + (row.targetCount || 0), 0);
+  const totalAssignedCompleted = state.teacherAssignments.reduce((sum, row) => sum + (row.completedCount || 0), 0);
+  els.teacherCompletionRate.textContent = totalAssignedTargets ? `${Math.round((totalAssignedCompleted / totalAssignedTargets) * 100)}%` : '0%';
+}
+
+
+function getRagBand(score) {
+  const value = Number(score || 0);
+  if (value >= 70) return { key: 'green', label: 'Green', className: 'good' };
+  if (value >= 40) return { key: 'amber', label: 'Amber', className: 'warn' };
+  return { key: 'red', label: 'Red', className: 'danger' };
+}
+
+function buildTeacherRagData(progressRows = [], students = []) {
+  const strandOrder = (state.strands || []).map((s) => ({ id: s.id, code: s.code || s.id, title: s.title || s.id }));
+  const studentRows = students.map((student) => {
+    const row = progressRows.find((item) => item.userId === student.uid) || { strands: {} };
+    const strands = row.strands || {};
+    const completedScores = Object.values(strands).filter((item) => item && item.completed).map((item) => Number(item.score || 0));
+    const overall = completedScores.length ? Math.round(completedScores.reduce((sum, value) => sum + value, 0) / completedScores.length) : 0;
+    const overallBand = getRagBand(overall);
+    const strandStates = strandOrder.map((strand) => {
+      const item = strands[strand.id] || null;
+      if (!item || !item.completed) {
+        return { ...strand, score: null, display: '—', className: 'muted', label: 'No attempt yet' };
+      }
+      const band = getRagBand(item.score || 0);
+      return { ...strand, score: Number(item.score || 0), display: `${Number(item.score || 0)}%`, className: band.className, label: band.label };
+    });
+    return {
+      displayName: student.displayName || student.email || student.uid,
+      email: student.email || '',
+      className: student.className || student.classCode || 'No class',
+      overall,
+      overallBand,
+      completed: completedScores.length,
+      strandStates
+    };
+  });
+  const summary = { red: 0, amber: 0, green: 0 };
+  studentRows.forEach((row) => { summary[row.overallBand.key] += 1; });
+  return { strandOrder, studentRows, summary };
+}
+
+function renderTeacherRagSheet(progressRows = [], students = []) {
+  if (!els.teacherRagSheet) return;
+  const { strandOrder, studentRows, summary } = buildTeacherRagData(progressRows, students);
+
+  if (els.teacherRagSummary) {
+    els.teacherRagSummary.innerHTML = `
+      <span class="badge danger">Red ${summary.red}</span>
+      <span class="badge warn">Amber ${summary.amber}</span>
+      <span class="badge good">Green ${summary.green}</span>`;
+  }
+
+  if (!studentRows.length) {
+    els.teacherRagSheet.innerHTML = '<p class="subtle" style="margin-top:14px;">No student data available yet.</p>';
+    return;
+  }
+
+  const header = ['Student', 'Class', 'Overall', 'Done'].concat(strandOrder.map((s) => escapeHtml(s.code || s.id)));
+  const rowsHtml = studentRows.map((row) => `
+    <tr>
+      <td class="rag-student-cell">
+        <strong>${escapeHtml(row.displayName)}</strong>
+        <div class="small subtle">${escapeHtml(row.email)}</div>
+      </td>
+      <td>${escapeHtml(row.className)}</td>
+      <td><span class="badge ${row.overallBand.className}">${row.overall}%</span></td>
+      <td>${row.completed}/${strandOrder.length}</td>
+      ${row.strandStates.map((item) => `<td><span class="rag-pill ${item.className}" title="${escapeHtml((item.title || item.id) + ': ' + item.label + (item.score !== null ? ' (' + item.score + '%)' : ''))}">${escapeHtml(item.display)}</span></td>`).join('')}
+    </tr>`).join('');
+
+  els.teacherRagSheet.innerHTML = `
+    <div class="rag-table-wrap">
+      <table class="rag-table">
+        <thead><tr>${header.map((label) => `<th>${label}</th>`).join('')}</tr></thead>
+        <tbody>${rowsHtml}</tbody>
+      </table>
+    </div>`;
+}
+
+// ─── Admin panel ───────────────────────────────────────────────────────────────
+
+async function loadAdminPanel() {
+  if (!state.currentUser || !isAdmin()) {
+    if (els.adminUserList) els.adminUserList.innerHTML = renderAccessDenied('admin');
+    return;
+  }
+
+  try {
+    const [usersRes, settingsRes] = await Promise.all([
+      callAdminListUsers({}),
+      callAdminGetSettings({})
+    ]);
+
+    state.adminUsers = usersRes.data.users || [];
+    renderAdminUsers(state.adminUsers);
+    renderAdminDomains(settingsRes.data.allowedDomains || []);
+  } catch (err) {
+    showAlert('Failed to load admin data: ' + err.message, 'error');
+  }
+}
+
+function renderAdminUsers(users) {
+  if (!els.adminUserList) return;
+
+  const query = (els.adminUserSearch?.value || '').trim().toLowerCase();
+  const filteredUsers = !query ? users : users.filter((u) => {
+    const haystack = `${u.displayName || ''} ${u.email || ''} ${u.role || ''}`.toLowerCase();
+    return haystack.includes(query);
+  });
+
+  const counts = { admin: 0, teacher: 0, student: 0, teacher_pending: 0 };
+  users.forEach((u) => { if (counts[u.role] !== undefined) counts[u.role]++; });
+  if (els.adminUserCount) els.adminUserCount.textContent = String(users.length);
+  if (els.adminTeacherCount) els.adminTeacherCount.textContent = String((counts.teacher || 0) + (counts.teacher_pending || 0));
+  if (els.adminStudentCount) els.adminStudentCount.textContent = String(counts.student || 0);
+
+  els.adminUserList.innerHTML = filteredUsers.map((u) => `
+    <div class="admin-user-row" data-uid="${escapeHtml(u.uid)}">
+      <div class="admin-user-info">
+        <strong>${escapeHtml(u.displayName || '—')}</strong>
+        <span class="small subtle">${escapeHtml(u.email)}${u.role === PENDING_TEACHER_ROLE ? ' · awaiting approval' : ''}</span>
+      </div>
+      <div class="admin-user-actions">
+        <select class="input admin-role-select" data-uid="${escapeHtml(u.uid)}" data-current="${escapeHtml(u.role)}" style="width:auto;padding:6px 10px;">
+          <option value="student" ${u.role === 'student' ? 'selected' : ''}>Student</option>
+          <option value="teacher_pending" ${u.role === 'teacher_pending' ? 'selected' : ''}>Teacher pending approval</option>
+          <option value="teacher" ${u.role === 'teacher' ? 'selected' : ''}>Teacher approved</option>
+          <option value="admin" ${u.role === 'admin' ? 'selected' : ''}>Admin</option>
+        </select>
+        <button class="btn btn-save-role" data-uid="${escapeHtml(u.uid)}" style="padding:6px 14px;">Save</button>
+        <button class="btn btn-danger btn-delete-user" data-uid="${escapeHtml(u.uid)}" data-name="${escapeHtml(u.displayName || u.email || 'this user')}" style="padding:6px 14px;">Delete</button>
+      </div>
+    </div>`).join('') || '<p class="subtle">No users found.</p>';
+
+  document.querySelectorAll('.btn-save-role').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const uid = btn.dataset.uid;
+      const select = document.querySelector(`.admin-role-select[data-uid="${uid}"]`);
+      const role = select?.value;
+      if (!role) return;
+      try {
+        btn.disabled = true; btn.textContent = 'Saving…';
+        await callAdminSetUserRole({ targetUid: uid, role });
+        btn.textContent = 'Saved ✓';
+        showAlert(`Role updated to "${role}".`, 'good');
+        select.dataset.current = role;
+      } catch (err) {
+        showAlert(err.message || 'Failed to update role.', 'error');
+        btn.textContent = 'Save';
+      } finally {
+        btn.disabled = false;
+        setTimeout(() => { btn.textContent = 'Save'; }, 2500);
+      }
+    });
+  });
+
+  document.querySelectorAll('.btn-delete-user').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const uid = btn.dataset.uid;
+      const label = btn.dataset.name || 'this user';
+      if (!uid) return;
+      if (!window.confirm(`Delete ${label}? This will remove their login, profile and saved worksheet data.`)) return;
+      try {
+        btn.disabled = true; btn.textContent = 'Deleting…';
+        await callAdminDeleteUser({ targetUid: uid });
+        showAlert('User deleted.', 'good');
+        await loadAdminPanel();
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = 'Delete';
+        showAlert(err.message || 'Failed to delete user.', 'error');
+      }
+    });
+  });
+}
+
+function renderAdminDomains(domains) {
+  if (!els.adminDomainList) return;
+  // Show/hide warning when list is empty
+  if (els.domainWarning) els.domainWarning.classList.toggle('hidden', domains.length > 0);
+  if (!domains.length) {
+    els.adminDomainList.innerHTML = '';
+    return;
+  }
+  els.adminDomainList.innerHTML = domains.map((d) => `
+    <div class="domain-row">
+      <span class="chip">@${escapeHtml(d)}</span>
+      <button class="btn btn-remove-domain" data-domain="${escapeHtml(d)}" style="padding:4px 12px;font-size:.8rem;">Remove</button>
+    </div>`).join('');
+
+  document.querySelectorAll('.btn-remove-domain').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const domainToRemove = btn.dataset.domain;
+      const currentDomains = getCurrentDomainList();
+      const updated = currentDomains.filter((d) => d !== domainToRemove);
+      await saveDomains(updated);
+    });
+  });
+}
+
+function getCurrentDomainList() {
+  return [...document.querySelectorAll('.btn-remove-domain')].map((b) => b.dataset.domain);
+}
+
+async function saveDomains(domains) {
+  try {
+    const res = await callAdminUpdateSettings({ allowedDomains: domains });
+    state.allowedDomains = res.data.allowedDomains;
+    renderAdminDomains(res.data.allowedDomains);
+    showAlert('Domain allowlist updated.', 'good');
+  } catch (err) {
+    showAlert(err.message || 'Failed to update domains.', 'error');
+  }
+}
+
+// ─── Auth ──────────────────────────────────────────────────────────────────────
+
+async function validateEmailDomain(email) {
+  const domain = email.split('@')[1]?.toLowerCase();
+  if (!domain) throw new Error('Invalid email address.');
+
+  // Fetch fresh settings from server (always trusted)
+  try {
+    const res = await callGetRegistrationSettings({});
+    const allowed = res.data.allowedDomains || [];
+    if (allowed.length > 0 && !allowed.includes(domain)) {
+      throw new Error(`Registration is restricted to: ${allowed.map((d) => '@' + d).join(', ')}`);
+    }
+  } catch (err) {
+    if (err.message.includes('restricted')) throw err; // rethrow domain error
+    // If settings fetch fails, allow registration to proceed (fail open)
+    console.warn('Could not fetch registration settings:', err.message);
+  }
+}
+
+async function ensureUserProfile(user, overrides = {}) {
+  const ref  = doc(db, 'users', user.uid);
+  const snap = await getDoc(ref);
+
+  if (!snap.exists()) {
+    // Bootstrap: if this is the designated admin email, grant admin role immediately
+    const isDesignatedAdmin = user.email?.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+    const payload = {
+      uid:         user.uid,
+      email:       user.email || '',
+      displayName: user.displayName || els.displayName?.value || user.email?.split('@')[0] || 'Student',
+      role:        isDesignatedAdmin ? 'admin' : (overrides.role || 'student'),
+      approvalStatus: isDesignatedAdmin ? 'approved' : (((overrides.role || 'student') === PENDING_TEACHER_ROLE) ? 'pending' : 'approved'),
+      classCode:   overrides.classCode || '',
+      className:   overrides.className || '',
+      teacherId:   overrides.teacherId || '',
+      createdAt:   serverTimestamp(),
+      updatedAt:   serverTimestamp()
+    };
+    await setDoc(ref, payload);
+    state.currentUserProfile = payload;
+
+    // Seed default allowed domain on first admin sign-in
+    if (isDesignatedAdmin) {
+      try {
+        const settingsRef = doc(db, 'settings', 'registration');
+        const settingsSnap = await getDoc(settingsRef);
+        if (!settingsSnap.exists()) {
+          await setDoc(settingsRef, {
+            allowedDomains: ['garibaldischool.co.uk'],
+            updatedAt:      serverTimestamp(),
+            updatedBy:      user.uid
+          });
+        }
+      } catch (e) { console.warn('Could not seed default domain settings:', e); }
+    }
+    return;
+  }
+  state.currentUserProfile = snap.data();
+}
+
+async function loginEmail() {
+  const email = els.email.value.trim();
+  const credential = await signInWithEmailAndPassword(auth, email, els.password.value);
+  const profile = (await getDoc(doc(db, 'users', credential.user.uid))).data() || {};
+  const r = profile?.role || 'student';
+
+  if (!credential.user.emailVerified) {
+    await signOut(auth);
+    const verifyMsg = r === PENDING_TEACHER_ROLE
+      ? 'Please verify your email first. After that, an admin will need to approve your teacher account before you can log in.'
+      : 'Please verify your email before logging in. Check your inbox for a verification link.';
+    showAlert(verifyMsg, 'warn');
+    document.getElementById('verifyResendBlock')?.classList.remove('hidden');
+    window._pendingVerifyEmail = email;
+    window._pendingVerifyPassword = els.password.value;
+    return;
+  }
+
+  if (r === PENDING_TEACHER_ROLE) {
+    await signOut(auth);
+    document.getElementById('verifyResendBlock')?.classList.add('hidden');
+    showAlert('Your teacher account has been verified and is now waiting for admin approval. Please ask an admin to approve your teacher access.', 'warn');
+    return;
+  }
+
+  document.getElementById('verifyResendBlock')?.classList.add('hidden');
+  showAlert('Logged in successfully.', 'good');
+}
+
+async function registerEmail() {
+  const email = els.email.value.trim();
+  const displayNameVal = document.getElementById('displayName')?.value.trim();
+  const classCodeVal = (els.classCode?.value || '').trim().toUpperCase();
+  if (!displayNameVal) throw new Error('Please enter a display name.');
+  if (registerRole === 'student' && !classCodeVal) throw new Error('Please enter your class code.');
+
+  await validateEmailDomain(email);
+  const credential = await createUserWithEmailAndPassword(auth, email, els.password.value);
+
+  // Set display name
+  await updateProfile(credential.user, { displayName: displayNameVal });
+
+  // Create Firestore profile
+  const profileRole = registerRole === 'teacher' ? PENDING_TEACHER_ROLE : 'student';
+  await ensureUserProfile(credential.user, {
+    role: profileRole,
+    classCode: registerRole === 'student' ? classCodeVal : '',
+    className: registerRole === 'student' ? classCodeVal : '',
+  });
+
+  // Send verification email
+  await sendEmailVerification(credential.user);
+
+  // Sign out immediately — must verify email first
+  await signOut(auth);
+
+  const registerMsg = registerRole === 'teacher'
+    ? `Teacher account created. A verification email has been sent to ${email}. Once you verify your email, an admin will need to approve your teacher account before you can log in.`
+    : `Student account created. A verification email has been sent to ${email}. Please verify before logging in.`;
+  showAlert(registerMsg, 'good');
+}
+
+// ─── Progress ──────────────────────────────────────────────────────────────────
+
+async function loadProgress() {
+  if (!state.currentUser) { state.progress = null; updateStudentMetrics(); return; }
+  const snap = await getDoc(doc(db, 'progress', state.currentUser.uid));
+  state.progress = snap.exists()
+    ? snap.data()
+    : { userId: state.currentUser.uid, strands: {}, updatedAt: null };
+  updateStudentMetrics();
+}
+
+async function loadStudentAssignments() {
+  if (!state.currentUser || !isStudent()) {
+    state.assignedTasks = [];
+    renderAssignedTasks();
+    return;
+  }
+  try {
+    const res = await callStudentGetAssignments({});
+    state.assignedTasks = res.data.assignments || [];
+  } catch (err) {
+    console.warn('Failed to load assignments', err);
+    state.assignedTasks = [];
+  }
+  renderAssignedTasks();
+}
+
+
+function renderAssignedTasks() {
+  if (!els.studentAssignments) return;
+  if (!state.currentUser || !isStudent()) {
+    els.studentAssignments.innerHTML = '';
+    return;
+  }
+
+  const tasks = [...(state.assignedTasks || [])].sort((a, b) => String(a.deadline || '').localeCompare(String(b.deadline || '')) || String(a.strandCode || '').localeCompare(String(b.strandCode || '')));
+
+  if (!tasks.length) {
+    els.studentAssignments.innerHTML = '<div class="card"><p class="subtle">No tasks have been assigned yet.</p></div>';
+    return;
+  }
+
+  els.studentAssignments.innerHTML = tasks.map((task) => {
+    const strand = state.strands.find((s) => s.id === task.strandId);
+    const progress = state.progress?.strands?.[task.strandId] || null;
+    const completed = !!progress?.completed;
+    const score = Number.isFinite(progress?.score) ? progress.score : null;
+    const openLabel = completed ? 'Review worksheet' : 'Open worksheet';
+    return `<article class="assignment-card">
+      <div>
+        <div class="badge-row">
+          <span class="badge">${escapeHtml(task.strandCode || strand?.code || '')}</span>
+          <span class="${deadlineTone(task.deadline)}">Due ${escapeHtml(formatDeadline(task.deadline))}</span>
+          <span class="badge ${completed ? 'good' : 'warn'}">${completed ? `Completed${score !== null ? ` · ${escapeHtml(String(score))}%` : ''}` : 'To do'}</span>
+        </div>
+        <strong style="display:block; margin-top:8px;">${escapeHtml(task.strandTitle || strand?.title || task.strandId)}</strong>
+        <div class="small subtle">${escapeHtml(task.className || state.currentUserProfile?.className || '')}</div>
+      </div>
+      <div><button class="btn btn-student-open-task" data-strand-id="${escapeHtml(task.strandId)}">${openLabel}</button></div>
+    </article>`;
+  }).join('');
+
+  document.querySelectorAll('.btn-student-open-task').forEach((btn) => btn.addEventListener('click', () => {
+    state.activeStrandId = btn.dataset.strandId;
+    setRoute('worksheet');
+    renderWorksheet();
+  }));
+}
+
+// ─── Filter strands ────────────────────────────────────────────────────────────
+
+function filterStrands(term) {
+  const q = normaliseText(term);
+  const base = isStudent() ? state.strands.filter((s) => isAssignedToStudent(s.id)) : state.strands;
+  state.filteredStrands = q
+    ? base.filter((s) => normaliseText(`${s.code} ${s.title} ${s.summary} ${(s.tags || []).join(' ')}`).includes(q))
+    : [...base];
+  renderStrands();
+}
+
+// ─── Event wiring ──────────────────────────────────────────────────────────────
+
+function wireEvents() {
+  // Nav
+  document.querySelectorAll('.nav-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const route = btn.dataset.route;
+      if (!state.currentUser) {
+        setRoute(route); renderStrands(); renderWorksheet();
+        showAlert('Please sign in to continue.', 'warn'); return;
+      }
+      setRoute(route);
+      if (route === 'home')      { renderStrands(); }
+      if (route === 'worksheet') { renderWorksheet(); }
+      if (route === 'teacher')   { await loadTeacherDashboard(); }
+      if (route === 'admin')     { await loadAdminPanel(); }
+    });
+  });
+
+  // Header auth buttons
+  els.btnSignIn?.addEventListener('click', () => {
+    document.getElementById('authPanel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  els.btnSignOut?.addEventListener('click', async () => {
+    await signOut(auth); showAlert('Signed out.', 'good');
+  });
+
+  // Login / Register
+  els.btnEmailLogin?.addEventListener('click', async (e) => {
+    e.preventDefault();
+    try { await loginEmail(); }
+    catch (err) { showAlert(err.message || 'Unable to log in.', 'error'); }
+  });
+  els.btnRegister?.addEventListener('click', async (e) => {
+    e.preventDefault();
+    try { await registerEmail(); }
+    catch (err) { showAlert(err.message || 'Unable to register.', 'error'); }
+  });
+
+  // Strand search
+  els.searchStrands?.addEventListener('input', (e) => filterStrands(e.target.value));
+
+  // Teacher refresh
+  els.btnRefreshTeacher?.addEventListener('click', async () => {
+    try { await loadTeacherDashboard(); showAlert('Dashboard refreshed.', 'good'); }
+    catch (err) { showAlert(err.message, 'error'); }
+  });
+
+  els.btnTeacherAssignTask?.addEventListener('click', async () => {
+    try {
+      const classCode = els.teacherAssignClass?.value || '';
+      const className = els.teacherAssignClass?.selectedOptions?.[0]?.dataset?.name || classCode;
+      const strandId = els.teacherAssignStrand?.value || '';
+      const deadline = els.teacherAssignDeadline?.value || '';
+      if (!classCode || !strandId) throw new Error('Choose a class and strand first.');
+      els.btnTeacherAssignTask.disabled = true;
+      await callTeacherCreateAssignment({ classCode, className, strandId, deadline });
+      await loadTeacherDashboard();
+      showAlert('Task assigned.', 'good');
+    } catch (err) {
+      showAlert(err.message || 'Unable to assign task.', 'error');
+    } finally {
+      els.btnTeacherAssignTask.disabled = false;
+    }
+  });
+
+  els.adminUserSearch?.addEventListener('input', () => {
+    if (state.adminUsers) renderAdminUsers(state.adminUsers);
+  });
+
+  // Admin: refresh
+  els.btnRefreshAdmin?.addEventListener('click', async () => {
+    try { await loadAdminPanel(); showAlert('Admin data refreshed.', 'good'); }
+    catch (err) { showAlert(err.message, 'error'); }
+  });
+
+  // Admin: seed worksheets
+  els.btnAdminSeedWorksheets?.addEventListener('click', async () => {
+    try {
+      els.btnAdminSeedWorksheets.disabled = true;
+      els.btnAdminSeedWorksheets.textContent = 'Seeding…';
+      const res = await callSeedWorksheetBank({});
+      await loadStrands(); renderStrands();
+      const seededAt = new Date().toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' });
+      if (els.lastSeededNote) els.lastSeededNote.textContent = `Last seeded: ${seededAt}`;
+      showAlert(`Seeded ${res.data.seeded} strands with server-side answer keys.`, 'good');
+    } catch (err) {
+      showAlert(err.message || 'Seed failed.', 'error');
+    } finally {
+      els.btnAdminSeedWorksheets.disabled = false;
+      els.btnAdminSeedWorksheets.textContent = 'Seed worksheet bank';
+    }
+  });
+
+  // Admin: add domain
+  els.btnAdminAddDomain?.addEventListener('click', async () => {
+    const raw = els.adminNewDomain?.value.trim().toLowerCase().replace(/^@/, '');
+    if (!raw) { showAlert('Enter a domain name, e.g. garibaldischool.co.uk', 'warn'); return; }
+    const current = getCurrentDomainList();
+    if (current.includes(raw)) { showAlert('Domain already in the list.', 'warn'); return; }
+    await saveDomains([...current, raw]);
+    if (els.adminNewDomain) els.adminNewDomain.value = '';
+  });
+
+  // Toggle login / register mode in the auth panel
+  document.getElementById('btnSwitchToRegister')?.addEventListener('click', () => setAuthMode('register'));
+  document.getElementById('btnSwitchToLogin')?.addEventListener('click',    () => setAuthMode('login'));
+  document.querySelectorAll('[data-register-role]').forEach((btn) => btn.addEventListener('click', () => setRegisterRole(btn.dataset.registerRole || 'student')));
+
+  // Logged-out CTA buttons
+  document.getElementById('btnGetStarted')?.addEventListener('click', () => {
+    setAuthMode('login');
+    document.getElementById('authPanel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  document.getElementById('btnCreateAccount')?.addEventListener('click', () => {
+    setAuthMode('register');
+    document.getElementById('authPanel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // Onboarding nudge — open first strand
+  document.getElementById('btnStartFirstStrand')?.addEventListener('click', () => {
+    const firstStrand = state.strands[0];
+    if (firstStrand) {
+      state.activeStrandId = firstStrand.id;
+      setRoute('worksheet');
+      renderWorksheet();
+    }
+  });
+
+  // Forgot password
+  document.getElementById('btnForgotPassword')?.addEventListener('click', async () => {
+    const email = els.email?.value.trim();
+    if (!email) {
+      showAlert('Enter your email address above first.', 'warn');
+      return;
+    }
+    try {
+      await sendPasswordResetEmail(auth, email);
+      showAlert('Password reset email sent to ' + email + '. Check your inbox.', 'good');
+    } catch (err) {
+      showAlert(err.message || 'Unable to send reset email.', 'error');
+    }
+  });
+
+  // Resend verification email
+  document.getElementById('btnResendVerification')?.addEventListener('click', async () => {
+    const email = window._pendingVerifyEmail;
+    const pass  = window._pendingVerifyPassword;
+    if (!email || !pass) { showAlert('Please log in first to resend verification.', 'warn'); return; }
+    try {
+      const credential = await signInWithEmailAndPassword(auth, email, pass);
+      await sendEmailVerification(credential.user);
+      await signOut(auth);
+      showAlert('Verification email resent to ' + email + '. Check your inbox.', 'good');
+    } catch (err) {
+      showAlert(err.message || 'Could not resend verification email.', 'error');
+    }
+  });
+}
+
+function setRegisterRole(nextRole = 'student') {
+  registerRole = nextRole === 'teacher' ? 'teacher' : 'student';
+  document.querySelectorAll('[data-register-role]').forEach((btn) => {
+    btn.classList.toggle('active', btn.dataset.registerRole === registerRole);
+  });
+  const classCodeField = document.getElementById('classCodeField');
+  if (classCodeField) classCodeField.style.display = registerRole === 'student' ? '' : 'none';
+  const registerRoleHelp = document.getElementById('registerRoleHelp');
+  if (registerRoleHelp) {
+    registerRoleHelp.textContent = registerRole === 'student'
+      ? 'Students join a class using a class code.'
+      : 'Teachers do not need a class code.';
+  }
+  const teacherApprovalNote = document.getElementById('teacherApprovalNote');
+  if (teacherApprovalNote) teacherApprovalNote.classList.toggle('hidden', registerRole !== 'teacher');
+  const switchLabel = document.getElementById('btnSwitchToRegister');
+  if (switchLabel) switchLabel.textContent = registerRole === 'teacher' ? 'New teacher? Create account' : 'New user? Create account';
+  if (registerRole === 'teacher' && els.classCode) els.classCode.value = '';
+}
+
+// ─── Auth panel mode toggle (login / register) ─────────────────────────────────
+
+function setAuthMode(mode) {
+  const isRegister = mode === 'register';
+  const registerExtras = document.getElementById('registerExtras');
+  if (registerExtras) registerExtras.classList.toggle('hidden', !isRegister);
+  // Display name — only needed for registration
+  const nameField = document.getElementById('displayNameField');
+  if (nameField) nameField.style.display = isRegister ? '' : 'none';
+  const roleField = document.getElementById('registerRoleField');
+  if (roleField) roleField.style.display = isRegister ? '' : 'none';
+  const classCodeField = document.getElementById('classCodeField');
+  if (classCodeField) classCodeField.style.display = isRegister && registerRole === 'student' ? '' : 'none';
+  const teacherApprovalNote = document.getElementById('teacherApprovalNote');
+  if (teacherApprovalNote) teacherApprovalNote.classList.toggle('hidden', !(isRegister && registerRole === 'teacher'));
+  // Button visibility
+  document.getElementById('btnEmailLogin')?.classList.toggle('hidden',  isRegister);
+  document.getElementById('btnRegister')?.classList.toggle('hidden',   !isRegister);
+  // Switch link text
+  document.getElementById('btnSwitchToRegister')?.classList.toggle('hidden',  isRegister);
+  document.getElementById('btnSwitchToLogin')?.classList.toggle('hidden',    !isRegister);
+  // Forgot password — login mode only
+  const forgotBlock = document.getElementById('forgotPasswordBlock');
+  if (forgotBlock) forgotBlock.style.display = isRegister ? 'none' : '';
+  // Panel heading
+  const heading = document.getElementById('authPanelHeading');
+  if (heading) heading.textContent = isRegister ? 'Create account' : 'Sign in';
+}
+
+// ─── Auth state ────────────────────────────────────────────────────────────────
+
+async function handleAuthChange(user) {
+  state.currentUser = user;
+  els.btnSignOut?.classList.toggle('hidden', !user);
+  els.btnSignIn?.classList.toggle('hidden',  !!user);
+
+  if (!user) {
+    state.currentUserProfile = null;
+    state.progress = null;
+    state.assignedTasks = [];
+    document.title = 'iMedia Genius Worksheets · OCR Creative iMedia R093';
+    updateStudentMetrics();
+    updateNavVisibility();
+    await loadStrands();
+    renderStrands();      // will show loggedOutHero
+    renderWorksheet();
+    return;
+  }
+
+  // Load profile first so we can check role
+  await ensureUserProfile(user);
+
+  // Students must verify email before accessing the system, and new teachers must be approved
+  const r = role();
+  if (r === 'student' && !user.emailVerified) {
+    await signOut(auth);
+    showAlert('Please verify your email before logging in. Check your inbox for a verification link.', 'warn');
+    document.getElementById('verifyResendBlock')?.classList.remove('hidden');
+    return;
+  }
+  if (r === PENDING_TEACHER_ROLE) {
+    await signOut(auth);
+    const pendingMsg = user.emailVerified
+      ? 'Your teacher account is waiting for admin approval. Please ask an admin to approve your account.'
+      : 'Please verify your email first. After that, an admin will need to approve your teacher account before you can log in.';
+    showAlert(pendingMsg, 'warn');
+    if (!user.emailVerified) document.getElementById('verifyResendBlock')?.classList.remove('hidden');
+    return;
+  }
+
+  await loadStrands();
+  await loadProgress();
+  await loadStudentAssignments();
+  updateNavVisibility();
+
+  // Route user to their default area
+  if (r === 'admin') {
+    setRoute('admin');
+    await loadAdminPanel();
+  } else if (r === 'teacher') {
+    setRoute('teacher');
+    await loadTeacherDashboard();
+  } else {
+    setRoute('home');
+    renderStrands();
+    renderWorksheet();
+    // Onboarding nudge for students with zero completed strands
+    const completedCount = Object.values(state.progress?.strands || {}).filter((s) => s.completed).length;
+    const startedCount   = Object.values(state.progress?.strands || {}).filter((s) => s.startedAt).length;
+    if (els.onboardingNudge) {
+      els.onboardingNudge.classList.toggle('hidden', completedCount > 0 || startedCount > 0);
+    }
+  }
+}
+
+// ─── Init ──────────────────────────────────────────────────────────────────────
+
+async function init() {
+  wireEvents();
+  updateNavVisibility();
+  setRegisterRole('student');
+  setAuthMode('login'); // default to login view
+
+  try {
+    await loadStrands();
+  } catch (err) {
+    console.error(err);
+    showAlert('Could not load strands. Using fallback.', 'warn');
+    state.strands = []; state.filteredStrands = [];
+  }
+
+  renderStrands();
+  state.activeStrandId = state.strands[0]?.id || null;
+  renderWorksheet();
+
+  onAuthStateChanged(auth, async (user) => {
+    try { await handleAuthChange(user); }
+    catch (err) { console.error(err); showAlert(err.message || 'Auth error.', 'error'); }
+  });
+}
+
+init().catch((err) => {
+  console.error(err);
+  showAlert(err.message || 'App failed to start.', 'error');
+});

@@ -1,0 +1,19 @@
+{
+  "functions": {
+    "source": "functions"
+  },
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  },
+  "firestore": {
+    "database": "(default)",
+    "location": "europe-west2",
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  }
+}
