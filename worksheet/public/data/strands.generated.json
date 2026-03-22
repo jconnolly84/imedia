@@ -1,0 +1,3535 @@
+[
+  {
+    "id": "strand-01",
+    "code": "Strand 01",
+    "topicNumber": 1,
+    "title": "Traditional Media",
+    "summary": "Newspapers, magazines, radio and TV – why they still matter in a digital age.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-01-traditional-media.html",
+    "tags": [
+      "traditional media",
+      "traditional",
+      "media",
+      "print"
+    ],
+    "reading": [
+      {
+        "heading": "What is Traditional Media?",
+        "body": "Traditional media refers to older, established forms of mass communication such as newspapers, magazines, radio, posters, billboards and broadcast television. These channels existed long before the internet and social media.",
+        "bullets": [
+          "Traditional media includes print, outdoor adverts, radio and broadcast TV.",
+          "It is usually one-way communication with limited interactivity.",
+          "It can reach very large audiences but is often expensive."
+        ]
+      },
+      {
+        "heading": "Strengths and limitations",
+        "body": "Traditional media can still feel credible and reach large audiences, but it is usually less interactive and can cost more than digital channels.",
+        "bullets": [
+          "Strength: mass reach.",
+          "Strength: perceived trust.",
+          "Limitation: low interactivity.",
+          "Limitation: cost."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "01-q1",
+        "type": "short_text",
+        "prompt": "Define traditional media.",
+        "hint": "One clear sentence.",
+        "marks": 1,
+        "accepted": [
+          "older established forms of mass communication",
+          "newspapers",
+          "radio",
+          "broadcast television",
+          "print media"
+        ]
+      },
+      {
+        "id": "01-q2",
+        "type": "short_text",
+        "prompt": "State one traditional media format that could be used to promote a new theatre show.",
+        "hint": "Name one valid format.",
+        "marks": 1,
+        "accepted": [
+          "poster",
+          "radio advert",
+          "tv advert",
+          "newspaper advert",
+          "magazine advert",
+          "billboard",
+          "leaflet"
+        ]
+      },
+      {
+        "id": "01-q3",
+        "type": "explain",
+        "prompt": "Explain one advantage of using a TV advert instead of a social media advert to promote a charity appeal.",
+        "hint": "Point + because/so.",
+        "marks": 2,
+        "criteria": [
+          [
+            "mass reach",
+            "large audience",
+            "millions"
+          ],
+          [
+            "trust",
+            "credible",
+            "professional"
+          ]
+        ]
+      },
+      {
+        "id": "01-q4",
+        "type": "explain",
+        "prompt": "Describe two limitations of using posters instead of online adverts to target teenagers.",
+        "hint": "Two separate limitations with impact.",
+        "marks": 2,
+        "criteria": [
+          [
+            "limited interactivity",
+            "one way",
+            "cannot click"
+          ],
+          [
+            "less targeted",
+            "harder to target",
+            "location only",
+            "no analytics"
+          ]
+        ]
+      },
+      {
+        "id": "01-q5",
+        "type": "explain",
+        "prompt": "Give one reason why traditional media is often combined with new media in modern campaigns.",
+        "hint": "Link the answer to audience reach or interaction.",
+        "marks": 2,
+        "criteria": [
+          [
+            "reach",
+            "large audience",
+            "awareness"
+          ],
+          [
+            "interactivity",
+            "engagement",
+            "online response",
+            "call to action"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-02",
+    "code": "Strand 02",
+    "topicNumber": 2,
+    "title": "New Media",
+    "summary": "Websites, apps, streaming and social media – how digital technology changes the way media is delivered.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-02-new-media.html",
+    "tags": [
+      "new media",
+      "new",
+      "media",
+      "digital"
+    ],
+    "reading": [
+      {
+        "heading": "What is New Media?",
+        "body": "New media refers to digital forms of media that rely on computers, mobile devices and the internet. Examples include websites, social media platforms, video and music streaming services, podcasts, apps and online games.",
+        "bullets": [
+          "It is interactive and on-demand.",
+          "Audiences can like, share, comment and create content.",
+          "Content can be highly targeted using user data and analytics."
+        ]
+      },
+      {
+        "heading": "New media in campaigns",
+        "body": "Advertisers use websites, social media, apps and video platforms because they allow targeting, fast distribution and two-way communication.",
+        "bullets": [
+          "Websites and microsites hold detailed information and calls to action.",
+          "Social posts and stories support engagement.",
+          "Cross-platform campaigns combine web, social and offline media."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "02-q1",
+        "type": "short_text",
+        "prompt": "State one example of new media.",
+        "hint": "Give a clear specific example.",
+        "marks": 1,
+        "accepted": [
+          "website",
+          "social media",
+          "streaming service",
+          "app",
+          "podcast",
+          "online game"
+        ]
+      },
+      {
+        "id": "02-q2",
+        "type": "explain",
+        "prompt": "Explain one way that audiences can interact with new media.",
+        "hint": "Describe the interaction and the impact.",
+        "marks": 2,
+        "criteria": [
+          [
+            "comment",
+            "share",
+            "like",
+            "upload",
+            "create content"
+          ],
+          [
+            "community",
+            "spread messages",
+            "feedback",
+            "engagement"
+          ]
+        ]
+      },
+      {
+        "id": "02-q3",
+        "type": "explain",
+        "prompt": "Describe one advantage of using social media instead of posters to promote a new mobile game.",
+        "hint": "Targeting, interactivity or cost.",
+        "marks": 2,
+        "criteria": [
+          [
+            "targeted",
+            "analytics",
+            "data",
+            "specific audience"
+          ],
+          [
+            "interactive",
+            "share",
+            "engage",
+            "click"
+          ]
+        ]
+      },
+      {
+        "id": "02-q4",
+        "type": "mcq",
+        "prompt": "Which is a feature of new media?",
+        "hint": "Choose the best answer.",
+        "marks": 1,
+        "options": [
+          "On-demand and interactive",
+          "Printed once and fixed",
+          "Only available by post",
+          "No audience data"
+        ],
+        "answer": "On-demand and interactive"
+      },
+      {
+        "id": "02-q5",
+        "type": "explain",
+        "prompt": "Why can new media be cheaper to distribute than traditional media?",
+        "hint": "Think about digital delivery.",
+        "marks": 2,
+        "criteria": [
+          [
+            "digital delivery",
+            "online",
+            "internet"
+          ],
+          [
+            "lower distribution cost",
+            "no printing",
+            "no broadcast slot",
+            "cheaper"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-03",
+    "code": "Strand 03",
+    "topicNumber": 3,
+    "title": "Video, Audio & Music",
+    "summary": "How moving image, sound and music are used to engage audiences and create meaning.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-03-video-audio-music.html",
+    "tags": [
+      "video",
+      "audio",
+      "music"
+    ],
+    "reading": [
+      {
+        "heading": "Video, audio and music in media products",
+        "body": "Video uses moving image, camerawork and editing. Audio covers dialogue, voiceover, sound effects and ambience. Music helps create mood and reinforce brand identity.",
+        "bullets": [
+          "These elements work together to create meaning, mood and impact.",
+          "Dialogue and voiceover can inform or persuade.",
+          "Music and SFX can make content more memorable."
+        ]
+      },
+      {
+        "heading": "Working together",
+        "body": "A strong media product balances visuals, dialogue, sound effects and music so the audience clearly understands the message and feels the intended emotion.",
+        "bullets": [
+          "Camera and editing affect pace and focus.",
+          "Mixing keeps dialogue clear over music and effects.",
+          "Silence can also create tension or focus."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "03-q1",
+        "type": "short_text",
+        "prompt": "State one reason why music is used in a TV advert.",
+        "hint": "Short clear reason.",
+        "marks": 1,
+        "accepted": [
+          "create mood",
+          "reinforce the brand",
+          "memorable",
+          "set the tone",
+          "emotion"
+        ]
+      },
+      {
+        "id": "03-q2",
+        "type": "explain",
+        "prompt": "Explain how sound effects can improve a gameplay trailer.",
+        "hint": "What do they add and what is the effect?",
+        "marks": 2,
+        "criteria": [
+          [
+            "realism",
+            "impact",
+            "immersion"
+          ],
+          [
+            "audience excitement",
+            "engagement",
+            "atmosphere"
+          ]
+        ]
+      },
+      {
+        "id": "03-q3",
+        "type": "explain",
+        "prompt": "Describe one way a voiceover can be used in a charity video.",
+        "hint": "Link tone or information to purpose and audience.",
+        "marks": 2,
+        "criteria": [
+          [
+            "information",
+            "instructions",
+            "persuasive message",
+            "tone"
+          ],
+          [
+            "purpose",
+            "audience",
+            "emotion",
+            "clarity"
+          ]
+        ]
+      },
+      {
+        "id": "03-q4",
+        "type": "explain",
+        "prompt": "Explain two ways camera shots and editing can be used together to create excitement in a sports highlight video.",
+        "hint": "Two linked points.",
+        "marks": 2,
+        "criteria": [
+          [
+            "close up",
+            "wide shot",
+            "camera movement",
+            "fast cuts"
+          ],
+          [
+            "pace",
+            "energy",
+            "focus",
+            "excitement"
+          ]
+        ]
+      },
+      {
+        "id": "03-q5",
+        "type": "mcq",
+        "prompt": "Which element is most likely to set mood in a media product?",
+        "hint": "Choose the best answer.",
+        "marks": 1,
+        "options": [
+          "Music",
+          "Spreadsheet",
+          "Printer settings",
+          "Barcode"
+        ],
+        "answer": "Music"
+      }
+    ]
+  },
+  {
+    "id": "strand-04",
+    "code": "Strand 04",
+    "topicNumber": 4,
+    "title": "Animation, SFX & VFX",
+    "summary": "How movement, sound effects and visual effects bring media products to life.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-04-animation-sfx-vfx.html",
+    "tags": [
+      "animation",
+      "sfx",
+      "vfx"
+    ],
+    "reading": [
+      {
+        "heading": "Animation, SFX and VFX",
+        "body": "Animation creates movement frame-by-frame. SFX are audio clips that add realism or impact. VFX are visuals created or enhanced in software such as CGI or compositing.",
+        "bullets": [
+          "Animation can be 2D, 3D, stop-motion or motion graphics.",
+          "SFX support the on-screen action.",
+          "VFX can create scenes that are dangerous, expensive or impossible to film."
+        ]
+      },
+      {
+        "heading": "Choosing techniques",
+        "body": "Effects should still match the message, budget and target audience of the media product.",
+        "bullets": [
+          "Animation creates everything from scratch.",
+          "VFX enhances filmed footage.",
+          "Combining live action, VFX, SFX and music can increase impact."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "04-q1",
+        "type": "short_text",
+        "prompt": "What does VFX stand for?",
+        "hint": "Use the full term.",
+        "marks": 1,
+        "accepted": [
+          "visual effects"
+        ]
+      },
+      {
+        "id": "04-q2",
+        "type": "explain",
+        "prompt": "Explain one reason why a producer might use VFX instead of filming something for real.",
+        "hint": "Think about safety, cost or impossibility.",
+        "marks": 2,
+        "criteria": [
+          [
+            "dangerous",
+            "expensive",
+            "impossible"
+          ],
+          [
+            "software",
+            "cg",
+            "create scenes",
+            "post production"
+          ]
+        ]
+      },
+      {
+        "id": "04-q3",
+        "type": "explain",
+        "prompt": "Describe how sound effects can improve an action sequence.",
+        "hint": "What do they add?",
+        "marks": 2,
+        "criteria": [
+          [
+            "impact",
+            "timing",
+            "realism"
+          ],
+          [
+            "audience attention",
+            "believable",
+            "atmosphere"
+          ]
+        ]
+      },
+      {
+        "id": "04-q4",
+        "type": "mcq",
+        "prompt": "Which statement is correct?",
+        "hint": "Choose the best answer.",
+        "marks": 1,
+        "options": [
+          "Animation creates moving images frame by frame",
+          "VFX only means audio effects",
+          "SFX are always visual",
+          "Animation cannot be used in adverts"
+        ],
+        "answer": "Animation creates moving images frame by frame"
+      },
+      {
+        "id": "04-q5",
+        "type": "explain",
+        "prompt": "How can animation, SFX and VFX be combined in one media product?",
+        "hint": "Describe a sensible combination.",
+        "marks": 2,
+        "criteria": [
+          [
+            "live action",
+            "animation",
+            "vfx",
+            "sfx"
+          ],
+          [
+            "impact",
+            "meaning",
+            "atmosphere",
+            "engagement"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-05",
+    "code": "Strand 05",
+    "topicNumber": 5,
+    "title": "Social Media",
+    "summary": "Platforms, engagement and campaigns.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-05-social-media.html",
+    "tags": [
+      "social media",
+      "social",
+      "media",
+      "engagement"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Social Media",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Social Media. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Social Media.",
+          "Focus: Platforms, engagement and campaigns.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Social Media.",
+        "bullets": [
+          "Recall: social.",
+          "Recall: media.",
+          "Recall: engagement.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "05-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Social Media.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "social",
+          "media",
+          "engagement",
+          "campaigns"
+        ]
+      },
+      {
+        "id": "05-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Social Media.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "social",
+            "media"
+          ],
+          [
+            "engagement",
+            "campaigns"
+          ]
+        ]
+      },
+      {
+        "id": "05-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Social Media?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Social Media",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Social Media"
+      },
+      {
+        "id": "05-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Social Media.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "social",
+            "media"
+          ],
+          [
+            "engagement",
+            "campaigns"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-06",
+    "code": "Strand 06",
+    "topicNumber": 6,
+    "title": "Website Assets",
+    "summary": "Graphics, text and media for the web.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-06-website-assets.html",
+    "tags": [
+      "website assets",
+      "website",
+      "assets",
+      "graphics"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Website Assets",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Website Assets. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Website Assets.",
+          "Focus: Graphics, text and media for the web.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Website Assets.",
+        "bullets": [
+          "Recall: website.",
+          "Recall: assets.",
+          "Recall: graphics.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "06-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Website Assets.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "website",
+          "assets",
+          "graphics",
+          "text"
+        ]
+      },
+      {
+        "id": "06-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Website Assets.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "website",
+            "assets"
+          ],
+          [
+            "graphics",
+            "text"
+          ]
+        ]
+      },
+      {
+        "id": "06-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Website Assets?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Website Assets",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Website Assets"
+      },
+      {
+        "id": "06-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Website Assets.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "website",
+            "assets"
+          ],
+          [
+            "graphics",
+            "text"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-07",
+    "code": "Strand 07",
+    "topicNumber": 7,
+    "title": "Creative Job Roles",
+    "summary": "Writers, designers and directors.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-07-creative-job-roles.html",
+    "tags": [
+      "creative job roles",
+      "creative",
+      "job",
+      "roles"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Creative Job Roles",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Creative Job Roles. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Creative Job Roles.",
+          "Focus: Writers, designers and directors.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Creative Job Roles.",
+        "bullets": [
+          "Recall: creative.",
+          "Recall: job.",
+          "Recall: roles.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "07-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Creative Job Roles.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "creative",
+          "job",
+          "roles",
+          "writers"
+        ]
+      },
+      {
+        "id": "07-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Creative Job Roles.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "creative",
+            "job"
+          ],
+          [
+            "roles",
+            "writers"
+          ]
+        ]
+      },
+      {
+        "id": "07-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Creative Job Roles?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Creative Job Roles",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Creative Job Roles"
+      },
+      {
+        "id": "07-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Creative Job Roles.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "creative",
+            "job"
+          ],
+          [
+            "roles",
+            "writers"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-08",
+    "code": "Strand 08",
+    "topicNumber": 8,
+    "title": "Technical Job Roles",
+    "summary": "Editors, animators and camera crew.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-08-technical-job-roles.html",
+    "tags": [
+      "technical job roles",
+      "technical",
+      "job",
+      "roles"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Technical Job Roles",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Technical Job Roles. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Technical Job Roles.",
+          "Focus: Editors, animators and camera crew.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Technical Job Roles.",
+        "bullets": [
+          "Recall: technical.",
+          "Recall: job.",
+          "Recall: roles.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "08-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Technical Job Roles.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "technical",
+          "job",
+          "roles",
+          "editors"
+        ]
+      },
+      {
+        "id": "08-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Technical Job Roles.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "technical",
+            "job"
+          ],
+          [
+            "roles",
+            "editors"
+          ]
+        ]
+      },
+      {
+        "id": "08-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Technical Job Roles?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Technical Job Roles",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Technical Job Roles"
+      },
+      {
+        "id": "08-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Technical Job Roles.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "technical",
+            "job"
+          ],
+          [
+            "roles",
+            "editors"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-09",
+    "code": "Strand 09",
+    "topicNumber": 9,
+    "title": "Senior Job Roles",
+    "summary": "Producers, commissioners and leads.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-09-senior-job-roles.html",
+    "tags": [
+      "senior job roles",
+      "senior",
+      "job",
+      "roles"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Senior Job Roles",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Senior Job Roles. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Senior Job Roles.",
+          "Focus: Producers, commissioners and leads.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Senior Job Roles.",
+        "bullets": [
+          "Recall: senior.",
+          "Recall: job.",
+          "Recall: roles.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "09-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Senior Job Roles.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "senior",
+          "job",
+          "roles",
+          "producers"
+        ]
+      },
+      {
+        "id": "09-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Senior Job Roles.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "senior",
+            "job"
+          ],
+          [
+            "roles",
+            "producers"
+          ]
+        ]
+      },
+      {
+        "id": "09-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Senior Job Roles?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Senior Job Roles",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Senior Job Roles"
+      },
+      {
+        "id": "09-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Senior Job Roles.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "senior",
+            "job"
+          ],
+          [
+            "roles",
+            "producers"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-10",
+    "code": "Strand 10",
+    "topicNumber": 10,
+    "title": "Purpose of Media Products",
+    "summary": "Inform, entertain, promote, educate.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-10-purpose-of-media-products.html",
+    "tags": [
+      "purpose of media products",
+      "purpose",
+      "of",
+      "media"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Purpose of Media Products",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Purpose of Media Products. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Purpose of Media Products.",
+          "Focus: Inform, entertain, promote, educate.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Purpose of Media Products.",
+        "bullets": [
+          "Recall: purpose.",
+          "Recall: of.",
+          "Recall: media.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "10-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Purpose of Media Products.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "purpose",
+          "of",
+          "media",
+          "products"
+        ]
+      },
+      {
+        "id": "10-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Purpose of Media Products.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "purpose",
+            "of"
+          ],
+          [
+            "media",
+            "products"
+          ]
+        ]
+      },
+      {
+        "id": "10-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Purpose of Media Products?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Purpose of Media Products",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Purpose of Media Products"
+      },
+      {
+        "id": "10-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Purpose of Media Products.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "purpose",
+            "of"
+          ],
+          [
+            "media",
+            "products"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-11",
+    "code": "Strand 11",
+    "topicNumber": 11,
+    "title": "Client Requirements",
+    "summary": "What the client needs and why.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-11-client-requirements.html",
+    "tags": [
+      "client requirements",
+      "client",
+      "requirements",
+      "needs"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Client Requirements",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Client Requirements. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Client Requirements.",
+          "Focus: What the client needs and why.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Client Requirements.",
+        "bullets": [
+          "Recall: client.",
+          "Recall: requirements.",
+          "Recall: needs.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "11-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Client Requirements.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "client",
+          "requirements",
+          "needs",
+          "constraints"
+        ]
+      },
+      {
+        "id": "11-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Client Requirements.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "client",
+            "requirements"
+          ],
+          [
+            "needs",
+            "constraints"
+          ]
+        ]
+      },
+      {
+        "id": "11-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Client Requirements?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Client Requirements",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Client Requirements"
+      },
+      {
+        "id": "11-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Client Requirements.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "client",
+            "requirements"
+          ],
+          [
+            "needs",
+            "constraints"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-12",
+    "code": "Strand 12",
+    "topicNumber": 12,
+    "title": "Client Brief Formats",
+    "summary": "Formal, informal and negotiated briefs.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-12-client-brief-formats.html",
+    "tags": [
+      "client brief formats",
+      "client",
+      "brief",
+      "formats"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Client Brief Formats",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Client Brief Formats. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Client Brief Formats.",
+          "Focus: Formal, informal and negotiated briefs.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Client Brief Formats.",
+        "bullets": [
+          "Recall: client.",
+          "Recall: brief.",
+          "Recall: formats.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "12-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Client Brief Formats.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "client",
+          "brief",
+          "formats",
+          "formal"
+        ]
+      },
+      {
+        "id": "12-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Client Brief Formats.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "client",
+            "brief"
+          ],
+          [
+            "formats",
+            "formal"
+          ]
+        ]
+      },
+      {
+        "id": "12-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Client Brief Formats?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Client Brief Formats",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Client Brief Formats"
+      },
+      {
+        "id": "12-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Client Brief Formats.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "client",
+            "brief"
+          ],
+          [
+            "formats",
+            "formal"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-13",
+    "code": "Strand 13",
+    "topicNumber": 13,
+    "title": "Audience Segmentation",
+    "summary": "Demographic, psychographic, behavioural.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-13-audience-segmentation.html",
+    "tags": [
+      "audience segmentation",
+      "audience",
+      "segmentation",
+      "demographic"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Audience Segmentation",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Audience Segmentation. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Audience Segmentation.",
+          "Focus: Demographic, psychographic, behavioural.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Audience Segmentation.",
+        "bullets": [
+          "Recall: audience.",
+          "Recall: segmentation.",
+          "Recall: demographic.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "13-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Audience Segmentation.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "audience",
+          "segmentation",
+          "demographic",
+          "psychographic"
+        ]
+      },
+      {
+        "id": "13-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Audience Segmentation.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "audience",
+            "segmentation"
+          ],
+          [
+            "demographic",
+            "psychographic"
+          ]
+        ]
+      },
+      {
+        "id": "13-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Audience Segmentation?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Audience Segmentation",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Audience Segmentation"
+      },
+      {
+        "id": "13-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Audience Segmentation.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "audience",
+            "segmentation"
+          ],
+          [
+            "demographic",
+            "psychographic"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-14",
+    "code": "Strand 14",
+    "topicNumber": 14,
+    "title": "Audience Research",
+    "summary": "Methods to understand the audience.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-14-audience-research.html",
+    "tags": [
+      "audience research",
+      "audience",
+      "research",
+      "methods"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Audience Research",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Audience Research. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Audience Research.",
+          "Focus: Methods to understand the audience.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Audience Research.",
+        "bullets": [
+          "Recall: audience.",
+          "Recall: research.",
+          "Recall: methods.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "14-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Audience Research.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "audience",
+          "research",
+          "methods",
+          "questionnaires"
+        ]
+      },
+      {
+        "id": "14-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Audience Research.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "audience",
+            "research"
+          ],
+          [
+            "methods",
+            "questionnaires"
+          ]
+        ]
+      },
+      {
+        "id": "14-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Audience Research?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Audience Research",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Audience Research"
+      },
+      {
+        "id": "14-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Audience Research.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "audience",
+            "research"
+          ],
+          [
+            "methods",
+            "questionnaires"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-15",
+    "code": "Strand 15",
+    "topicNumber": 15,
+    "title": "Primary Research",
+    "summary": "Collecting new, first-hand data.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-15-primary-research.html",
+    "tags": [
+      "primary research",
+      "primary",
+      "research",
+      "first"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Primary Research",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Primary Research. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Primary Research.",
+          "Focus: Collecting new, first-hand data.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Primary Research.",
+        "bullets": [
+          "Recall: primary.",
+          "Recall: research.",
+          "Recall: first.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "15-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Primary Research.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "primary",
+          "research",
+          "first",
+          "hand"
+        ]
+      },
+      {
+        "id": "15-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Primary Research.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "primary",
+            "research"
+          ],
+          [
+            "first",
+            "hand"
+          ]
+        ]
+      },
+      {
+        "id": "15-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Primary Research?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Primary Research",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Primary Research"
+      },
+      {
+        "id": "15-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Primary Research.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "primary",
+            "research"
+          ],
+          [
+            "first",
+            "hand"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-16",
+    "code": "Strand 16",
+    "topicNumber": 16,
+    "title": "Secondary Research",
+    "summary": "Using existing sources and reports.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-16-secondary-research.html",
+    "tags": [
+      "secondary research",
+      "secondary",
+      "research",
+      "existing"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Secondary Research",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Secondary Research. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Secondary Research.",
+          "Focus: Using existing sources and reports.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Secondary Research.",
+        "bullets": [
+          "Recall: secondary.",
+          "Recall: research.",
+          "Recall: existing.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "16-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Secondary Research.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "secondary",
+          "research",
+          "existing",
+          "data"
+        ]
+      },
+      {
+        "id": "16-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Secondary Research.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "secondary",
+            "research"
+          ],
+          [
+            "existing",
+            "data"
+          ]
+        ]
+      },
+      {
+        "id": "16-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Secondary Research?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Secondary Research",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Secondary Research"
+      },
+      {
+        "id": "16-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Secondary Research.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "secondary",
+            "research"
+          ],
+          [
+            "existing",
+            "data"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-17",
+    "code": "Strand 17",
+    "topicNumber": 17,
+    "title": "Understanding Media Codes",
+    "summary": "Technical, symbolic and written codes.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-17-understanding-media-codes.html",
+    "tags": [
+      "understanding media codes",
+      "media",
+      "codes",
+      "technical"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Understanding Media Codes",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Understanding Media Codes. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Understanding Media Codes.",
+          "Focus: Technical, symbolic and written codes.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Understanding Media Codes.",
+        "bullets": [
+          "Recall: media.",
+          "Recall: codes.",
+          "Recall: technical.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "17-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Understanding Media Codes.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "media",
+          "codes",
+          "technical",
+          "symbolic"
+        ]
+      },
+      {
+        "id": "17-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Understanding Media Codes.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "media",
+            "codes"
+          ],
+          [
+            "technical",
+            "symbolic"
+          ]
+        ]
+      },
+      {
+        "id": "17-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Understanding Media Codes?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Understanding Media Codes",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Understanding Media Codes"
+      },
+      {
+        "id": "17-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Understanding Media Codes.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "media",
+            "codes"
+          ],
+          [
+            "technical",
+            "symbolic"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-18",
+    "code": "Strand 18",
+    "topicNumber": 18,
+    "title": "Camera and Lighting",
+    "summary": "Shots, angles and lighting setups.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-18-camera-and-lighting.html",
+    "tags": [
+      "camera",
+      "lighting",
+      "shots"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Camera and Lighting",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Camera and Lighting. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Camera and Lighting.",
+          "Focus: Shots, angles and lighting setups.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Camera and Lighting.",
+        "bullets": [
+          "Recall: camera.",
+          "Recall: lighting.",
+          "Recall: shots.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "18-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Camera and Lighting.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "camera",
+          "lighting",
+          "shots",
+          "angles"
+        ]
+      },
+      {
+        "id": "18-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Camera and Lighting.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "camera",
+            "lighting"
+          ],
+          [
+            "shots",
+            "angles"
+          ]
+        ]
+      },
+      {
+        "id": "18-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Camera and Lighting?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Camera and Lighting",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Camera and Lighting"
+      },
+      {
+        "id": "18-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Camera and Lighting.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "camera",
+            "lighting"
+          ],
+          [
+            "shots",
+            "angles"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-19",
+    "code": "Strand 19",
+    "topicNumber": 19,
+    "title": "Mise en Scene, Audio & Animation",
+    "summary": "Setting, props, sound and motion.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-19-mise-en-scene-audio-and-animation.html",
+    "tags": [
+      "mise en scene",
+      "audio",
+      "animation",
+      "mise",
+      "en",
+      "scene"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Mise en Scene, Audio & Animation",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Mise en Scene, Audio & Animation. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Mise en Scene, Audio & Animation.",
+          "Focus: Setting, props, sound and motion.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Mise en Scene, Audio & Animation.",
+        "bullets": [
+          "Recall: mise.",
+          "Recall: en.",
+          "Recall: scene.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "19-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Mise en Scene, Audio & Animation.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "mise",
+          "en",
+          "scene",
+          "props"
+        ]
+      },
+      {
+        "id": "19-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Mise en Scene, Audio & Animation.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "mise",
+            "en"
+          ],
+          [
+            "scene",
+            "props"
+          ]
+        ]
+      },
+      {
+        "id": "19-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Mise en Scene, Audio & Animation?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Mise en Scene, Audio & Animation",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Mise en Scene, Audio & Animation"
+      },
+      {
+        "id": "19-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Mise en Scene, Audio & Animation.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "mise",
+            "en"
+          ],
+          [
+            "scene",
+            "props"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-20",
+    "code": "Strand 20",
+    "topicNumber": 20,
+    "title": "Movement, Transitions & Interactivity",
+    "summary": "How things move, change and respond.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-20-movement-transitions-interactivity.html",
+    "tags": [
+      "movement",
+      "transitions",
+      "interactivity"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Movement, Transitions & Interactivity",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Movement, Transitions & Interactivity. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Movement, Transitions & Interactivity.",
+          "Focus: How things move, change and respond.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Movement, Transitions & Interactivity.",
+        "bullets": [
+          "Recall: movement.",
+          "Recall: transitions.",
+          "Recall: interactivity.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "20-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Movement, Transitions & Interactivity.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "movement",
+          "transitions",
+          "interactivity",
+          "hover"
+        ]
+      },
+      {
+        "id": "20-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Movement, Transitions & Interactivity.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "movement",
+            "transitions"
+          ],
+          [
+            "interactivity",
+            "hover"
+          ]
+        ]
+      },
+      {
+        "id": "20-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Movement, Transitions & Interactivity?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Movement, Transitions & Interactivity",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Movement, Transitions & Interactivity"
+      },
+      {
+        "id": "20-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Movement, Transitions & Interactivity.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "movement",
+            "transitions"
+          ],
+          [
+            "interactivity",
+            "hover"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-21",
+    "code": "Strand 21",
+    "topicNumber": 21,
+    "title": "Colour, Graphics & Typography",
+    "summary": "Colour, images and type choices.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-21-colour-graphics-typography.html",
+    "tags": [
+      "colour",
+      "graphics",
+      "typography"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Colour, Graphics & Typography",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Colour, Graphics & Typography. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Colour, Graphics & Typography.",
+          "Focus: Colour, images and type choices.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Colour, Graphics & Typography.",
+        "bullets": [
+          "Recall: colour.",
+          "Recall: graphics.",
+          "Recall: typography.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "21-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Colour, Graphics & Typography.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "colour",
+          "graphics",
+          "typography",
+          "fonts"
+        ]
+      },
+      {
+        "id": "21-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Colour, Graphics & Typography.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "colour",
+            "graphics"
+          ],
+          [
+            "typography",
+            "fonts"
+          ]
+        ]
+      },
+      {
+        "id": "21-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Colour, Graphics & Typography?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Colour, Graphics & Typography",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Colour, Graphics & Typography"
+      },
+      {
+        "id": "21-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Colour, Graphics & Typography.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "colour",
+            "graphics"
+          ],
+          [
+            "typography",
+            "fonts"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-22",
+    "code": "Strand 22",
+    "topicNumber": 22,
+    "title": "Components of Work Plans",
+    "summary": "Tasks, milestones and contingencies.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-22-components-of-work-plans.html",
+    "tags": [
+      "components of work plans",
+      "work",
+      "plans",
+      "tasks"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Components of Work Plans",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Components of Work Plans. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Components of Work Plans.",
+          "Focus: Tasks, milestones and contingencies.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Components of Work Plans.",
+        "bullets": [
+          "Recall: work.",
+          "Recall: plans.",
+          "Recall: tasks.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "22-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Components of Work Plans.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "work",
+          "plans",
+          "tasks",
+          "milestones"
+        ]
+      },
+      {
+        "id": "22-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Components of Work Plans.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "work",
+            "plans"
+          ],
+          [
+            "tasks",
+            "milestones"
+          ]
+        ]
+      },
+      {
+        "id": "22-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Components of Work Plans?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Components of Work Plans",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Components of Work Plans"
+      },
+      {
+        "id": "22-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Components of Work Plans.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "work",
+            "plans"
+          ],
+          [
+            "tasks",
+            "milestones"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-23",
+    "code": "Strand 23",
+    "topicNumber": 23,
+    "title": "Mind Maps & Mood Boards",
+    "summary": "Idea generation and visual tone.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-23-mind-maps-mood-boards.html",
+    "tags": [
+      "mind maps",
+      "mood boards",
+      "mind",
+      "maps",
+      "mood"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Mind Maps & Mood Boards",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Mind Maps & Mood Boards. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Mind Maps & Mood Boards.",
+          "Focus: Idea generation and visual tone.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Mind Maps & Mood Boards.",
+        "bullets": [
+          "Recall: mind.",
+          "Recall: maps.",
+          "Recall: mood.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "23-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Mind Maps & Mood Boards.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "mind",
+          "maps",
+          "mood",
+          "boards"
+        ]
+      },
+      {
+        "id": "23-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Mind Maps & Mood Boards.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "mind",
+            "maps"
+          ],
+          [
+            "mood",
+            "boards"
+          ]
+        ]
+      },
+      {
+        "id": "23-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Mind Maps & Mood Boards?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Mind Maps & Mood Boards",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Mind Maps & Mood Boards"
+      },
+      {
+        "id": "23-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Mind Maps & Mood Boards.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "mind",
+            "maps"
+          ],
+          [
+            "mood",
+            "boards"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-24",
+    "code": "Strand 24",
+    "topicNumber": 24,
+    "title": "Asset Logs, Flow Charts & Scripts",
+    "summary": "Tracking assets and planning logic.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-24-asset-logs-flow-charts-scripts.html",
+    "tags": [
+      "asset logs",
+      "flow charts",
+      "scripts",
+      "asset",
+      "logs",
+      "flow"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Asset Logs, Flow Charts & Scripts",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Asset Logs, Flow Charts & Scripts. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Asset Logs, Flow Charts & Scripts.",
+          "Focus: Tracking assets and planning logic.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Asset Logs, Flow Charts & Scripts.",
+        "bullets": [
+          "Recall: asset.",
+          "Recall: logs.",
+          "Recall: flow.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "24-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Asset Logs, Flow Charts & Scripts.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "asset",
+          "logs",
+          "flow",
+          "charts"
+        ]
+      },
+      {
+        "id": "24-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Asset Logs, Flow Charts & Scripts.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "asset",
+            "logs"
+          ],
+          [
+            "flow",
+            "charts"
+          ]
+        ]
+      },
+      {
+        "id": "24-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Asset Logs, Flow Charts & Scripts?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Asset Logs, Flow Charts & Scripts",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Asset Logs, Flow Charts & Scripts"
+      },
+      {
+        "id": "24-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Asset Logs, Flow Charts & Scripts.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "asset",
+            "logs"
+          ],
+          [
+            "flow",
+            "charts"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-25",
+    "code": "Strand 25",
+    "topicNumber": 25,
+    "title": "Storyboards, Visualisations & Wireframes",
+    "summary": "Planning visuals and layouts.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-25-storyboards-visualisations-wireframes.html",
+    "tags": [
+      "storyboards",
+      "visualisations",
+      "wireframes"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Storyboards, Visualisations & Wireframes",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Storyboards, Visualisations & Wireframes. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Storyboards, Visualisations & Wireframes.",
+          "Focus: Planning visuals and layouts.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Storyboards, Visualisations & Wireframes.",
+        "bullets": [
+          "Recall: storyboards.",
+          "Recall: visualisations.",
+          "Recall: wireframes.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "25-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Storyboards, Visualisations & Wireframes.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "storyboards",
+          "visualisations",
+          "wireframes",
+          "layouts"
+        ]
+      },
+      {
+        "id": "25-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Storyboards, Visualisations & Wireframes.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "storyboards",
+            "visualisations"
+          ],
+          [
+            "wireframes",
+            "layouts"
+          ]
+        ]
+      },
+      {
+        "id": "25-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Storyboards, Visualisations & Wireframes?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Storyboards, Visualisations & Wireframes",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Storyboards, Visualisations & Wireframes"
+      },
+      {
+        "id": "25-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Storyboards, Visualisations & Wireframes.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "storyboards",
+            "visualisations"
+          ],
+          [
+            "wireframes",
+            "layouts"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-26",
+    "code": "Strand 26",
+    "topicNumber": 26,
+    "title": "Legal Considerations to Protect Individuals",
+    "summary": "Protecting individuals and data.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-26-legal-considerations-to-protect-individuals.html",
+    "tags": [
+      "legal considerations to protect individuals",
+      "legal",
+      "considerations",
+      "privacy"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Legal Considerations to Protect Individuals",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Legal Considerations to Protect Individuals. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Legal Considerations to Protect Individuals.",
+          "Focus: Protecting individuals and data.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Legal Considerations to Protect Individuals.",
+        "bullets": [
+          "Recall: legal.",
+          "Recall: considerations.",
+          "Recall: privacy.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "26-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Legal Considerations to Protect Individuals.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "legal",
+          "considerations",
+          "privacy",
+          "defamation"
+        ]
+      },
+      {
+        "id": "26-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Legal Considerations to Protect Individuals.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "legal",
+            "considerations"
+          ],
+          [
+            "privacy",
+            "defamation"
+          ]
+        ]
+      },
+      {
+        "id": "26-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Legal Considerations to Protect Individuals?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Legal Considerations to Protect Individuals",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Legal Considerations to Protect Individuals"
+      },
+      {
+        "id": "26-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Legal Considerations to Protect Individuals.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "legal",
+            "considerations"
+          ],
+          [
+            "privacy",
+            "defamation"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-27",
+    "code": "Strand 27",
+    "topicNumber": 27,
+    "title": "Intellectual Property Rights",
+    "summary": "Copyright, trademarks and licences.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-27-intellectual-property-rights.html",
+    "tags": [
+      "intellectual property rights",
+      "intellectual",
+      "property",
+      "rights"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Intellectual Property Rights",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Intellectual Property Rights. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Intellectual Property Rights.",
+          "Focus: Copyright, trademarks and licences.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Intellectual Property Rights.",
+        "bullets": [
+          "Recall: intellectual.",
+          "Recall: property.",
+          "Recall: rights.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "27-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Intellectual Property Rights.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "intellectual",
+          "property",
+          "rights",
+          "copyright"
+        ]
+      },
+      {
+        "id": "27-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Intellectual Property Rights.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "intellectual",
+            "property"
+          ],
+          [
+            "rights",
+            "copyright"
+          ]
+        ]
+      },
+      {
+        "id": "27-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Intellectual Property Rights?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Intellectual Property Rights",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Intellectual Property Rights"
+      },
+      {
+        "id": "27-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Intellectual Property Rights.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "intellectual",
+            "property"
+          ],
+          [
+            "rights",
+            "copyright"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-28",
+    "code": "Strand 28",
+    "topicNumber": 28,
+    "title": "Regulation, Certification & Classification",
+    "summary": "BBFC, PEGI and industry bodies.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-28-regulation-certification-classification.html",
+    "tags": [
+      "regulation",
+      "certification",
+      "classification"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Regulation, Certification & Classification",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Regulation, Certification & Classification. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Regulation, Certification & Classification.",
+          "Focus: BBFC, PEGI and industry bodies.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Regulation, Certification & Classification.",
+        "bullets": [
+          "Recall: regulation.",
+          "Recall: certification.",
+          "Recall: classification.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "28-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Regulation, Certification & Classification.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "regulation",
+          "certification",
+          "classification",
+          "bbfc"
+        ]
+      },
+      {
+        "id": "28-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Regulation, Certification & Classification.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "regulation",
+            "certification"
+          ],
+          [
+            "classification",
+            "bbfc"
+          ]
+        ]
+      },
+      {
+        "id": "28-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Regulation, Certification & Classification?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Regulation, Certification & Classification",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Regulation, Certification & Classification"
+      },
+      {
+        "id": "28-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Regulation, Certification & Classification.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "regulation",
+            "certification"
+          ],
+          [
+            "classification",
+            "bbfc"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-29",
+    "code": "Strand 29",
+    "topicNumber": 29,
+    "title": "Health & Safety",
+    "summary": "Staying safe on set and in the studio.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-29-health-and-safety.html",
+    "tags": [
+      "health",
+      "safety",
+      "hazards"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Health & Safety",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Health & Safety. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Health & Safety.",
+          "Focus: Staying safe on set and in the studio.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Health & Safety.",
+        "bullets": [
+          "Recall: health.",
+          "Recall: safety.",
+          "Recall: hazards.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "29-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Health & Safety.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "health",
+          "safety",
+          "hazards",
+          "risk"
+        ]
+      },
+      {
+        "id": "29-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Health & Safety.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "health",
+            "safety"
+          ],
+          [
+            "hazards",
+            "risk"
+          ]
+        ]
+      },
+      {
+        "id": "29-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Health & Safety?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Health & Safety",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Health & Safety"
+      },
+      {
+        "id": "29-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Health & Safety.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "health",
+            "safety"
+          ],
+          [
+            "hazards",
+            "risk"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-30",
+    "code": "Strand 30",
+    "topicNumber": 30,
+    "title": "Distribution Platforms & Media",
+    "summary": "Where and how media products are delivered.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-30-distribution-platforms-media.html",
+    "tags": [
+      "distribution platforms",
+      "media",
+      "distribution",
+      "platforms"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Distribution Platforms & Media",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Distribution Platforms & Media. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Distribution Platforms & Media.",
+          "Focus: Where and how media products are delivered.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Distribution Platforms & Media.",
+        "bullets": [
+          "Recall: distribution.",
+          "Recall: platforms.",
+          "Recall: media.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "30-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Distribution Platforms & Media.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "distribution",
+          "platforms",
+          "media",
+          "print"
+        ]
+      },
+      {
+        "id": "30-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Distribution Platforms & Media.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "distribution",
+            "platforms"
+          ],
+          [
+            "media",
+            "print"
+          ]
+        ]
+      },
+      {
+        "id": "30-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Distribution Platforms & Media?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Distribution Platforms & Media",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Distribution Platforms & Media"
+      },
+      {
+        "id": "30-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Distribution Platforms & Media.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "distribution",
+            "platforms"
+          ],
+          [
+            "media",
+            "print"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-31",
+    "code": "Strand 31",
+    "topicNumber": 31,
+    "title": "File Compression",
+    "summary": "Why and how we compress files.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-31-file-compression.html",
+    "tags": [
+      "file compression",
+      "file",
+      "compression",
+      "lossy"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of File Compression",
+        "body": "This worksheet is linked to the iMedia Genius topic page for File Compression. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: File Compression.",
+          "Focus: Why and how we compress files.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for File Compression.",
+        "bullets": [
+          "Recall: file.",
+          "Recall: compression.",
+          "Recall: lossy.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "31-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to File Compression.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "file",
+          "compression",
+          "lossy",
+          "lossless"
+        ]
+      },
+      {
+        "id": "31-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of File Compression.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "file",
+            "compression"
+          ],
+          [
+            "lossy",
+            "lossless"
+          ]
+        ]
+      },
+      {
+        "id": "31-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to File Compression?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "File Compression",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "File Compression"
+      },
+      {
+        "id": "31-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about File Compression.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "file",
+            "compression"
+          ],
+          [
+            "lossy",
+            "lossless"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-32",
+    "code": "Strand 32",
+    "topicNumber": 32,
+    "title": "Image Files",
+    "summary": "Raster, vector and common formats.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-32-image-files.html",
+    "tags": [
+      "image files",
+      "image",
+      "files",
+      "raster"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Image Files",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Image Files. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Image Files.",
+          "Focus: Raster, vector and common formats.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Image Files.",
+        "bullets": [
+          "Recall: image.",
+          "Recall: files.",
+          "Recall: raster.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "32-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Image Files.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "image",
+          "files",
+          "raster",
+          "vector"
+        ]
+      },
+      {
+        "id": "32-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Image Files.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "image",
+            "files"
+          ],
+          [
+            "raster",
+            "vector"
+          ]
+        ]
+      },
+      {
+        "id": "32-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Image Files?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Image Files",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Image Files"
+      },
+      {
+        "id": "32-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Image Files.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "image",
+            "files"
+          ],
+          [
+            "raster",
+            "vector"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-33",
+    "code": "Strand 33",
+    "topicNumber": 33,
+    "title": "Audio Files",
+    "summary": "Common audio types and uses.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-33-audio-files.html",
+    "tags": [
+      "audio files",
+      "audio",
+      "files",
+      "mp3"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Audio Files",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Audio Files. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Audio Files.",
+          "Focus: Common audio types and uses.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Audio Files.",
+        "bullets": [
+          "Recall: audio.",
+          "Recall: files.",
+          "Recall: mp3.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "33-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Audio Files.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "audio",
+          "files",
+          "mp3",
+          "wav"
+        ]
+      },
+      {
+        "id": "33-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Audio Files.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "audio",
+            "files"
+          ],
+          [
+            "mp3",
+            "wav"
+          ]
+        ]
+      },
+      {
+        "id": "33-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Audio Files?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Audio Files",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Audio Files"
+      },
+      {
+        "id": "33-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Audio Files.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "audio",
+            "files"
+          ],
+          [
+            "mp3",
+            "wav"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-34",
+    "code": "Strand 34",
+    "topicNumber": 34,
+    "title": "Moving Image Files",
+    "summary": "Video formats and containers.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-34-moving-image-files.html",
+    "tags": [
+      "moving image files",
+      "moving",
+      "image",
+      "files"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Moving Image Files",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Moving Image Files. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Moving Image Files.",
+          "Focus: Video formats and containers.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Moving Image Files.",
+        "bullets": [
+          "Recall: moving.",
+          "Recall: image.",
+          "Recall: files.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "34-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Moving Image Files.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "moving",
+          "image",
+          "files",
+          "mp4"
+        ]
+      },
+      {
+        "id": "34-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Moving Image Files.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "moving",
+            "image"
+          ],
+          [
+            "files",
+            "mp4"
+          ]
+        ]
+      },
+      {
+        "id": "34-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Moving Image Files?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Moving Image Files",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Moving Image Files"
+      },
+      {
+        "id": "34-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Moving Image Files.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "moving",
+            "image"
+          ],
+          [
+            "files",
+            "mp4"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strand-35",
+    "code": "Strand 35",
+    "topicNumber": 35,
+    "title": "Hardware & Software",
+    "summary": "Devices, components and programs.",
+    "sourceUrl": "https://imediagenius.co.uk/topic-35-hardware-and-software.html",
+    "tags": [
+      "hardware",
+      "software",
+      "devices"
+    ],
+    "reading": [
+      {
+        "heading": "Overview of Hardware & Software",
+        "body": "This worksheet is linked to the iMedia Genius topic page for Hardware & Software. Students should read the overview and use the worksheet to prove understanding of the core strand knowledge.",
+        "bullets": [
+          "Key strand: Hardware & Software.",
+          "Focus: Devices, components and programs.",
+          "Use evidence from the topic page when answering."
+        ]
+      },
+      {
+        "heading": "Key things to remember",
+        "body": "The answers in this worksheet should stay close to the language and examples used in the live iMedia Genius page for Hardware & Software.",
+        "bullets": [
+          "Recall: hardware.",
+          "Recall: software.",
+          "Recall: devices.",
+          "Link each point to purpose, audience or suitability where relevant."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "35-q1",
+        "type": "short_text",
+        "prompt": "Define or identify one idea linked to Hardware & Software.",
+        "hint": "Use a key term from the reading.",
+        "marks": 1,
+        "accepted": [
+          "hardware",
+          "software",
+          "devices",
+          "programs"
+        ]
+      },
+      {
+        "id": "35-q2",
+        "type": "explain",
+        "prompt": "Explain one important feature of Hardware & Software.",
+        "hint": "Make a point and develop it with why it matters.",
+        "marks": 2,
+        "criteria": [
+          [
+            "hardware",
+            "software"
+          ],
+          [
+            "devices",
+            "programs"
+          ]
+        ]
+      },
+      {
+        "id": "35-q3",
+        "type": "mcq",
+        "prompt": "Which option is most closely linked to Hardware & Software?",
+        "hint": "Choose the best match.",
+        "marks": 1,
+        "options": [
+          "Hardware & Software",
+          "Unrelated example",
+          "Another topic",
+          "Not used in media"
+        ],
+        "answer": "Hardware & Software"
+      },
+      {
+        "id": "35-q4",
+        "type": "explain",
+        "prompt": "Describe two points a student should remember about Hardware & Software.",
+        "hint": "Give two separate ideas from the strand content.",
+        "marks": 2,
+        "criteria": [
+          [
+            "hardware",
+            "software"
+          ],
+          [
+            "devices",
+            "programs"
+          ]
+        ]
+      }
+    ]
+  }
+]

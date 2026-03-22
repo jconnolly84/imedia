@@ -83,7 +83,7 @@
 
   function createShell() {
     document.body.classList.add('game-shell-enabled');
-    const app = document.querySelector('.app') || document.body;
+    const app = document.querySelector('.app') || document.querySelector('.page') || document.body;
     const header = app.querySelector('.app-header, header');
     if (!header) return;
 

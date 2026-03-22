@@ -1,0 +1,58 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isTeacher() {
+      return signedIn() &&
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "teacher";
+    }
+
+    match /users/{userId} {
+      allow read, write: if signedIn() && (
+        request.auth.uid == userId || isTeacher()
+      );
+    }
+
+    match /submissions/{submissionId} {
+      allow create: if false;
+      allow read, update: if signedIn() && (
+        resource.data.userId == request.auth.uid || isTeacher()
+      );
+    }
+
+    match /progress/{userId} {
+      allow read: if signedIn() && (
+        request.auth.uid == userId || isTeacher()
+      );
+      allow create, update: if false;
+    }
+
+    match /markingResults/{resultId} {
+      allow read: if signedIn() && (
+        resource.data.userId == request.auth.uid || isTeacher()
+      );
+      allow write: if false;
+    }
+
+    match /tasks/{taskId} {
+      allow read: if signedIn();
+      allow write: if false;
+    }
+
+    match /taskKeys/{taskId} {
+      allow read, write: if false;
+    }
+
+    // assignedTasks: students read their class tasks via Cloud Function only
+    // (the Cloud Function uses admin SDK — these rules are for direct client reads, which are disabled)
+    match /assignedTasks/{assignmentId} {
+      allow read: if signedIn() && isTeacher();
+      allow write: if false;
+    }
+  }
+}

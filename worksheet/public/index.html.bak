@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iMedia Genius Worksheets · OCR Creative iMedia R093</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+<div id="app">
+
+  <!-- ── Top Navigation Bar ─────────────────────────────────────────────────── -->
+  <header class="topbar">
+    <div class="topbar-brand">
+      <img src="./img/imedia_genius_logo_transparent.png" alt="iMedia Genius" class="site-logo" />
+      <div class="brand-divider"></div>
+      <div class="brand-text">
+        <span class="brand-name">iMedia Genius</span>
+        <span class="brand-sub">OCR Creative iMedia · R093</span>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <div id="roleBadge"></div>
+      <button id="btnSignIn"  class="btn primary">Sign in</button>
+      <button id="btnSignOut" class="btn ghost hidden">Sign out</button>
+    </div>
+  </header>
+
+  <!-- ── Main Layout ────────────────────────────────────────────────────────── -->
+  <main class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+      <!-- Navigation — buttons shown/hidden per role via JS -->
+      <div class="section-title">Navigation</div>
+      <nav class="navlist">
+
+        <!-- Student + Admin only -->
+        <button data-route="home" data-roles="student,admin" class="nav-btn active" style="display:none;">
+          <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          </svg>
+          Student home
+        </button>
+
+        <!-- Student + Admin only -->
+        <button data-route="worksheet" data-roles="student,admin" class="nav-btn" style="display:none;">
+          <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          Current worksheet
+        </button>
+
+        <!-- Teacher + Admin only -->
+        <button data-route="teacher" data-roles="teacher,admin" class="nav-btn" style="display:none;">
+          <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          Teacher dashboard
+        </button>
+
+        <!-- Admin only -->
+        <button data-route="admin" data-roles="admin" class="nav-btn nav-btn-admin" style="display:none;">
+          <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          Admin panel
+        </button>
+      </nav>
+
+        <div id="loggedInNavLinks" class="nav-external-group hidden">
+          <div class="divider"></div>
+          <div class="section-title nav-subtitle">Useful links</div>
+          <a class="nav-btn nav-link-external" href="https://imediagenius.co.uk/" target="_blank" rel="noopener noreferrer">
+            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v11.494m-5.747-8.62l11.494 6.746m-11.494 0l11.494-6.746"/>
+            </svg>
+            R093 Exam
+          </a>
+          <a class="nav-btn nav-link-external" href="https://imediagenius.co.uk/r094/" target="_blank" rel="noopener noreferrer">
+            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v11.494m-5.747-8.62l11.494 6.746m-11.494 0l11.494-6.746"/>
+            </svg>
+            R094 Graphics Unit
+          </a>
+          <a class="nav-btn nav-link-external" href="https://imediagenius.co.uk/r097/" target="_blank" rel="noopener noreferrer">
+            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v11.494m-5.747-8.62l11.494 6.746m-11.494 0l11.494-6.746"/>
+            </svg>
+            R097 IDMP Multimedia
+          </a>
+          <a class="nav-btn nav-link-external" href="https://imediagenius.co.uk/r097-dreamweaver/" target="_blank" rel="noopener noreferrer">
+            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+            </svg>
+            R097 Dreamweaver Guide
+          </a>
+          <a class="nav-btn nav-link-external" href="https://camnat.web.app/" target="_blank" rel="noopener noreferrer">
+            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-6m3 6V7m3 10v-4m3 4V5M5 19h14"/>
+            </svg>
+            CAMNAT Marking
+          </a>
+          <a class="nav-btn nav-link-external" href="https://imediagenius.co.uk/plagiarism_ai_detector/" target="_blank" rel="noopener noreferrer">
+            <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 18a7.5 7.5 0 1 1 5.303-2.197L21 21"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75h1.5v4.5h-1.5z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 6.75h1.5v1.5h-1.5z"/>
+            </svg>
+            Plagiarism and AI Detector
+          </a>
+        </div>
+
+      <div class="divider"></div>
+
+      <!-- Search (student/admin only, hidden via JS) -->
+      <div id="searchBlock">
+        <div class="section-title">Filters</div>
+        <div>
+          <label class="field-label" for="searchStrands">Search strands</label>
+          <input id="searchStrands" class="input" type="text" placeholder="e.g. file compression" />
+        </div>
+        <div class="divider"></div>
+      </div>
+
+      <!-- Auth panel (hidden when signed in via JS) -->
+      <div id="authPanel" class="auth-panel">
+        <div class="section-title" id="authPanelHeading">Sign in</div>
+
+        <div>
+          <label class="field-label" for="email">Email</label>
+          <input id="email" class="input" type="email" placeholder="name@school.co.uk" autocomplete="email" />
+        </div>
+        <div>
+          <label class="field-label" for="password">Password</label>
+          <input id="password" class="input" type="password" placeholder="Password" autocomplete="current-password" />
+        </div>
+
+        <div id="registerExtras" class="hidden">
+          <div id="registerRoleField">
+            <label class="field-label">Register as</label>
+            <div class="segmented-toggle" id="registerRoleToggle" role="tablist" aria-label="Register account type">
+              <button type="button" class="segmented-option active" data-register-role="student">Student</button>
+              <button type="button" class="segmented-option" data-register-role="teacher">Teacher</button>
+            </div>
+            <p id="registerRoleHelp" class="small subtle" style="margin-top:8px;">Students join a class using a class code.</p>
+            <p id="teacherApprovalNote" class="small subtle hidden" style="margin-top:6px;">New teacher accounts must verify their email and then be approved by an admin before they can log in.</p>
+          </div>
+
+          <!-- Display name — shown only in register mode via JS -->
+          <div id="displayNameField">
+            <label class="field-label" for="displayName">Full name</label>
+            <input id="displayName" class="input" type="text" placeholder="e.g. Jamie Smith" autocomplete="name" />
+          </div>
+
+          <div id="classCodeField">
+            <label class="field-label" for="classCode">Class code</label>
+            <input id="classCode" class="input" type="text" placeholder="Enter your class code" autocomplete="off" />
+          </div>
+        </div>
+
+        <!-- Login button (default visible) -->
+        <button id="btnEmailLogin" class="btn primary" style="width:100%;">Log in</button>
+
+        <!-- Forgot password -->
+        <p class="small subtle" id="forgotPasswordBlock" style="text-align:center;margin:2px 0 0;">
+          <span id="btnForgotPassword" style="color:var(--accent);cursor:pointer;font-weight:600;">Forgot password?</span>
+        </p>
+
+        <!-- Register button (hidden until switched) -->
+        <button id="btnRegister" class="btn primary hidden" style="width:100%;">Create account</button>
+
+        <!-- Switch mode links -->
+        <p class="small subtle" style="text-align:center;margin:4px 0 0;">
+          <span id="btnSwitchToRegister" style="color:var(--accent);cursor:pointer;font-weight:700;">New user? Create account</span>
+          <span id="btnSwitchToLogin"    style="color:var(--accent);cursor:pointer;font-weight:700;" class="hidden">Already have an account? Log in</span>
+        </p>
+
+        <!-- Resend verification (shown after failed login due to unverified email) -->
+        <div id="verifyResendBlock" class="verify-notice hidden">
+          <p class="small">Didn't receive the email or it expired?</p>
+          <button id="btnResendVerification" class="btn" style="width:100%;">Resend verification email</button>
+        </div>
+      </div>
+
+    </aside><!-- /sidebar -->
+
+    <!-- ── Content ──────────────────────────────────────────────────────────── -->
+    <section class="content">
+      <div id="alert"></div>
+
+
+      <!-- ── Home View (Student / Admin) ───────────────────────────────────── -->
+      <section id="homeView" class="view active">
+
+        <!-- Logged-out landing hero (hidden when signed in) -->
+        <div id="loggedOutHero" class="logged-out-hero">
+          <div class="logged-out-hero-content">
+            <p class="eyebrow">OCR Creative iMedia · R093</p>
+            <h2>Auto-marked worksheets for every R093 strand</h2>
+            <p class="subtle">35 strand worksheets that mark themselves. Read the topic, answer the questions, get instant feedback — no teacher needed to check your work.</p>
+            <div class="logged-out-features">
+              <div class="lof-item">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>35 strands covering every R093 topic</span>
+              </div>
+              <div class="lof-item">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                <span>Answer keys never exposed in the browser</span>
+              </div>
+              <div class="lof-item">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                <span>Teacher dashboard with class progress &amp; RAG tracking</span>
+              </div>
+            </div>
+            <div class="logged-out-cta">
+              <button id="btnGetStarted" class="btn primary btn-lg">Get started — sign in</button>
+              <button id="btnCreateAccount" class="btn btn-lg">New user? Create account</button>
+            </div>
+          </div>
+          <div id="previewGrid" class="preview-grid"></div>
+        </div>
+
+        <!-- Signed-in student hero (hidden when signed out) -->
+        <div id="loggedInHero" class="hidden">
+          <div class="hero">
+            <div style="position:relative;z-index:1;">
+              <p class="eyebrow">Student workspace</p>
+              <h2>Read the strand. Complete the worksheet. Let the system mark it.</h2>
+              <p class="subtle">Each worksheet mirrors real iMedia Genius topic content. Marking runs server-side so answer keys are never exposed.</p>
+              <div id="progressSummary" class="progress-summary"></div>
+            </div>
+            <div class="hero-metrics">
+              <div class="metric-card"><span>Total strands</span><strong id="metricTotalStrands">35</strong></div>
+              <div class="metric-card"><span>Completed</span><strong id="metricCompleted">0</strong></div>
+              <div class="metric-card"><span>Average score</span><strong id="metricAverage">0%</strong></div>
+            </div>
+          </div>
+          <div id="onboardingNudge" class="onboarding-nudge hidden">
+            <div>
+              <strong>Welcome! Start with Strand 01 — Traditional Media</strong>
+              <p class="small subtle" style="margin-top:4px;">Work through strands in order for the best exam preparation.</p>
+            </div>
+            <button class="btn primary" id="btnStartFirstStrand">Open Strand 01</button>
+          </div>
+        </div>
+
+        <div id="studentAssignments" class="assignment-stack"></div>
+        <div id="strandGrid" class="strand-grid"></div>
+      </section>
+
+      <!-- ── Worksheet View (Student / Admin) ──────────────────────────────── -->
+      <section id="worksheetView" class="view">
+        <div id="worksheetContainer"></div>
+      </section>
+
+      <!-- ── Teacher View (Teacher / Admin) ────────────────────────────────── -->
+      <section id="teacherView" class="view">
+        <div class="card" style="padding:28px 30px;">
+          <div class="split-head">
+            <div>
+              <p class="eyebrow">Teacher dashboard</p>
+              <h2 style="margin:8px 0 10px;">Class progress and worksheet outcomes</h2>
+              <p class="subtle">See completion, accuracy and strand-level weaknesses without hand-marking.</p>
+            </div>
+            <button id="btnRefreshTeacher" class="btn">Refresh</button>
+          </div>
+        </div>
+        <div class="teacher-metrics">
+          <div class="metric-card"><span>Students</span><strong id="teacherStudentCount">0</strong></div>
+          <div class="metric-card"><span>Submissions</span><strong id="teacherSubmissionCount">0</strong></div>
+          <div class="metric-card"><span>Average score</span><strong id="teacherAverageScore">0%</strong></div>
+          <div class="metric-card"><span>Completion rate</span><strong id="teacherCompletionRate">0%</strong></div>
+        </div>
+        <div class="card" style="padding:24px 26px; margin-bottom:20px;">
+          <div class="split-head" style="align-items:flex-end; gap:16px; flex-wrap:wrap;">
+            <div>
+              <h3 style="margin-bottom:6px;">Set class tasks</h3>
+              <p class="small subtle">Assign a strand to a class with a deadline. Students will see assigned tasks first.</p>
+            </div>
+            <div class="stack-inline" style="flex-wrap:wrap; width:100%; align-items:flex-end;">
+              <div style="min-width:180px; flex:1;">
+                <label class="field-label" for="teacherAssignClass">Class</label>
+                <select id="teacherAssignClass" class="input"></select>
+              </div>
+              <div style="min-width:220px; flex:2;">
+                <label class="field-label" for="teacherAssignStrand">Strand</label>
+                <select id="teacherAssignStrand" class="input"></select>
+              </div>
+              <div style="min-width:170px;">
+                <label class="field-label" for="teacherAssignDeadline">Deadline</label>
+                <input id="teacherAssignDeadline" class="input" type="date" />
+              </div>
+              <button id="btnTeacherAssignTask" class="btn primary">Assign task</button>
+            </div>
+          </div>
+        </div>
+        <div class="dashboard-grid teacher-dashboard-grid">
+          <div class="card"><h3>Students</h3><div id="teacherStudents"></div></div>
+          <div class="card"><h3>Strand breakdown</h3><div id="teacherStrandBreakdown"></div></div>
+          <div class="card dashboard-span-2"><h3>Assigned tasks</h3><div id="teacherAssignments"></div></div>
+          <div class="card dashboard-span-2" style="overflow:hidden; min-width:0;"><div class="split-head" style="align-items:center; gap:12px; margin-bottom:10px;"><h3 style="margin:0;">RAG tracking sheet</h3><div id="teacherRagSummary" class="badge-row"></div></div><div id="teacherRagSheet"></div></div>
+        </div>
+      </section>
+
+      <!-- ── Admin View (Admin only) ────────────────────────────────────────── -->
+      <section id="adminView" class="view">
+
+        <!-- Admin header -->
+        <div class="card admin-header-card" style="padding:28px 30px;">
+          <div class="split-head">
+            <div>
+              <p class="eyebrow">Administration</p>
+              <h2 style="margin:8px 0 10px;">Site management &amp; user control</h2>
+              <p class="subtle">Manage users, roles, email domain allowlists and worksheet seeding. This area is only visible to admin accounts.</p>
+            </div>
+            <button id="btnRefreshAdmin" class="btn">Refresh</button>
+          </div>
+        </div>
+
+        <!-- Admin metrics -->
+        <div class="teacher-metrics">
+          <div class="metric-card"><span>Total users</span><strong id="adminUserCount">—</strong></div>
+          <div class="metric-card"><span>Teachers</span><strong id="adminTeacherCount">—</strong></div>
+          <div class="metric-card"><span>Students</span><strong id="adminStudentCount">—</strong></div>
+        </div>
+
+        <!-- Admin grid: Users + Settings -->
+        <div class="admin-grid">
+
+          <!-- User Management -->
+          <div class="card" style="padding:24px 26px;">
+            <h3 style="margin-bottom:6px;">User accounts</h3>
+            <p class="small subtle" style="margin-bottom:16px;">Approve new teachers, change account roles, search users and delete accounts when needed.</p>
+            <input id="adminUserSearch" class="input" type="text" placeholder="Search users by name, email or role" autocomplete="off" style="margin-bottom:14px;" />
+            <div id="adminUserList"><p class="subtle">Loading users…</p></div>
+          </div>
+
+          <!-- Settings: Domain Allowlist + Worksheet Seeding -->
+          <div style="display:grid;gap:20px;align-content:start;">
+
+            <!-- Email domain allowlist -->
+            <div class="card" style="padding:24px 26px;">
+              <h3 style="margin-bottom:6px;">Registration allowlist</h3>
+              <p class="small subtle" style="margin-bottom:14px;">Only email addresses from these domains can create new accounts.</p>
+              <div id="domainWarning" class="domain-empty-warning hidden">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:16px;height:16px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+                <span>No domain restrictions — anyone can register. We recommend adding your school domain.</span>
+              </div>
+              <div id="adminDomainList"><p class="subtle">Loading…</p></div>
+              <div class="stack-inline" style="margin-top:14px;">
+                <input id="adminNewDomain" class="input" type="text" placeholder="e.g. garibaldischool.co.uk" style="flex:1;" />
+                <button id="btnAdminAddDomain" class="btn primary">Add domain</button>
+              </div>
+            </div>
+
+            <!-- Worksheet Bank -->
+            <div class="card" style="padding:24px 26px;">
+              <h3 style="margin-bottom:6px;">Worksheet bank</h3>
+              <p class="small subtle" style="margin-bottom:14px;">Push all 35 strand worksheets to Firestore with server-side answer keys. Safe to run multiple times.</p>
+              <p id="lastSeededNote" class="small subtle" style="margin-bottom:12px;"></p>
+              <button id="btnAdminSeedWorksheets" class="btn primary">Seed worksheet bank</button>
+            </div>
+
+          </div>
+        </div><!-- /admin-grid -->
+
+      </section><!-- /adminView -->
+
+    </section><!-- /content -->
+  </main>
+</div><!-- /#app -->
+
+<script type="module" src="./app.v4.js"></script>
+</body>
+</html>
