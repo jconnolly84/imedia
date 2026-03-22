@@ -1,0 +1,19 @@
+/* Pre‑Production Toolkit Game – arcade edition
+ * Import the base mega‑game styles and tweak the arena theme.
+ */
+
+@import url('work-plan-megagame.css');
+
+.game-card {
+  background: radial-gradient(circle at top left, #1a2e3d, #081729 65%, #03060c 95%);
+}
+
+.answer-btn.correct {
+  background: linear-gradient(135deg, #243c2f, #2e6653);
+  border-color: rgba(0, 255, 170, 0.85);
+}
+
+.answer-btn.wrong {
+  background: linear-gradient(135deg, #442b2b, #7d4444);
+  border-color: rgba(255, 80, 120, 0.85);
+}

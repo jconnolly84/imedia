@@ -1,0 +1,27 @@
+﻿"If the pixel dimensions of an image are higher, what is the resulting effect on its quality?",The quality of the image will be higher.
+What is the general definition of an image's 'resolution'?,It is the number of dots or pixels contained within one inch.
+What does the acronym DPI stand for in the context of image resolution?,Dots Per Inch.
+"For print products such as magazines, what is the recommended minimum resolution?",At least 300 DPI (Dots Per Inch).
+What does the acronym PPI stand for in the context of image resolution?,Pixels Per Inch.
+"The resolution of digital products, such as images on a screen, is measured in _____.",PPI (Pixels Per Inch).
+What is another term for a bitmap image?,A raster image.
+How is the image in a bitmap file constructed?,It uses a grid of coloured pixels to represent the image.
+What visual effect occurs when you significantly zoom into a bitmap image?,It becomes more pixelated or 'blocky'.
+How is the image in a vector file constructed?,"It uses mathematical calculations, coordinates, curves, lines, and fills."
+What is the primary advantage of using vector images when it comes to resizing?,They can be resized to any dimension without any loss of quality or detail.
+A notable limitation of vector images can be their handling of complex _____.,colour variations.
+What is meant by a 'lossless' image format?,A format where file size is reduced without permanently discarding any image data.
+What is meant by a 'lossy' image format?,A format where file size is reduced by permanently discarding some image data.
+Is the JPG (or JPEG) file format considered lossy or lossless?,It is a lossy format.
+Does the JPG format support transparency?,"No, it does not support transparency."
+Is the GIF file format considered lossy or lossless?,It is a lossless format.
+What type of moving image is the GIF format commonly used to create?,Animations.
+Is the PNG file format considered lossy or lossless?,It is a lossless format.
+"What important feature, not available in JPGs, does the PNG format support?",It supports transparency.
+"The _____ file format is a lossless format used with high-end digital cameras, but results in very large file sizes.",RAW.
+Why would a magazine or document likely be exported to a PDF format?,For the purpose of sharing it with others.
+What file format was first commonly used to create animations for web pages?,The GIF format.
+"After GIFs, which animation format with the .SWF filetype became very popular for the web?",Flash animation.
+What does the acronym SVG stand for?,Scalable Vector Graphics.
+"What modern file type can be used for web animation, especially since the Flash plugin has lost support?",SVG (Scalable Vector Graphics).
+What type of file formats are used to deliver animation films and TV programmes to ordinary viewers?,"Normal video file formats, such as MP4."

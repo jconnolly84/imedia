@@ -1,0 +1,24 @@
+﻿What process must sound undergo before it can be saved or processed by a computer?,It must first be digitised.
+What is the name of the device that converts an analogue signal into a digital one?,An analogue-to-digital converter (ADC).
+"In the process of digitising sound, what is sampling?",It is the step of taking measurements of the analogue electrical signal at regular intervals.
+What is the term for the number of times a sound wave is sampled per second?,The sample rate.
+In what unit of measurement is the sample rate of an audio file expressed?,Hertz (Hz).
+"Following sampling, what is the name of the process that assigns a binary value to each sample?",Quantization.
+What is 'bit depth' in the context of digital audio?,"The accuracy of each sample, determining the number of possible amplitude values."
+How do a higher sample rate and greater bit depth affect the quality and file size of a recording?,They improve the audio quality but also increase the file size.
+What is the standard sample rate for CD quality audio?,"44,100 samples per second (44,100 Hertz)."
+What is the standard bit depth for CD quality audio?,16-bit.
+The fundamental trade-off in digital audio involves balancing audio quality against _____ _____.,file size
+"What type of compression, used in formats like .mp3, results in some data being permanently lost?",Lossy compression.
+A compressed .mp3 file may be what percentage of the size of the equivalent uncompressed .wav file?,Approximately 10%.
+"Despite losing quality, why might an .mp3 with lossy compression still sound good?",The quality loss will be hard to detect if a high bitrate is used.
+Audio Format: .wav,"A typically uncompressed audio format for Windows computers, resulting in large file sizes but high quality."
+What is a primary benefit of the .wav audio format?,"It is uncompressed, so it maintains the original audio quality, and is widely supported."
+What is a primary disadvantage of the .wav audio format?,It has a very large file size because it is typically uncompressed.
+Audio Format: .mp3,A format that uses lossy compression to achieve a small file size and is very widely supported.
+What is a primary disadvantage of the .mp3 audio format?,There is some permanent loss in audio quality due to its compression method.
+Audio Format: .aac,"A format offering better sound quality than .mp3 for the same file size, used by iOS, iTunes, and YouTube."
+What is a potential disadvantage of using the .aac format?,Not all audio players support it.
+Audio Format: FLAC,"An open-source format that uses lossless compression, preserving audio quality while reducing file size."
+What type of compression does the FLAC audio format use?,Lossless compression.
+What is a key benefit of the FLAC format being open source?,Users and developers do not need to pay for licences to use it.

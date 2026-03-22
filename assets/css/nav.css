@@ -1,0 +1,207 @@
+/* ─── Google Fonts ─────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap');
+
+/* ─── Shared Navigation Bar ────────────────────────────────────────────────── */
+.site-nav {
+  background: #0e1e3d;
+  color: #f5f5f5;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 24px rgba(14,30,61,0.5);
+}
+
+.site-nav-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: 'Nunito Sans', system-ui, sans-serif;
+  font-size: 0.92rem;
+}
+
+.site-nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.site-nav-logo-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.92;
+  flex-shrink: 0;
+}
+
+/* Divider between logo and text */
+.site-nav-brand::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 30px;
+  background: rgba(255,255,255,0.18);
+  flex-shrink: 0;
+}
+
+.site-nav-title {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.15;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.site-nav-subtitle {
+  font-family: 'Nunito Sans', system-ui, sans-serif;
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.42);
+  line-height: 1;
+}
+
+.site-nav-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.site-nav-link {
+  text-decoration: none;
+  color: rgba(245,245,245,0.78);
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.site-nav-link:hover,
+.site-nav-link:focus-visible {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.18);
+  color: #fff;
+  outline: none;
+}
+
+.site-nav-topic-jump {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.topic-jump-label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: rgba(255,255,255,0.5);
+  white-space: nowrap;
+}
+
+.topic-jump-select {
+  padding: 7px 14px 7px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.06);
+  color: #ffffff;
+  font-size: 0.84rem;
+  font-family: 'Nunito Sans', system-ui, sans-serif;
+  font-weight: 600;
+  outline: none;
+  min-width: 13rem;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.topic-jump-select:hover,
+.topic-jump-select:focus {
+  border-color: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.1);
+}
+
+.topic-jump-select option {
+  color: #111827;
+  background: #ffffff;
+}
+
+/* ─── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .site-nav-inner {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 10px 16px;
+  }
+  .site-nav-topic-jump {
+    width: 100%;
+    padding-bottom: 4px;
+  }
+}
+
+@media (max-width: 580px) {
+  .site-nav-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .site-nav-brand::after { display: none; }
+  .topic-jump-select { width: 100%; }
+}
+
+/* ─── Worksheets login button ──────────────────────────────────────────────── */
+.site-nav-login {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(240,165,0,0.55);
+  background: rgba(240,165,0,0.12);
+  color: #f0a500;
+  font-family: 'Nunito Sans', system-ui, sans-serif;
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.site-nav-login:hover {
+  background: rgba(240,165,0,0.22);
+  border-color: #f0a500;
+  color: #fbbf24;
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.site-nav-login svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 580px) {
+  .site-nav-login span { display: none; }
+  .site-nav-login { padding: 8px 10px; }
+}

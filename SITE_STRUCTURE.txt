@@ -1,0 +1,18 @@
+iMedia Genius site structure
+
+Root
+- HTML pages remain at root so existing public URLs keep working
+- APK remains at root
+- robots.txt, sitemap.xml, CNAME, favicon.ico stay at root
+
+Folders
+- assets/css/   shared + page CSS
+- assets/js/    shared + page JavaScript
+- data/flashcards/  topic flashcard CSV files
+- data/exams/   exam JSON data
+- data/misc/    uncategorised support/archive files
+- img/          site image assets (move your missing image folder files here)
+
+Notes
+- All HTML references were rewritten to the new folder paths
+- Existing page filenames were preserved to avoid breaking links/bookmarks

@@ -1,0 +1,21 @@
+/* Purpose of Media Products Arena – arcade edition
+ * Import base mega‑game styles and adjust colours for this quiz.
+ */
+
+@import url('work-plan-megagame.css');
+
+/* Deep orange / blue glow to tie to 'purpose' and 'campaigns' */
+.game-card {
+  background: radial-gradient(circle at top left, #2b1f14, #141522 60%, #050309 95%);
+}
+
+/* Shared arcade buttons */
+.answer-btn.correct {
+  background: linear-gradient(135deg, #3a281c, #6f543b);
+  border-color: rgba(255, 180, 90, 0.85);
+}
+
+.answer-btn.wrong {
+  background: linear-gradient(135deg, #40242c, #713955);
+  border-color: rgba(200, 80, 150, 0.8);
+}

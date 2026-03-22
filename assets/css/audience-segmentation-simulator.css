@@ -1,0 +1,20 @@
+/* Audience Segmentation Simulator – arcade edition
+ * Import the base mega-game styles and then theme for this arena.
+ */
+
+@import url('work-plan-megagame.css');
+
+/* Slightly cooler gradient for segmentation arena */
+.game-card {
+  background: radial-gradient(circle at top left, #1c293f, #081025 65%, #04050b 95%);
+}
+
+.answer-btn.correct {
+  background: linear-gradient(135deg, #153d44, #1b695f);
+  border-color: rgba(0, 255, 170, 0.85);
+}
+
+.answer-btn.wrong {
+  background: linear-gradient(135deg, #442b35, #7e3948);
+  border-color: rgba(255, 80, 120, 0.85);
+}
