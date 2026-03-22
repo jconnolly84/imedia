@@ -72,7 +72,7 @@
 .collapsible .game-grid{margin-top: 10px;}
 
 /* ── Android Beta Download Button ─────────────────────────────────── */
-.android-beta-btn {
+.android-beta-btn { display: none;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -1301,5 +1301,14 @@ fetch("https://api.indexnow.org/indexnow", {
 
   <script src="assets/js/imedia-engagement-tracker.js"></script>
   <script src="assets/js/game-score-service.js"></script>
+
+<script>
+(function() {
+  if (/android/i.test(navigator.userAgent)) {
+    var btns = document.querySelectorAll('.android-beta-btn');
+    btns.forEach(function(el) { el.style.display = ''; });
+  }
+})();
+</script>
 </body>
 </html>
