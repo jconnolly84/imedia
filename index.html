@@ -70,6 +70,33 @@
 /* Make inner sections sit nicely in the collapsible */
 .collapsible .game-menu{margin-top: 10px;}
 .collapsible .game-grid{margin-top: 10px;}
+
+/* ── Android Beta Download Button ─────────────────────────────────── */
+.android-beta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #3ddc84 0%, #00c853 100%);
+  color: #0a2e1a;
+  font-weight: 800;
+  font-size: 0.95rem;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(61,220,132,0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  letter-spacing: 0.01em;
+}
+.android-beta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(61,220,132,0.45);
+  filter: brightness(1.08);
+}
+.android-beta-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(61,220,132,0.3);
+}
 </style>
   <script src="engagement-config.js"></script>
 </head>
@@ -157,6 +184,14 @@
 <div class="pill">
 <strong>37</strong> games · MCQs, scenarios, short answers &amp; 9 markers
             </div>
+<a class="android-beta-btn" href="imediagenius_beta_v1.apk" download="imediagenius_beta_v1.apk">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18" style="flex-shrink:0;">
+    <path d="M17.523 15.341A5.98 5.98 0 0 0 18 13a5.98 5.98 0 0 0-.477-2.341l1.359-1.359a.75.75 0 1 0-1.06-1.06l-1.36 1.358A5.98 5.98 0 0 0 14 9a5.98 5.98 0 0 0-2.341.477L10.3 8.118a.75.75 0 1 0-1.06 1.06l1.358 1.36A5.98 5.98 0 0 0 10 13a5.98 5.98 0 0 0 .477 2.341l-1.36 1.36a.75.75 0 1 0 1.061 1.06l1.36-1.359A5.98 5.98 0 0 0 14 17a5.98 5.98 0 0 0 2.341-.477l1.36 1.359a.75.75 0 1 0 1.06-1.06l-1.238-1.48zM14 15.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/>
+    <path d="M6.5 6.5 5 5M17.5 6.5 19 5"/>
+    <rect x="8" y="10" width="12" height="8" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  </svg>
+  <span>Download Android App <span style="font-size:0.78em;opacity:0.8;">(Beta)</span></span>
+</a>
 </div>
 </div>
 </div>
