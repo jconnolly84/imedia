@@ -1,9 +1,6 @@
 // Hardware & Software Gauntlet – Mega Game
 // Uses iMedia Genius HUD, timer, multiplier & leaderboard.
 
-const GAS_URL =
-  "https://script.google.com/macros/s/AKfycbzrw-GfhZm1Lxtm4kUHqUmUV1rzYbBRJ875twjme9SObdLeNu9AwzwerrM70N9YiLTKCg/exec";
-const SHEET_ID = "10HJ2Az6GC8m-QFoibX-X0-izyszocRhzgfizY9bwoGg";
 
 const STAGES = window.HARDWARE_SOFTWARE_STAGES || [];
 
@@ -42,7 +39,6 @@ const restartBtn = document.getElementById("restartBtn");
 
 const leaderboardTitle = document.getElementById("leaderboardTitle");
 const leaderboardContainer = document.getElementById("leaderboardContainer");
-const leaderboardTabs = Array.from(document.querySelectorAll(".lb-tab"));
 
 // SFX
 let sfxCorrect, sfxWrong, sfxStart, sfxGameOver;
@@ -190,11 +186,7 @@ function resetGame() {
 }
 
 function startGameHandler() {
-  const name = (playerNameInput.value || "").trim();
-  if (!name) {
-    alert("Please enter your initials so your score can be logged.");
-    return;
-  }
+  const name = (playerNameInput.value || "Student").trim() || "Student";
   if (!STAGES.length) {
     alert("No stages loaded – check hardware-software-megagame-data.js.");
     return;
@@ -501,7 +493,7 @@ function endGame(completedAll) {
     ? "Gauntlet Complete!"
     : "Game Over";
 
-  const name = (playerNameInput.value || "Anonymous").trim();
+  const name = (playerNameInput.value || "Student").trim();
   submitScore(name, window.TOPIC_KEY || location.pathname.split('/').pop().replace(/\.html$/i, ''), score, STAGES.reduce((total, stage) => total + ((stage.questions || []).length), 0));
 
   playSfx(sfxGameOver);
@@ -542,7 +534,7 @@ function loadLeaderboardFromFirebase() {
   const service = window.imediaGameScores;
   if (!leaderboardContainer) return;
   if (!service || typeof service.loadLeaderboard !== 'function') {
-    leaderboardContainer.innerHTML = "<p class='leaderboard-note'>Class leaderboard unavailable right now.</p>";
+    leaderboardContainer.innerHTML = "<p class='leaderboard-note'>Launch this game from the worksheet app to view your class leaderboard.</p>";
     return;
   }
   service.loadLeaderboard({
@@ -553,23 +545,7 @@ function loadLeaderboardFromFirebase() {
 
 // Leaderboard tabs (if present)
 function setupLeaderboardTabs() {
-  leaderboardTabs.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      leaderboardTabs.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      const tab = btn.dataset.tab;
-      if (tab === "all") {
-        leaderboardTitle.textContent =
-          "Hardware & Software Gauntlet – Leaderboard (All Time)";
-      } else if (tab === "week") {
-        leaderboardTitle.textContent =
-          "Hardware & Software Gauntlet – This Week (visual only)";
-      } else if (tab === "today") {
-        leaderboardTitle.textContent =
-          "Hardware & Software Gauntlet – Today (visual only)";
-      }
-    });
-  });
+  if (leaderboardTitle) leaderboardTitle.textContent = "Class leaderboard";
 }
 
 // Restart

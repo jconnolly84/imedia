@@ -3,9 +3,6 @@
 // wired up to the HTML structure in research-methods-megagame.html
 // and the stage data in research-methods-megagame-data.js.
 
-const GAS_URL =
-  "https://script.google.com/macros/s/AKfycbzrw-GfhZm1Lxtm4kUHqUmUV1rzYbBRJ875twjme9SObdLeNu9AwzwerrM70N9YiLTKCg/exec";
-const SHEET_ID = "10HJ2Az6GC8m-QFoibX-X0-izyszocRhzgfizY9bwoGg";
 
 const STAGES = window.RESEARCH_STAGES || [];
 
@@ -219,11 +216,7 @@ function showScorePop(text) {
 
 // Game flow
 function startGameHandler() {
-  const name = (playerNameInput.value || "").trim();
-  if (!name) {
-    alert("Please enter your initials to begin the adventure.");
-    return;
-  }
+  const name = (playerNameInput.value || "Student").trim() || "Student";
 
   if (!STAGES.length) {
     alert("No stages loaded – check research-methods-megagame-data.js");
@@ -456,7 +449,7 @@ function loadLeaderboardFromFirebase() {
   const service = window.imediaGameScores;
   if (!leaderboardContainer) return;
   if (!service || typeof service.loadLeaderboard !== 'function') {
-    leaderboardContainer.innerHTML = "<p class='leaderboard-note'>Class leaderboard unavailable right now.</p>";
+    leaderboardContainer.innerHTML = "<p class='leaderboard-note'>Launch this game from the worksheet app to view your class leaderboard.</p>";
     return;
   }
   service.loadLeaderboard({

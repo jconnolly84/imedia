@@ -250,8 +250,8 @@
 <li>At the end, you’ll get a grade and examiner-style feedback.</li>
 </ul>
 <div class="controls-row" style="margin-top:1rem;display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;">
-<label for="playerName"><strong>Enter your initials:</strong></label>
-<input autocomplete="off" class="text-input" id="playerName" inputmode="text" maxlength="3" placeholder="ABC" style="min-width:180px;flex:1 1 180px;max-width:260px;" type="text"/>
+
+<input class="text-input" id="playerName" style="min-width:180px;flex:1 1 180px;max-width:260px;"/ type="hidden" value="Student">
 <button class="btn primary" id="startBtn">Start Colour Critic</button>
 </div>
 <p class="small-note" style="margin-top:0.75rem;">
@@ -302,13 +302,23 @@
         </button>
 </section>
 <!-- Leaderboard -->
-<section class="card leaderboard-card" id="leaderboardContainerCard">
-<h2>iMedia Genius Leaderboard (All Topics)</h2>
-<p class="leaderboard-note">
-          Finish a game to log your score to the shared iMedia Genius leaderboard.
-          Colour Critic scores appear alongside the other iMedia games.
-        </p>
+<section class="card leaderboard-card shared-class-leaderboard" id="leaderboardContainerCard">
+<div class="leaderboard-header">
+<h2 id="leaderboardTitle">Class leaderboard</h2>
+<p class="leaderboard-intro">See how your score compares with other students in your class.</p>
+</div>
+<div class="leaderboard-summary-row">
+<div class="leaderboard-summary-card">
+<span class="leaderboard-summary-label">Who can see it?</span>
+<strong>Students in your class only</strong>
+</div>
+<div class="leaderboard-summary-card">
+<span class="leaderboard-summary-label">How to track scores</span>
+<strong>Launch from the worksheet app</strong>
+</div>
+</div>
 <div id="leaderboardContainer"></div>
+<p class="leaderboard-note">Finish a game from the worksheet app to post your score to your class leaderboard.</p>
 </section>
 <div class="return-menu" style="text-align:center;margin:20px 0;">
 <a class="btn secondary" href="index.html" style="display:inline-block;padding:10px 18px;background:#1a73e8;color:#fff;

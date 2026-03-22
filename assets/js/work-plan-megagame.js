@@ -101,9 +101,6 @@ const WORK_PLAN_STAGES = [
 // Work Plan Detective – Mega Game
 // Uses iMedia Genius HUD, timer, multiplier & leaderboard.
 
-const GAS_URL =
-  "https://script.google.com/macros/s/AKfycbzrw-GfhZm1Lxtm4kUHqUmUV1rzYbBRJ875twjme9SObdLeNu9AwzwerrM70N9YiLTKCg/exec";
-const SHEET_ID = "10HJ2Az6GC8m-QFoibX-X0-izyszocRhzgfizY9bwoGg";
 
 const STAGES = WORK_PLAN_STAGES;
 
@@ -142,7 +139,6 @@ const lastStageNameEl = document.getElementById("lastStageName");
 const restartBtn = document.getElementById("restartBtn");
 
 // Leaderboard DOM
-const leaderboardTabs = Array.from(document.querySelectorAll(".lb-tab"));
 const leaderboardTitle = document.getElementById("leaderboardTitle");
 const leaderboardContainer = document.getElementById("leaderboardContainer");
 
@@ -534,11 +530,11 @@ function endGame(completedAll) {
 
   playSfx(sfxGameOver);
 
-  // Submit score to shared sheet
+  // Submit score to class leaderboard
   submitGauntletScore(
     (playerNameInput && playerNameInput.value
       ? playerNameInput.value
-      : "Anonymous"
+      : "Student"
     ).trim(),
     score,
     completedAllStages
@@ -597,7 +593,7 @@ function loadLeaderboardFromFirebase() {
   const service = window.imediaGameScores;
   if (!leaderboardContainer) return;
   if (!service || typeof service.loadLeaderboard !== 'function') {
-    leaderboardContainer.innerHTML = "<p class='leaderboard-note'>Class leaderboard unavailable right now.</p>";
+    leaderboardContainer.innerHTML = "<p class='leaderboard-note'>Launch this game from the worksheet app to view your class leaderboard.</p>";
     return;
   }
   service.loadLeaderboard({ container: leaderboardContainer, gameId: 'work-plan-megagame', topicKey: 'work-plan-megagame' });
@@ -605,22 +601,7 @@ function loadLeaderboardFromFirebase() {
 
 // Leaderboard tabs (if present)
 function setupLeaderboardTabs() {
-  leaderboardTabs.forEach((btn) =>
-    btn.addEventListener("click", () => {
-      const filter = btn.dataset.filter || "all";
-
-      leaderboardTabs.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      if (filter === "all") {
-        leaderboardTitle.textContent = "Work Plan Detective – Leaderboard";
-      } else if (filter === "gauntlet") {
-        leaderboardTitle.textContent = "Work Plan Detective – Top Runs";
-      }
-
-      loadLeaderboardFromFirebase();
-    })
-  );
+  if (leaderboardTitle) leaderboardTitle.textContent = "Class leaderboard";
 }
 
 // ---------- EVENT HANDLERS & INIT ----------

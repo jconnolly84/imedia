@@ -1,9 +1,6 @@
 // Scene Detective – interactive mise-en-scène game
-// Uses the same leaderboard sheet as iMedia Genius.
+// Uses the same class leaderboard system as the arcade.
 
-const GAS_URL =
-  "https://script.google.com/macros/s/AKfycbzrw-GfhZm1Lxtm4kUHqUmUV1rzYbBRJ875twjme9SObdLeNu9AwzwerrM70N9YiLTKCg/exec";
-const SHEET_ID = "10HJ2Az6GC8m-QFoibX-X0-izyszocRhzgfizY9bwoGg";
 
 const SCENE_QUESTIONS = window.SCENE_QUESTIONS || [];
 
@@ -72,11 +69,7 @@ function resetGame() {
 }
 
 function startGame() {
-  const name = (playerNameInput.value || "").trim();
-  if (!name) {
-    alert("Please enter your initials so we can log your score.");
-    return;
-  }
+  const name = (playerNameInput.value || "Student").trim() || "Student";
   if (!SCENE_QUESTIONS.length) {
     alert("No scene data loaded. Check that mise-en-scene-detective-data.js is included.");
     return;
@@ -219,7 +212,7 @@ function endGame() {
   finalCommentEl.textContent = comment;
   finalSummaryEl.textContent = summary;
 
-  submitScore((playerNameInput.value || "Anonymous").trim(), score);
+  submitScore((playerNameInput.value || "Student").trim(), score);
   setTimeout(loadLeaderboardFromFirebase, 800);
 }
 
@@ -248,7 +241,7 @@ function loadLeaderboardFromFirebase() {
   const service = window.imediaGameScores;
   if (!leaderboardContainer) return;
   if (!service || typeof service.loadLeaderboard !== 'function') {
-    leaderboardContainer.innerHTML = "<p class='leaderboard-note'>Class leaderboard unavailable right now.</p>";
+    leaderboardContainer.innerHTML = "<p class='leaderboard-note'>Launch this game from the worksheet app to view your class leaderboard.</p>";
     return;
   }
   service.loadLeaderboard({

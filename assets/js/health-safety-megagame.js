@@ -6,9 +6,6 @@
 // CONFIG
 // -----------------------------------------------------------------------------
 
-const GAS_URL =
-  "https://script.google.com/macros/s/AKfycbzrw-GfhZm1Lxtm4kUHqUmUV1rzYbBRJ875twjme9SObdLeNu9AwzwerrM70N9YiLTKCg/exec";
-const SHEET_ID = "10HJ2Az6GC8m-QFoibX-X0-izyszocRhzgfizY9bwoGg";
 
 // Stage & question data from health-safety-megagame-data.js
 const STAGES = window.HEALTH_SAFETY_STAGES || [];
@@ -456,7 +453,7 @@ function endGame(completedAllStages) {
 
   // log score
   submitGauntletScore(
-    (playerNameInput && playerNameInput.value ? playerNameInput.value : "Anonymous").trim(),
+    (playerNameInput && playerNameInput.value ? playerNameInput.value : "Student").trim(),
     score,
     completedAllStages
   );
@@ -489,7 +486,7 @@ function loadLeaderboardFromFirebase() {
   const service = window.imediaGameScores;
   if (!leaderboardContainer) return;
   if (!service || typeof service.loadLeaderboard !== 'function') {
-    leaderboardContainer.innerHTML = "<p class='leaderboard-note'>Class leaderboard unavailable right now.</p>";
+    leaderboardContainer.innerHTML = "<p class='leaderboard-note'>Launch this game from the worksheet app to view your class leaderboard.</p>";
     return;
   }
   service.loadLeaderboard({ container: leaderboardContainer, gameId: 'health-safety-megagame', topicKey: 'health-safety-megagame' });
@@ -507,10 +504,10 @@ function startGameHandler() {
     return;
   }
 
-  // Name / initials no longer required – leaderboard is disabled for this game.
-  // We still support sending an optional name if the field exists in future.
+  // Name entry is no longer required. The worksheet session supplies the class-safe identity.
+  // We still support a hidden player field so existing scoring logic keeps working.
   const name =
-    (playerNameInput && (playerNameInput.value || "").trim()) || "Anonymous";
+    (playerNameInput && (playerNameInput.value || "Student").trim()) || "Student";
 
   resetGameState();
   playSfx(sfxStart);

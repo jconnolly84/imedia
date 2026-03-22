@@ -137,9 +137,9 @@
         <div>
           <div class="game-shell-chip-label">Live score</div>
           <div class="game-shell-score-value" id="gameShellLiveScore">${escapeHtml(findScoreValue())}</div>
-          <p class="game-shell-score-note">${inWorksheet ? 'Finish strong to post your result to your class board and engagement dashboard.' : 'Open this game from the worksheet app to save your score and appear on your class leaderboard.'}</p>
+          <p class="game-shell-score-note">${inWorksheet ? 'Finish strong to post your result to your class board and build your revision streak.' : 'Open this game from the worksheet app to save your score and appear on your class leaderboard.'}</p>
         </div>
-        <div class="game-shell-callout ${inWorksheet ? '' : 'warning'}" id="gameShellStatusCallout">${inWorksheet ? 'Scores stay inside your class and can be seen by your teacher.' : 'Practice mode is still playable, but standalone visits do not post a tracked class score.'}</div>
+        <div class="game-shell-callout ${inWorksheet ? '' : 'warning'}" id="gameShellStatusCallout">${inWorksheet ? 'Only students in your class can see this leaderboard.' : 'Practice mode is still playable, but standalone visits do not post a tracked class score.'}</div>
       </div>`;
 
     header.insertAdjacentElement('afterend', bar);
@@ -149,8 +149,8 @@
     footer.innerHTML = `
       <div class="game-shell-footer-row">
         <div>
-          <strong>Keep building your iMedia revision streak</strong>
-          <p>Play more arcade challenges, sharpen your exam knowledge, and push for a stronger class score.</p>
+          <strong>Level up your iMedia revision</strong>
+          <p>Take on more arcade challenges, sharpen your R093 knowledge, and push your class score even higher.</p>
         </div>
         <div class="game-shell-links" style="margin-top:0;">
           <a class="game-shell-link primary" href="index.html">Return to arcade</a>
@@ -168,6 +168,23 @@
       sync();
       const observer = new MutationObserver(sync);
       observer.observe(el, { childList: true, subtree: true, characterData: true });
+    });
+
+    setTimeout(hydrateSharedLeaderboard, 0);
+  }
+
+
+
+  function hydrateSharedLeaderboard() {
+    const container = document.getElementById('leaderboardContainer');
+    if (!container || container.dataset.shellLoaded === 'true') return;
+    const service = window.imediaGameScores;
+    if (!service || typeof service.loadLeaderboard !== 'function') return;
+    container.dataset.shellLoaded = 'true';
+    service.loadLeaderboard({
+      container: container,
+      gameId: String(document.body?.dataset?.topicKey || location.pathname.split('/').pop().replace(/\.html$/i, '') || 'game'),
+      topicKey: String(window.TOPIC_KEY || document.body?.dataset?.topicKey || location.pathname.split('/').pop().replace(/\.html$/i, '') || 'game')
     });
   }
 

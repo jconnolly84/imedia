@@ -5,10 +5,6 @@
   const questions = (window.COLOUR_CRITIC_QUESTIONS || []).slice();
 
   // === SHARED LEADERBOARD CONFIG (same as iMedia Genius) ===
-  const GAS_URL =
-    "https://script.google.com/macros/s/AKfycbzrw-GfhZm1Lxtm4kUHqUmUV1rzYbBRJ875twjme9SObdLeNu9AwzwerrM70N9YiLTKCg/exec";
-
-  const SHEET_ID = "10HJ2Az6GC8m-QFoibX-X0-izyszocRhzgfizY9bwoGg";
 
   // We'll log Colour Critic games under a dedicated topic key
   const COLOUR_CRITIC_TOPIC_KEY = "colourCritic";
@@ -34,7 +30,7 @@
     const service = window.imediaGameScores;
     if (!leaderboardContainer) return;
     if (!service || typeof service.loadLeaderboard !== "function") {
-      leaderboardContainer.innerHTML = "<p class='leaderboard-note'>Class leaderboard unavailable right now.</p>";
+      leaderboardContainer.innerHTML = "<p class='leaderboard-note'>Launch this game from the worksheet app to view your class leaderboard.</p>";
       return;
     }
     service.loadLeaderboard({
@@ -397,11 +393,11 @@ function nextQuestion() {
       "Use this to check how confident you are with design decisions before tackling full exam questions. " +
       buildTrackSummary();
 
-    // Log score to the shared iMedia Genius leaderboard
+    // Log score to the class leaderboard
     try {
-      const safeName = (playerName && playerName.trim()) || "Anonymous";
+      const safeName = (playerName && playerName.trim()) || "Student";
       submitScore(safeName, COLOUR_CRITIC_TOPIC_KEY, score, questions.length);
-      // Refresh leaderboard after a short delay to give Apps Script time to log
+      // Refresh leaderboard after a short delay
       setTimeout(loadLeaderboardFromFirebase, 900);
     } catch (err) {
       console.error("Error submitting Colour Critic score:", err);
@@ -418,7 +414,7 @@ function nextQuestion() {
     if (nextQuestionBtn) nextQuestionBtn.addEventListener("click", nextQuestion);
     if (restartBtn) restartBtn.addEventListener("click", restartGame);
 
-    // Load the shared leaderboard as soon as the page is ready
+    // Load the class leaderboard as soon as the page is ready
     try {
       loadLeaderboardFromFirebase();
     } catch (err) {

@@ -3,10 +3,6 @@
 // Focus: Topic 06 – Website Assets (formats, optimisation, filenames, accessibility).
 
 /* === CONFIG === */
-const GAS_URL =
-  "https://script.google.com/macros/s/AKfycbzrw-GfhZm1Lxtm4kUHqUmUV1rzYbBRJ875twjme9SObdLeNu9AwzwerrM70N9YiLTKCg/exec";
-
-const SHEET_ID = "10HJ2Az6GC8m-QFoibX-X0-izyszocRhzgfizY9bwoGg";
 
 const TOPIC_KEY = "websiteAssets";
 
@@ -278,7 +274,6 @@ const lastGameTopicEl = document.getElementById("lastGameTopic");
 const restartBtn = document.getElementById("restartBtn");
 
 /* Leaderboard DOM */
-const leaderboardTabs = Array.from(document.querySelectorAll(".lb-tab"));
 const leaderboardTitle = document.getElementById("leaderboardTitle");
 const leaderboardContainer = document.getElementById("leaderboardContainer");
 
@@ -592,7 +587,7 @@ function endGame() {
   finalScoreEl.textContent = score.toString();
   lastGameTopicEl.textContent = getTopicLabel();
 
-  const name = (playerNameInput.value || "Anonymous").trim();
+  const name = (playerNameInput.value || "Student").trim();
   submitScore(name, TOPIC_KEY, score, currentQuestions.length);
 
   playSfx(sfxGameOver);
@@ -620,7 +615,7 @@ function loadLeaderboardFromFirebase() {
   const service = window.imediaGameScores;
   if (!leaderboardContainer) return;
   if (!service || typeof service.loadLeaderboard !== 'function') {
-    leaderboardContainer.innerHTML = "<p class='leaderboard-note'>Class leaderboard unavailable right now.</p>";
+    leaderboardContainer.innerHTML = "<p class='leaderboard-note'>Launch this game from the worksheet app to view your class leaderboard.</p>";
     return;
   }
   service.loadLeaderboard({
@@ -631,32 +626,12 @@ function loadLeaderboardFromFirebase() {
 
 /* === LEADERBOARD TABS === */
 function setupLeaderboardTabs() {
-  leaderboardTabs.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      leaderboardTabs.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      const tab = btn.dataset.tab;
-      if (tab === "all") {
-        leaderboardTitle.textContent = "Leaderboards – All Time";
-      } else if (tab === "week") {
-        leaderboardTitle.textContent =
-          "Leaderboards – This Week (visual only)";
-      } else if (tab === "today") {
-        leaderboardTitle.textContent =
-          "Leaderboards – Today (visual only)";
-      }
-    });
-  });
+  if (leaderboardTitle) leaderboardTitle.textContent = "Class leaderboard";
 }
 
 /* === START / RESTART === */
 function startGameHandler() {
-  const name = (playerNameInput.value || "").trim();
-  if (!name) {
-    alert("Please enter your name to start. Scores save to your class board when launched from the worksheet app.");
-    return;
-  }
+  const name = (playerNameInput.value || "Student").trim() || "Student";
 
   resetGameState();
   gameOverPanel.classList.add("hidden");

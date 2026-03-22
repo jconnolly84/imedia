@@ -69,7 +69,7 @@
       const rows = Array.isArray(data.leaderboard) ? data.leaderboard : [];
       if (container) {
         if (!res.ok) renderMessage(container, data.message || 'Unable to load class leaderboard right now.');
-        else if (!rows.length) renderMessage(container, 'No class scores yet. Be the first to post one.');
+        else if (!rows.length) renderMessage(container, 'No class scores yet. Launch from the worksheet app and be the first to post one.');
         else {
           const html = rows.map((row, index) => `
             <tr>
