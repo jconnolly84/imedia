@@ -1,4 +1,3 @@
-
 (function () {
   function safeParse(raw, fallback) {
     try { const parsed = JSON.parse(raw); return parsed == null ? fallback : parsed; } catch (_) { return fallback; }
@@ -7,6 +6,31 @@
   function getSession() {
     const key = (window.IMEDIA_ENGAGEMENT_CONFIG && window.IMEDIA_ENGAGEMENT_CONFIG.storageKey) || 'imediaEngagementSession';
     return safeParse(localStorage.getItem(key), null);
+  }
+
+  function getPlayerDisplayName(session) {
+    if (!session || typeof session !== 'object') return 'Student';
+    return String(session.displayName || session.studentName || session.userName || session.name || 'Student').trim() || 'Student';
+  }
+
+  function stripNameEntry(session) {
+    const input = document.getElementById('playerName');
+    if (!input) return;
+    input.value = getPlayerDisplayName(session);
+    input.setAttribute('type', 'hidden');
+    input.setAttribute('aria-hidden', 'true');
+    input.dataset.autofilledByShell = 'true';
+
+    const label = document.querySelector('label[for="playerName"]');
+    if (label) label.style.display = 'none';
+
+    const row = input.closest('.field-row, .form-row, .setup-row, .control-row, .row');
+    if (row) {
+      row.classList.add('game-shell-hidden-name-row');
+      row.style.display = 'none';
+    } else {
+      input.style.display = 'none';
+    }
   }
 
   function getGameTitle() {
@@ -18,7 +42,7 @@
 
   function getSubtitle() {
     const subtitle = document.querySelector('.subtitle');
-    return subtitle ? subtitle.textContent.trim() : 'Play, revise and post scores back into your class leaderboard.';
+    return subtitle ? subtitle.textContent.trim() : 'Play, revise and build your class score in the iMedia Revision Arcade.';
   }
 
   function findScoreValue() {
@@ -66,11 +90,12 @@
     const header = app.querySelector('.app-header, header');
     if (!header) return;
 
+    const session = getSession();
+    stripNameEntry(session);
     normaliseGameUi(app);
 
-    const session = getSession();
     const inWorksheet = !!(session && session.sessionId);
-    const classLabel = session && (session.className || session.classCode) ? (session.className || session.classCode) : 'Launch from worksheet app';
+    const classLabel = session && (session.className || session.classCode) ? (session.className || session.classCode) : 'Open from worksheet app';
     const leaderboardAnchor = findLeaderboardAnchor();
     if (leaderboardAnchor && !leaderboardAnchor.id) leaderboardAnchor.id = 'leaderboardContainerCard';
 
@@ -79,7 +104,7 @@
     bar.innerHTML = `
       <div class="game-shell-panel">
         <div class="game-shell-title">
-          <span class="game-shell-kicker">Shared game shell</span>
+          <span class="game-shell-kicker">iMedia revision arcade</span>
           <strong>${escapeHtml(getGameTitle())}</strong>
         </div>
         <p class="game-shell-copy">${escapeHtml(getSubtitle())}</p>
@@ -87,7 +112,7 @@
           <div class="game-shell-chip">
             <div>
               <span class="game-shell-chip-label">Leaderboard</span>
-              <span class="game-shell-chip-value">${inWorksheet ? 'Class only' : 'Login needed'}</span>
+              <span class="game-shell-chip-value">${inWorksheet ? 'Your class only' : 'Login needed'}</span>
             </div>
           </div>
           <div class="game-shell-chip">
@@ -112,9 +137,9 @@
         <div>
           <div class="game-shell-chip-label">Live score</div>
           <div class="game-shell-score-value" id="gameShellLiveScore">${escapeHtml(findScoreValue())}</div>
-          <p class="game-shell-score-note">${inWorksheet ? 'Scores post back to your class leaderboard and engagement dashboard.' : 'Open this game from the worksheet app to save scores and appear on your class board.'}</p>
+          <p class="game-shell-score-note">${inWorksheet ? 'Finish strong to post your result to your class board and engagement dashboard.' : 'Open this game from the worksheet app to save your score and appear on your class leaderboard.'}</p>
         </div>
-        <div class="game-shell-callout ${inWorksheet ? '' : 'warning'}" id="gameShellStatusCallout">${inWorksheet ? 'Visible only to students in your class and your teacher dashboard.' : 'Standalone visits stay playable, but they do not post a tracked class score.'}</div>
+        <div class="game-shell-callout ${inWorksheet ? '' : 'warning'}" id="gameShellStatusCallout">${inWorksheet ? 'Scores stay inside your class and can be seen by your teacher.' : 'Practice mode is still playable, but standalone visits do not post a tracked class score.'}</div>
       </div>`;
 
     header.insertAdjacentElement('afterend', bar);
@@ -124,8 +149,8 @@
     footer.innerHTML = `
       <div class="game-shell-footer-row">
         <div>
-          <strong>Shared game shell active</strong>
-          <p>Cleaner structure, consistent actions, and the same class-safe score rules across the arcade.</p>
+          <strong>Keep building your iMedia revision streak</strong>
+          <p>Play more arcade challenges, sharpen your exam knowledge, and push for a stronger class score.</p>
         </div>
         <div class="game-shell-links" style="margin-top:0;">
           <a class="game-shell-link primary" href="index.html">Return to arcade</a>
@@ -144,9 +169,6 @@
       const observer = new MutationObserver(sync);
       observer.observe(el, { childList: true, subtree: true, characterData: true });
     });
-
-    const leaderboard = document.getElementById('leaderboardContainer');
-    if (leaderboard && !leaderboard.id) leaderboard.id = 'leaderboardContainer';
   }
 
   function escapeHtml(value) {
