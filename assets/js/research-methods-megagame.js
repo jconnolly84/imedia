@@ -406,7 +406,7 @@ function endGame(completedAllStages) {
 
   // Submit score and refresh leaderboard
   submitScore(playerName, score);
-  setTimeout(loadLeaderboardFromSheet, 1000);
+  setTimeout(loadLeaderboardFromFirebase, 1000);
 }
 
 function restartHandler() {
@@ -432,112 +432,42 @@ function restartHandler() {
 }
 
 // Leaderboard submission
-function submitScore(name, scoreValue) {
-  const payload = new URLSearchParams();
-  payload.append("name", name);
-  payload.append("score", scoreValue.toString());
-  payload.append("topic", "ResearchMethodsAdventure");
-  payload.append("topicLabel", "Research Methods Mega Game");
-
-  fetch(GAS_URL, {
-    method: "POST",
-    mode: "no-cors",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: payload.toString(),
-  }).catch((err) => {
-    console.error("Error submitting score:", err);
+function submitScore(name, topicKey, scoreValue, questionsPlayed) {
+  if (typeof topicKey === 'number' && typeof scoreValue === 'undefined') {
+    scoreValue = topicKey;
+    topicKey = window.TOPIC_KEY || location.pathname.split('/').pop().replace(/\.html$/i, '');
+    questionsPlayed = (typeof currentQuestions !== 'undefined' && Array.isArray(currentQuestions)) ? currentQuestions.length : ((typeof questions !== 'undefined' && Array.isArray(questions)) ? questions.length : Number(questionsPlayed || 0));
+  }
+  const service = window.imediaGameScores;
+  if (!service || typeof service.submitScore !== 'function') return;
+  const maxScore = Number(questionsPlayed || 0);
+  service.submitScore({
+    playerName: String(name || '').trim(),
+    topicKey: String(topicKey || window.TOPIC_KEY || '').trim(),
+    gameId: String(topicKey || window.TOPIC_KEY || document.body?.dataset?.topicKey || location.pathname.split('/').pop().replace(/\.html$/i, '') || 'game'),
+    gameTitle: document.title || 'Game',
+    score: Number(scoreValue || 0),
+    maxScore,
+    questionsPlayed: maxScore
   });
 }
 
-// Leaderboard rendering – same pattern as the Guess Who game (no topic filter)
-function renderLeaderboardFromSheet(response) {
-  try {
-    const table = response.table;
-    const rows = table.rows || [];
-    const entries = [];
-
-    for (let i = 0; i < rows.length; i++) {
-      const r = rows[i].c;
-      const name = (r[0] && r[0].v) || "";
-      if (!name || name.toLowerCase() === "name") continue;
-
-      const scoreVal = (r[1] && r[1].v) || 0;
-      const topicLabel = (r[2] && r[2].v) || "";
-      const topicId = (r[3] && r[3].v) || "";
-      const timestamp = (r[4] && r[4].v) || "";
-
-      entries.push({ name, score: scoreVal, topicLabel, topicId, timestamp });
-    }
-
-    if (!entries.length) {
-      leaderboardContainer.innerHTML =
-        "<p class='leaderboard-note'>No scores yet. Complete the adventure to be first on the board!</p>";
-      return;
-    }
-
-    entries.sort((a, b) => b.score - a.score);
-
-    const rowsHtml = entries
-      .map((e, i) => {
-        const place = i + 1;
-        const safeName = e.name || "Anonymous";
-        return `
-          <tr>
-            <td>${place}</td>
-            <td>${safeName}</td>
-            <td>${e.score}</td>
-          </tr>`;
-      })
-      .join("");
-
-    leaderboardContainer.innerHTML = `
-      <table class="leaderboard-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rowsHtml}
-        </tbody>
-      </table>`;
-  } catch (err) {
-    console.error("Error rendering leaderboard:", err);
-    leaderboardContainer.innerHTML =
-      "<p class='leaderboard-note'>Couldn't load leaderboard. Check sheet sharing or try again.</p>";
-  }
-}
-
-function loadLeaderboardFromSheet() {
+function loadLeaderboardFromFirebase() {
+  const service = window.imediaGameScores;
   if (!leaderboardContainer) return;
-
-  leaderboardContainer.innerHTML =
-    "<p class='leaderboard-note'>Loading leaderboard...</p>";
-
-  const tq = encodeURIComponent("select A,B,C,D,F order by B desc limit 10");
-  const callbackName = "renderLeaderboardFromSheet";
-  const url =
-    "https://docs.google.com/spreadsheets/d/" +
-    SHEET_ID +
-    "/gviz/tq?sheet=Sheet1&tq=" +
-    tq +
-    "&tqx=responseHandler:" +
-    callbackName +
-    "&_=" +
-    Date.now();
-
-  const script = document.createElement("script");
-  script.src = url;
-  document.body.appendChild(script);
+  if (!service || typeof service.loadLeaderboard !== 'function') {
+    leaderboardContainer.innerHTML = "<p class='leaderboard-note'>Class leaderboard unavailable right now.</p>";
+    return;
+  }
+  service.loadLeaderboard({
+    container: leaderboardContainer,
+    topicKey: String(window.TOPIC_KEY || document.body?.dataset?.topicKey || location.pathname.split('/').pop().replace(/\.html$/i, '') || 'game')
+  });
 }
 
 // Initial wiring
 initSfx();
-loadLeaderboardFromSheet();
+loadLeaderboardFromFirebase();
 
 startBtn.addEventListener("click", startGameHandler);
 nextStageBtn.addEventListener("click", nextStageHandler);

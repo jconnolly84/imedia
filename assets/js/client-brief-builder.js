@@ -541,116 +541,36 @@ function endGame() {
 
   playSfx(sfxGameOver);
 
-  setTimeout(loadLeaderboardFromSheet, 800);
+  setTimeout(loadLeaderboardFromFirebase, 800);
 }
 
 // === SCORE LOGGING ===
 function submitScore(name, topicKey, scoreValue, questionsPlayed) {
-  try {
-    const params = new URLSearchParams();
-    params.append("action", "submitScore");
-    params.append("name", name);
-    params.append("topic", topicKey);
-    params.append("score", String(scoreValue));
-    params.append("questionsPlayed", String(questionsPlayed));
-    params.append("timestamp", new Date().toISOString());
-
-    const img = new Image();
-    img.src = GAS_URL + "?" + params.toString();
-    console.log("Submitting score to:", img.src);
-  } catch (err) {
-    console.error("Error creating score beacon:", err);
-  }
+  const service = window.imediaGameScores;
+  if (!service || typeof service.submitScore !== 'function') return;
+  const maxScore = Number(questionsPlayed || 0);
+  service.submitScore({
+    playerName: String(name || '').trim(),
+    topicKey: String(topicKey || window.TOPIC_KEY || '').trim(),
+    gameId: String(topicKey || window.TOPIC_KEY || document.body?.dataset?.topicKey || location.pathname.split('/').pop().replace(/\.html$/i, '') || 'game'),
+    gameTitle: document.title || 'Game',
+    score: Number(scoreValue || 0),
+    maxScore,
+    questionsPlayed: maxScore
+  });
 }
 
-// === LEADERBOARD (Google Visualization API) ===
-function renderLeaderboardFromSheet(response) {
-  try {
-    const table = response.table;
-    const rows = table.rows || [];
-
-    const entries = [];
-    for (let i = 0; i < rows.length; i++) {
-      const r = rows[i].c;
-      const name = (r[0] && r[0].v) || "";
-      if (!name || name.toLowerCase() === "name") continue;
-
-      const score = (r[1] && r[1].v) || 0;
-      const topicLabel = (r[2] && r[2].v) || "";
-      const topicId = (r[3] && r[3].v) || "";
-      const timestamp = (r[4] && r[4].v) || "";
-
-      entries.push({ name, score, topicLabel, topicId, timestamp });
-    }
-
-    if (!entries.length) {
-      leaderboardContainer.innerHTML =
-        "<p class='leaderboard-note'>No scores yet. Play a game to be the first on the board!</p>";
-      return;
-    }
-
-    entries.sort((a, b) => b.score - a.score);
-
-    const rowsHtml = entries
-      .map((e, i) => {
-        const place = i + 1;
-        const topic = e.topicLabel || e.topicId || "All Topics";
-        const safeName = e.name || "Anonymous";
-        return `
-          <tr>
-            <td>${place}</td>
-            <td>${safeName}</td>
-            <td>${e.score}</td>
-            <td>${topic}</td>
-          </tr>`;
-      })
-      .join("");
-
-    leaderboardContainer.innerHTML = `
-      <table class="leaderboard-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Score</th>
-            <th>Topic</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rowsHtml}
-        </tbody>
-      </table>`;
-  } catch (err) {
-    console.error("Error rendering leaderboard:", err);
-    leaderboardContainer.innerHTML =
-      "<p class='leaderboard-note'>Couldn't load leaderboard. Check sheet sharing or try again.</p>";
-  }
-}
-
-function loadLeaderboardFromSheet() {
+function loadLeaderboardFromFirebase() {
+  const service = window.imediaGameScores;
   if (!leaderboardContainer) return;
-
-  leaderboardContainer.innerHTML =
-    "<p class='leaderboard-note'>Loading leaderboard...</p>";
-
-  const tq = encodeURIComponent(
-    "select A,B,C,D,F order by B desc limit 10"
-  );
-
-  const callbackName = "renderLeaderboardFromSheet";
-  const url =
-    "https://docs.google.com/spreadsheets/d/" +
-    SHEET_ID +
-    "/gviz/tq?sheet=Sheet1&tq=" +
-    tq +
-    "&tqx=responseHandler:" +
-    callbackName +
-    "&_=" +
-    Date.now();
-
-  const script = document.createElement("script");
-  script.src = url;
-  document.body.appendChild(script);
+  if (!service || typeof service.loadLeaderboard !== 'function') {
+    leaderboardContainer.innerHTML = "<p class='leaderboard-note'>Class leaderboard unavailable right now.</p>";
+    return;
+  }
+  service.loadLeaderboard({
+    container: leaderboardContainer,
+    topicKey: String(window.TOPIC_KEY || document.body?.dataset?.topicKey || location.pathname.split('/').pop().replace(/\.html$/i, '') || 'game')
+  });
 }
 
 // === LEADERBOARD TABS ===
@@ -678,7 +598,7 @@ function setupLeaderboardTabs() {
 function startGameHandler() {
   const name = (playerNameInput.value || "").trim();
   if (!name) {
-    alert("Please enter your initials so we can log your score!");
+    alert("Please enter your name to start. Scores save to your class board when launched from the worksheet app.");
     return;
   }
 
@@ -697,7 +617,7 @@ function restartGameHandler() {
 // === INIT ===
 setupLeaderboardTabs();
 initSfx();
-loadLeaderboardFromSheet();
+loadLeaderboardFromFirebase();
 
 if (startBtn) startBtn.addEventListener("click", startGameHandler);
 if (restartBtn) restartBtn.addEventListener("click", restartGameHandler);

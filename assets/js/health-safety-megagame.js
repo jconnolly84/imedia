@@ -462,7 +462,7 @@ function endGame(completedAllStages) {
   );
 
   // refresh leaderboard shortly afterwards
-  setTimeout(loadLeaderboardFromSheet, 1000);
+  setTimeout(loadLeaderboardFromFirebase, 1000);
 }
 
 // -----------------------------------------------------------------------------
@@ -470,134 +470,29 @@ function endGame(completedAllStages) {
 // -----------------------------------------------------------------------------
 
 function submitGauntletScore(name, scoreValue, completedAll) {
-  try {
-    const params = new URLSearchParams();
-    params.append("action", "submitScore");
-    params.append("name", name || "Anonymous");
-    params.append("topic", "HealthSafetyGauntlet");
-    params.append(
-      "score",
-      typeof scoreValue === "number" ? String(scoreValue) : "0"
-    );
-
-    // Rough count of questions attempted
-    let questionsPlayed = 0;
-    for (let i = 0; i < STAGES.length; i++) {
-      const stage = STAGES[i];
-      if (!stage.questions) continue;
-      if (i < currentStageIndex) {
-        questionsPlayed += stage.questions.length;
-      } else if (i === currentStageIndex) {
-        questionsPlayed += currentQuestionIndex;
-      }
-    }
-    params.append("questionsPlayed", String(questionsPlayed));
-    params.append("completedAll", completedAll ? "yes" : "no");
-    params.append("timestamp", new Date().toISOString());
-
-    const img = new Image();
-    img.src = GAS_URL + "?" + params.toString();
-  } catch (err) {
-    console.error("Error submitting score:", err);
-  }
+  const service = window.imediaGameScores;
+  if (!service || typeof service.submitScore !== 'function') return;
+  const totalQuestions = Array.isArray(STAGES) ? STAGES.reduce((total, stage) => total + ((stage.questions || []).length), 0) : Number(currentQuestionIndex || 0);
+  service.submitScore({
+    playerName: String(name || '').trim(),
+    topicKey: 'health-safety-megagame',
+    gameId: 'health-safety-megagame',
+    gameTitle: document.title || 'Game',
+    score: Number(scoreValue || 0),
+    maxScore: totalQuestions,
+    questionsPlayed: totalQuestions,
+    completedAll: !!completedAll
+  });
 }
 
-function renderLeaderboardFromSheet(response) {
-  try {
-    const table = response.table;
-    const rows = table.rows || [];
-    const entries = [];
-
-    for (let i = 0; i < rows.length; i++) {
-      const r = rows[i].c;
-      if (!r || !r.length) continue;
-
-      const name = (r[0] && r[0].v) || "";
-      if (!name || name.toLowerCase() === "name") continue;
-
-      const scoreVal = (r[1] && r[1].v) || 0;
-      const topicLabel = (r[2] && r[2].v) || "";
-      const topicId = (r[3] && r[3].v) || "";
-      const timestamp = (r[4] && r[4].v) || "";
-
-      // Filter to Health & Safety Gauntlet rows if the sheet includes multiple games
-      if (
-        topicLabel &&
-        !String(topicLabel).toLowerCase().includes("health") &&
-        !String(topicId).toLowerCase().includes("health")
-      ) {
-        continue;
-      }
-
-      entries.push({ name, score: scoreVal, topicLabel, topicId, timestamp });
-    }
-
-    if (!entries.length) {
-      leaderboardContainer.innerHTML =
-        "<p class='leaderboard-note'>No scores yet. Finish the gauntlet to claim the top spot!</p>";
-      return;
-    }
-
-    entries.sort((a, b) => b.score - a.score);
-
-    const rowsHtml = entries
-      .slice(0, 10)
-      .map((e, i) => {
-        const place = i + 1;
-        const playerName = e.name || "Anonymous";
-        const topic = e.topicLabel || e.topicId || "All topics";
-        return `
-          <tr>
-            <td>${place}</td>
-            <td>${playerName}</td>
-            <td>${e.score}</td>
-            <td>${topic}</td>
-          </tr>`;
-      })
-      .join("");
-
-    leaderboardContainer.innerHTML = `
-      <table class="leaderboard-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name (initials)</th>
-            <th>Score</th>
-            <th>Topic</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rowsHtml}
-        </tbody>
-      </table>`;
-  } catch (err) {
-    console.error("Error rendering leaderboard:", err);
-    leaderboardContainer.innerHTML =
-      "<p class='leaderboard-note'>Couldn't load leaderboard. Check sheet sharing or try again later.</p>";
-  }
-}
-
-function loadLeaderboardFromSheet() {
+function loadLeaderboardFromFirebase() {
+  const service = window.imediaGameScores;
   if (!leaderboardContainer) return;
-
-  leaderboardContainer.innerHTML =
-    "<p class='leaderboard-note'>Loading leaderboard...</p>";
-
-  const tq = encodeURIComponent("select A,B,C,D,F order by B desc limit 20");
-  const callbackName = "renderLeaderboardFromSheet";
-  const url =
-    "https://docs.google.com/spreadsheets/d/" +
-    SHEET_ID +
-    "/gviz/tq?sheet=Sheet1&tq=" +
-    tq +
-    "&tqx=responseHandler:" +
-    callbackName +
-    "&_=" +
-    Date.now();
-
-  const script = document.createElement("script");
-  script.src = url;
-  document.body.appendChild(script);
+  if (!service || typeof service.loadLeaderboard !== 'function') {
+    leaderboardContainer.innerHTML = "<p class='leaderboard-note'>Class leaderboard unavailable right now.</p>";
+    return;
+  }
+  service.loadLeaderboard({ container: leaderboardContainer, gameId: 'health-safety-megagame', topicKey: 'health-safety-megagame' });
 }
 
 // -----------------------------------------------------------------------------
@@ -646,7 +541,7 @@ function restartHandler() {
 
 (function init() {
   initSfx();
-  // loadLeaderboardFromSheet(); // disabled leaderboard
+  loadLeaderboardFromFirebase();
 
   if (startBtn) startBtn.addEventListener("click", startGameHandler);
   if (nextStageBtn) nextStageBtn.addEventListener("click", nextStageHandler);

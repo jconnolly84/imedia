@@ -577,129 +577,30 @@ function restartGame() {
 
 // ---------- LEADERBOARD & GOOGLE SHEETS ----------
 
-function submitGauntletScore(name, score, completedAll) {
-  try {
-    const params = new URLSearchParams();
-    params.append("action", "submitScore");
-    params.append("name", name);
-    params.append("topic", "WorkPlanDetective");
-    params.append("score", String(score));
-    params.append(
-      "questionsPlayed",
-      String(
-        STAGES.reduce((total, stg, index) => {
-          if (index < currentStageIndex) return total + (stg.questions || []).length;
-          if (index === currentStageIndex) {
-            return total + currentQuestionIndex;
-          }
-          return total;
-        }, 0)
-      )
-    );
-    params.append("completedAll", completedAll ? "1" : "0");
-
-    fetch(GAS_URL + "?" + params.toString(), { method: "GET", mode: "no-cors" })
-      .catch((err) => {
-        console.warn("Score submission failed (ignored):", err);
-      });
-  } catch (err) {
-    console.warn("Could not submit score:", err);
-  }
+function submitGauntletScore(name, scoreValue, completedAll) {
+  const service = window.imediaGameScores;
+  if (!service || typeof service.submitScore !== 'function') return;
+  const totalQuestions = Array.isArray(STAGES) ? STAGES.reduce((total, stage) => total + ((stage.questions || []).length), 0) : Number(currentQuestionIndex || 0);
+  service.submitScore({
+    playerName: String(name || '').trim(),
+    topicKey: 'work-plan-megagame',
+    gameId: 'work-plan-megagame',
+    gameTitle: document.title || 'Game',
+    score: Number(scoreValue || 0),
+    maxScore: totalQuestions,
+    questionsPlayed: totalQuestions,
+    completedAll: !!completedAll
+  });
 }
 
-function loadLeaderboardFromSheet() {
+function loadLeaderboardFromFirebase() {
+  const service = window.imediaGameScores;
   if (!leaderboardContainer) return;
-
-  const tq =
-    "select A,B,C,D,E where A is not null order by B desc limit 20";
-
-  const callbackName = "lbCallback_" + Date.now();
-
-  window[callbackName] = function (data) {
-    try {
-      if (!data || !data.table) {
-        leaderboardContainer.innerHTML =
-          "<p class='leaderboard-note'>No leaderboard data available yet.</p>";
-        return;
-      }
-
-      const rows = data.table.rows || [];
-      const entries = [];
-
-      for (let i = 0; i < rows.length; i++) {
-        const r = rows[i].c;
-        const name = (r[0] && r[0].v) || "";
-        if (!name || name.toLowerCase() === "name") continue;
-
-        const scoreVal = (r[1] && r[1].v) || 0;
-        const topicLabel = (r[2] && r[2].v) || "";
-        const topicId = (r[3] && r[3].v) || "";
-        const timestamp = (r[4] && r[4].v) || "";
-
-        // No topic filtering – show the shared iMedia Genius leaderboard
-        entries.push({ name, score: scoreVal, topicLabel, topicId, timestamp });
-      }
-
-      if (!entries.length) {
-        leaderboardContainer.innerHTML =
-          "<p class='leaderboard-note'>No scores yet. Complete the gauntlet to be first on the board!</p>";
-        return;
-      }
-
-      entries.sort((a, b) => b.score - a.score);
-
-      const rowsHtml = entries
-        .map((e, i) => {
-          const place = i + 1;
-          const name = e.name || "Anonymous";
-          const topic = e.topicLabel || e.topicId || "All Topics";
-          return `
-          <tr>
-            <td>${place}</td>
-            <td>${name}</td>
-            <td>${e.score}</td>
-            <td>${topic}</td>
-          </tr>`;
-        })
-        .join("");
-
-      leaderboardContainer.innerHTML = `
-      <table class="leaderboard-table">
-        <thead>
-          <tr>
-            <th>Place</th>
-            <th>Player</th>
-            <th>Score</th>
-            <th>Topic</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rowsHtml}
-        </tbody>
-      </table>`;
-    } finally {
-      // Clean up callback
-      try {
-        delete window[callbackName];
-      } catch (e) {
-        window[callbackName] = undefined;
-      }
-    }
-  };
-
-  const url =
-    "https://docs.google.com/spreadsheets/d/" +
-    SHEET_ID +
-    "/gviz/tq?sheet=Scores&range=A:E&tq=" +
-    encodeURIComponent(tq) +
-    "&tqx=responseHandler:" +
-    callbackName +
-    "&_=" +
-    Date.now();
-
-  const script = document.createElement("script");
-  script.src = url;
-  document.body.appendChild(script);
+  if (!service || typeof service.loadLeaderboard !== 'function') {
+    leaderboardContainer.innerHTML = "<p class='leaderboard-note'>Class leaderboard unavailable right now.</p>";
+    return;
+  }
+  service.loadLeaderboard({ container: leaderboardContainer, gameId: 'work-plan-megagame', topicKey: 'work-plan-megagame' });
 }
 
 // Leaderboard tabs (if present)
@@ -717,7 +618,7 @@ function setupLeaderboardTabs() {
         leaderboardTitle.textContent = "Work Plan Detective – Top Runs";
       }
 
-      loadLeaderboardFromSheet();
+      loadLeaderboardFromFirebase();
     })
   );
 }
@@ -741,7 +642,7 @@ function restartHandler() {
 // Init
 initSfx();
 setupLeaderboardTabs();
-loadLeaderboardFromSheet();
+loadLeaderboardFromFirebase();
 
 if (startBtn) startBtn.addEventListener("click", startGameHandler);
 if (nextStageBtn) nextStageBtn.addEventListener("click", nextStageHandler);

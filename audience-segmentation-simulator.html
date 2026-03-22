@@ -10,6 +10,7 @@
 <link href="assets/css/audience-segmentation-simulator.css" rel="stylesheet"/>
 <link href="favicon.ico" rel="icon" type="image/x-icon"/><link href="https://imediagenius.co.uk/audience-segmentation-simulator.html" rel="canonical"/>
   <script src="assets/js/engagement-config.js"></script>
+<link href="assets/css/game-shell.css" rel="stylesheet"/>
 </head>
 <body>
 <div class="app">
@@ -122,7 +123,7 @@
 <p>Your final score: <strong id="finalScore">0</strong></p>
 <p>You played: <strong id="lastGameTopic">Audience Segmentation</strong></p>
 <button class="btn" id="restartBtn">Play Again</button>
-<div class="card leaderboard-card" style="margin-top: 16px;">
+<div class="card leaderboard-card" id="leaderboardContainerCard" style="margin-top: 16px;">
 <div class="leaderboard-header">
 <h3 id="leaderboardTitle">Leaderboards – All Time</h3>
 <div class="leaderboard-tabs" role="tablist">
@@ -146,5 +147,7 @@
 </div>
 <script src="assets/js/audience-segmentation-simulator.js"></script>
   <script src="assets/js/imedia-engagement-tracker.js"></script>
+  <script src="assets/js/game-score-service.js"></script>
+  <script src="assets/js/game-shell.js"></script>
 </body>
 </html>
