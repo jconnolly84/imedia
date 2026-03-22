@@ -1,4 +1,5 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -90,7 +91,7 @@
 
 </style>
 <link href="assets/css/markable-mini-exam.css" rel="stylesheet"/>
-  <script src="assets/js/engagement-config.js"></script>
+<script src="assets/js/engagement-config.js"></script>
 <link href="assets/css/game-shell.css" rel="stylesheet"/>
 </head>
 <body>
@@ -146,8 +147,8 @@
 <option value="topic-34-moving-image-files.html">34 – Moving Image Files</option>
 <option value="topic-35-hardware-and-software.html">35 – Hardware &amp; Software</option>
 </select>
-<a class="site-nav-login" href="https://imediagenius.web.app/" target="_blank" rel="noopener noreferrer">
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M18 12H9m0 0l3-3m-3 3l3 3"/></svg>
+<a class="site-nav-login" href="https://imediagenius.web.app/" rel="noopener noreferrer" target="_blank">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M18 12H9m0 0l3-3m-3 3l3 3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
 <span>Login</span>
 </a>
 </div>
@@ -178,115 +179,84 @@
 <a class="back-link" href="index.html">← Back to iMedia Genius – R093 Revision Arcade</a>
 </header>
 <main>
-
-      <section class="mini-exam-controls">
-        <div class="controls">
-          <span class="pill"><strong>Paper:</strong> <span id="paperId">Pre‑Mock 01</span></span>
-          <span class="pill"><strong>Total:</strong> <span id="totalMarks">0</span>/31</span>
-          <span class="pill"><strong>Timer:</strong> <span id="timer">30:00</span></span>
-
-          <button class="random-btn" id="startBtn" type="button"><span class="icon">⏱️</span>Start</button>
-          <button class="filter-btn" id="pauseBtn" type="button">Pause</button>
-          <button class="filter-btn" id="saveBtn" type="button">Save</button>
-          <button class="filter-btn" id="loadBtn" type="button">Load</button>
-          <button class="filter-btn" id="resetBtn" type="button">Reset</button>
-        </div>
-      </section>
-
-
-      <section class="submit-card" aria-label="Submit answers for marking">
-        <div class="submit-row">
-          <label class="submit-field">
-            <span>Student name</span>
-            <input id="studentName" type="text" placeholder="e.g. Jack D" autocomplete="name"/>
-          </label>
-          <label class="submit-field">
-            <span>Class</span>
-            <input id="classCode" type="text" placeholder="e.g. 10OP3" autocomplete="off"/>
-          </label>
+<section class="mini-exam-controls">
+<div class="controls">
+<span class="pill"><strong>Paper:</strong> <span id="paperId">Pre‑Mock 01</span></span>
+<span class="pill"><strong>Total:</strong> <span id="totalMarks">0</span>/31</span>
+<span class="pill"><strong>Timer:</strong> <span id="timer">30:00</span></span>
+<button class="random-btn" id="startBtn" type="button"><span class="icon">⏱️</span>Start</button>
+<button class="filter-btn" id="pauseBtn" type="button">Pause</button>
+<button class="filter-btn" id="saveBtn" type="button">Save</button>
+<button class="filter-btn" id="loadBtn" type="button">Load</button>
+<button class="filter-btn" id="resetBtn" type="button">Reset</button>
 </div>
-
-      <div id="examLoadError" style="display:none;margin:12px 0;padding:12px;border-radius:12px;background:rgba(255,0,0,0.12);border:1px solid rgba(255,0,0,0.35);"></div>
-
 </section>
-
-      <div class="grid-header">
-        <h2>Answer all questions</h2>
-        <small class="hint">When finished, click <strong>Submit for marking</strong>.</small>
-      </div>
-
-      <section id="questions" class="exam-stack"></section>
-      <section class="submit-card submit-card-bottom" aria-label="Submit answers for marking (bottom)">
-        <div class="submit-row" style="justify-content:flex-end">
-          <button class="random-btn" id="submitAttemptBtn" type="button"><span class="icon">📤</span>Submit for marking</button>
-        </div>
-        <div id="submitStatus" class="copy-status" aria-live="polite"></div>
-      </section>
-
-
-      
-        <section class="boost-card" id="boostCard">
-          <div class="boost-header">
-            <h3 class="boost-title">Level 2 → Level 3 Boost (9‑marker)</h3>
-            <p class="hint">As you type Q11, this will spot what’s missing for top‑band answers.</p>
-          </div>
-          <ul id="l2l3Tips" class="boost-list">
-            <li class="hint">Start typing your Q11 answer to see tailored targets.</li>
-          </ul>
-        </section>
-
-      <section class="prompt-card teacher-only">
-        <div class="prompt-header">
-          <div>
-            <h3 class="prompt-title">AI Marking Prompt</h3>
-            <p class="hint">This compiles questions + mark schemes + your answers into one examiner-style prompt.</p>
-          </div>
-          <div class="prompt-actions">
-            <button class="random-btn" id="buildPromptBtn" type="button"><span class="icon">🧠</span>Build & Copy AI Marking Prompt</button>
-            <button class="filter-btn" id="copyPromptBtn" type="button">Copy</button>
-          </div>
-        </div>
-
-        <div class="ai-links">
-          <span class="ai-links-label">Open an AI tool:</span>
-          <button type="button" class="btn-link" onclick="openAIAndCopy('https://chat.openai.com/')">ChatGPT</button>
-          <button type="button" class="btn-link" onclick="openAIAndCopy('https://gemini.google.com/')">Gemini</button>
-          <button type="button" class="btn-link" onclick="openAIAndCopy('https://claude.ai/')">Claude</button>
-          <button type="button" class="btn-link" onclick="openAIAndCopy('https://copilot.microsoft.com/')">Copilot</button>
-          <button type="button" class="btn-link" id="copyAnswersBtn">Copy answers only</button>
-        </div>
-        <div id="copyStatus" class="copy-status" aria-live="polite"></div>
-
-        <textarea id="promptBox" class="prompt-box" placeholder="Your AI marking prompt will appear here after you click Build & Copy AI Marking Prompt…" spellcheck="false"></textarea>
-      </section>
-    </main>
+<section aria-label="Submit answers for marking" class="submit-card">
+<div class="submit-row">
+<label class="submit-field">
+<span>Student name</span>
+<input autocomplete="name" id="studentName" placeholder="e.g. Jack D" type="text"/>
+</label>
+<label class="submit-field">
+<span>Class</span>
+<input autocomplete="off" id="classCode" placeholder="e.g. 10OP3" type="text"/>
+</label>
+</div>
+<div id="examLoadError" style="display:none;margin:12px 0;padding:12px;border-radius:12px;background:rgba(255,0,0,0.12);border:1px solid rgba(255,0,0,0.35);"></div>
+</section>
+<div class="grid-header">
+<h2>Answer all questions</h2>
+<small class="hint">When finished, click <strong>Submit for marking</strong>.</small>
+</div>
+<section class="exam-stack" id="questions"></section>
+<section aria-label="Submit answers for marking (bottom)" class="submit-card submit-card-bottom">
+<div class="submit-row" style="justify-content:flex-end">
+<button class="random-btn" id="submitAttemptBtn" type="button"><span class="icon">📤</span>Submit for marking</button>
+</div>
+<div aria-live="polite" class="copy-status" id="submitStatus"></div>
+</section>
+<section class="boost-card" id="boostCard">
+<div class="boost-header">
+<h3 class="boost-title">Level 2 → Level 3 Boost (9‑marker)</h3>
+<p class="hint">As you type Q11, this will spot what’s missing for top‑band answers.</p>
+</div>
+<ul class="boost-list" id="l2l3Tips">
+<li class="hint">Start typing your Q11 answer to see tailored targets.</li>
+</ul>
+</section>
+<section class="prompt-card teacher-only">
+<div class="prompt-header">
+<div>
+<h3 class="prompt-title">AI Marking Prompt</h3>
+<p class="hint">This compiles questions + mark schemes + your answers into one examiner-style prompt.</p>
+</div>
+<div class="prompt-actions">
+<button class="random-btn" id="buildPromptBtn" type="button"><span class="icon">🧠</span>Build &amp; Copy AI Marking Prompt</button>
+<button class="filter-btn" id="copyPromptBtn" type="button">Copy</button>
+</div>
+</div>
+<div class="ai-links">
+<span class="ai-links-label">Open an AI tool:</span>
+<button class="btn-link" onclick="openAIAndCopy('https://chat.openai.com/')" type="button">ChatGPT</button>
+<button class="btn-link" onclick="openAIAndCopy('https://gemini.google.com/')" type="button">Gemini</button>
+<button class="btn-link" onclick="openAIAndCopy('https://claude.ai/')" type="button">Claude</button>
+<button class="btn-link" onclick="openAIAndCopy('https://copilot.microsoft.com/')" type="button">Copilot</button>
+<button class="btn-link" id="copyAnswersBtn" type="button">Copy answers only</button>
+</div>
+<div aria-live="polite" class="copy-status" id="copyStatus"></div>
+<textarea class="prompt-box" id="promptBox" placeholder="Your AI marking prompt will appear here after you click Build &amp; Copy AI Marking Prompt…" spellcheck="false"></textarea>
+</section>
+</main>
 <footer>
 <p>© <span id="year"></span> iMedia Genius · R093 Revision Arcade</p>
 <p class="footer-note">This is an independent teacher-created resource for OCR Cambridge National in Creative iMedia (R093). It is not affiliated with, endorsed by or approved by OCR.</p>
 </footer>
-<section class="card leaderboard-card shared-class-leaderboard" id="leaderboardContainerCard">
-<div class="leaderboard-header">
-<h2 id="leaderboardTitle">Class leaderboard</h2>
-<p class="leaderboard-intro">See how your score compares with other students in your class.</p>
-</div>
-<div class="leaderboard-summary-row">
-<div class="leaderboard-summary-card">
-<span class="leaderboard-summary-label">Who can see it?</span>
-<strong>Students in your class only</strong>
-</div>
-<div class="leaderboard-summary-card">
-<span class="leaderboard-summary-label">How to track scores</span>
-<strong>Launch from the worksheet app</strong>
-</div>
-</div>
-<div id="leaderboardContainer"></div>
-<p class="leaderboard-note">Finish a game from the worksheet app to post your score to your class leaderboard.</p>
-</section>
+
 </div>
 <script src="assets/js/host.js"></script>
-<script type="module" src="assets/js/markable-mini-exam.js"></script>
-  <script src="assets/js/imedia-engagement-tracker.js"></script>
-  <script src="assets/js/game-score-service.js"></script>
-  <script src="assets/js/game-shell.js"></script>
+<script src="assets/js/markable-mini-exam.js" type="module"></script>
+<script src="assets/js/imedia-engagement-tracker.js"></script>
+<script src="assets/js/game-score-service.js"></script>
+<script src="assets/js/game-shell.js"></script>
 </body>
 </html>

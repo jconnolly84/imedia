@@ -54,9 +54,6 @@
     return '0';
   }
 
-  function findLeaderboardAnchor() {
-    return document.querySelector('#leaderboardContainer') || document.querySelector('#leaderboardContainerCard') || document.querySelector('.leaderboard-card');
-  }
 
   function normaliseGameUi(app) {
     const cardSelectors = ['.question-panel', '.help-panel', '.question-card', '.setup-card', '.game-card', '.leaderboard-card', '.footer-card', '.nine-card', '.interface-panel', '.side-panel', '.panel'];
@@ -96,8 +93,6 @@
 
     const inWorksheet = !!(session && session.sessionId);
     const classLabel = session && (session.className || session.classCode) ? (session.className || session.classCode) : 'Open from worksheet app';
-    const leaderboardAnchor = findLeaderboardAnchor();
-    if (leaderboardAnchor && !leaderboardAnchor.id) leaderboardAnchor.id = 'leaderboardContainerCard';
 
     const bar = document.createElement('section');
     bar.className = 'game-shell-bar';
@@ -111,14 +106,14 @@
         <div class="game-shell-meta">
           <div class="game-shell-chip">
             <div>
-              <span class="game-shell-chip-label">Leaderboard</span>
-              <span class="game-shell-chip-value">${inWorksheet ? 'Your class only' : 'Login needed'}</span>
+              <span class="game-shell-chip-label">Tracking</span>
+              <span class="game-shell-chip-value">${inWorksheet ? 'Worksheet linked' : 'Worksheet app only'}</span>
             </div>
           </div>
           <div class="game-shell-chip">
             <div>
-              <span class="game-shell-chip-label">Class</span>
-              <span class="game-shell-chip-value">${escapeHtml(classLabel)}</span>
+              <span class="game-shell-chip-label">Worksheet app</span>
+              <span class="game-shell-chip-value">${inWorksheet ? escapeHtml(classLabel) : 'Open to track scores'}</span>
             </div>
           </div>
           <div class="game-shell-chip">
@@ -130,16 +125,16 @@
         </div>
         <div class="game-shell-links">
           <a class="game-shell-link primary" href="index.html">Back to arcade</a>
-          ${leaderboardAnchor ? `<a class="game-shell-link secondary" href="#${leaderboardAnchor.id || 'leaderboardContainerCard'}">Jump to leaderboard</a>` : '<a class="game-shell-link secondary" href="https://imediagenius.web.app/" target="_blank" rel="noopener noreferrer">Open worksheet app</a>'}
+          <a class="game-shell-link secondary" href="https://imediagenius.web.app/" target="_blank" rel="noopener noreferrer">Open worksheet app</a>
         </div>
       </div>
       <div class="game-shell-panel game-shell-score-card">
         <div>
           <div class="game-shell-chip-label">Live score</div>
           <div class="game-shell-score-value" id="gameShellLiveScore">${escapeHtml(findScoreValue())}</div>
-          <p class="game-shell-score-note">${inWorksheet ? 'Finish strong to post your result to your class board and build your revision streak.' : 'Open this game from the worksheet app to save your score and appear on your class leaderboard.'}</p>
+          <p class="game-shell-score-note">${inWorksheet ? 'Finish strong to send your score back to the worksheet app and keep your revision streak going.' : 'Play here for practice, then open the worksheet app to track scores and class progress.'}</p>
         </div>
-        <div class="game-shell-callout ${inWorksheet ? '' : 'warning'}" id="gameShellStatusCallout">${inWorksheet ? 'Only students in your class can see this leaderboard.' : 'Practice mode is still playable, but standalone visits do not post a tracked class score.'}</div>
+        <div class="game-shell-callout ${inWorksheet ? '' : 'warning'}" id="gameShellStatusCallout">${inWorksheet ? 'Your tracked score stays linked to the worksheet app for your class.' : 'Practice mode is still playable, but tracked scores now live in the worksheet app only.'}</div>
       </div>`;
 
     header.insertAdjacentElement('afterend', bar);
@@ -170,23 +165,10 @@
       observer.observe(el, { childList: true, subtree: true, characterData: true });
     });
 
-    setTimeout(hydrateSharedLeaderboard, 0);
   }
 
 
 
-  function hydrateSharedLeaderboard() {
-    const container = document.getElementById('leaderboardContainer');
-    if (!container || container.dataset.shellLoaded === 'true') return;
-    const service = window.imediaGameScores;
-    if (!service || typeof service.loadLeaderboard !== 'function') return;
-    container.dataset.shellLoaded = 'true';
-    service.loadLeaderboard({
-      container: container,
-      gameId: String(document.body?.dataset?.topicKey || location.pathname.split('/').pop().replace(/\.html$/i, '') || 'game'),
-      topicKey: String(window.TOPIC_KEY || document.body?.dataset?.topicKey || location.pathname.split('/').pop().replace(/\.html$/i, '') || 'game')
-    });
-  }
 
   function escapeHtml(value) {
     return String(value == null ? '' : value)
