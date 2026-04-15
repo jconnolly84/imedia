@@ -11,6 +11,16 @@
 <link href="assets/css/topic.css" rel="stylesheet"/>
 <link href="assets/css/nav.css" rel="stylesheet"/>
 <link href="favicon.ico" rel="icon" type="image/x-icon"/><link href="https://imediagenius.co.uk/topic-02-new-media.html" rel="canonical"/>
+<meta property="og:type"        content="website"/>
+<meta property="og:site_name"   content="iMedia Genius"/>
+<meta property="og:url"         content="https://imediagenius.co.uk/topic-02-new-media.html"/>
+<meta property="og:title"       content="iMedia Genius · R093 Revision Arcade"/>
+<meta property="og:description" content="R093 · 02 – New Media revision page for OCR Creative iMedia R093 with clear notes, examples and practice questions."/>
+<meta property="og:image"       content="https://imediagenius.co.uk/img/topic-02-new-media-hero.png"/>
+<meta name="twitter:card"       content="summary_large_image"/>
+<meta name="twitter:title"      content="iMedia Genius · R093 Revision Arcade"/>
+<meta name="twitter:description" content="R093 · 02 – New Media revision page for OCR Creative iMedia R093 with clear notes, examples and practice questions."/>
+<meta name="twitter:image"      content="https://imediagenius.co.uk/img/topic-02-new-media-hero.png"/>
 <style>
   /* Inline infographic styles – shared across topics */
   .infographic-grid {
@@ -128,37 +138,25 @@
 
 .exam-intro{margin:8px 0 14px;opacity:0.92;}
 
-/* Flashcards */
-.flashcard-grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap:18px;
-  margin-top:1.5rem;
-}
-.flashcard{perspective:1000px;}
-.flashcard-inner{
-  position:relative;
-  width:100%;
-  height:180px;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  cursor:pointer;
-}
-.flashcard.flipped .flashcard-inner{transform: rotateY(180deg);}
-.flashcard-front,.flashcard-back{
-  position:absolute;
-  width:100%;
-  height:100%;
-  backface-visibility:hidden;
-  border-radius:18px;
-  padding:18px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  box-shadow:0 6px 16px rgba(0,0,0,0.35);
-  font-weight:600;
-}
+/* Flashcards – deck player */
+  .fc-deck{margin-top:1.5rem;max-width:680px;margin-left:auto;margin-right:auto;}
+  .fc-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+  .fc-counter{font-size:0.88rem;opacity:0.7;font-weight:600;letter-spacing:0.04em;}
+  .fc-btn{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14);color:inherit;
+    border-radius:8px;padding:6px 14px;font:inherit;font-size:0.88rem;font-weight:700;cursor:pointer;
+    transition:background 0.15s;}
+  .fc-btn:hover{background:rgba(255,255,255,0.13);}
+  .fc-stage{perspective:900px;margin-bottom:14px;}
+  .fc-card{width:100%;height:190px;cursor:pointer;transition:opacity 0.12s;}
+  .fc-inner{position:relative;width:100%;height:100%;transition:transform 0.55s;transform-style:preserve-3d;}
+  .fc-card.flipped .fc-inner{transform:rotateY(180deg);}
+  .fc-front,.fc-back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    border-radius:18px;padding:22px 24px;display:flex;align-items:center;justify-content:center;
+    text-align:center;box-shadow:0 6px 16px rgba(0,0,0,0.35);font-weight:600;line-height:1.5;}
+  .fc-front{background:#004556;color:#fdf5e6;}
+  .fc-back{background:#f4b163;color:#004556;transform:rotateY(180deg);}
+  .fc-nav{display:flex;gap:10px;justify-content:center;}
+  .fc-nav .fc-btn{padding:8px 28px;font-size:0.92rem;}
 .flashcard-front{background:#004556;color:#fdf5e6;}
 .flashcard-back{background:#f4b163;color:#004556;transform: rotateY(180deg);}
 
@@ -397,9 +395,24 @@
 <!-- Flashcards -->
 <section class="topic-section topic-flashcards">
   <h2>Revision Flashcards – New Media</h2>
-  <p class="topic-intro">Click a card to flip it. Test yourself before revealing the answer.</p>
-  <p class="topic-intro" id="flashcardCount" style="opacity:0.75;margin-top:-6px;"></p>
-  <div class="flashcard-grid" id="flashcardGrid"></div>
+  <div class="fc-deck" id="fcDeck">
+    <div class="fc-toolbar">
+      <span class="fc-counter" id="fcCounter">– / –</span>
+      <button class="fc-btn fc-shuffle" id="fcShuffle" title="Shuffle cards">⇄ Shuffle</button>
+    </div>
+    <div class="fc-stage">
+      <div class="fc-card" id="fcCard" tabindex="0" role="button" aria-label="Flip flashcard">
+        <div class="fc-inner">
+          <div class="fc-front">Loading…</div>
+          <div class="fc-back"></div>
+        </div>
+      </div>
+    </div>
+    <div class="fc-nav">
+      <button class="fc-btn fc-prev" id="fcPrev" aria-label="Previous card">← Prev</button>
+      <button class="fc-btn fc-next" id="fcNext" aria-label="Next card">Next →</button>
+    </div>
+  </div>
 </section>
 
 <!-- Linked games -->
@@ -793,118 +806,97 @@ What is the purpose of using digital images and graphics for a website's buttons
 
 
 <script>
-/* Flashcards loader (external CSV + embedded fallback) */
+/* Flashcards - deck player */
 (async function(){
-  const grid = document.getElementById('flashcardGrid');
-  const countEl = document.getElementById('flashcardCount');
-  if (!grid) return;
+  var card      = document.getElementById('fcCard');
+  var front     = card && card.querySelector('.fc-front');
+  var back      = card && card.querySelector('.fc-back');
+  var counter   = document.getElementById('fcCounter');
+  var prevBtn   = document.getElementById('fcPrev');
+  var nextBtn   = document.getElementById('fcNext');
+  var shuffleBtn = document.getElementById('fcShuffle');
+  if (!card || !front || !back) return;
 
-  function parseCSV(text){
-    const rows = [];
-    let row = [];
-    let cur = '';
-    let inQuotes = false;
-
-    for (let i = 0; i < text.length; i++) {
-      const ch = text[i];
-      const next = text[i + 1];
-
+  function parseCSV(text) {
+    var rows = [], row = [], cur = '', inQ = false;
+    for (var i = 0; i < text.length; i++) {
+      var ch = text[i], nx = text[i + 1];
       if (ch === '"') {
-        if (inQuotes && next === '"') { cur += '"'; i++; }
-        else { inQuotes = !inQuotes; }
+        if (inQ && nx === '"') { cur += '"'; i++; } else { inQ = !inQ; }
         continue;
       }
-
-      if (ch === ',' && !inQuotes) {
-        row.push(cur);
-        cur = '';
-        continue;
+      if (ch === ',' && !inQ) { row.push(cur); cur = ''; continue; }
+      if ((ch === '\n' || ch === '\r') && !inQ) {
+        if (ch === '\r' && nx === '\n') i++;
+        row.push(cur); rows.push(row); row = []; cur = ''; continue;
       }
-
-      if ((ch === '\n' || ch === '\r') && !inQuotes) {
-        if (ch === '\r' && next === '\n') i++;
-        row.push(cur);
-        rows.push(row);
-        row = [];
-        cur = '';
-        continue;
-      }
-
       cur += ch;
     }
-
-    if (cur.length || row.length) {
-      row.push(cur);
-      rows.push(row);
-    }
-    return rows.map(r => r.map(c => (c ?? '').trim()));
+    if (cur.length || row.length) { row.push(cur); rows.push(row); }
+    return rows.map(function(r) { return r.map(function(c) { return (c || '').trim(); }); });
   }
 
-  function escapeHTML(str){
-    return (str || '')
-      .replaceAll('&', '&amp;')
-      .replaceAll('<', '&lt;')
-      .replaceAll('>', '&gt;');
+  function esc(s) {
+    return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
-  const embeddedEl = document.getElementById('flashcardsCsv');
-  const embeddedText = embeddedEl ? embeddedEl.textContent : '';
-
-  let text = '';
-
+  var embEl = document.getElementById('flashcardsCsv');
+  var text = '';
   try {
     if (location.protocol.startsWith('http')) {
-      const res = await fetch('02_flashcards.csv', { cache: 'no-store' });
+      var res = await fetch('02_flashcards.csv', { cache: 'no-store' });
       if (res.ok) text = await res.text();
     }
-  } catch (e) {
-    // ignore and fall back to embedded
-  }
-
-  if (!text) text = embeddedText;
+  } catch (e) {}
+  if (!text) text = embEl ? embEl.textContent : '';
   if (!text) return;
 
-  const rows = parseCSV(text);
-  if (!rows.length) return;
+  var rows  = parseCSV(text);
+  var hdr   = rows[0].map(function(h) { return (h || '').toLowerCase(); });
+  var qi    = hdr.indexOf('question'), ai = hdr.indexOf('answer');
+  var cards = (qi !== -1 && ai !== -1) ? rows.slice(1) : rows;
+  cards = cards.filter(function(r) { return r[0] && r[1]; });
+  if (!cards.length) return;
 
-  // Optional headers: Question,Answer
-  const header = rows[0].map(h => (h || '').trim().toLowerCase());
-  const qIdx = header.indexOf('question');
-  const aIdx = header.indexOf('answer');
-  const dataRows = (qIdx !== -1 && aIdx !== -1) ? rows.slice(1) : rows;
+  var idx = 0;
 
-  let shown = 0;
-  dataRows.forEach(r => {
-    const q = r[0] ?? '';
-    const a = r[1] ?? '';
-    if (!q || !a) return;
+  function shuffle(a) {
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+  }
 
-    const card = document.createElement('div');
-    card.className = 'flashcard';
-    card.tabIndex = 0;
-    card.setAttribute('role', 'button');
-    card.setAttribute('aria-label', 'Flip flashcard');
+  function show(n) {
+    card.classList.remove('flipped');
+    idx = (n + cards.length) % cards.length;
+    card.style.opacity = '0';
+    setTimeout(function() {
+      front.innerHTML = esc(cards[idx][0]);
+      back.innerHTML  = esc(cards[idx][1]);
+      counter.textContent = (idx + 1) + ' / ' + cards.length;
+      card.style.opacity = '1';
+    }, 110);
+  }
 
-    card.innerHTML = `
-      <div class="flashcard-inner">
-        <div class="flashcard-front">${escapeHTML(q)}</div>
-        <div class="flashcard-back">${escapeHTML(a)}</div>
-      </div>`;
+  front.innerHTML = esc(cards[0][0]);
+  back.innerHTML  = esc(cards[0][1]);
+  counter.textContent = '1 / ' + cards.length;
 
-    const toggle = () => card.classList.toggle('flipped');
-    card.addEventListener('click', toggle);
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        toggle();
-      }
-    });
-
-    grid.appendChild(card);
-    shown++;
+  card.addEventListener('click', function() { card.classList.toggle('flipped'); });
+  card.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.classList.toggle('flipped'); }
   });
-
-  if (countEl) countEl.textContent = shown ? `${shown} cards loaded.` : 'No flashcards found.';
+  prevBtn.addEventListener('click',    function() { show(idx - 1); });
+  nextBtn.addEventListener('click',    function() { show(idx + 1); });
+  shuffleBtn.addEventListener('click', function() { shuffle(cards); show(0); });
+  document.addEventListener('keydown', function(e) {
+    var f = document.activeElement;
+    if (f === card || f === prevBtn || f === nextBtn) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); show(idx + 1); }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); show(idx - 1); }
+    }
+  });
 })();
 </script>
 

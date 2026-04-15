@@ -9,6 +9,16 @@
 <link href="assets/css/host.css" rel="stylesheet"/>
 <link href="assets/css/nav.css" rel="stylesheet"/>
 <link href="favicon.ico" rel="icon" type="image/x-icon"/><link href="https://imediagenius.co.uk/" rel="canonical"/>
+<meta property="og:type"        content="website"/>
+<meta property="og:site_name"   content="iMedia Genius"/>
+<meta property="og:url"         content="https://imediagenius.co.uk/"/>
+<meta property="og:title"       content="iMedia Genius · Free OCR Creative iMedia R093 Revision"/>
+<meta property="og:description" content="Free OCR Creative iMedia R093 revision games, topic guides, flashcards and exam practice from a real teacher. Play your way through the whole spec."/>
+<meta property="og:image"       content="https://imediagenius.co.uk/img/index-hero.png"/>
+<meta name="twitter:card"       content="summary_large_image"/>
+<meta name="twitter:title"      content="iMedia Genius · Free OCR Creative iMedia R093 Revision"/>
+<meta name="twitter:description" content="Free OCR Creative iMedia R093 revision games, topic guides, flashcards and exam practice from a real teacher. Play your way through the whole spec."/>
+<meta name="twitter:image"      content="https://imediagenius.co.uk/img/index-hero.png"/>
 <style>
 .homepage-hero {
   width: 100%;
@@ -100,6 +110,82 @@
   transform: translateY(0);
   box-shadow: 0 2px 8px rgba(61,220,132,0.3);
 }
+
+/* ── Exam Countdown banner ──────────────────────────────────────────────── */
+.exam-countdown{
+  display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+  background:rgba(37,99,235,0.09);
+  border:1px solid rgba(37,99,235,0.22);
+  border-radius:14px;
+  padding:14px 20px;
+  margin:0 0 28px;
+}
+.ec-block{display:flex;align-items:baseline;gap:7px;}
+.ec-days{font-family:'Outfit',sans-serif;font-size:2.2rem;font-weight:800;
+  color:#93c5fd;line-height:1;}
+.ec-unit{font-size:0.82rem;color:var(--text-muted);line-height:1.3;}
+.ec-divider{width:1px;height:36px;background:rgba(255,255,255,0.10);flex-shrink:0;}
+.ec-progress{flex:1;min-width:160px;display:flex;flex-direction:column;gap:4px;}
+.ec-frac{font-family:'Outfit',sans-serif;font-size:1.15rem;font-weight:800;color:#86efac;}
+.ec-plabel{font-size:0.78rem;color:var(--text-muted);}
+.ec-bar-wrap{height:5px;background:rgba(255,255,255,0.08);
+  border-radius:99px;overflow:hidden;margin-top:2px;}
+.ec-bar{height:100%;background:linear-gradient(90deg,#22c55e,#86efac);
+  border-radius:99px;width:0;transition:width 0.45s ease;}
+.ec-left{display:flex;flex-direction:column;gap:4px;}
+.ec-date{font-size:0.78rem;color:var(--text-muted);letter-spacing:0.01em;}
+
+/* ── Topic section tools row ────────────────────────────────────────────── */
+.topic-tools{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  margin-top:10px;
+}
+.topic-search{
+  padding:7px 13px;border-radius:8px;
+  border:1px solid var(--border-soft);
+  background:rgba(255,255,255,0.05);
+  color:var(--text-main);font:inherit;font-size:0.86rem;
+  width:220px;outline:none;
+  transition:border-color 0.15s,background 0.15s;
+}
+.topic-search:focus{border-color:rgba(37,99,235,0.5);
+  background:rgba(37,99,235,0.07);}
+.topic-search::placeholder{color:var(--text-muted);}
+.studied-counter{
+  font-size:0.82rem;color:var(--text-muted);
+  font-weight:600;white-space:nowrap;
+}
+
+/* ── Topic card progress tick ───────────────────────────────────────────── */
+.topic-card-wrap{position:relative;}
+.topic-tick{
+  position:absolute;top:50%;right:8px;
+  transform:translateY(-50%);
+  width:20px;height:20px;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,0.18);
+  background:rgba(0,0,0,0.25);
+  color:transparent;font-size:11px;font-weight:900;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  z-index:2;transition:background 0.15s,border-color 0.15s,color 0.15s;
+  padding:0;line-height:1;flex-shrink:0;
+}
+.topic-tick:hover{border-color:rgba(34,197,94,0.6);background:rgba(34,197,94,0.15);}
+.topic-card-wrap.done .topic-tick{
+  background:#22c55e;border-color:#22c55e;color:#fff;
+}
+.topic-card-wrap.done .topic-card{
+  border-color:rgba(34,197,94,0.4);
+  background:rgba(34,197,94,0.06);
+}
+.topic-card-wrap.done .topic-card:hover{
+  border-color:rgba(34,197,94,0.7);
+  background:rgba(34,197,94,0.12);
+}
+/* Nudge the topic-number left a bit so tick doesn't overlap it */
+.topic-card-wrap .topic-card{padding-right:34px;}
+/* Hide-by-search */
+.topic-card-wrap.hidden-by-search{display:none !important;}
+
 </style>
   <script src="assets/js/engagement-config.js"></script>
 </head>
@@ -203,11 +289,28 @@
 <section class="homepage-hero">
 <img alt="Creative iMedia hero illustration" class="homepage-hero-img" src="img/index-hero.png"/>
 </section>
+<!-- Exam countdown + progress banner -->
+<div class="exam-countdown" id="examCountdown">
+  <div class="ec-left">
+    <div class="ec-block">
+      <span class="ec-days" id="ecDays">–</span>
+      <span class="ec-unit">days until<br>R093 exam</span>
+    </div>
+    <div class="ec-date">Mon 8 June 2026 &nbsp;&#183;&nbsp; 1:00 pm–2:30 pm</div>
+  </div>
+  <div class="ec-divider"></div>
+  <div class="ec-progress">
+    <span class="ec-frac" id="ecFrac">0 / 35</span>
+    <span class="ec-plabel">topics studied</span>
+    <div class="ec-bar-wrap"><div class="ec-bar" id="ecBar"></div></div>
+  </div>
+</div>
 <main>
 <section aria-label="R093 topic guides" class="topic-section">
 <div class="topic-section-header">
 <h2>Topic guides</h2>
 <small class="hint">Quickly jump into a textbook-style explanation for any R093 topic.</small>
+<div class="topic-tools"><input type="search" id="topicSearch" class="topic-search" placeholder="&#128269; Search topics…" autocomplete="off" aria-label="Search topics"><span class="studied-counter" id="studiedCounter"></span></div>
 </div>
 <div class="topic-layout">
 <div class="topic-actions">
@@ -1310,6 +1413,80 @@ fetch("https://api.indexnow.org/indexnow", {
   if (/android/i.test(navigator.userAgent)) {
     var btns = document.querySelectorAll('.android-beta-btn');
     btns.forEach(function(el) { el.classList.add('android-visible'); });
+  }
+})();
+</script>
+
+<script>
+/* ── Homepage extras: progress tracking, countdown, search ── */
+(function(){
+  /* ---- Config ---- */
+  // Update EXAM_DATE when OCR publish the 2026 timetable
+  var EXAM_DATE = new Date('2026-06-08T13:00:00');
+  var STORE_KEY = 'imediaDoneTopics';
+  var TOTAL = 35;
+
+  /* ---- Countdown ---- */
+  var now  = new Date();
+  var diff = Math.ceil((EXAM_DATE - now) / 86400000);
+  var dEl  = document.getElementById('ecDays');
+  if (dEl) dEl.textContent = diff > 0 ? diff : '0';
+
+  /* ---- Progress tracking ---- */
+  function loadDone(){ try{ return new Set(JSON.parse(localStorage.getItem(STORE_KEY)||'[]')); }catch(e){ return new Set(); } }
+  function saveDone(s){ try{ localStorage.setItem(STORE_KEY, JSON.stringify([...s])); }catch(e){} }
+
+  function updateCounters(done){
+    var n = done.size;
+    var frac = document.getElementById('ecFrac');
+    var bar  = document.getElementById('ecBar');
+    var sc   = document.getElementById('studiedCounter');
+    if(frac) frac.textContent = n + ' / ' + TOTAL;
+    if(bar)  bar.style.width  = (n/TOTAL*100).toFixed(1) + '%';
+    if(sc)   sc.textContent   = n + ' / ' + TOTAL + ' studied';
+  }
+
+  var done = loadDone();
+
+  /* Wrap each topic card and inject tick button */
+  document.querySelectorAll('.topic-grid .topic-card').forEach(function(card){
+    var href = card.getAttribute('href') || '';
+
+    var wrap = document.createElement('div');
+    wrap.className = 'topic-card-wrap';
+    card.parentNode.insertBefore(wrap, card);
+    wrap.appendChild(card);
+
+    var tick = document.createElement('button');
+    tick.className = 'topic-tick';
+    tick.setAttribute('aria-label', 'Mark as studied');
+    tick.setAttribute('title', 'Mark as studied');
+    tick.textContent = '✓';
+    wrap.appendChild(tick);
+
+    if(done.has(href)) wrap.classList.add('done');
+
+    tick.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      if(done.has(href)){ done.delete(href); wrap.classList.remove('done'); }
+      else              { done.add(href);    wrap.classList.add('done');    }
+      saveDone(done);
+      updateCounters(done);
+    });
+  });
+
+  updateCounters(done);
+
+  /* ---- Live search / filter ---- */
+  var searchEl = document.getElementById('topicSearch');
+  if(searchEl){
+    searchEl.addEventListener('input', function(){
+      var q = this.value.toLowerCase().trim();
+      document.querySelectorAll('.topic-card-wrap').forEach(function(wrap){
+        var text = wrap.textContent.toLowerCase();
+        wrap.classList.toggle('hidden-by-search', q !== '' && !text.includes(q));
+      });
+    });
   }
 })();
 </script>
