@@ -34,33 +34,33 @@ window.SCENE_QUESTIONS = [
   },
   {
     id: "interview_office",
-    title: "Job interview in a bright office",
-    focus: "Costume & body language",
+    title: "Job interview – dark office",
+    focus: "Lighting & costume",
     image: "img/mise-office-interview.png",
-    question: "How does the candidate's costume and body language show they are nervous and unsure?",
+    question: "How do the candidate’s costume and the scene’s lighting together suggest she feels uncomfortable and out of place?",
     answers: [
       {
-        text: "Their suit is slightly too big and they are gripping their portfolio tightly on their lap",
+        text: "Her warm, casual-toned clothing contrasts sharply with the dark, formal office, and she avoids eye contact by looking downward",
         correct: true,
-        feedback: "The oversized suit and tense grip combine to show inexperience and anxiety."
+        feedback: "A costume that clashes with its environment signals the character doesn’t quite belong there, and averted eye contact reinforces their unease."
       },
       {
-        text: "They are sitting close to the table with their back straight",
+        text: "The interviewer reviewing a document under bright lighting makes the room feel open and welcoming",
         correct: false,
-        feedback: "An upright posture usually suggests confidence rather than nervousness."
+        feedback: "The lighting is actually dim and low-key, creating tension rather than a welcoming atmosphere."
       },
       {
-        text: "They are wearing a bright red tie that stands out",
+        text: "The wall clock visible in the background reassures both characters that the interview is on schedule",
         correct: false,
-        feedback: "A bold tie might stand out visually, but it doesn’t clearly show nervousness on its own."
+        feedback: "The clock adds a subtle sense of time pressure rather than providing reassurance."
       },
       {
-        text: "They have a neat folder and a pen placed carefully on the table",
+        text: "Both characters wear matching dark formal clothing, showing they are equally at ease",
         correct: false,
-        feedback: "Organised props suggest preparation, not necessarily uncertainty."
+        feedback: "The candidate’s warm, lighter clothing contrasts noticeably with the interviewer’s darker formal suit, highlighting her discomfort."
       }
     ],
-    explanation: "Costume and body language work together to build character. An ill-fitting suit and tense posture hint that the character feels out of place."
+    explanation: "When a character’s costume doesn’t fit the environment around them, it visually signals they feel like an outsider — even before anyone speaks."
   },
   {
     id: "spooky_corridor",
@@ -124,33 +124,33 @@ window.SCENE_QUESTIONS = [
   },
   {
     id: "hospital_waiting_room",
-    title: "Silent hospital waiting room",
-    focus: "Props & set dressing",
+    title: "Elderly man alone in hospital waiting room",
+    focus: "Lighting & set dressing",
     image: "img/mise-hospital-waiting-room.png",
-    question: "Which detail of the set dressing most clearly shows the long, stressful wait the characters have had?",
+    question: "Which combination of mise-en-scène elements most strongly communicates that this person has been waiting alone for a long time?",
     answers: [
       {
-        text: "The overflowing bin of empty coffee cups and crumpled magazines",
+        text: "The solitary figure surrounded by empty chairs, lit only by a single dim floor lamp in an otherwise dark room, with the HOSPITAL sign looming above",
         correct: true,
-        feedback: "Used cups and scrunched magazines show time passing and nervous waiting."
+        feedback: "Isolation is shown through the empty space around the character, while the dim single light source and dark surroundings create a sense of a long, lonely vigil."
       },
       {
-        text: "A bright, colourful mural painted on the wall for children",
+        text: "The potted plant to the left of the frame adds life and colour, suggesting the room is cared for and welcoming",
         correct: false,
-        feedback: "This adds warmth to the room but doesn’t clearly show a long wait."
+        feedback: "The plant is a small detail in the background; the dominant mood is created by the darkness and the isolated figure, not the plant."
       },
       {
-        text: "A television in the corner showing a wildlife documentary",
+        text: "Bright overhead fluorescent lighting fills the room and makes it feel busy and well-staffed",
         correct: false,
-        feedback: "The TV content doesn’t directly communicate the characters’ emotional state."
+        feedback: "The room is actually very dimly lit with only one lamp — this low-key lighting reinforces the atmosphere of quiet anxiety."
       },
       {
-        text: "A pot plant on the reception desk",
+        text: "The comfortable seating arrangement suggests the hospital provides a relaxed, patient-friendly environment",
         correct: false,
-        feedback: "The plant decorates the space but doesn’t tell us about the waiting experience."
+        feedback: "Although there are chairs, the key detail is that they are all empty around the single waiting figure, emphasising isolation rather than comfort."
       }
     ],
-    explanation: "Set dressing can quietly communicate story – repeated props like cups and magazines show time, boredom and anxiety."
+    explanation: "Mise-en-scène communicates emotion through what surrounds a character: empty seats, sparse lighting and a clinical sign combine to make the wait feel lonely and uncertain."
   },
   {
     id: "warehouse_villain",
