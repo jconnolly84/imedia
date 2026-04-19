@@ -17,12 +17,50 @@ body.game-shell-enabled {
     linear-gradient(180deg, var(--shell-bg-2) 0%, var(--shell-bg-1) 100%);
   min-height: 100vh;
   color: var(--shell-text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 18px 16px 32px;
 }
 
 body.game-shell-enabled .app {
   max-width: 1180px;
+  width: 100%;
   margin: 0 auto;
-  padding: 18px 16px 40px;
+  padding: 0;
+}
+
+body.game-shell-enabled > footer {
+  width: 100%;
+  max-width: 1180px;
+  margin: 16px auto 0;
+  padding: 0 4px 8px;
+  text-align: center;
+  color: var(--shell-muted);
+}
+
+body.game-shell-enabled > footer .footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  margin: 0;
+  padding: 0;
+}
+
+body.game-shell-enabled > footer .footer-links a {
+  color: #bfdbfe;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+body.game-shell-enabled > footer .footer-links a:hover,
+body.game-shell-enabled > footer .footer-links a:focus-visible {
+  color: #f8fbff;
+  text-decoration: underline;
 }
 
 body.game-shell-enabled .card,

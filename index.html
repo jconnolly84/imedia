@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -25,18 +25,185 @@
 <link href="assets/css/host.css" rel="stylesheet"/>
 <link href="assets/css/nav.css" rel="stylesheet"/>
 <link href="favicon.ico" rel="icon" type="image/x-icon"/><style>
-.homepage-hero {
-  width: 100%;
-  max-width: 1400px;
-  margin: 2rem auto;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+.homepage-overview{
+  width:100%;
+  max-width:100%;
+  margin:2rem auto 1.4rem;
+  display:grid;
+  gap:20px;
 }
-.homepage-hero-img {
-  display: block;
-  width: 100%;
-  height: auto;
+.overview-banner picture{
+  display:block;
+}
+.overview-banner{
+  border:1px solid rgba(255,255,255,0.08);
+  background:linear-gradient(180deg,rgba(15,32,64,0.92),rgba(7,16,33,0.92));
+  border-radius:22px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.18);
+  overflow:hidden;
+}
+.overview-banner img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+.overview-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(280px,0.95fr);
+  gap:20px;
+}
+.overview-panel,
+.overview-sidecard,
+.overview-route{
+  border:1px solid rgba(255,255,255,0.08);
+  background:linear-gradient(180deg,rgba(15,32,64,0.92),rgba(7,16,33,0.92));
+  border-radius:18px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.18);
+}
+.overview-panel{padding:26px 28px;}
+.overview-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 12px;
+  border-radius:999px;
+  background:rgba(59,130,246,0.16);
+  color:#bfdbfe;
+  font-size:0.82rem;
+  font-weight:700;
+  letter-spacing:0.02em;
+  text-transform:uppercase;
+}
+.overview-panel h2{
+  margin:16px 0 12px;
+  font-size:clamp(1.8rem,3.2vw,2.7rem);
+  line-height:1.08;
+  font-family:'Outfit',sans-serif;
+}
+.overview-panel p{
+  margin:0;
+  max-width:62ch;
+  color:var(--text-muted);
+  font-size:1rem;
+  line-height:1.65;
+}
+.overview-highlight{color:#f8fafc;}
+.overview-points{
+  margin:18px 0 0;
+  padding:0;
+  list-style:none;
+  display:grid;
+  gap:12px;
+}
+.overview-points li{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:12px;
+  align-items:flex-start;
+  color:var(--text-main);
+}
+.overview-point-badge{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(34,197,94,0.16);
+  color:#86efac;
+  font-weight:800;
+  font-size:0.83rem;
+  flex-shrink:0;
+}
+.overview-sidecard{
+  padding:22px 22px 20px;
+  display:grid;
+  gap:16px;
+}
+.overview-sidecard h3,
+.overview-route h3{
+  margin:0;
+  font-size:1.15rem;
+}
+.overview-sidecard p,
+.overview-route p{
+  margin:0;
+  color:var(--text-muted);
+  line-height:1.55;
+}
+.overview-audience{
+  display:grid;
+  gap:10px;
+}
+.overview-audience-item{
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:14px;
+  background:rgba(255,255,255,0.03);
+  padding:12px 14px;
+}
+.overview-audience-item strong{
+  display:block;
+  margin-bottom:4px;
+  color:#f8fafc;
+}
+.overview-route-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+.overview-route{
+  padding:20px 18px;
+  position:relative;
+  overflow:hidden;
+}
+.overview-route-media{
+  margin:-20px -18px 16px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.02);
+}
+.overview-route-media img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+.overview-route::before{
+  content:"";
+  position:absolute;
+  inset:0 auto auto 0;
+  width:100%;
+  height:3px;
+  background:linear-gradient(90deg,#38bdf8,#22c55e);
+  opacity:0.85;
+}
+.overview-route-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:10px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.05);
+  color:#bfdbfe;
+  font-size:0.78rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.03em;
+}
+.overview-route ul{
+  margin:14px 0 0;
+  padding:0;
+  list-style:none;
+  display:grid;
+  gap:8px;
+}
+.overview-route li{
+  color:var(--text-main);
+  font-size:0.94rem;
+}
+.overview-route li::before{
+  content:"+ ";
+  color:#86efac;
+  font-weight:800;
 }
 
 
@@ -140,6 +307,341 @@
 .ec-left{display:flex;flex-direction:column;gap:4px;}
 .ec-date{font-size:0.78rem;color:var(--text-muted);letter-spacing:0.01em;}
 
+/* ── Revision tracker ───────────────────────────────────────────────────── */
+.revision-tracker{
+  position:relative;
+  margin:0 0 30px;
+  padding:28px;
+  border-radius:26px;
+  border:1px solid rgba(56,189,248,0.16);
+  background:
+    radial-gradient(circle at top right, rgba(34,211,238,0.12), transparent 34%),
+    radial-gradient(circle at bottom left, rgba(34,197,94,0.1), transparent 30%),
+    linear-gradient(180deg, rgba(8,20,43,0.96), rgba(5,13,28,0.96));
+  box-shadow:0 18px 48px rgba(0,0,0,0.28);
+  overflow:hidden;
+}
+.revision-tracker::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(120deg, rgba(59,130,246,0.08), transparent 42%),
+    linear-gradient(0deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+  pointer-events:none;
+}
+.tracker-shell{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:minmax(0,1.25fr) minmax(320px,0.9fr);
+  gap:24px;
+  align-items:start;
+}
+.tracker-main{display:grid;gap:22px;}
+.tracker-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid rgba(56,189,248,0.22);
+  background:rgba(8,25,54,0.58);
+  color:#93c5fd;
+  font-size:0.82rem;
+  font-weight:800;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+}
+.tracker-main h2{
+  margin:0;
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(2rem,4vw,3rem);
+  line-height:0.98;
+}
+.tracker-main p{
+  margin:0;
+  max-width:62ch;
+  color:var(--text-muted);
+  font-size:1.02rem;
+}
+.tracker-hero{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:22px;
+  align-items:center;
+}
+.tracker-ring{
+  --p:0;
+  position:relative;
+  width:144px;
+  aspect-ratio:1;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:conic-gradient(from 210deg, #22d3ee calc(var(--p) * 1%), #22c55e 0, rgba(255,255,255,0.08) 0);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,0.06), 0 12px 30px rgba(0,0,0,0.22);
+}
+.tracker-ring::before{
+  content:"";
+  position:absolute;
+  inset:11px;
+  border-radius:50%;
+  background:linear-gradient(180deg, rgba(8,20,43,0.98), rgba(10,24,47,0.96));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+.tracker-ring-value,.tracker-ring-label{
+  position:relative;
+  z-index:1;
+  text-align:center;
+}
+.tracker-ring-value{
+  display:block;
+  font-family:'Outfit',sans-serif;
+  font-size:2rem;
+  font-weight:800;
+  line-height:1;
+  color:#f8fbff;
+}
+.tracker-ring-label{
+  display:block;
+  margin-top:4px;
+  color:var(--text-muted);
+  font-size:0.74rem;
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+}
+.tracker-summary{display:grid;gap:12px;}
+.tracker-status{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:10px 12px;
+}
+.tracker-status-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(37,99,235,0.16);
+  color:#bfdbfe;
+  border:1px solid rgba(59,130,246,0.2);
+  font-weight:700;
+  font-size:0.9rem;
+}
+.tracker-status-text{color:#dbeafe;font-size:1rem;}
+.tracker-stats{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+.tracker-stat{
+  padding:16px 16px 14px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.06);
+}
+.tracker-stat-label{
+  display:block;
+  font-size:0.74rem;
+  color:var(--text-muted);
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  margin-bottom:8px;
+}
+.tracker-stat strong{
+  display:block;
+  font-family:'Outfit',sans-serif;
+  font-size:1.7rem;
+  line-height:1;
+}
+.tracker-stat span:last-child{
+  display:block;
+  margin-top:7px;
+  color:#c8d6ea;
+  font-size:0.88rem;
+}
+.tracker-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.tracker-btn{
+  appearance:none;
+  border:1px solid rgba(255,255,255,0.12);
+  background:rgba(255,255,255,0.04);
+  color:#eef5ff;
+  border-radius:14px;
+  padding:12px 16px;
+  font:inherit;
+  font-weight:700;
+  text-decoration:none;
+  cursor:pointer;
+  transition:transform 0.18s ease,border-color 0.18s ease,background 0.18s ease;
+}
+.tracker-btn:hover{
+  transform:translateY(-1px);
+  border-color:rgba(56,189,248,0.35);
+  background:rgba(14,33,66,0.9);
+}
+.tracker-btn-primary{
+  background:linear-gradient(135deg, #1d4ed8, #0891b2);
+  border-color:rgba(125,211,252,0.25);
+}
+.tracker-btn-primary:hover{background:linear-gradient(135deg, #2563eb, #06b6d4);}
+.tracker-btn-ghost{color:#dbeafe;}
+.tracker-meta{font-size:0.85rem;color:var(--text-muted);}
+.tracker-side{display:grid;gap:16px;}
+.tracker-panel{
+  padding:18px 18px 16px;
+  border-radius:22px;
+  background:rgba(5,16,34,0.72);
+  border:1px solid rgba(255,255,255,0.06);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.03);
+}
+.tracker-panel h3{
+  margin:0 0 8px;
+  font-family:'Outfit',sans-serif;
+  font-size:1.3rem;
+}
+.tracker-panel p{
+  margin:0;
+  color:var(--text-muted);
+  font-size:0.92rem;
+}
+.tracker-task-list{
+  list-style:none;
+  margin:16px 0 0;
+  padding:0;
+  display:grid;
+  gap:10px;
+}
+.tracker-task{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  padding:12px 12px 12px 10px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.05);
+}
+.tracker-task-toggle{
+  appearance:none;
+  width:24px;
+  height:24px;
+  margin:1px 0 0;
+  border-radius:8px;
+  border:1.5px solid rgba(147,197,253,0.28);
+  background:rgba(2,8,23,0.8);
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  flex-shrink:0;
+  transition:background 0.18s ease,border-color 0.18s ease,transform 0.18s ease;
+}
+.tracker-task-toggle::after{
+  content:"✓";
+  color:transparent;
+  font-size:0.9rem;
+  font-weight:800;
+}
+.tracker-task-toggle:hover{
+  transform:translateY(-1px);
+  border-color:rgba(34,197,94,0.5);
+}
+.tracker-task.done .tracker-task-toggle{
+  background:linear-gradient(135deg, #16a34a, #22c55e);
+  border-color:#22c55e;
+}
+.tracker-task.done .tracker-task-toggle::after{color:#fff;}
+.tracker-task-body{display:grid;gap:2px;}
+.tracker-task-title{font-weight:700;color:#f8fbff;}
+.tracker-task-copy{color:var(--text-muted);font-size:0.87rem;}
+.tracker-task.done .tracker-task-title{color:#86efac;}
+.tracker-task.done .tracker-task-copy{color:#b8c5d9;}
+.tracker-suggestion-list{
+  list-style:none;
+  margin:16px 0 0;
+  padding:0;
+  display:grid;
+  gap:12px;
+}
+.tracker-suggestion{
+  display:grid;
+  gap:10px;
+  padding:14px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.06);
+}
+.tracker-suggestion-top{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+}
+.tracker-suggestion-kind{
+  display:inline-flex;
+  align-items:center;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(37,99,235,0.16);
+  color:#bfdbfe;
+  font-size:0.72rem;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+}
+.tracker-suggestion-title{
+  margin:0;
+  font-size:1rem;
+  font-weight:800;
+  color:#f8fbff;
+}
+.tracker-suggestion-copy{
+  margin:0;
+  color:var(--text-muted);
+  font-size:0.9rem;
+  line-height:1.5;
+}
+.tracker-suggestion-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  width:fit-content;
+  padding:10px 14px;
+  border-radius:12px;
+  background:rgba(14,33,66,0.9);
+  border:1px solid rgba(56,189,248,0.22);
+  color:#e0f2fe;
+  text-decoration:none;
+  font-weight:700;
+}
+.tracker-suggestion-link:hover{
+  background:rgba(18,48,94,0.96);
+  border-color:rgba(103,232,249,0.32);
+}
+.tracker-next-link{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-top:16px;
+  color:#7dd3fc;
+  font-weight:700;
+  text-decoration:none;
+}
+.tracker-next-link:hover{color:#bae6fd;}
+.tracker-message{
+  min-height:1.2em;
+  margin-top:12px;
+  color:#bfdbfe;
+  font-size:0.85rem;
+}
+.tracker-input{display:none;}
+
 /* ── Topic section tools row ────────────────────────────────────────────── */
 .topic-tools{
   display:flex;align-items:center;gap:12px;flex-wrap:wrap;
@@ -190,6 +692,269 @@
 .topic-card-wrap .topic-card{padding-right:34px;}
 /* Hide-by-search */
 .topic-card-wrap.hidden-by-search{display:none !important;}
+
+.footer-links{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px 18px;
+  margin:12px 0 0;
+}
+.footer-links a{
+  color:var(--text-muted);
+  text-decoration:none;
+  font-size:0.92rem;
+  font-weight:600;
+}
+.footer-links a:hover,
+.footer-links a:focus{
+  color:var(--accent);
+  text-decoration:underline;
+}
+
+@media (max-width: 920px){
+  .overview-grid,
+  .overview-route-grid{
+    grid-template-columns:1fr;
+  }
+  .overview-panel,
+  .overview-sidecard,
+  .overview-route{
+    padding:18px;
+  }
+  .overview-route-media{
+    margin:-18px -18px 14px;
+  }
+  .tracker-shell{
+    grid-template-columns:1fr;
+  }
+  .tracker-hero{
+    grid-template-columns:1fr;
+  }
+  .tracker-ring{
+    width:124px;
+  }
+  .tracker-stats{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   VISUAL UPGRADE
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── Atmospheric glow behind the header ─────────────────────────── */
+header {
+  position: relative;
+  overflow: clip;
+}
+header::before {
+  content: "";
+  position: absolute;
+  top: -80px; left: -120px; right: -120px; bottom: -50px;
+  background:
+    radial-gradient(ellipse at 22% 62%, rgba(37,99,235,0.24) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 28%, rgba(14,165,233,0.18) 0%, transparent 46%),
+    radial-gradient(ellipse at 55% 85%, rgba(139,92,246,0.10) 0%, transparent 38%);
+  pointer-events: none;
+  z-index: 0;
+}
+header .brand,
+header .site-nav { position: relative; z-index: 1; }
+
+/* ── Brand h1 – much larger, gradient highlight ─────────────────── */
+.brand-text h1 {
+  font-size: clamp(2.2rem, 5vw + 0.4rem, 3.8rem) !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.03em !important;
+  margin-bottom: 8px !important;
+}
+.brand-text h1 span.highlight {
+  background: linear-gradient(100deg, #38bdf8 0%, #818cf8 52%, #e879f9 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+.brand-text p {
+  font-size: 0.97rem !important;
+  color: rgba(168,190,226,0.90) !important;
+  margin-top: 10px !important;
+}
+
+/* ── Hero badge (above h1) ──────────────────────────────────────── */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 13px;
+  margin-bottom: 14px;
+  border-radius: 999px;
+  background: rgba(37,99,235,0.14);
+  border: 1px solid rgba(56,189,248,0.30);
+  color: #7dd3fc;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  animation: badge-pulse 3.5s ease-in-out infinite;
+}
+@keyframes badge-pulse {
+  0%, 100% { border-color: rgba(56,189,248,0.22); background: rgba(37,99,235,0.10); }
+  50%       { border-color: rgba(56,189,248,0.50); background: rgba(37,99,235,0.22); }
+}
+.hero-badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 6px #22c55e;
+  animation: dot-blink 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes dot-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+/* ── Exam countdown – pulsing glow ─────────────────────────────── */
+@keyframes countdown-glow {
+  0%, 100% { box-shadow: 0 0 18px rgba(56,189,248,0.05); border-color: rgba(56,189,248,0.18); }
+  50%       { box-shadow: 0 0 40px rgba(56,189,248,0.18); border-color: rgba(56,189,248,0.42); }
+}
+.exam-countdown {
+  background: linear-gradient(135deg, rgba(8,18,46,0.92), rgba(4,10,28,0.92)) !important;
+  border: 1px solid rgba(56,189,248,0.22) !important;
+  animation: countdown-glow 4s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+.exam-countdown::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #2563eb 20%, #38bdf8 50%, #22d3ee 80%, transparent 100%);
+}
+.ec-days {
+  font-size: 3.1rem !important;
+  background: linear-gradient(135deg, #bfdbfe, #38bdf8, #7dd3fc) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  filter: drop-shadow(0 0 7px rgba(56,189,248,0.4));
+}
+
+/* ── Section headers with gradient accent underlines ────────────── */
+.topic-section-header,
+.grid-header {
+  position: relative;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  margin-bottom: 20px;
+}
+.topic-section-header::after,
+.grid-header::after {
+  content: "";
+  position: absolute;
+  bottom: -1px; left: 0;
+  width: 52px; height: 2px;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  border-radius: 99px;
+}
+.topic-section-header h2 {
+  background: linear-gradient(90deg, #38bdf8, #22d3ee) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+.grid-header h2 {
+  background: linear-gradient(90deg, #38bdf8, #22d3ee) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* ── Overview panel headline ─────────────────────────────────────── */
+.overview-panel h2 {
+  background: linear-gradient(135deg, #f0f4ff 0%, #c7d9ff 60%, #a5f3fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.overview-banner {
+  box-shadow: 0 6px 40px rgba(37,99,235,0.20), 0 1px 0 rgba(56,189,248,0.10) inset !important;
+  border: 1px solid rgba(56,189,248,0.14) !important;
+}
+
+/* ── Differentiated top-bar colors per route card ───────────────── */
+.overview-route-grid .overview-route:nth-child(1)::before {
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+}
+.overview-route-grid .overview-route:nth-child(2)::before {
+  background: linear-gradient(90deg, #818cf8, #e879f9);
+}
+.overview-route-grid .overview-route:nth-child(3)::before {
+  background: linear-gradient(90deg, #22d3ee, #22c55e);
+}
+
+/* ── Tracker ring glow & headline ────────────────────────────────── */
+.tracker-ring {
+  filter: drop-shadow(0 0 18px rgba(34,211,238,0.28)) drop-shadow(0 0 38px rgba(34,197,94,0.14)) !important;
+}
+.tracker-main h2 {
+  background: linear-gradient(135deg, #f0f4ff, #bfdbfe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Collapsible section upgrades ────────────────────────────────── */
+.collapsible {
+  border: 1px solid rgba(56,189,248,0.16) !important;
+  background: linear-gradient(180deg, rgba(5,11,28,0.85), rgba(2,6,18,0.85)) !important;
+}
+.collapsible-summary {
+  background: linear-gradient(135deg, rgba(7,15,40,0.98), rgba(3,8,22,0.98));
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.collapsible-title {
+  background: linear-gradient(90deg, #f0f4ff, #93c5fd) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+.collapsible-chevron {
+  color: #38bdf8 !important;
+  opacity: 1 !important;
+  font-size: 1.15rem !important;
+}
+
+/* ── Topic number badge glow ─────────────────────────────────────── */
+.topic-number {
+  background: rgba(37,99,235,0.18) !important;
+  border: 1px solid rgba(56,189,248,0.25) !important;
+  color: #7dd3fc !important;
+}
+.topic-card:hover .topic-number,
+.topic-card:focus-visible .topic-number {
+  background: rgba(37,99,235,0.32) !important;
+  border-color: rgba(56,189,248,0.5) !important;
+}
+
+/* ── Main ambient glow orb (top-right corner) ───────────────────── */
+main {
+  position: relative;
+  overflow: hidden;
+}
+main::after {
+  content: "";
+  position: absolute;
+  top: -100px; right: -120px;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
 
 </style>
   <script src="assets/js/engagement-config.js"></script>
@@ -268,6 +1033,7 @@
     </script>
 <div class="brand">
 <div class="brand-text">
+<div class="hero-badge"><span class="hero-badge-dot"></span>R093 &nbsp;·&nbsp; June 2026 Exam</div>
 <h1>
 <span>Free</span>
 <span class="highlight">OCR Creative iMedia</span>
@@ -275,9 +1041,6 @@
 </h1>
 <p>R093 • Creative iMedia in the Media Industry • Play your way through the whole spec.</p>
 <div class="controls">
-<div class="pill">
-<strong>37</strong> games · MCQs, scenarios, short answers &amp; 9 markers
-            </div>
 <a class="android-beta-btn" href="imediagenius_beta_v1.apk" download="imediagenius_beta_v1.apk">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18" style="flex-shrink:0;">
     <path d="M17.523 15.341A5.98 5.98 0 0 0 18 13a5.98 5.98 0 0 0-.477-2.341l1.359-1.359a.75.75 0 1 0-1.06-1.06l-1.36 1.358A5.98 5.98 0 0 0 14 9a5.98 5.98 0 0 0-2.341.477L10.3 8.118a.75.75 0 1 0-1.06 1.06l1.358 1.36A5.98 5.98 0 0 0 10 13a5.98 5.98 0 0 0 .477 2.341l-1.36 1.36a.75.75 0 1 0 1.061 1.06l1.36-1.359A5.98 5.98 0 0 0 14 17a5.98 5.98 0 0 0 2.341-.477l1.36 1.359a.75.75 0 1 0 1.06-1.06l-1.238-1.48zM14 15.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/>
@@ -290,9 +1053,95 @@
 </div>
 </div>
 </header>
-<!-- Homepage Hero Image -->
-<section class="homepage-hero">
-<img alt="Creative iMedia hero illustration" class="homepage-hero-img" src="img/index-hero.png"/>
+<section class="homepage-overview" aria-label="About iMedia Genius">
+  <div class="overview-banner">
+    <picture>
+      <source srcset="img/hero_banner_(2400X720).png" media="(min-resolution: 1.5dppx)"/>
+      <img src="img/hero_banner_(2000X600).png" srcset="img/hero_banner_(2000X600).png 1x, img/hero_banner_(2400X720).png 1.2x" alt="Creative iMedia revision banner showing topic guides, games, flash cards and exam practice resources" width="2000" height="600"/>
+    </picture>
+  </div>
+  <div class="overview-grid">
+    <article class="overview-panel">
+      <span class="overview-eyebrow">What iMedia Genius does</span>
+      <h2>One place to revise the whole R093 course without guessing what to do next.</h2>
+      <p><span class="overview-highlight">iMedia Genius is a game-based revision hub for OCR Creative iMedia.</span> It brings topic guides, videos, podcasts, flashcards, exam practice and retrieval games together so students can move from learning content to applying it under exam conditions.</p>
+      <ul class="overview-points">
+        <li>
+          <span class="overview-point-badge">1</span>
+          <span>Learn each topic with clear textbook-style guides, worked examples and media-specific vocabulary.</span>
+        </li>
+        <li>
+          <span class="overview-point-badge">2</span>
+          <span>Practise through low-stakes games, mini exams, 9-mark tasks and full-paper style questions.</span>
+        </li>
+        <li>
+          <span class="overview-point-badge">3</span>
+          <span>Use progress tracking and random revision routes to keep revision varied, active and easy to revisit.</span>
+        </li>
+      </ul>
+    </article>
+    <aside class="overview-sidecard">
+      <div>
+        <h3>Who it is for</h3>
+        <p>Designed for OCR Creative iMedia students, teachers and anyone revising R093: Creative iMedia in the Media Industry.</p>
+      </div>
+      <div class="overview-audience">
+        <div class="overview-audience-item">
+          <strong>Students</strong>
+          <span>Find quick revision routes, active recall tasks and exam practice without jumping between platforms.</span>
+        </div>
+        <div class="overview-audience-item">
+          <strong>Teachers</strong>
+          <span>Use the topic pages and games for starters, homework, revision lessons and intervention.</span>
+        </div>
+        <div class="overview-audience-item">
+          <strong>Independent revision</strong>
+          <span>Pick a topic, play a game, then move straight into exam-style practice while the knowledge is fresh.</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+  <div class="overview-route-grid">
+    <article class="overview-route">
+      <div class="overview-route-media">
+        <img src="img/01_feature_card_1600_1200.png" alt="Illustration for learning content with topic guides, video and flashcards" width="1600" height="1200"/>
+      </div>
+      <span class="overview-route-tag">Route 1</span>
+      <h3>Learn the content</h3>
+      <p>Start with the topic guides if you need the course explained clearly from the ground up.</p>
+      <ul>
+        <li>35 topic pages across the whole R093 spec</li>
+        <li>Videos, podcasts and flashcards built into revision</li>
+        <li>Strong for first revision or catching up missed content</li>
+      </ul>
+    </article>
+    <article class="overview-route">
+      <div class="overview-route-media">
+        <img src="img/02_feature_card_1600_1200.png" alt="Illustration for game-based retrieval practice with score tiles and revision cards" width="1600" height="1200"/>
+      </div>
+      <span class="overview-route-tag">Route 2</span>
+      <h3>Play and retrieve</h3>
+      <p>Use games and randomisers to make revision active, varied and easier to stick with.</p>
+      <ul>
+        <li>37 games covering MCQs, scenarios, short answers and 9 markers</li>
+        <li>Random topic and random game buttons for quick starts</li>
+        <li>Best for active recall, confidence and memory checks</li>
+      </ul>
+    </article>
+    <article class="overview-route">
+      <div class="overview-route-media">
+        <img src="img/03_feature_card_1600_1200.png" alt="Illustration for exam practice with a timed paper and marked response dashboard" width="1600" height="1200"/>
+      </div>
+      <span class="overview-route-tag">Route 3</span>
+      <h3>Practise the exam</h3>
+      <p>Move into mini exams, full papers and extended response training once the knowledge is secure.</p>
+      <ul>
+        <li>Mini exam practice and full R093 paper practice</li>
+        <li>9-mark tools and AI-ready answer training</li>
+        <li>Best for exam technique, timing and written response quality</li>
+      </ul>
+    </article>
+  </div>
 </section>
 <!-- Exam countdown + progress banner -->
 <div class="exam-countdown" id="examCountdown">
@@ -311,6 +1160,74 @@
   </div>
 </div>
 <main>
+<section class="revision-tracker" aria-labelledby="revisionTrackerTitle">
+  <div class="tracker-shell">
+    <div class="tracker-main">
+      <span class="tracker-kicker">My Revision Tracker</span>
+      <div class="tracker-hero">
+        <div class="tracker-ring" id="trackerRing">
+          <div>
+            <span class="tracker-ring-value" id="trackerPercent">0%</span>
+            <span class="tracker-ring-label">spec covered</span>
+          </div>
+        </div>
+        <div class="tracker-summary">
+          <div>
+            <h2 id="revisionTrackerTitle">Keep your revision visible.</h2>
+            <p>Tick off topics as you finish them, track key revision missions, and move your progress between devices with a quick export file.</p>
+          </div>
+          <div class="tracker-status">
+            <span class="tracker-status-badge" id="trackerStatusBadge">Fresh start</span>
+            <span class="tracker-status-text" id="trackerStatusText">Start with one topic guide, then build momentum through the spec.</span>
+          </div>
+        </div>
+      </div>
+      <div class="tracker-stats">
+        <div class="tracker-stat">
+          <span class="tracker-stat-label">Topics done</span>
+          <strong id="trackerDoneCount">0 / 35</strong>
+          <span id="trackerDoneMeta">No topics ticked off yet</span>
+        </div>
+        <div class="tracker-stat">
+          <span class="tracker-stat-label">Revision missions</span>
+          <strong id="trackerTaskCount">0 / 6</strong>
+          <span id="trackerTaskMeta">Build a balanced revision session</span>
+        </div>
+        <div class="tracker-stat">
+          <span class="tracker-stat-label">Next focus</span>
+          <strong id="trackerRemainingCount">35 left</strong>
+          <span id="trackerRemainingMeta">The whole spec is still open</span>
+        </div>
+      </div>
+      <div class="tracker-actions">
+        <a class="tracker-btn tracker-btn-primary" href="topic-01-traditional-media.html" id="trackerNextLink">Start with topic 01</a>
+        <button class="tracker-btn tracker-btn-ghost" id="trackerExportBtn" type="button">Export progress</button>
+        <button class="tracker-btn tracker-btn-ghost" id="trackerImportBtn" type="button">Import progress</button>
+        <button class="tracker-btn tracker-btn-ghost" id="trackerResetBtn" type="button">Reset tracker</button>
+      </div>
+      <div class="tracker-meta" id="trackerMeta">Progress is saved in this browser and can be exported as a file any time.</div>
+      <div class="tracker-message" id="trackerMessage" aria-live="polite"></div>
+      <input class="tracker-input" id="trackerImportFile" type="file" accept="application/json"/>
+    </div>
+    <aside class="tracker-side">
+      <div class="tracker-panel">
+        <h3>Suggested next moves</h3>
+        <p>Pick the next step that best fits where you are in the revision cycle right now.</p>
+        <ul class="tracker-suggestion-list" id="trackerSuggestionList"></ul>
+      </div>
+      <div class="tracker-panel">
+        <h3>Revision missions</h3>
+        <p>Use these as a quick balanced session checklist so revision is not just reading.</p>
+        <ul class="tracker-task-list" id="trackerTaskList"></ul>
+      </div>
+      <div class="tracker-panel">
+        <h3>Continue where you left off</h3>
+        <p>Your next unticked topic is surfaced here automatically, so it is easy to pick up revision without deciding from scratch.</p>
+        <a class="tracker-next-link" href="topic-01-traditional-media.html" id="trackerContinueLink">Go to your next topic</a>
+      </div>
+    </aside>
+  </div>
+</section>
 <section aria-label="R093 topic guides" class="topic-section">
 <div class="topic-section-header">
 <h2>Topic guides</h2>
@@ -1413,6 +2330,12 @@
 </details></main>
 <footer>
 <p>© <span id="year"></span> iMedia Genius · R093 Revision Arcade</p>
+<p class="footer-links">
+<a href="privacy-policy.html">Privacy Policy</a>
+<a href="cookie-notice.html">Cookie Notice</a>
+<a href="terms-of-service.html">Terms of Service</a>
+<a href="help.html">Help</a>
+</p>
 <p class="footer-note">This is an independent teacher-created resource for OCR Cambridge National in Creative iMedia (R093). It is not affiliated with, endorsed by or approved by OCR.</p>
 </footer>
 </div>
@@ -1467,7 +2390,41 @@ fetch("https://api.indexnow.org/indexnow", {
   // Update EXAM_DATE when OCR publish the 2026 timetable
   var EXAM_DATE = new Date('2026-06-08T13:00:00');
   var STORE_KEY = 'imediaDoneTopics';
+  var TASK_STORE_KEY = 'imediaRevisionTasksV1';
   var TOTAL = 35;
+  var TASKS = [
+    { id:'topic-guide', title:'Read one topic guide', copy:'Use a guide to secure the knowledge before testing it.' },
+    { id:'game-play', title:'Play one revision game', copy:'Keep retrieval active so revision does not become passive rereading.' },
+    { id:'random-topic', title:'Try a random topic', copy:'Use the randomiser to spot strengths and weaker areas.' },
+    { id:'nine-marker', title:'Plan or write a 9-marker', copy:'Build exam structure and justification, not just recall.' },
+    { id:'mini-exam', title:'Complete a mini exam', copy:'Practise mixing question types under a time limit.' },
+    { id:'review-fix', title:'Review one weak topic', copy:'Revisit a weaker area after practice while it is still fresh.' }
+  ];
+  var TOPIC_SUPPORT = {
+    'topic-01-traditional-media.html': { href:'sector-sorter.html', label:'Sector Sorter', copy:'Reinforce sectors and products with a quick retrieval round.' },
+    'topic-02-new-media.html': { href:'sector-sorter.html', label:'Sector Sorter', copy:'Use the sorting game to compare newer and traditional media forms.' },
+    'topic-04-animation-sfx-vfx.html': { href:'animation-sfx-vfx-challenge.html', label:'Animation, SFX & VFX Challenge', copy:'Apply the terminology in a fast recognition game.' },
+    'topic-05-social-media.html': { href:'social-media-strategy-game.html', label:'Social Media Strategy Arena', copy:'Test platform choices and campaign thinking after the guide.' },
+    'topic-06-website-assets.html': { href:'website-asset-inspector.html', label:'Website Asset Inspector', copy:'Check asset choices, optimisation and web suitability.' },
+    'topic-10-purpose-of-media-products.html': { href:'purpose-of-media-products-game.html', label:'Purpose of Media Products', copy:'Practise identifying why products are made and what they aim to do.' },
+    'topic-11-client-requirements.html': { href:'client-brief-builder.html', label:'Client Brief Builder', copy:'Move from reading requirements into applying them in scenarios.' },
+    'topic-12-client-brief-formats.html': { href:'client-brief-detective.html', label:'Client Brief Detective', copy:'Spot key details in briefs and turn them into exam-ready understanding.' },
+    'topic-13-audience-segmentation.html': { href:'audience-segmentation-simulator.html', label:'Audience Segmentation Simulator', copy:'Match audience profiles and sharpen segmentation knowledge.' },
+    'topic-14-audience-research.html': { href:'research-methods-megagame.html', label:'Research Methods Mega Game', copy:'Compare methods and decide which research approach fits best.' },
+    'topic-17-understanding-media-codes.html': { href:'media-codes-challenge.html', label:'Media Codes Challenge', copy:'Turn terminology into applied analysis with quick scenarios.' },
+    'topic-18-camera-and-lighting.html': { href:'camera-command.html', label:'Camera Command', copy:'Choose shots, angles and movement like the exam expects.' },
+    'topic-19-mise-en-scene-audio-animation.html': { href:'mise-en-scene-detective.html', label:'Mise-en-scène Detective', copy:'Use frame analysis to apply visual and audio vocabulary.' },
+    'topic-21-colour-graphics-typography.html': { href:'colour-critic.html', label:'Colour Critic', copy:'Evaluate design choices and justify visual improvements.' },
+    'topic-22-components-of-work-plans.html': { href:'work-plan-megagame.html', label:'Work Plan Detective', copy:'Strengthen sequencing, milestones and planning logic.' },
+    'topic-23-mind-maps-mood-boards.html': { href:'mind-map-makeover.html', label:'Mind Map Makeover', copy:'Practise choosing the right planning material for a creative task.' },
+    'topic-24-asset-logs-flow-charts-scripts.html': { href:'document-doctor.html', label:'Document Doctor', copy:'Sort out planning documents and understand what each one is for.' },
+    'topic-25-storyboards-visualisations-wireframes.html': { href:'pre-production-toolkit-game.html', label:'Pre-Production Toolkit', copy:'Match planning documents to the right design and production need.' },
+    'topic-27-intellectual-property-rights.html': { href:'ipr-megagame.html', label:'IPR Gauntlet', copy:'Check copyright, licensing and ownership decisions.' },
+    'topic-29-health-and-safety.html': { href:'health-safety-megagame.html', label:'Health & Safety Gauntlet', copy:'Apply safety thinking to media production scenarios.' },
+    'topic-30-distribution-platforms-media.html': { href:'distribution-platforms-picker.html', label:'Distribution Platforms Picker', copy:'Decide which platform fits the product and audience best.' },
+    'topic-31-file-compression.html': { href:'filetypes-megagame.html', label:'File Types Forge', copy:'Reinforce technical file decisions and compression choices.' },
+    'topic-35-hardware-and-software.html': { href:'hardware-software-megagame.html', label:'Hardware & Software Gauntlet', copy:'Practise matching production tasks to the right kit and software.' }
+  };
 
   /* ---- Countdown ---- */
   var now  = new Date();
@@ -1478,6 +2435,137 @@ fetch("https://api.indexnow.org/indexnow", {
   /* ---- Progress tracking ---- */
   function loadDone(){ try{ return new Set(JSON.parse(localStorage.getItem(STORE_KEY)||'[]')); }catch(e){ return new Set(); } }
   function saveDone(s){ try{ localStorage.setItem(STORE_KEY, JSON.stringify([...s])); }catch(e){} }
+  function loadTasks(){ try{ return new Set(JSON.parse(localStorage.getItem(TASK_STORE_KEY)||'[]')); }catch(e){ return new Set(); } }
+  function saveTasks(s){ try{ localStorage.setItem(TASK_STORE_KEY, JSON.stringify([...s])); }catch(e){} }
+  function clampDoneToKnown(done, topics){
+    return new Set([].filter.call(topics, function(card){
+      return done.has(card.getAttribute('href') || '');
+    }).map(function(card){ return card.getAttribute('href') || ''; }));
+  }
+  function message(text){
+    var el = document.getElementById('trackerMessage');
+    if(!el) return;
+    el.textContent = text || '';
+  }
+  function taskTone(percent){
+    if(percent >= 95) return ['Exam ready', 'You have covered nearly everything here. Shift into mixed exam practice and timing.'];
+    if(percent >= 70) return ['On a roll', 'Most of the spec is now tracked. Keep mixing topic guides with exam-style practice.'];
+    if(percent >= 40) return ['Building momentum', 'You have a solid base now. Keep ticking topics off and revisit weaker areas.'];
+    if(percent > 0) return ['Strong start', 'You are moving through the spec. Aim for one more topic and one active practice task.'];
+    return ['Fresh start', 'Start with one topic guide, then build momentum through the spec.'];
+  }
+  function exportProgress(done, tasks){
+    return {
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      topics: Array.from(done),
+      tasks: Array.from(tasks)
+    };
+  }
+  function applyImport(payload, knownTopics){
+    if(!payload || typeof payload !== 'object') throw new Error('Invalid tracker file.');
+    var nextTopics = Array.isArray(payload.topics) ? payload.topics.filter(function(item){
+      return typeof item === 'string' && knownTopics.has(item);
+    }) : [];
+    var nextTasks = Array.isArray(payload.tasks) ? payload.tasks.filter(function(item){
+      return typeof item === 'string' && TASKS.some(function(task){ return task.id === item; });
+    }) : [];
+    return {
+      topics: new Set(nextTopics),
+      tasks: new Set(nextTasks)
+    };
+  }
+  function buildSuggestion(kind, title, copy, href, cta){
+    return { kind: kind, title: title, copy: copy, href: href, cta: cta || 'Open' };
+  }
+  function renderSuggestions(doneSet, taskSet, nextTopic, nextText){
+    var list = document.getElementById('trackerSuggestionList');
+    if(!list) return;
+    var percent = TOTAL ? Math.round((doneSet.size / TOTAL) * 100) : 0;
+    var remaining = Math.max(TOTAL - doneSet.size, 0);
+    var suggestions = [];
+    var nextHref = nextTopic ? (nextTopic.getAttribute('href') || 'topic-01-traditional-media.html') : 'topic-01-traditional-media.html';
+    var support = TOPIC_SUPPORT[nextHref];
+
+    suggestions.push(buildSuggestion(
+      'Topic guide',
+      remaining === 0 ? 'Spec coverage complete' : 'Continue with ' + nextText,
+      remaining === 0 ? 'You have ticked every topic. Switch from coverage into mixed exam practice.' : 'Keep momentum by moving straight into the next unticked topic guide.',
+      remaining === 0 ? 'r093-jun2025-exam.html' : nextHref,
+      remaining === 0 ? 'Open exam paper' : 'Open topic'
+    ));
+
+    if(support && remaining > 0){
+      suggestions.push(buildSuggestion(
+        'Game link',
+        support.label,
+        support.copy,
+        support.href,
+        'Play game'
+      ));
+    }else if(percent < 40){
+      suggestions.push(buildSuggestion(
+        'Retrieval',
+        'Try a mixed quick-win game',
+        'Use a short retrieval game to keep revision active while you are still building topic coverage.',
+        'sector-sorter.html',
+        'Play now'
+      ));
+    }else if(percent < 75){
+      suggestions.push(buildSuggestion(
+        'Exam skill',
+        'Step into a 9-mark practice',
+        'You have enough coverage now to start building longer written answers with structure and justification.',
+        'nine-mark-ninja.html',
+        'Train answer'
+      ));
+    }else{
+      suggestions.push(buildSuggestion(
+        'Exam skill',
+        'Take a mixed mini exam',
+        'Most of the spec is now covered, so the best move is to switch into mixed timed practice.',
+        '01-mini-exam.html',
+        'Start mini exam'
+      ));
+    }
+
+    if(taskSet.size < 2){
+      suggestions.push(buildSuggestion(
+        'Routine',
+        'Complete a balanced session',
+        'Use the revision missions to mix reading, retrieval and exam-style practice in one sitting.',
+        '#revisionTrackerTitle',
+        'Use checklist'
+      ));
+    }else if(percent >= 70){
+      suggestions.push(buildSuggestion(
+        'Exam practice',
+        'Use the AI 9-mark trainer',
+        'Turn your knowledge into sharper extended answers with feedback-focused practice.',
+        'nine-mark-ai-trainer.html',
+        'Open trainer'
+      ));
+    }else{
+      suggestions.push(buildSuggestion(
+        'Explore',
+        'Use a random full-spec challenge',
+        'Break out of one-topic revision and test whether your knowledge transfers across the whole course.',
+        'escape-room-r093.html',
+        'Open challenge'
+      ));
+    }
+
+    list.innerHTML = suggestions.slice(0, 3).map(function(item){
+      return '<li class=\"tracker-suggestion\">'
+        + '<div class=\"tracker-suggestion-top\">'
+        + '<span class=\"tracker-suggestion-kind\">' + item.kind + '</span>'
+        + '<strong class=\"tracker-suggestion-title\">' + item.title + '</strong>'
+        + '</div>'
+        + '<p class=\"tracker-suggestion-copy\">' + item.copy + '</p>'
+        + '<a class=\"tracker-suggestion-link\" href=\"' + item.href + '\">' + item.cta + ' →</a>'
+        + '</li>';
+    }).join('');
+  }
 
   function updateCounters(done){
     var n = done.size;
@@ -1489,10 +2577,52 @@ fetch("https://api.indexnow.org/indexnow", {
     if(sc)   sc.textContent   = n + ' / ' + TOTAL + ' studied';
   }
 
-  var done = loadDone();
+  var topicCards = Array.prototype.slice.call(document.querySelectorAll('.topic-grid .topic-card'));
+  var knownTopics = new Set(topicCards.map(function(card){ return card.getAttribute('href') || ''; }));
+  var done = clampDoneToKnown(loadDone(), topicCards);
+  var taskDone = loadTasks();
+  var taskList = document.getElementById('trackerTaskList');
+
+  if(taskList){
+    TASKS.forEach(function(task){
+      var item = document.createElement('li');
+      item.className = 'tracker-task';
+      item.dataset.taskId = task.id;
+
+      var toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'tracker-task-toggle';
+      toggle.setAttribute('aria-label', 'Mark task complete: ' + task.title);
+      toggle.setAttribute('title', 'Mark task complete');
+
+      var body = document.createElement('div');
+      body.className = 'tracker-task-body';
+      body.innerHTML = '<span class="tracker-task-title"></span><span class="tracker-task-copy"></span>';
+      body.querySelector('.tracker-task-title').textContent = task.title;
+      body.querySelector('.tracker-task-copy').textContent = task.copy;
+
+      item.appendChild(toggle);
+      item.appendChild(body);
+      taskList.appendChild(item);
+
+      if(taskDone.has(task.id)) item.classList.add('done');
+
+      toggle.addEventListener('click', function(){
+        if(taskDone.has(task.id)){
+          taskDone.delete(task.id);
+          item.classList.remove('done');
+        }else{
+          taskDone.add(task.id);
+          item.classList.add('done');
+        }
+        saveTasks(taskDone);
+        renderTracker(done, taskDone);
+      });
+    });
+  }
 
   /* Wrap each topic card and inject tick button */
-  document.querySelectorAll('.topic-grid .topic-card').forEach(function(card){
+  topicCards.forEach(function(card){
     var href = card.getAttribute('href') || '';
 
     var wrap = document.createElement('div');
@@ -1514,11 +2644,63 @@ fetch("https://api.indexnow.org/indexnow", {
       if(done.has(href)){ done.delete(href); wrap.classList.remove('done'); }
       else              { done.add(href);    wrap.classList.add('done');    }
       saveDone(done);
-      updateCounters(done);
+      renderTracker(done, taskDone);
     });
   });
 
-  updateCounters(done);
+  function renderTracker(doneSet, taskSet){
+    updateCounters(doneSet);
+
+    var n = doneSet.size;
+    var taskCount = taskSet.size;
+    var percent = TOTAL ? Math.round((n / TOTAL) * 100) : 0;
+    var remaining = Math.max(TOTAL - n, 0);
+    var tone = taskTone(percent);
+    var nextTopic = topicCards.find(function(card){
+      return !doneSet.has(card.getAttribute('href') || '');
+    }) || topicCards[0];
+    var nextHref = nextTopic ? (nextTopic.getAttribute('href') || 'topic-01-traditional-media.html') : 'topic-01-traditional-media.html';
+    var nextLabel = nextTopic ? nextTopic.querySelector('.topic-card-label span') : null;
+    var nextText = nextLabel ? nextLabel.textContent : 'Traditional Media';
+    var trackerRing = document.getElementById('trackerRing');
+    var trackerPercent = document.getElementById('trackerPercent');
+    var trackerDoneCount = document.getElementById('trackerDoneCount');
+    var trackerDoneMeta = document.getElementById('trackerDoneMeta');
+    var trackerTaskCount = document.getElementById('trackerTaskCount');
+    var trackerTaskMeta = document.getElementById('trackerTaskMeta');
+    var trackerRemainingCount = document.getElementById('trackerRemainingCount');
+    var trackerRemainingMeta = document.getElementById('trackerRemainingMeta');
+    var trackerStatusBadge = document.getElementById('trackerStatusBadge');
+    var trackerStatusText = document.getElementById('trackerStatusText');
+    var trackerNextLink = document.getElementById('trackerNextLink');
+    var trackerContinueLink = document.getElementById('trackerContinueLink');
+    var trackerMeta = document.getElementById('trackerMeta');
+
+    if(trackerRing) trackerRing.style.setProperty('--p', percent);
+    if(trackerPercent) trackerPercent.textContent = percent + '%';
+    if(trackerDoneCount) trackerDoneCount.textContent = n + ' / ' + TOTAL;
+    if(trackerDoneMeta) trackerDoneMeta.textContent = n === 0 ? 'No topics ticked off yet' : (remaining === 0 ? 'Every topic is now marked complete' : remaining + ' topics still to go');
+    if(trackerTaskCount) trackerTaskCount.textContent = taskCount + ' / ' + TASKS.length;
+    if(trackerTaskMeta) trackerTaskMeta.textContent = taskCount === 0 ? 'Build a balanced revision session' : (taskCount === TASKS.length ? 'Mission list complete for this session' : (TASKS.length - taskCount) + ' missions still open');
+    if(trackerRemainingCount) trackerRemainingCount.textContent = remaining === 0 ? 'All done' : remaining + ' left';
+    if(trackerRemainingMeta) trackerRemainingMeta.textContent = remaining === 0 ? 'Move into mini exams and full-paper practice' : 'Next up: ' + nextText;
+    if(trackerStatusBadge) trackerStatusBadge.textContent = tone[0];
+    if(trackerStatusText) trackerStatusText.textContent = tone[1];
+    if(trackerNextLink){
+      trackerNextLink.href = nextHref;
+      trackerNextLink.textContent = remaining === 0 ? 'Open exam practice' : 'Continue with ' + nextText;
+      if(remaining === 0) trackerNextLink.href = 'r093-jun2025-exam.html';
+    }
+    if(trackerContinueLink){
+      trackerContinueLink.href = nextHref;
+      trackerContinueLink.textContent = remaining === 0 ? 'All topics done. Move into exam practice →' : 'Continue with ' + nextText + ' →';
+      if(remaining === 0) trackerContinueLink.href = 'r093-jun2025-exam.html';
+    }
+    if(trackerMeta) trackerMeta.textContent = 'Progress is saved in this browser and can be exported as a file any time.';
+    renderSuggestions(doneSet, taskSet, nextTopic, nextText);
+  }
+
+  renderTracker(done, taskDone);
 
   /* ---- Live search / filter ---- */
   var searchEl = document.getElementById('topicSearch');
@@ -1529,6 +2711,85 @@ fetch("https://api.indexnow.org/indexnow", {
         var text = wrap.textContent.toLowerCase();
         wrap.classList.toggle('hidden-by-search', q !== '' && !text.includes(q));
       });
+    });
+  }
+
+  var exportBtn = document.getElementById('trackerExportBtn');
+  if(exportBtn){
+    exportBtn.addEventListener('click', function(){
+      try{
+        var payload = exportProgress(done, taskDone);
+        var blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        var stamp = new Date().toISOString().slice(0, 10);
+        a.href = url;
+        a.download = 'imedia-revision-progress-' + stamp + '.json';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        message('Progress exported. Keep the file if you want to move revision between devices.');
+      }catch(e){
+        message('Export failed. Try again in this browser.');
+      }
+    });
+  }
+
+  var importInput = document.getElementById('trackerImportFile');
+  var importBtn = document.getElementById('trackerImportBtn');
+  if(importBtn && importInput){
+    importBtn.addEventListener('click', function(){
+      importInput.click();
+    });
+    importInput.addEventListener('change', function(){
+      var file = importInput.files && importInput.files[0];
+      if(!file) return;
+      var reader = new FileReader();
+      reader.onload = function(){
+        try{
+          var payload = JSON.parse(String(reader.result || '{}'));
+          var imported = applyImport(payload, knownTopics);
+          done = imported.topics;
+          taskDone = imported.tasks;
+          saveDone(done);
+          saveTasks(taskDone);
+          document.querySelectorAll('.topic-card-wrap').forEach(function(wrap){
+            var card = wrap.querySelector('.topic-card');
+            var href = card ? (card.getAttribute('href') || '') : '';
+            wrap.classList.toggle('done', done.has(href));
+          });
+          document.querySelectorAll('.tracker-task').forEach(function(item){
+            item.classList.toggle('done', taskDone.has(item.dataset.taskId));
+          });
+          renderTracker(done, taskDone);
+          message('Progress imported successfully.');
+        }catch(e){
+          message('That file could not be imported. Try a tracker export file from iMedia Genius.');
+        }finally{
+          importInput.value = '';
+        }
+      };
+      reader.readAsText(file);
+    });
+  }
+
+  var resetBtn = document.getElementById('trackerResetBtn');
+  if(resetBtn){
+    resetBtn.addEventListener('click', function(){
+      if(!window.confirm('Reset all tracked topics and revision missions on this device?')) return;
+      done = new Set();
+      taskDone = new Set();
+      saveDone(done);
+      saveTasks(taskDone);
+      document.querySelectorAll('.topic-card-wrap').forEach(function(wrap){
+        wrap.classList.remove('done');
+      });
+      document.querySelectorAll('.tracker-task').forEach(function(item){
+        item.classList.remove('done');
+      });
+      renderTracker(done, taskDone);
+      message('Tracker reset for this browser.');
     });
   }
 })();

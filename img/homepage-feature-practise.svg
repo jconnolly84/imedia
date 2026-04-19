@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">Practise the exam feature graphic</title>
+  <desc id="desc">An exam practice dashboard with timed paper, answer notes, and a marked score card.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#08152d"/>
+      <stop offset="100%" stop-color="#050c18"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0f2f61"/>
+      <stop offset="100%" stop-color="#0a1c3c"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <circle cx="630" cy="110" r="110" fill="#38bdf8" opacity="0.13"/>
+  <circle cx="170" cy="500" r="150" fill="#22c55e" opacity="0.11"/>
+  <g transform="translate(92 86)">
+    <rect width="382" height="426" rx="32" fill="#071326" stroke="#284d83"/>
+    <rect x="30" y="30" width="138" height="40" rx="20" fill="#143663"/>
+    <text x="62" y="55" fill="#bfdbfe" font-size="22" font-family="Outfit, Arial, sans-serif" font-weight="700">EXAM MODE</text>
+    <text x="32" y="126" fill="#ffffff" font-size="50" font-family="Outfit, Arial, sans-serif" font-weight="800">Practise the</text>
+    <text x="32" y="180" fill="#ffffff" font-size="50" font-family="Outfit, Arial, sans-serif" font-weight="800">exam</text>
+    <rect x="32" y="222" width="318" height="120" rx="22" fill="url(#paper)" stroke="#2d5a97"/>
+    <text x="58" y="272" fill="#dbeafe" font-size="24" font-family="Nunito Sans, Arial, sans-serif" font-weight="700">R093 June Paper</text>
+    <text x="58" y="314" fill="#fde68a" font-size="22" font-family="Outfit, Arial, sans-serif" font-weight="700">90 min</text>
+    <path d="M180 264 H308" stroke="#93c5fd" stroke-width="10" stroke-linecap="round"/>
+    <path d="M180 292 H286" stroke="#93c5fd" stroke-width="10" stroke-linecap="round" opacity="0.7"/>
+    <path d="M180 320 H260" stroke="#22c55e" stroke-width="10" stroke-linecap="round" opacity="0.85"/>
+    <rect x="32" y="368" width="144" height="72" rx="18" fill="#11294d" stroke="#305a93"/>
+    <text x="52" y="398" fill="#bfdbfe" font-size="15" font-family="Outfit, Arial, sans-serif" font-weight="700">9-MARK</text>
+    <text x="52" y="426" fill="#ffffff" font-size="28" font-family="Outfit, Arial, sans-serif" font-weight="800">AI Trainer</text>
+  </g>
+  <g transform="translate(512 138) rotate(5)">
+    <rect width="200" height="170" rx="26" fill="#0d1e3b" stroke="#2b5a94"/>
+    <text x="28" y="44" fill="#fde68a" font-size="20" font-family="Outfit, Arial, sans-serif" font-weight="700">MARKED</text>
+    <text x="28" y="112" fill="#ffffff" font-size="72" font-family="Outfit, Arial, sans-serif" font-weight="800">8/9</text>
+    <path d="M146 40 L162 56 L188 28" fill="none" stroke="#22c55e" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(520 334) rotate(-4)">
+    <rect width="176" height="120" rx="22" fill="#0a1731" stroke="#2a548c"/>
+    <path d="M26 34 H132" stroke="#93c5fd" stroke-width="10" stroke-linecap="round"/>
+    <path d="M26 58 H146" stroke="#93c5fd" stroke-width="10" stroke-linecap="round" opacity="0.8"/>
+    <path d="M26 82 H118" stroke="#22c55e" stroke-width="10" stroke-linecap="round" opacity="0.9"/>
+    <text x="26" y="108" fill="#dbeafe" font-size="15" font-family="Nunito Sans, Arial, sans-serif">exam feedback and notes</text>
+  </g>
+</svg>

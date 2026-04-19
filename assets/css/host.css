@@ -625,6 +625,27 @@ footer {
   color: var(--text-muted);
 }
 
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  margin: 10px 0 0;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible {
+  color: var(--text-main);
+  text-decoration: underline;
+}
+
 .footer-note {
   margin-top: 4px;
   font-size: 0.74rem;

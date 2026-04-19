@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700" role="img" aria-labelledby="title desc">
+  <title id="title">iMedia Genius homepage banner</title>
+  <desc id="desc">A dark blue collage showing revision cards, media screens, audio waves, a camera lens, and game tiles for OCR Creative iMedia revision.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#071633"/>
+      <stop offset="55%" stop-color="#0a2150"/>
+      <stop offset="100%" stop-color="#040913"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#102c63"/>
+      <stop offset="100%" stop-color="#0a1733"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#22c55e"/>
+    </linearGradient>
+    <linearGradient id="warm" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#fde047"/>
+      <stop offset="100%" stop-color="#fb7185"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#020617" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="700" fill="url(#bg)"/>
+  <circle cx="1340" cy="120" r="180" fill="#38bdf8" opacity="0.14"/>
+  <circle cx="1240" cy="560" r="220" fill="#22c55e" opacity="0.12"/>
+  <circle cx="290" cy="140" r="180" fill="#2563eb" opacity="0.16"/>
+
+  <g opacity="0.18" stroke="#93c5fd" stroke-width="2" fill="none">
+    <path d="M0 520 C260 430 420 630 660 520 S1080 420 1600 520"/>
+    <path d="M0 560 C280 470 440 670 700 560 S1120 470 1600 560"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="80" y="84" width="720" height="210" rx="30" fill="rgba(5,15,36,0.65)"/>
+    <rect x="112" y="116" width="304" height="48" rx="24" fill="#123162" stroke="#274d87"/>
+    <text x="152" y="148" fill="#dbeafe" font-size="24" font-family="Outfit, Arial, sans-serif" font-weight="700">GAME-BASED R093 REVISION</text>
+    <text x="112" y="212" fill="#ffffff" font-size="70" font-family="Outfit, Arial, sans-serif" font-weight="800">Creative iMedia</text>
+    <text x="112" y="276" fill="#9fb4de" font-size="30" font-family="Nunito Sans, Arial, sans-serif">Topic guides, games, flashcards, exam practice and 9-mark training.</text>
+  </g>
+
+  <g transform="translate(930 82) rotate(-3)" filter="url(#shadow)">
+    <rect width="240" height="180" rx="24" fill="url(#panel)" stroke="#2b4b7a"/>
+    <rect x="24" y="24" width="94" height="28" rx="14" fill="#143a70"/>
+    <text x="44" y="44" fill="#7dd3fc" font-size="16" font-family="Outfit, Arial, sans-serif" font-weight="700">TOPIC GUIDE</text>
+    <text x="24" y="88" fill="#fff" font-size="30" font-family="Outfit, Arial, sans-serif" font-weight="800">Media</text>
+    <text x="24" y="124" fill="#fff" font-size="30" font-family="Outfit, Arial, sans-serif" font-weight="800">Industry</text>
+    <rect x="24" y="140" width="120" height="12" rx="6" fill="#38bdf8" opacity="0.6"/>
+    <rect x="24" y="160" width="160" height="8" rx="4" fill="#93c5fd" opacity="0.35"/>
+  </g>
+
+  <g transform="translate(1175 130) rotate(6)" filter="url(#shadow)">
+    <rect width="280" height="210" rx="26" fill="#0b1835" stroke="#29528d"/>
+    <rect x="26" y="26" width="160" height="24" rx="12" fill="#14335f"/>
+    <text x="48" y="43" fill="#fde68a" font-size="15" font-family="Outfit, Arial, sans-serif" font-weight="700">EXAM PRACTICE</text>
+    <rect x="26" y="72" width="228" height="114" rx="18" fill="#091121" stroke="#1e3a5f"/>
+    <path d="M58 140 L96 106 L126 132 L166 96 L214 146" fill="none" stroke="url(#warm)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="214" cy="146" r="10" fill="#fde047"/>
+  </g>
+
+  <g transform="translate(828 356) rotate(-7)" filter="url(#shadow)">
+    <rect width="250" height="168" rx="24" fill="#09172f" stroke="#27518b"/>
+    <circle cx="76" cy="82" r="40" fill="none" stroke="#38bdf8" stroke-width="12"/>
+    <circle cx="76" cy="82" r="14" fill="#38bdf8"/>
+    <path d="M132 58 H210" stroke="#93c5fd" stroke-width="10" stroke-linecap="round"/>
+    <path d="M132 88 H220" stroke="#22c55e" stroke-width="10" stroke-linecap="round"/>
+    <path d="M132 118 H196" stroke="#fde047" stroke-width="10" stroke-linecap="round"/>
+    <text x="32" y="150" fill="#dbeafe" font-size="20" font-family="Nunito Sans, Arial, sans-serif">camera, lighting, layout</text>
+  </g>
+
+  <g transform="translate(1098 394) rotate(4)" filter="url(#shadow)">
+    <rect width="214" height="150" rx="22" fill="#0a1a37" stroke="#2a4f87"/>
+    <path d="M28 92 C52 54 78 54 102 92 S152 130 186 78" fill="none" stroke="#38bdf8" stroke-width="8" stroke-linecap="round"/>
+    <path d="M28 112 C52 76 78 76 102 112 S152 146 186 98" fill="none" stroke="#22c55e" stroke-width="8" stroke-linecap="round" opacity="0.9"/>
+    <rect x="24" y="26" width="86" height="20" rx="10" fill="#132f5b"/>
+    <text x="42" y="41" fill="#bfdbfe" font-size="14" font-family="Outfit, Arial, sans-serif" font-weight="700">PODCAST</text>
+  </g>
+
+  <g transform="translate(188 390)" filter="url(#shadow)">
+    <rect width="544" height="214" rx="28" fill="rgba(7,16,34,0.8)" stroke="#284777"/>
+    <g transform="translate(30 34)">
+      <rect width="148" height="64" rx="18" fill="#0f2a57" stroke="#345d96"/>
+      <text x="22" y="40" fill="#7dd3fc" font-size="22" font-family="Outfit, Arial, sans-serif" font-weight="700">TOPIC GUIDES</text>
+      <rect x="166" width="132" height="64" rx="18" fill="#0f2a57" stroke="#345d96"/>
+      <text x="186" y="40" fill="#86efac" font-size="22" font-family="Outfit, Arial, sans-serif" font-weight="700">GAMES</text>
+      <rect x="316" width="160" height="64" rx="18" fill="#0f2a57" stroke="#345d96"/>
+      <text x="336" y="40" fill="#fde68a" font-size="22" font-family="Outfit, Arial, sans-serif" font-weight="700">EXAM TOOLS</text>
+    </g>
+    <g transform="translate(30 128)">
+      <rect width="472" height="12" rx="6" fill="#13335f"/>
+      <rect width="306" height="12" rx="6" fill="url(#accent)"/>
+      <text x="0" y="46" fill="#dbeafe" font-size="28" font-family="Nunito Sans, Arial, sans-serif" font-weight="700">35 topics   37 games   full-paper practice</text>
+    </g>
+  </g>
+</svg>
