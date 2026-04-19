@@ -510,6 +510,18 @@
   color:var(--text-muted);
   font-size:0.92rem;
 }
+.tracker-panel-media{
+  margin:18px -6px 0;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.06);
+  background:rgba(255,255,255,0.03);
+}
+.tracker-panel-media img{
+  display:block;
+  width:100%;
+  height:auto;
+}
 .tracker-task-list{
   list-style:none;
   margin:16px 0 0;
@@ -641,6 +653,16 @@
   font-size:0.85rem;
 }
 .tracker-input{display:none;}
+
+@media (min-width: 1180px){
+  .tracker-shell{
+    grid-template-columns:1fr;
+  }
+  .tracker-side{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    align-items:start;
+  }
+}
 
 /* ── Topic section tools row ────────────────────────────────────────────── */
 .topic-tools{
@@ -1224,6 +1246,9 @@ main::after {
         <h3>Continue where you left off</h3>
         <p>Your next unticked topic is surfaced here automatically, so it is easy to pick up revision without deciding from scratch.</p>
         <a class="tracker-next-link" href="topic-01-traditional-media.html" id="trackerContinueLink">Go to your next topic</a>
+        <div class="tracker-panel-media">
+          <img src="img/04_feature_card_1600_1200.png" alt="Revision made easy illustration showing reviewing content, taking notes, playing a game and trying the exam" width="1600" height="1200"/>
+        </div>
       </div>
     </aside>
   </div>
