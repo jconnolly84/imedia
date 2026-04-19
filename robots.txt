@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+Host: imediagenius.co.uk
 Sitemap: https://imediagenius.co.uk/sitemap.xml
