@@ -51,7 +51,7 @@ Narrator: Packed with vitamins and electrolytes.`,
       script: `Scene 1 – RADIO ADVERT
 
 Hi, have you tried the new City Fitness app?
-No, what’s that?
+No, what's that?
 It helps you track your workouts and stay motivated!
 Voiceover: Download City Fitness now from your app store.`,
       question:
@@ -75,16 +75,16 @@ Voiceover: Download City Fitness now from your app store.`,
       script: `INT. SCHOOL CORRIDOR – DAY
 
 SAM walks down the corridor. He looks nervous.
-SAM: I’m not sure about this…
+SAM: I'm not sure about this…
 A teacher appears at the end of the corridor.
 TEACHER: Are you ready for your exam, Sam?`,
       question:
-        "How could the directions for SAM’s movement be written more clearly using script conventions?",
+        "How could the directions for SAM's movement be written more clearly using script conventions?",
       options: [
         "Write the movement in brackets on its own line, for example: (SAM walks nervously down the corridor, looking unsure).",
         "Remove the description of how SAM feels so that the actor can guess the emotion without any guidance.",
         "Write the directions in a different colour pen to show they are separate from the rest of the script.",
-        "Put the directions in the middle of another character’s dialogue so that the lines feel more crowded."
+        "Put the directions in the middle of another character's dialogue so that the lines feel more crowded."
       ],
       correctIndex: 0,
       explanation:
@@ -107,7 +107,7 @@ Host: Welcome to the Tech Talk podcast!`,
         "Label them clearly as SFX and MUSIC, for example: (MUSIC: upbeat theme, fades in), (SFX: door opens loudly as the host enters).",
         "Delete the music from the script so the sound engineer can improvise their own background track later.",
         "Write all the audio in capital letters only and hope the sound engineer can guess what type of sound each line is.",
-        "Move the sound effects into the host’s dialogue line so everything appears on a single line of the script."
+        "Move the sound effects into the host's dialogue line so everything appears on a single line of the script."
       ],
       correctIndex: 0,
       explanation:
@@ -153,8 +153,8 @@ Interview: It was a tough job but we were proud of what we made.`,
       question:
         "What change would make it clearer which parts are voiceover and which are interviews?",
       options: [
-        "Label lines that are spoken over the footage as VOICEOVER and label interview speech with the interviewee’s name so the editor can organise the audio correctly.",
-        "Remove the interview line completely so that the documentary only contains the narrator’s opinion.",
+        "Label lines that are spoken over the footage as VOICEOVER and label interview speech with the interviewee's name so the editor can organise the audio correctly.",
+        "Remove the interview line completely so that the documentary only contains the narrator's opinion.",
         "Write both lines in capital letters to show that they are equally important, without explaining who is speaking.",
         "Put all the narration into brackets so it looks like a stage direction rather than spoken audio."
       ],
@@ -170,7 +170,7 @@ Interview: It was a tough job but we were proud of what we made.`,
         "A script for a short film has all camera shots mixed into the same lines as the dialogue.",
       script: `INT. BEDROOM – NIGHT
 
-[CAMERA: Close up of phone buzzing] ALEX: I can’t believe this is happening…
+[CAMERA: Close up of phone buzzing] ALEX: I can't believe this is happening…
 [CAMERA: Over-the-shoulder shot of messages on screen]`,
       question:
         "What is the BEST improvement for this script layout?",
@@ -303,7 +303,7 @@ Interview: It was a tough job but we were proud of what we made.`,
       score++;
       scoreDisplayEl.textContent = score.toString();
       feedbackEl.textContent =
-        "Correct – you’ve made the right fix for this script.";
+        "Correct – you've made the right fix for this script.";
       feedbackEl.className = "feedback good";
     } else {
       feedbackEl.textContent =
@@ -318,7 +318,7 @@ Interview: It was a tough job but we were proud of what we made.`,
       nextQuestionBtn.disabled = false;
     } else {
       nextQuestionBtn.disabled = true;
-      feedbackEl.textContent += " You’ve reached the end of this set.";
+      feedbackEl.textContent += " You've reached the end of this set.";
     }
   }
 

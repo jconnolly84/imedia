@@ -677,7 +677,7 @@ window.NINE_MARK_SCENARIOS = {
         prompt:
           "Why would adding font names and approximate sizes make this visualisation diagram more suitable for the graphic designer?",
         options: [
-          "It gives clear guidance on typography, helping the designer match the client’s expectations.",
+          "It gives clear guidance on typography, helping the designer match the client's expectations.",
           "It makes the diagram more colourful.",
           "It tells the printer which paper to use."
         ],
@@ -968,7 +968,7 @@ window.NINE_MARK_SCENARIOS = {
       {
         id: "sc_imp5",
         text:
-          "Add detailed descriptions of the actor’s clothing unless it is essential to the message.",
+          "Add detailed descriptions of the actor's clothing unless it is essential to the message.",
         strong: false
       },
       {

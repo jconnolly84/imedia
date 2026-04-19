@@ -320,7 +320,7 @@ els.copyPromptBtn2?.addEventListener("click", async ()=>{
 
   if (current.prompt) return copyText(current.prompt);
   if (current.promptUrl){
-    els.authStatus.textContent = "Prompt stored — click “Open stored prompt”.";
+    els.authStatus.textContent = "Prompt stored — click "Open stored prompt".";
   } else {
     els.authStatus.textContent = "No stored prompt found for this submission.";
   }

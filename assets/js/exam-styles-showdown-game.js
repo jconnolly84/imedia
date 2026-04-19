@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
               "use research about teenagers to choose suitable colours, fonts and images",
               "follow requirements in the brief such as size, format and key information",
               "audience research helps decide which sci-fi elements will attract the target group",
-              "using the brief and research together ensures the design meets the client’s purpose"
+              "using the brief and research together ensures the design meets the client's purpose"
             ],
             distractors: [
               "ignore the brief and design whatever you like",
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
           },
           stage3: {
             question:
-              "The client is worried that the advert will not clearly show the product’s main features. Discuss how careful planning of the storyboard could help produce an effective advert. (8 marks)",
+              "The client is worried that the advert will not clearly show the product's main features. Discuss how careful planning of the storyboard could help produce an effective advert. (8 marks)",
             bestPoints: [
               "choose shots that clearly show the product and its features",
               "use annotations on the storyboard to explain key actions and dialogue",
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
               "leave planning until filming day"
             ],
             explanation:
-              "Stronger answers explain how storyboard planning leads to clearer communication of the product’s features and a more effective final advert."
+              "Stronger answers explain how storyboard planning leads to clearer communication of the product's features and a more effective final advert."
           }
         },
         {
@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
           intro: "You are making a school website that will use images found online.",
           stage1: {
             question:
-              "Give one consequence of using someone else’s image on the website without permission. (1 mark)",
+              "Give one consequence of using someone else's image on the website without permission. (1 mark)",
             style: "identify",
             explanation:
               "Here you only need to name one clear consequence, such as legal action or the image being taken down."
@@ -247,14 +247,14 @@ document.addEventListener("DOMContentLoaded", () => {
             "You are designing a promotional video that includes interviews with students.",
           stage1: {
             question:
-              "Give one reason why the media company must follow the Data Protection Act when storing the students’ personal details. (1 mark)",
+              "Give one reason why the media company must follow the Data Protection Act when storing the students' personal details. (1 mark)",
             style: "identify",
             explanation:
               "This question wants one clear reason linked to keeping personal data safe and used fairly."
           },
           stage2: {
             question:
-              "Describe two ways the Data Protection Act affects how the students’ personal data should be stored. (3 marks)",
+              "Describe two ways the Data Protection Act affects how the students' personal data should be stored. (3 marks)",
             maxMarks: 3,
             keywords: ["secure", "encrypted", "access", "accurate", "up to date"],
             synonyms: {

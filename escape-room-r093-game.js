@@ -37,7 +37,7 @@ const locks = [
           "Client name, postcode and favourite colour.",
           "Purpose of the product, target audience and any explicit requirements and constraints.",
           "Only the budget and deadline.",
-          "Only the client’s logo and strapline."
+          "Only the client's logo and strapline."
         ],
         correctIndex: 1,
         explanation: "For R093 you must be able to pick out the purpose, target audience and clear requirements/constraints as these drive all later design decisions."

@@ -236,7 +236,7 @@ const TOPICS = {
           "An asset list or asset log helps track what files are needed, where they are stored and any legal considerations."
       },
       {
-        q: "Why is it important to test a website’s images and assets on different devices and browsers?",
+        q: "Why is it important to test a website's images and assets on different devices and browsers?",
         options: [
           "So the CSS file will become smaller",
           "To ensure assets load correctly, look clear and are usable for all users",

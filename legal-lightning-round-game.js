@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
       options: [
         "A completely fictional character name.",
         "An anonymous comment with no username.",
-        "A student’s full name and school email address.",
+        "A student's full name and school email address.",
         "The title of a film."
       ],
       correctIndex: 2,

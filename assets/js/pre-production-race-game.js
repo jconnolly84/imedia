@@ -43,10 +43,10 @@ Before filming starts, the production team must complete several planning and pr
       id: "posterCampaign",
       label: "Poster Campaign",
       brief: `
-A city museum is launching a new ‘Future Tech’ exhibition and wants an A3 poster
+A city museum is launching a new 'Future Tech' exhibition and wants an A3 poster
 to display in local schools and community centres.
 
-The designer needs to follow the client’s brand guidelines and meet the print deadline.
+The designer needs to follow the client's brand guidelines and meet the print deadline.
       `,
       focusPoints: [
         "Understanding the client brief and brand guidelines.",

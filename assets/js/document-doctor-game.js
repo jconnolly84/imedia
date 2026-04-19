@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
       options: [
         "Images showing possible styles of characters",
         "Colour swatches that match the brand",
-        "Short notes about the target audience’s lifestyle",
+        "Short notes about the target audience's lifestyle",
         "A detailed list of shot types for a trailer"
       ],
       correctIndex: 3,
@@ -264,7 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
       nextQuestionBtn.disabled = false;
     } else {
       nextQuestionBtn.disabled = true;
-      feedbackEl.textContent += " You’ve reached the end of this question set.";
+      feedbackEl.textContent += " You've reached the end of this question set.";
     }
   }
 

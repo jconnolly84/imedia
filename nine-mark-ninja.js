@@ -330,7 +330,7 @@
       feedbackEl.textContent =
         "Strong explanations overall. Check the ones marked in red and think about which option links more clearly to the " +
         scenario.userRoleLabel +
-        "’s needs.";
+        "'s needs.";
     } else {
       feedbackEl.textContent =
         "Some explanations are quite general. Remember: a Level 3 answer must say exactly how the improvement makes the " +

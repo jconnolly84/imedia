@@ -287,7 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const percentage = (correct / total) * 100;
     if (percentage === 100) {
-      feedback.textContent = "Perfect! You’ve completely nailed this round.";
+      feedback.textContent = "Perfect! You've completely nailed this round.";
       feedback.className = "feedback good";
     } else if (percentage >= 70) {
       feedback.textContent = "Great job – just a few to tweak. Check any red tokens.";

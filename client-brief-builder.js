@@ -52,7 +52,7 @@ const TOPICS = {
           "In a commissioned brief, the production company is hired to develop and deliver the project."
       },
       {
-        q: "A quick chat in a corridor where the client says, “We need a short promo for social media next week.” What type of brief is this MOST likely to be?",
+        q: "A quick chat in a corridor where the client says, "We need a short promo for social media next week." What type of brief is this MOST likely to be?",
         options: ["Formal brief", "Informal brief", "Tendered brief", "Contractual brief"],
         answerIndex: 1,
         explanation:
@@ -83,21 +83,21 @@ const TOPICS = {
           "Deadlines, budget and legal limits are constraints because they restrict what can be done."
       },
       {
-        q: "A brief states: “The app must support both Android and iOS devices.” This is mainly a…",
+        q: "A brief states: "The app must support both Android and iOS devices." This is mainly a…",
         options: ["Requirement", "Constraint", "Risk", "Milestone"],
         answerIndex: 0,
         explanation:
           "This is a requirement about what the final product must be able to do (platform support)."
       },
       {
-        q: "A brief states: “The maximum budget is £5,000 and no overtime can be paid.” This is mainly a…",
+        q: "A brief states: "The maximum budget is £5,000 and no overtime can be paid." This is mainly a…",
         options: ["Requirement", "Constraint", "Risk", "Target audience"],
         answerIndex: 1,
         explanation:
           "Budget limits are constraints because they restrict how the project can be delivered."
       },
       {
-        q: "“The project must follow GDPR when collecting user data.” In a client brief, this is best described as a…",
+        q: ""The project must follow GDPR when collecting user data." In a client brief, this is best described as a…",
         options: ["Requirement", "Constraint linked to legal issues", "Milestone", "Risk assessment"],
         answerIndex: 1,
         explanation:
@@ -108,7 +108,7 @@ const TOPICS = {
         options: [
           "List of health and safety laws",
           "Number of social media posts and platforms to use",
-          "The client’s company registration number",
+          "The client's company registration number",
           "The wages for each team member"
         ],
         answerIndex: 1,
@@ -128,7 +128,7 @@ const TOPICS = {
           "A brief sets out the main aims, audience, content ideas and any limits so everyone understands the project."
       },
       {
-        q: "A brief says: “We must have the first draft ready 2 weeks before launch for feedback.” This is mainly a…",
+        q: "A brief says: "We must have the first draft ready 2 weeks before launch for feedback." This is mainly a…",
         options: ["Requirement", "Constraint (schedule)", "Risk", "Health and safety rule"],
         answerIndex: 1,
         explanation:
@@ -166,14 +166,14 @@ const TOPICS = {
           "The requirement is what is being made (3 posters); the constraint is an external limit (council size rules)."
       },
       {
-        q: "A brief says: “All filming must take place inside the school site.” This is mainly a…",
+        q: "A brief says: "All filming must take place inside the school site." This is mainly a…",
         options: ["Requirement", "Constraint (location)", "Milestone", "Target audience detail"],
         answerIndex: 1,
         explanation:
           "Limiting filming to one location is a constraint, as it restricts where footage can be captured."
       },
       {
-        q: "A client writes an email saying, “Can we also create a shorter cut-down version for social media?” What should the production team do FIRST?",
+        q: "A client writes an email saying, "Can we also create a shorter cut-down version for social media?" What should the production team do FIRST?",
         options: [
           "Ignore the request as it is informal",
           "Treat it as a new legal contract",

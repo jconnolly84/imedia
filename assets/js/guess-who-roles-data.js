@@ -40,7 +40,7 @@ window.GUESS_WHO_ROLES = [
     clues: [
       "You write short, persuasive text for adverts and websites.",
       "Slogans and taglines are a big part of your job.",
-      "Your words must match the brand’s tone of voice."
+      "Your words must match the brand's tone of voice."
     ]
   },
   {
@@ -141,7 +141,7 @@ window.GUESS_WHO_ROLES = [
     category: "technical",
     clues: [
       "You operate cameras on set or in a studio.",
-      "You follow the director’s instructions for framing and movement.",
+      "You follow the director's instructions for framing and movement.",
       "You need strong practical skills with camera equipment."
     ]
   },
@@ -271,7 +271,7 @@ window.GUESS_WHO_ROLES = [
     category: "technical",
     clues: [
       "You adjust colour and brightness across a finished sequence.",
-      "You give shots a consistent visual style or ‘grade’.",
+      "You give shots a consistent visual style or 'grade'.",
       "You often work in specialist colour-grading software."
     ]
   },
@@ -373,8 +373,8 @@ window.GUESS_WHO_ROLES = [
     category: "senior",
     clues: [
       "You plan and run marketing campaigns across different media.",
-      "You monitor results and adjust the strategy if targets aren’t met.",
-      "You must understand both the client’s aims and the target audience."
+      "You monitor results and adjust the strategy if targets aren't met.",
+      "You must understand both the client's aims and the target audience."
     ]
   }
 ];

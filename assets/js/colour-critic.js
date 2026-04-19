@@ -81,7 +81,7 @@
       return {
         grade: "D",
         comment:
-          "Don’t panic – use this round as a revision map. Re‑read each explanation, then try again to see improvement."
+          "Don't panic – use this round as a revision map. Re‑read each explanation, then try again to see improvement."
       };
     }
   }
@@ -267,9 +267,9 @@
         }
 
         hasAnswered = true;
-        explanationHeading.textContent = "Time’s up!";
+        explanationHeading.textContent = "Time's up!";
         const extra =
-          " In the real R093 exam you must work quickly and confidently – don’t spend too long on one question.";
+          " In the real R093 exam you must work quickly and confidently – don't spend too long on one question.";
         explanationText.textContent = (q.explanation || "") + extra;
         explanationPanel.classList.remove("hidden");
       }

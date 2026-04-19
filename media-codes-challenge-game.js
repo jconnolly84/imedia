@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
       focus: "effect",
       heading: "Explain the effect",
       scenario:
-        "A horror trailer uses low-key lighting with lots of shadows and only small areas of light on the characters’ faces.",
+        "A horror trailer uses low-key lighting with lots of shadows and only small areas of light on the characters' faces.",
       question: "What is the MOST likely effect of this lighting on the audience?",
       options: [
         "It makes the scene look bright and cheerful.",
@@ -122,13 +122,13 @@ document.addEventListener("DOMContentLoaded", () => {
       focus: "effect",
       heading: "Explain the effect",
       scenario:
-        "A charity advert uses a close-up of a person’s face with tears in their eyes as they talk about their experience.",
+        "A charity advert uses a close-up of a person's face with tears in their eyes as they talk about their experience.",
       question: "Why might the director have chosen this close-up shot?",
       options: [
         "To show the location clearly in the background.",
         "To create an emotional connection and encourage empathy from the audience.",
-        "To hide the character’s facial expressions.",
-        "To show the character’s full body language."
+        "To hide the character's facial expressions.",
+        "To show the character's full body language."
       ],
       correctIndex: 1,
       explanation:
@@ -143,13 +143,13 @@ document.addEventListener("DOMContentLoaded", () => {
       question: "What is the MOST likely effect of this editing style?",
       options: [
         "It slows down the pace and makes the advert feel calm.",
-        "It creates a fast, energetic feeling that grabs the audience’s attention.",
+        "It creates a fast, energetic feeling that grabs the audience's attention.",
         "It makes the product hard to see at all.",
         "It has no effect on how the audience feels."
       ],
       correctIndex: 1,
       explanation:
-        "Fast-paced editing and jump cuts create energy and excitement, which help hold the audience’s attention."
+        "Fast-paced editing and jump cuts create energy and excitement, which help hold the audience's attention."
     },
     {
       id: "colourConnotation",
@@ -288,7 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (selectedIndex === q.correctIndex) {
       score++;
       scoreDisplayEl.textContent = score.toString();
-      feedbackEl.textContent = "Correct – you’ve identified the code/effect accurately.";
+      feedbackEl.textContent = "Correct – you've identified the code/effect accurately.";
       feedbackEl.className = "feedback good";
     } else {
       feedbackEl.textContent = "Not quite. " + q.explanation;
@@ -299,7 +299,7 @@ document.addEventListener("DOMContentLoaded", () => {
       nextQuestionBtn.disabled = false;
     } else {
       nextQuestionBtn.disabled = true;
-      feedbackEl.textContent += " You’ve reached the end of this set.";
+      feedbackEl.textContent += " You've reached the end of this set.";
     }
   }
 

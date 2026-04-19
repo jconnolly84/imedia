@@ -17,7 +17,7 @@ window.SCENE_QUESTIONS = [
       {
         text: "The blue poster on the wall behind the bed",
         correct: false,
-        feedback: "The poster is background decoration, but it doesn’t directly communicate the feeling of being overwhelmed."
+        feedback: "The poster is background decoration, but it doesn't directly communicate the feeling of being overwhelmed."
       },
       {
         text: "The neat stack of folded clothes in the corner",
@@ -37,12 +37,12 @@ window.SCENE_QUESTIONS = [
     title: "Job interview – dark office",
     focus: "Lighting & costume",
     image: "img/mise-office-interview.png",
-    question: "How do the candidate’s costume and the scene’s lighting together suggest she feels uncomfortable and out of place?",
+    question: "How do the candidate's costume and the scene's lighting together suggest she feels uncomfortable and out of place?",
     answers: [
       {
         text: "Her warm, casual-toned clothing contrasts sharply with the dark, formal office, and she avoids eye contact by looking downward",
         correct: true,
-        feedback: "A costume that clashes with its environment signals the character doesn’t quite belong there, and averted eye contact reinforces their unease."
+        feedback: "A costume that clashes with its environment signals the character doesn't quite belong there, and averted eye contact reinforces their unease."
       },
       {
         text: "The interviewer reviewing a document under bright lighting makes the room feel open and welcoming",
@@ -57,10 +57,10 @@ window.SCENE_QUESTIONS = [
       {
         text: "Both characters wear matching dark formal clothing, showing they are equally at ease",
         correct: false,
-        feedback: "The candidate’s warm, lighter clothing contrasts noticeably with the interviewer’s darker formal suit, highlighting her discomfort."
+        feedback: "The candidate's warm, lighter clothing contrasts noticeably with the interviewer's darker formal suit, highlighting her discomfort."
       }
     ],
-    explanation: "When a character’s costume doesn’t fit the environment around them, it visually signals they feel like an outsider — even before anyone speaks."
+    explanation: "When a character's costume doesn't fit the environment around them, it visually signals they feel like an outsider — even before anyone speaks."
   },
   {
     id: "spooky_corridor",
@@ -112,12 +112,12 @@ window.SCENE_QUESTIONS = [
       {
         text: "They are filmed in an extreme long shot, almost lost in the distance",
         correct: false,
-        feedback: "A very distant shot reduces the character’s presence instead of emphasising their power."
+        feedback: "A very distant shot reduces the character's presence instead of emphasising their power."
       },
       {
         text: "They are shown in a mid-shot sitting at a desk",
         correct: false,
-        feedback: "A neutral mid-shot doesn’t strongly suggest dominance or control in this context."
+        feedback: "A neutral mid-shot doesn't strongly suggest dominance or control in this context."
       }
     ],
     explanation: "Camera angle and position in the frame affect status. Low angles and high viewpoints over the city often suggest control and heroism."
@@ -207,7 +207,7 @@ window.SCENE_QUESTIONS = [
       {
         text: "Only natural daylight coming in from large windows",
         correct: false,
-        feedback: "Daylight can be pleasant but doesn’t automatically create a romantic tone."
+        feedback: "Daylight can be pleasant but doesn't automatically create a romantic tone."
       }
     ],
     explanation: "Colour temperature and light quality are key to mood: warm, low-level lighting usually reads as cosy or romantic."
@@ -232,12 +232,12 @@ window.SCENE_QUESTIONS = [
       {
         text: "A mid-shot of the teacher walking between the rows of desks",
         correct: false,
-        feedback: "This shifts attention to the teacher, not the student’s anxiety."
+        feedback: "This shifts attention to the teacher, not the student's anxiety."
       },
       {
         text: "A shot of the clock on the wall as the second hand moves",
         correct: false,
-        feedback: "The clock shows time pressure but doesn’t focus on one student’s emotional response."
+        feedback: "The clock shows time pressure but doesn't focus on one student's emotional response."
       }
     ],
     explanation: "Selective focus directs attention. Blurring the background students lets the audience concentrate on a single stressed character."
@@ -257,7 +257,7 @@ window.SCENE_QUESTIONS = [
       {
         text: "A single small TV in the corner of the room with the sound turned down",
         correct: false,
-        feedback: "This doesn’t communicate professional streaming – it feels more like casual watching."
+        feedback: "This doesn't communicate professional streaming – it feels more like casual watching."
       },
       {
         text: "A bookshelf full of classic novels behind the character",
@@ -287,7 +287,7 @@ window.SCENE_QUESTIONS = [
       {
         text: "All four students stand in a straight line facing the camera",
         correct: false,
-        feedback: "This symmetrical arrangement doesn’t clearly show who is isolated."
+        feedback: "This symmetrical arrangement doesn't clearly show who is isolated."
       },
       {
         text: "The group stands in a circle with the camera in the middle",
@@ -297,7 +297,7 @@ window.SCENE_QUESTIONS = [
       {
         text: "Only the empty playground is shown with no characters",
         correct: false,
-        feedback: "Without characters, it’s hard to show who is being left out."
+        feedback: "Without characters, it's hard to show who is being left out."
       }
     ],
     explanation: "Blocking – where characters stand in relation to each other – is a powerful way to show relationships like power or exclusion."

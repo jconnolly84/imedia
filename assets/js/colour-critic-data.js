@@ -48,7 +48,7 @@ window.COLOUR_CRITIC_QUESTIONS = [
       {
         text: "Gold and black automatically make the perfume look like it is for children.",
         correct: false,
-        feedback: "Children’s products usually use brighter, softer colours instead."
+        feedback: "Children's products usually use brighter, softer colours instead."
       },
       {
         text: "Gold and black always mean the product is eco-friendly.",

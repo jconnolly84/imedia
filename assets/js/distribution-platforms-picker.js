@@ -178,7 +178,7 @@ const TOPICS = {
         ],
         answerIndex: 1,
         explanation:
-          "Two companies promote each other’s products, which is synergy and cross‑promotion."
+          "Two companies promote each other's products, which is synergy and cross‑promotion."
       },
       {
         q: "Which statement BEST describes a digital download compared to streaming?",

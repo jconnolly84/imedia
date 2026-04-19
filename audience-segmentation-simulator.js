@@ -199,7 +199,7 @@ const TOPICS = {
           "Segmentation allows campaigns to be customised for specific groups, making them more effective."
       },
       {
-        q: "A video-on-demand platform creates a kids’ profile option with age-appropriate content for under 12s. Which segmentation factor is used here?",
+        q: "A video-on-demand platform creates a kids' profile option with age-appropriate content for under 12s. Which segmentation factor is used here?",
         options: [
           "Demographic (age)",
           "Psychographic (values) only",

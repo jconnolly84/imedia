@@ -445,10 +445,10 @@ function updateL2L3Tips(){
   }
 
   const checks = [
-    {k:['watermark'], label:'Mention the watermark and explain why it’s a problem (professionalism/licensing/clarity).'},
+    {k:['watermark'], label:'Mention the watermark and explain why it's a problem (professionalism/licensing/clarity).'},
     {k:['consistent','consistency','palette','colour palette','colour scheme'], label:'Talk about consistency (colour palette) and how it keeps campaign posts looking joined up.'},
     {k:['typography','fonts','font','serif','sans'], label:'Discuss typography (font choices) and why consistent fonts improve readability and brand identity.'},
-    {k:['layout','composition','hierarchy','alignment','spacing'], label:'Comment on layout/composition (visual hierarchy, alignment, spacing) so it’s quicker to interpret.'},
+    {k:['layout','composition','hierarchy','alignment','spacing'], label:'Comment on layout/composition (visual hierarchy, alignment, spacing) so it's quicker to interpret.'},
     {k:['labels','label','annotation','annotate','notes'], label:'Include labels/annotations AND explain how they guide the content creator (what to include/avoid).'},
     {k:['audience','target','purpose','tone','message'], label:'Link choices to audience and purpose (tone, message, emotional impact) for the campaign.'},
     {k:['stock','images','imagery','relevant','unrelated'], label:'Critique relevance of imagery (remove unrelated; add campaign‑relevant) and justify.'},
@@ -471,8 +471,8 @@ function updateL2L3Tips(){
   const li = document.createElement('li');
   li.className = 'good';
   li.textContent = missing.length <= 2
-    ? 'You’re hitting most Level 3 features. Next: develop each point with “This helps the content creator because…”'
-    : 'Top tip: for every improvement, add one sentence: “This helps the content creator because…”';
+    ? 'You're hitting most Level 3 features. Next: develop each point with "This helps the content creator because…"'
+    : 'Top tip: for every improvement, add one sentence: "This helps the content creator because…"';
   tipsEl.appendChild(li);
 }
 

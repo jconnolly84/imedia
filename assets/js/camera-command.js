@@ -206,7 +206,7 @@ function endGame() {
   } else if (score >= 700) {
     grade = "Merit";
     comment =
-      "A good attempt. You recognised some key camera ideas but sometimes picked options that didn’t fully match the scenario.";
+      "A good attempt. You recognised some key camera ideas but sometimes picked options that didn't fully match the scenario.";
     summary =
       "When revising, ask yourself: what does the director want the audience to feel or notice in this moment? Choose shots that support that goal.";
   }

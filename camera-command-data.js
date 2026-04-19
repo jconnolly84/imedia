@@ -49,7 +49,7 @@ window.CAMERA_QUESTIONS = [
       {
         text: "It hides the background completely so the audience focuses only on the café logo.",
         correct: false,
-        feedback: "A mid shot still shows part of the background – it doesn’t remove it."
+        feedback: "A mid shot still shows part of the background – it doesn't remove it."
       },
       {
         text: "It makes the characters look tiny so the café appears huge.",
@@ -85,7 +85,7 @@ window.CAMERA_QUESTIONS = [
       {
         text: "It allows the editor to crop the shot easily for social media.",
         correct: false,
-        feedback: "Cropping isn’t the main storytelling reason for a close up."
+        feedback: "Cropping isn't the main storytelling reason for a close up."
       },
       {
         text: "It shows where the scene is set in a lot of detail.",
@@ -124,7 +124,7 @@ window.CAMERA_QUESTIONS = [
         feedback: "CCTV shots are more often high angles placed above the action."
       }
     ],
-    explanation: "Low angles are a classic way to increase a character’s status, often used for villains and heroes."
+    explanation: "Low angles are a classic way to increase a character's status, often used for villains and heroes."
   },
   {
     id: "high_angle_vulnerable",
@@ -173,7 +173,7 @@ window.CAMERA_QUESTIONS = [
       {
         text: "It hides both characters completely so the background is the focus.",
         correct: false,
-        feedback: "We still see one character’s shoulder and the other’s face."
+        feedback: "We still see one character's shoulder and the other's face."
       },
       {
         text: "It is only used for action scenes with explosions.",
@@ -238,7 +238,7 @@ window.CAMERA_QUESTIONS = [
         feedback: "That would be a handheld tracking shot, not a pan."
       },
       {
-        text: "The camera tilts up and down to follow the runner’s head.",
+        text: "The camera tilts up and down to follow the runner's head.",
         correct: false,
         feedback: "Tilting moves the camera vertically, not side to side."
       },
@@ -307,7 +307,7 @@ window.CAMERA_QUESTIONS = [
       {
         text: "The editor adds motion blur in post-production.",
         correct: false,
-        feedback: "Motion blur can be added later but doesn’t define tracking itself."
+        feedback: "Motion blur can be added later but doesn't define tracking itself."
       }
     ],
     explanation: "Tracking is ideal for following characters or moving through locations so the audience feels like they are travelling too."
@@ -328,7 +328,7 @@ window.CAMERA_QUESTIONS = [
       {
         text: "Zooming in from the same position with the camera on a tripod.",
         correct: false,
-        feedback: "Zooming magnifies the image but doesn’t feel like the camera is travelling."
+        feedback: "Zooming magnifies the image but doesn't feel like the camera is travelling."
       },
       {
         text: "Tilting the camera up and down quickly.",
@@ -380,7 +380,7 @@ window.CAMERA_QUESTIONS = [
     track: "Lighting & Meaning",
     focus: "Low key lighting",
     image: "img/camera-low-key-office.png",
-    question: "Why might a crime drama use low key lighting in this detective’s office?",
+    question: "Why might a crime drama use low key lighting in this detective's office?",
     answers: [
       {
         text: "To create strong shadows and contrast, suggesting secrecy and tension.",
@@ -390,7 +390,7 @@ window.CAMERA_QUESTIONS = [
       {
         text: "To make everything look bright, cheerful and safe.",
         correct: false,
-        feedback: "That’s more typical of high key lighting."
+        feedback: "That's more typical of high key lighting."
       },
       {
         text: "Because low key lighting always makes the scene easier to see.",
@@ -424,7 +424,7 @@ window.CAMERA_QUESTIONS = [
         feedback: "The goal is clarity, not hiding the location."
       },
       {
-        text: "To focus only on one character’s facial expression.",
+        text: "To focus only on one character's facial expression.",
         correct: false,
         feedback: "That would be the job of a close up."
       },

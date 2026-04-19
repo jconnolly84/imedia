@@ -345,7 +345,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (isCorrect) {
       feedbackEl.textContent =
-        "Nice! You’ve identified the right pre-production document.";
+        "Nice! You've identified the right pre-production document.";
       feedbackEl.classList.add("good");
       updateScore(100);
     } else {
@@ -380,7 +380,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (isCorrect) {
       feedbackEl.textContent =
-        "Spot on – you’ve matched the document to its main purpose.";
+        "Spot on – you've matched the document to its main purpose.";
       feedbackEl.classList.remove("bad");
       feedbackEl.classList.add("good");
       updateScore(100);
@@ -408,13 +408,13 @@ document.addEventListener("DOMContentLoaded", () => {
     let msg = "";
     if (score >= 1600) {
       msg =
-        "Excellent – you really know your pre-production toolkit. You’re ready to apply the right document in exam questions.";
+        "Excellent – you really know your pre-production toolkit. You're ready to apply the right document in exam questions.";
     } else if (score >= 1200) {
       msg =
-        "Good work – you can recognise most documents. Revise any you’re unsure about and try again.";
+        "Good work – you can recognise most documents. Revise any you're unsure about and try again.";
     } else if (score >= 800) {
       msg =
-        "Developing – you’ve remembered some of the documents, but you need more practice matching them to their uses.";
+        "Developing – you've remembered some of the documents, but you need more practice matching them to their uses.";
     } else {
       msg =
         "Keep practising – focus on the name, layout and purpose of each document so you can pick the right one quickly in the exam.";

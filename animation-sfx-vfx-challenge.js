@@ -51,7 +51,7 @@ const TOPICS = {
         options: ["SFX", "VFX with motion capture", "Stop‑motion", "Live TV studio", "Colour grading"],
         answerIndex: 1,
         explanation:
-          "Motion‑capture data is used in VFX to drive a CGI character so it matches the actor’s performance."
+          "Motion‑capture data is used in VFX to drive a CGI character so it matches the actor's performance."
       },
       {
         q: "A car crash is created by building a real car rig and filming the stunt for real on set. Which technique is this?",
@@ -75,7 +75,7 @@ const TOPICS = {
           "VFX adds or enhances visual elements digitally in post‑production, such as sparks, smoke and energy blasts."
       },
       {
-        q: "A title sequence uses animated shapes, icons and typography to introduce each actor’s name. What is this?",
+        q: "A title sequence uses animated shapes, icons and typography to introduce each actor's name. What is this?",
         options: ["SFX", "CGI creature work", "Motion Graphics", "Stop‑motion", "Location VFX"],
         answerIndex: 2,
         explanation:
@@ -96,7 +96,7 @@ const TOPICS = {
           "VFX compositing replaces green screen backgrounds with digital plates or photos of real locations."
       },
       {
-        q: "A children’s TV ident shows colourful shapes bouncing in time with music and forming the channel logo. Which technique is being used?",
+        q: "A children's TV ident shows colourful shapes bouncing in time with music and forming the channel logo. Which technique is being used?",
         options: ["CGI creature work", "Motion Graphics", "Stop‑motion", "SFX explosions", "VFX set extension"],
         answerIndex: 1,
         explanation:

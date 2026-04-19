@@ -162,14 +162,14 @@ document.addEventListener("DOMContentLoaded", () => {
       focus: "promotion",
       heading: "Linking print and online content",
       scenario:
-        "A game developer hands out printed flyers at a convention and wants people to quickly find the game’s website and trailer.",
+        "A game developer hands out printed flyers at a convention and wants people to quickly find the game's website and trailer.",
       question:
         "Which feature would BEST support this aim?",
       options: [
         "A QR code on the flyer that links directly to the website or trailer.",
         "A long URL printed in small text with no explanation.",
         "Only a picture of the game logo.",
-        "Text saying “Search online” with no other details."
+        "Text saying "Search online" with no other details."
       ],
       correctIndex: 0,
       explanation:
@@ -269,7 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
       score++;
       scoreDisplayEl.textContent = score.toString();
       feedbackEl.textContent =
-        "Correct – you’ve chosen a distribution/promotion method that matches the product and audience.";
+        "Correct – you've chosen a distribution/promotion method that matches the product and audience.";
       feedbackEl.className = "feedback good";
     } else {
       feedbackEl.textContent =
@@ -284,7 +284,7 @@ document.addEventListener("DOMContentLoaded", () => {
       nextQuestionBtn.disabled = false;
     } else {
       nextQuestionBtn.disabled = true;
-      feedbackEl.textContent += " You’ve reached the end of this set.";
+      feedbackEl.textContent += " You've reached the end of this set.";
     }
   }
 

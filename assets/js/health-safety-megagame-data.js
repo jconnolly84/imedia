@@ -199,9 +199,9 @@ window.HEALTH_SAFETY_STAGES = [
       },
       {
         scenario: "A scene requires filming in a classroom after school with only one student and one member of staff.",
-        answer: "Follow the school’s lone‑working policy and ensure staff are never left alone with a single student without procedures.",
+        answer: "Follow the school's lone‑working policy and ensure staff are never left alone with a single student without procedures.",
         options: [
-          "Follow the school’s lone‑working policy and ensure staff are never left alone with a single student without procedures.",
+          "Follow the school's lone‑working policy and ensure staff are never left alone with a single student without procedures.",
           "Ignore the policy because it is after school.",
           "Ask the student to work alone and send the teacher away.",
           "Lock the classroom door and film the scene in secret."
@@ -251,7 +251,7 @@ window.HEALTH_SAFETY_STAGES = [
         options: [
           "Route the cable around the edge of the room or tape it down securely along the floor.",
           "Stretch the cable tightly across the middle of the room so it is off the ground.",
-          "Let the cable coil in a pile near the actor’s feet.",
+          "Let the cable coil in a pile near the actor's feet.",
           "Ask students not to move while recording."
         ]
       }
@@ -345,7 +345,7 @@ window.HEALTH_SAFETY_STAGES = [
         question: "Which concluding sentence would best finish an 8‑mark answer discussing health and safety when filming on location?",
         answer: 0,
         options: [
-          "Overall, completing recce forms, detailed risk assessments and gaining permissions before filming means hazards are identified early, control measures such as barriers or supervision can be planned and the cast and crew can work safely while still achieving the client’s requirements.",
+          "Overall, completing recce forms, detailed risk assessments and gaining permissions before filming means hazards are identified early, control measures such as barriers or supervision can be planned and the cast and crew can work safely while still achieving the client's requirements.",
           "In conclusion, filming on location is fun but you should try not to have accidents.",
           "Health and safety is important because people do not like getting injured.",
           "To sum up, paperwork is done before filming and then you can focus on getting good shots."

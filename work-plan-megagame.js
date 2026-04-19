@@ -258,7 +258,7 @@ function startTimer() {
 
     if (clamped <= 0) {
       timerHandle = null;
-      timerLabel.textContent = "Time’s up!";
+      timerLabel.textContent = "Time's up!";
       handleTimeUp();
     } else {
       timerHandle = requestAnimationFrame(tick);

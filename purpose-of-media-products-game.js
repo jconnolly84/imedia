@@ -80,7 +80,7 @@ const TOPICS = {
           "Film posters primarily promote the movie and encourage audiences to go and watch it."
       },
       {
-        q: "A YouTube channel uploads daily vlogs of a gamer’s life, focusing on their personality, jokes and daily activities. What is the MAIN purpose?",
+        q: "A YouTube channel uploads daily vlogs of a gamer's life, focusing on their personality, jokes and daily activities. What is the MAIN purpose?",
         options: ["Raise awareness of a charity", "Entertain and build an audience", "Educate about coding", "Issue a health warning"],
         answerIndex: 1,
         explanation:
@@ -122,7 +122,7 @@ const TOPICS = {
           "Although it may inform and entertain, the main purpose is to promote and increase sales of the new game."
       },
       {
-        q: "A radio advert describes a car’s safety features, fuel efficiency and low monthly payments, ending with a phone number and website. What is the PRIMARY purpose?",
+        q: "A radio advert describes a car's safety features, fuel efficiency and low monthly payments, ending with a phone number and website. What is the PRIMARY purpose?",
         options: ["Entertain", "Sell the car to listeners", "Raise awareness of roadworks", "Educate about engines"],
         answerIndex: 1,
         explanation:

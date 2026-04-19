@@ -144,7 +144,7 @@ const questions = [
     "id": "assetsMusicFestivalLeaflet",
     "focus": "preproduction",
     "heading": "Evaluating suitability of assets",
-    "question": "A student is creating a printed leaflet to advertise a local music festival. They have gathered photos from friends’ social media accounts and a low-resolution logo from an old website. Evaluate how suitable these assets are. Rank the answers from strongest to weakest.",
+    "question": "A student is creating a printed leaflet to advertise a local music festival. They have gathered photos from friends' social media accounts and a low-resolution logo from an old website. Evaluate how suitable these assets are. Rank the answers from strongest to weakest.",
     "answers": [
       {
         "band": 1,
@@ -155,13 +155,13 @@ const questions = [
       {
         "band": 2,
         "bandLabel": "Band 2 – some development",
-        "text": "Some assets are suitable because the photos clearly relate to music events and create the right mood for a festival. However, most were taken from friends’ social media accounts, so permission might be an issue. The logo from the old website could appear pixelated if scaled up for print. The designer is using relevant imagery but may struggle with quality when printing at A5 size. Overall, the assets match the topic but need checking or replacing to avoid legal and technical issues.",
+        "text": "Some assets are suitable because the photos clearly relate to music events and create the right mood for a festival. However, most were taken from friends' social media accounts, so permission might be an issue. The logo from the old website could appear pixelated if scaled up for print. The designer is using relevant imagery but may struggle with quality when printing at A5 size. Overall, the assets match the topic but need checking or replacing to avoid legal and technical issues.",
         "commentary": "Recognises legal and technical concerns but does not fully explore how they will affect the finished leaflet."
       },
       {
         "band": 3,
         "bandLabel": "Band 3 – well developed",
-        "text": "Although the assets match the festival theme, several concerns affect their suitability for print. Social-media images often have heavy compression, meaning they may appear grainy when enlarged, which could reduce the leaflet’s professional look. Permission is also required from the photographer and any recognisable individuals. The low-resolution logo is likely to blur, weakening the festival’s branding. To improve the leaflet, the designer could request original high-resolution photos or use a vector version of the logo. Overall, the assets communicate the festival atmosphere well but are not fully appropriate for high-quality print without changes.",
+        "text": "Although the assets match the festival theme, several concerns affect their suitability for print. Social-media images often have heavy compression, meaning they may appear grainy when enlarged, which could reduce the leaflet's professional look. Permission is also required from the photographer and any recognisable individuals. The low-resolution logo is likely to blur, weakening the festival's branding. To improve the leaflet, the designer could request original high-resolution photos or use a vector version of the logo. Overall, the assets communicate the festival atmosphere well but are not fully appropriate for high-quality print without changes.",
         "commentary": "Links suitability to technical quality, legal permission and brand impact, with a clear, balanced judgement and practical suggestions."
       }
     ]
@@ -239,7 +239,7 @@ const questions = [
       {
         "band": 3,
         "bandLabel": "Band 3 – well developed",
-        "text": "The campaign mostly succeeds in encouraging teenagers to join the coding club. Short vertical videos show real activities, helping viewers picture what they would do at the club. Captions use casual language and benefits such as building skills and meeting new people, which match teenagers’ motivations. A clear call-to-action link makes sign-up easy. However, some posts don’t show meeting details, which could confuse first-time viewers. Adding the information consistently would strengthen the message. Overall, the campaign is persuasive and well aligned with the audience.",
+        "text": "The campaign mostly succeeds in encouraging teenagers to join the coding club. Short vertical videos show real activities, helping viewers picture what they would do at the club. Captions use casual language and benefits such as building skills and meeting new people, which match teenagers' motivations. A clear call-to-action link makes sign-up easy. However, some posts don't show meeting details, which could confuse first-time viewers. Adding the information consistently would strengthen the message. Overall, the campaign is persuasive and well aligned with the audience.",
         "commentary": "Evaluates how format, tone and calls-to-action support the purpose, noting a realistic weakness and offering a clear, balanced judgement."
       }
     ]
@@ -252,7 +252,7 @@ const questions = [
     "answers": [
       {
         "band": 1,
-        "text": "The storyboard shows different scenes that explain the charity’s message. It has pictures in each frame, and there are arrows showing how the scenes move from one to another. The text underneath explains what is happening, which helps make the storyboard clear. The drawings also show different people, which is good because it makes the video more interesting. The storyboard includes everything needed, so the charity video will definitely work well and get the message across to the audience.",
+        "text": "The storyboard shows different scenes that explain the charity's message. It has pictures in each frame, and there are arrows showing how the scenes move from one to another. The text underneath explains what is happening, which helps make the storyboard clear. The drawings also show different people, which is good because it makes the video more interesting. The storyboard includes everything needed, so the charity video will definitely work well and get the message across to the audience.",
         "commentary": "Descriptive, no judgement."
       },
       {
@@ -262,7 +262,7 @@ const questions = [
       },
       {
         "band": 3,
-        "text": "The storyboard broadly supports the charity’s aim by using close-ups to show individuals affected by the issue and wider shots to highlight community support. Captions outline the voice-over well, though a few frames lack specific directions for camera movement or on-screen text. The sequence flows logically, but one section involves three similar scenes that may slow the pace, so combining them could help sustain engagement. Overall, the storyboard communicates the message effectively while leaving a few production details to refine.",
+        "text": "The storyboard broadly supports the charity's aim by using close-ups to show individuals affected by the issue and wider shots to highlight community support. Captions outline the voice-over well, though a few frames lack specific directions for camera movement or on-screen text. The sequence flows logically, but one section involves three similar scenes that may slow the pace, so combining them could help sustain engagement. Overall, the storyboard communicates the message effectively while leaving a few production details to refine.",
         "commentary": "Balanced, purpose-linked."
       }
     ]

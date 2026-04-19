@@ -22,7 +22,7 @@
     close.type = "button";
     close.className = "lightbox-close";
     close.setAttribute("aria-label", "Close infographic");
-    close.innerHTML = "&times;";
+    close.innerHTML = "×";
 
     content.appendChild(close);
     content.appendChild(img);

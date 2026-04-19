@@ -217,7 +217,7 @@ const TOPICS = {
           "Mind maps are often used at the very start of a project to generate and link ideas quickly."
       },
       {
-        q: "A designer is planning the layout of an app’s main menu screen and wants to show where icons and labels will go without focusing on colour or styling yet. What should they produce?",
+        q: "A designer is planning the layout of an app's main menu screen and wants to show where icons and labels will go without focusing on colour or styling yet. What should they produce?",
         options: [
           "Storyboard",
           "Wireframe",

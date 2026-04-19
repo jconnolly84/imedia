@@ -229,7 +229,7 @@
       answerIndex: 2
     },
     {
-      q: "Which of the following best describes ‘viral marketing’?",
+      q: "Which of the following best describes 'viral marketing'?",
       options: [
         "Content printed on posters",
         "Content spreading quickly online through sharing",
@@ -744,7 +744,7 @@
       answerIndex: 1
     },
     {
-      q: "A scriptwriter’s primary task is to:",
+      q: "A scriptwriter's primary task is to:",
       options: [
         "Operate cameras on set",
         "Write dialogue, scenes and narrative structure",
@@ -774,7 +774,7 @@
       answerIndex: 1
     },
     {
-      q: "A copywriter’s job is to:",
+      q: "A copywriter's job is to:",
       options: [
         "Write persuasive text for adverts and websites",
         "Edit audio",
@@ -819,7 +819,7 @@
       answerIndex: 1
     },
     {
-      q: "A storyboard artist’s key task is to:",
+      q: "A storyboard artist's key task is to:",
       options: [
         "Write dialogue",
         "Draw shot-by-shot panels to visualise scenes",
@@ -849,7 +849,7 @@
       answerIndex: 1
     },
     {
-      q: "A photographer’s main creative tasks include:",
+      q: "A photographer's main creative tasks include:",
       options: [
         "Editing code",
         "Capturing images, composing shots and choosing lighting",
@@ -869,7 +869,7 @@
       answerIndex: 0
     },
     {
-      q: "An animator’s job is to:",
+      q: "An animator's job is to:",
       options: [
         "Shoot live-action footage only",
         "Create moving images using drawings, 3D models or digital assets",
@@ -937,7 +937,7 @@
       q: "When responding to a client brief, a creative professional must:",
       options: [
         "Ignore all requirements",
-        "Produce ideas that meet the client’s aims and target audience",
+        "Produce ideas that meet the client's aims and target audience",
         "Set their own unrelated goals",
         "Avoid any communication"
       ],
@@ -961,10 +961,10 @@
   label: "08 – Technical Job Roles",
   questions: [
     {
-      q: "A camera operator’s main responsibility is to:",
+      q: "A camera operator's main responsibility is to:",
       options: [
         "Write scripts",
-        "Capture footage using cameras following the director’s instructions",
+        "Capture footage using cameras following the director's instructions",
         "Design logos",
         "Record sound only"
       ],
@@ -996,7 +996,7 @@
       answerIndex: 0
     },
     {
-      q: "A web developer’s job is to:",
+      q: "A web developer's job is to:",
       options: [
         "Write and maintain website code and functionality",
         "Act in front of camera",
@@ -1021,7 +1021,7 @@
       answerIndex: 0
     },
     {
-      q: "A 3D modeller’s technical role is to:",
+      q: "A 3D modeller's technical role is to:",
       options: [
         "Write scripts",
         "Create three-dimensional digital models for games, films or VR",
@@ -1188,7 +1188,7 @@
   label: "09 – Senior Job Roles",
   questions: [
     {
-      q: "A director’s main responsibility in a film production is to:",
+      q: "A director's main responsibility in a film production is to:",
       options: [
         "Operate cameras only",
         "Lead the creative vision and direct cast and crew",
@@ -1208,7 +1208,7 @@
       answerIndex: 1
     },
     {
-      q: "In publishing, an editor’s job usually includes:",
+      q: "In publishing, an editor's job usually includes:",
       options: [
         "Choosing and shaping content for books, magazines or newspapers",
         "Operating lights on set",
@@ -1427,12 +1427,12 @@
       answerIndex: 2
     },
     {
-      q: "A client says, ‘The video must be 60 seconds long.’ This is an example of a:",
+      q: "A client says, 'The video must be 60 seconds long.' This is an example of a:",
       options: ["Target audience detail", "House style", "Technical requirement", "Legal requirement"],
       answerIndex: 2
     },
     {
-      q: "The statement ‘The product should appeal to 14–16 year olds’ is a:",
+      q: "The statement 'The product should appeal to 14–16 year olds' is a:",
       options: ["Deadline", "Audience requirement", "Equipment list", "Contingency"],
       answerIndex: 1
     },
@@ -1447,12 +1447,12 @@
       answerIndex: 2
     },
     {
-      q: "A client requirement that states ‘Use our existing brand colours and logo’ relates to:",
+      q: "A client requirement that states 'Use our existing brand colours and logo' relates to:",
       options: ["Legal constraints", "House style and branding", "Target audience", "Distribution platform"],
       answerIndex: 1
     },
     {
-      q: "The phrase ‘The product must be finished before the open evening’ is an example of a:",
+      q: "The phrase 'The product must be finished before the open evening' is an example of a:",
       options: ["Distribution requirement", "Timescale requirement", "Hardware requirement", "Audience requirement"],
       answerIndex: 1
     },
@@ -1482,12 +1482,12 @@
       answerIndex: 2
     },
     {
-      q: "When a client asks for ‘social media versions’ of a video, this is mainly a requirement about:",
+      q: "When a client asks for 'social media versions' of a video, this is mainly a requirement about:",
       options: ["File naming", "Distribution platforms and aspect ratio", "Hardware", "Legal regulation"],
       answerIndex: 1
     },
     {
-      q: "A school asks for a poster that is ‘easy to understand at a distance’. This requirement relates to:",
+      q: "A school asks for a poster that is 'easy to understand at a distance'. This requirement relates to:",
       options: ["Typography and layout", "File formats", "Sound design", "Camera movement"],
       answerIndex: 0
     },
@@ -1502,12 +1502,12 @@
       answerIndex: 2
     },
     {
-      q: "A client wants ‘a fun and informal style’ for a youth campaign. This is mainly a:",
+      q: "A client wants 'a fun and informal style' for a youth campaign. This is mainly a:",
       options: ["Visual and tone requirement", "Hardware requirement", "Location constraint", "Regulatory requirement"],
       answerIndex: 0
     },
     {
-      q: "The client says, ‘We only have a budget of £500.’ This is a:",
+      q: "The client says, 'We only have a budget of £500.' This is a:",
       options: ["Scope constraint", "House style", "Legal requirement", "File-size limit"],
       answerIndex: 0
     },
@@ -1841,7 +1841,7 @@
       answerIndex: 1
     },
     {
-      q: "A media product targeting ‘urban young professionals’ is using:",
+      q: "A media product targeting 'urban young professionals' is using:",
       options: ["Demographic segmentation", "Geographic and psychographic segmentation", "Time-based segmentation", "Random grouping"],
       answerIndex: 1
     },
@@ -1931,7 +1931,7 @@
       answerIndex: 1
     },
     {
-      q: "A campaign aimed at ‘parents in Nottingham’ is a mix of:",
+      q: "A campaign aimed at 'parents in Nottingham' is a mix of:",
       options: ["Demographic + geographic segmentation", "Colour + typography", "Behavioural only", "No segmentation"],
       answerIndex: 0
     },
@@ -1982,7 +1982,7 @@
       options: [
         "Collecting questionnaires yourself",
         "Using existing data from sources like books, websites or reports",
-        "Ignoring other people’s work",
+        "Ignoring other people's work",
         "Only testing prototypes"
       ],
       answerIndex: 1
@@ -2023,7 +2023,7 @@
         "Guessing what teenagers like",
         "Using survey results to choose which features to include in a new app",
         "Ignoring feedback from testers",
-        "Copying a competitor’s design exactly"
+        "Copying a competitor's design exactly"
       ],
       answerIndex: 1
     },
@@ -2459,7 +2459,7 @@
       answerIndex: 1
     },
     {
-      q: "An extreme close-up of a character’s eyes is used to:",
+      q: "An extreme close-up of a character's eyes is used to:",
       options: [
         "Show the entire location",
         "Focus on emotion and detail",
@@ -2564,7 +2564,7 @@
       q: "A close-up (CU) shot mainly shows:",
       options: [
         "A character from head to toe",
-        "A subject’s face or important detail filling most of the frame",
+        "A subject's face or important detail filling most of the frame",
         "A very wide landscape",
         "Only props on a table"
       ],
@@ -2574,7 +2574,7 @@
       q: "A long shot (LS) is used to:",
       options: [
         "Show tiny details only",
-        "Show the subject’s whole body and some of the surroundings",
+        "Show the subject's whole body and some of the surroundings",
         "Show only their eyes",
         "Remove the background completely"
       ],
@@ -2645,7 +2645,7 @@
       options: [
         "Ignoring trip hazards from cables",
         "Using stable supports, safe cabling and testing lights before filming",
-        "Pointing bright lights directly into people’s eyes at close range",
+        "Pointing bright lights directly into people's eyes at close range",
         "Never checking exposure"
       ],
       answerIndex: 1
@@ -2897,8 +2897,8 @@
       answerIndex: 1
     },
     {
-      q: "The term ‘house style’ refers to:",
-      options: ["A building’s design", "Consistent branding elements such as colours, fonts and logos", "Camera shots", "Licensing laws"],
+      q: "The term 'house style' refers to:",
+      options: ["A building's design", "Consistent branding elements such as colours, fonts and logos", "Camera shots", "Licensing laws"],
       answerIndex: 1
     },
     {
@@ -2938,7 +2938,7 @@
     },
     {
       q: "Typography hierarchy helps:",
-      options: ["Random font choice", "Direct the viewer’s attention", "Colour correction", "Technical editing"],
+      options: ["Random font choice", "Direct the viewer's attention", "Colour correction", "Technical editing"],
       answerIndex: 1
     },
     {
@@ -3206,7 +3206,7 @@
       answerIndex: 1
     },
     {
-      q: "A mind map branch labelled ‘Audience’ may include:",
+      q: "A mind map branch labelled 'Audience' may include:",
       options: ["Camera angles", "Age, interests, habits", "File formats", "Actors' names"],
       answerIndex: 1
     },
@@ -3242,7 +3242,7 @@
     },
     {
       q: "The centre of a mind map for a poster project should be:",
-      options: ["Fonts", "Colours", "‘Poster Concept’ or main theme", "The release date"],
+      options: ["Fonts", "Colours", "'Poster Concept' or main theme", "The release date"],
       answerIndex: 2
     },
     {
@@ -3383,7 +3383,7 @@
       answerIndex: 3
     },
     {
-      q: "In a script, sound cues such as ‘SFX: Door slam’ are used to:",
+      q: "In a script, sound cues such as 'SFX: Door slam' are used to:",
       options: [
         "Show camera angles",
         "Indicate where sound effects should occur",
@@ -3403,7 +3403,7 @@
       answerIndex: 1
     },
     {
-      q: "An asset log column labelled ‘Licence type’ is used to record:",
+      q: "An asset log column labelled 'Licence type' is used to record:",
       options: [
         "Camera licence number",
         "Whether the asset is royalty-free, CC, purchased, etc.",
@@ -3550,7 +3550,7 @@
       answerIndex: 1
     },
     {
-      q: "Which pre-production document is MOST suitable to plan a website’s page layout?",
+      q: "Which pre-production document is MOST suitable to plan a website's page layout?",
       options: ["Storyboard", "Wireframe", "Script", "Risk assessment"],
       answerIndex: 1
     },
@@ -3735,7 +3735,7 @@
       q: "Data protection laws (such as GDPR) mainly exist to:",
       options: [
         "Allow companies to sell any personal data",
-        "Protect individuals’ personal data from misuse",
+        "Protect individuals' personal data from misuse",
         "Ban all online services",
         "Remove copyright"
       ],
@@ -3745,9 +3745,9 @@
       q: "Which of the following counts as personal data?",
       options: [
         "A made-up username with no link to a person",
-        "Someone’s name and email address stored in a database",
+        "Someone's name and email address stored in a database",
         "A random landscape photo",
-        "A fictional character’s name"
+        "A fictional character's name"
       ],
       answerIndex: 1
     },
@@ -3765,7 +3765,7 @@
       q: "Defamation occurs when a media product:",
       options: [
         "Praises someone",
-        "Unfairly damages a person’s reputation with false statements",
+        "Unfairly damages a person's reputation with false statements",
         "Uses bright colours",
         "Contains a soundtrack"
       ],
@@ -3859,7 +3859,7 @@
       answerIndex: 0
     },
     {
-      q: "Using someone else’s music in your video without permission is:",
+      q: "Using someone else's music in your video without permission is:",
       options: [
         "Always allowed",
         "A potential copyright infringement",
@@ -3873,13 +3873,13 @@
       options: [
         "Software update",
         "Permanent ownership",
-        "Permission to use someone else’s IP under certain conditions",
+        "Permission to use someone else's IP under certain conditions",
         "A kind of file format"
       ],
       answerIndex: 2
     },
     {
-      q: "‘Royalty-free’ music usually means:",
+      q: "'Royalty-free' music usually means:",
       options: [
         "It is free to copy in any way with no rules",
         "You pay once or not at all, and can then use it within the licence terms",
@@ -3936,7 +3936,7 @@
     {
       q: "If you download an image from the internet and use it in a commercial poster without permission, you:",
       options: [
-        "Are always safe because it’s online",
+        "Are always safe because it's online",
         "May be breaking copyright law",
         "Own the image automatically",
         "Have created a new licence"
@@ -3974,7 +3974,7 @@
       answerIndex: 2
     },
     {
-      q: "‘All rights reserved’ usually means:",
+      q: "'All rights reserved' usually means:",
       options: [
         "You can use the work freely",
         "You must obtain permission to use the work",
@@ -3997,7 +3997,7 @@
       q: "Using unlicensed fonts in a commercial project may:",
       options: [
         "Have no consequences",
-        "Break the font’s licence terms and copyright",
+        "Break the font's licence terms and copyright",
         "Improve readability",
         "Reduce file size"
       ],
@@ -4024,7 +4024,7 @@
       answerIndex: 1
     },
     {
-      q: "Which of the following is the BEST practice when unsure about using someone else’s content?",
+      q: "Which of the following is the BEST practice when unsure about using someone else's content?",
       options: [
         "Use it and hope",
         "Ask for permission or find properly licensed alternatives",
@@ -4038,7 +4038,7 @@
       options: [
         "Paying an extra fee",
         "Giving appropriate credit to the creator",
-        "Removing the creator’s name",
+        "Removing the creator's name",
         "Locking the file"
       ],
       answerIndex: 1
@@ -4067,7 +4067,7 @@
       q: "Overall, the main reason to respect intellectual property rights is to:",
       options: [
         "Limit creativity",
-        "Protect creators’ work and avoid legal and ethical problems",
+        "Protect creators' work and avoid legal and ethical problems",
         "Increase file size",
         "Avoid planning pre-production"
       ],
@@ -4111,7 +4111,7 @@
       answerIndex: 1
     },
     {
-      q: "A BBFC ‘15’ rating on a film means:",
+      q: "A BBFC '15' rating on a film means:",
       options: [
         "Only 5-year-olds can watch it",
         "Suitable only for people aged 15 and over",
@@ -4151,7 +4151,7 @@
       answerIndex: 1
     },
     {
-      q: "The term ‘classification’ in media mainly refers to:",
+      q: "The term 'classification' in media mainly refers to:",
       options: [
         "File formats",
         "Age ratings and content categories",
@@ -4161,7 +4161,7 @@
       answerIndex: 1
     },
     {
-      q: "Which is an example of content that might affect a film’s age rating?",
+      q: "Which is an example of content that might affect a film's age rating?",
       options: [
         "Safe driving",
         "Strong language and violence",
@@ -4181,7 +4181,7 @@
       answerIndex: 1
     },
     {
-      q: "‘Watershed’ on UK television refers to:",
+      q: "'Watershed' on UK television refers to:",
       options: [
         "The time after which adult content can be shown (usually 9pm)",
         "The length of adverts",
@@ -4206,12 +4206,12 @@
       answerIndex: 1
     },
     {
-      q: "If a game’s marketing shows misleading information, which regulator is MOST likely to get involved in the UK?",
+      q: "If a game's marketing shows misleading information, which regulator is MOST likely to get involved in the UK?",
       options: ["BBFC", "Ofcom", "PEGI", "ASA"],
       answerIndex: 3
     },
     {
-      q: "A film rated ‘U’ by the BBFC is:",
+      q: "A film rated 'U' by the BBFC is:",
       options: [
         "Only for adults",
         "Suitable for all ages, though young children may need guidance",
@@ -4221,7 +4221,7 @@
       answerIndex: 1
     },
     {
-      q: "Content descriptors on PEGI labels (such as ‘Violence’ or ‘Fear’) help:",
+      q: "Content descriptors on PEGI labels (such as 'Violence' or 'Fear') help:",
       options: [
         "Increase file size",
         "Show why a particular age rating was given",
@@ -4517,7 +4517,7 @@
     {
       q: "A key consideration when choosing distribution platforms is:",
       options: [
-        "The director’s favourite food",
+        "The director's favourite food",
         "Where the target audience is most likely to access content",
         "The colour of the logo",
         "The school timetable"
@@ -4585,7 +4585,7 @@
       answerIndex: 0
     },
     {
-      q: "The term ‘windowing’ in media distribution refers to:",
+      q: "The term 'windowing' in media distribution refers to:",
       options: [
         "Editing video",
         "Releasing content on different platforms at different times",
@@ -4946,7 +4946,7 @@
       answerIndex: 1
     },
     {
-      q: "Which file extension is used for Apple’s compressed audio format?",
+      q: "Which file extension is used for Apple's compressed audio format?",
       options: ["AIFF", "AAC", "PSD", "SVG"],
       answerIndex: 1
     },

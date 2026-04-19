@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
     to show how the information is connected.
       `,
       notes: [
-        "The main topic 'Poster' is too vague – it doesn’t show the exhibition title.",
+        "The main topic 'Poster' is too vague – it doesn't show the exhibition title.",
         "There is very little detail about where the poster will be displayed or who it is for.",
         "Some ideas are repeated instead of being grouped into one clear branch."
       ],
@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
       notes: [
         "The student has included some main branches (music, voice, sounds, length).",
         "Audience and file format are only written in tiny notes at the edge.",
-        "There is no detail about style, mood or how to meet the school’s professional image."
+        "There is no detail about style, mood or how to meet the school's professional image."
       ],
       options: [
         {

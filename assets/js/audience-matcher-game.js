@@ -284,7 +284,7 @@ document.addEventListener("DOMContentLoaded", () => {
       nextQuestionBtn.disabled = false;
     } else {
       nextQuestionBtn.disabled = true;
-      feedbackEl.textContent += " You’ve reached the end of this set.";
+      feedbackEl.textContent += " You've reached the end of this set.";
     }
   }
 
