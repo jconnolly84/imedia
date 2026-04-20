@@ -517,3 +517,212 @@ body {
     border-radius: 16px;
   }
 }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   DESIGN UPLIFT – align with index-page visual language
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Atmospheric page-header glow ──────────────────────────────────────── */
+.topic-header {
+  position: relative;
+  z-index: 0;
+}
+
+.topic-header::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 340px;
+  background: radial-gradient(ellipse at 50% 0%,
+    rgba(37, 99, 235, 0.13) 0%,
+    rgba(14, 165, 233, 0.06) 45%,
+    transparent 75%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ─── Page brand area – topic number badge ──────────────────────────────── */
+.topic-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.14);
+  border: 1px solid rgba(37, 99, 235, 0.3);
+  color: #93c5fd;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+/* ─── Topic sections – stronger vertical rhythm & cleaner headings ───────── */
+.topic-section {
+  padding: 22px 24px;
+  margin-bottom: 24px;
+}
+
+.topic-section h2 {
+  font-size: 1.25rem;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(37, 99, 235, 0.18);
+}
+
+/* ─── Hero hook – slightly larger for readability ───────────────────────── */
+.hero-hook {
+  font-size: 0.96rem;
+  padding: 16px 20px 20px;
+}
+
+/* ─── Infographic cards – aligned to dark-navy host.css palette ─────────── */
+/* Overrides per-topic inline <style> blocks that used an older teal palette   */
+.infographic-card {
+  background: #0d1a3a !important;
+  color: #e8eeff !important;
+  border: 1px solid rgba(37, 99, 235, 0.2) !important;
+  border-radius: 16px !important;
+  padding: 1.5rem 1.75rem !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.infographic-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5) !important;
+}
+
+.infographic-card h3 {
+  font-size: 1.3rem !important;
+  color: #f0f4ff !important;
+  margin-top: 0 !important;
+  margin-bottom: 0.65rem !important;
+}
+
+.infographic-tagline {
+  font-size: 0.88rem !important;
+  color: #8b96b8 !important;
+  opacity: 1 !important;
+  margin-bottom: 0.9rem !important;
+}
+
+.infographic-list li {
+  color: #c8d0e8;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  padding-left: 1.4rem;
+  margin-bottom: 0.55rem;
+}
+
+.infographic-list li::before {
+  color: #60a5fa !important;
+  font-size: 1.2rem !important;
+}
+
+.infographic-pill {
+  background: rgba(37, 99, 235, 0.16) !important;
+  color: #93c5fd !important;
+  border: 1px solid rgba(37, 99, 235, 0.3) !important;
+  font-size: 0.78rem !important;
+  padding: 0.22rem 0.7rem !important;
+  letter-spacing: 0.03em !important;
+  text-transform: uppercase !important;
+}
+
+/* ─── Revision media section – tighter header ───────────────────────────── */
+.media-column h2 {
+  font-size: 1.15rem;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(37, 99, 235, 0.15);
+  margin-bottom: 12px;
+}
+
+/* ─── NotebookLM box – slightly elevated ────────────────────────────────── */
+.notebooklm-box {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 14px;
+}
+
+/* ─── Exam section cards – tighter, more polished ──────────────────────── */
+.exam-practice .exam-card {
+  margin-bottom: 14px;
+  padding: 14px 16px;
+  border-radius: 14px;
+}
+
+.exam-card h3 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+/* ─── Topic games section – ensure game-grid gap matches host.css ───────── */
+.topic-games .game-grid {
+  margin-top: 14px;
+}
+
+/* ─── Quick check / Can-You-Now section ─────────────────────────────────── */
+.quick-check ul {
+  display: grid;
+  gap: 8px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.quick-check ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(37, 99, 235, 0.06);
+  border: 1px solid rgba(37, 99, 235, 0.14);
+  font-size: 0.88rem;
+  color: #c8d0e8;
+  line-height: 1.5;
+}
+
+.quick-check ul li::before {
+  content: '✓';
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #60a5fa;
+  background: rgba(37, 99, 235, 0.18);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+/* ─── Hero band – slightly richer border ────────────────────────────────── */
+.hero-band {
+  border: 1px solid rgba(37, 99, 235, 0.18);
+}
+
+/* ─── Section label eyebrow (utility class, used optionally in topic HTML) ─ */
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  color: #93c5fd;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}

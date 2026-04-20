@@ -1,3 +1,5 @@
+/* ─── Shared fonts (Outfit + Nunito Sans – matches index & topic pages) ─── */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap');
 
 :root {
   --shell-bg-1: #07132f;
@@ -13,9 +15,11 @@
 
 body.game-shell-enabled {
   background:
-    radial-gradient(circle at top, rgba(56, 189, 248, 0.2), transparent 30%),
+    radial-gradient(ellipse at top, rgba(14, 165, 233, 0.22) 0%, transparent 35%),
+    radial-gradient(ellipse at 70% 20%, rgba(37, 99, 235, 0.12) 0%, transparent 40%),
     linear-gradient(180deg, var(--shell-bg-2) 0%, var(--shell-bg-1) 100%);
   min-height: 100vh;
+  font-family: 'Nunito Sans', system-ui, sans-serif;
   color: var(--shell-text);
   display: flex;
   flex-direction: column;
@@ -839,4 +843,107 @@ body.game-shell-enabled .topic-jump-select {
   color: #dbeafe !important;
   border-radius: 10px !important;
   padding: 6px 10px !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   DESIGN UPLIFT – align game page headers with index / topic visual language
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Game title h1 – match host.css brand-text style ──────────────────── */
+/* Removes the per-game uppercase/tracking treatment so all titles feel
+   consistent with the homepage brand heading style.                           */
+body.game-shell-enabled .title-block h1,
+body.game-shell-enabled .header-main h1 {
+  font-family: 'Outfit', system-ui, sans-serif !important;
+  text-transform: none !important;
+  letter-spacing: -0.01em !important;
+  font-weight: 800 !important;
+  font-size: clamp(1.65rem, 2.5vw + 0.8rem, 2.2rem) !important;
+  line-height: 1.15 !important;
+  color: #f0f4ff !important;
+}
+
+/* ─── Gradient highlight on the game name <span> ────────────────────────── */
+body.game-shell-enabled .title-block h1 span,
+body.game-shell-enabled .header-main h1 span {
+  background: linear-gradient(90deg, #38bdf8, #a5f3fc) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* ─── Subtitle – use shared font stack ─────────────────────────────────── */
+body.game-shell-enabled .subtitle {
+  font-family: 'Nunito Sans', system-ui, sans-serif !important;
+  font-size: 1rem !important;
+  letter-spacing: 0 !important;
+}
+
+/* ─── App header – slightly more generous padding ──────────────────────── */
+body.game-shell-enabled .app-header.card {
+  padding: 0 0 16px !important;
+}
+
+body.game-shell-enabled .header-main {
+  padding: 16px 18px 0 !important;
+  gap: 14px !important;
+}
+
+body.game-shell-enabled .header-controls {
+  padding: 0 18px !important;
+}
+
+/* ─── Game kicker / eyebrow label (utility class for optional use) ───────── */
+body.game-shell-enabled .game-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.14);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #bae6fd;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+/* ─── Return-to-menu button – blue gradient matching host.css ───────────── */
+body.game-shell-enabled .return-menu .btn,
+body.game-shell-enabled .return-menu a.btn,
+body.game-shell-enabled .shared-game-footer-actions .btn.secondary,
+body.game-shell-enabled .shared-game-footer-actions a.btn.secondary {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  box-shadow: 0 8px 22px rgba(37, 99, 235, 0.3) !important;
+  font-family: 'Nunito Sans', system-ui, sans-serif !important;
+  font-weight: 700 !important;
+  border-radius: 12px !important;
+}
+
+body.game-shell-enabled .return-menu .btn:hover,
+body.game-shell-enabled .return-menu a.btn:hover {
+  filter: brightness(1.1) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ─── Footer card – cleaner font ────────────────────────────────────────── */
+body.game-shell-enabled .footer-card {
+  font-family: 'Nunito Sans', system-ui, sans-serif;
+}
+
+/* ─── App header border – matches host.css card border ──────────────────── */
+body.game-shell-enabled .app-header {
+  border-color: rgba(37, 99, 235, 0.28) !important;
+}
+
+@media (max-width: 640px) {
+  body.game-shell-enabled .title-block h1,
+  body.game-shell-enabled .header-main h1 {
+    font-size: 1.6rem !important;
+  }
 }
