@@ -849,8 +849,10 @@
   }
 
   async function openAI(url){
-    if (!elPrompt.value.trim()) await buildAndCopyPrompt();
-    window.open(url, '_blank');
+    // Open immediately (user-gesture context) so popup blockers do not interfere
+    const win = window.open(url, '_blank');
+    if (!win && elStatus) elStatus.textContent = '⚠️ Pop-up blocked – allow pop-ups for this site, then click again.';
+    if (!elPrompt?.value?.trim()) await buildAndCopyPrompt();
   }
 
   function updateBooster(base){
@@ -865,7 +867,7 @@
     }
 
     const checks = [
-      {k:['audience','target','demographic','purpose','message','tone'], label:'Link points to audience and purpose (who it's for and what it needs to achieve).'},
+      {k:['audience','target','demographic','purpose','message','tone'], label:"Link points to audience and purpose (who it's for and what it needs to achieve)."},
       {k:['advantage','disadvantage','however','whereas','on the other hand','pros','cons'], label:'Include a balanced discussion (advantages AND disadvantages).'},
       {k:['because','so that','this means','therefore','as a result'], label:'Develop each point with impact language ("because / so that / this means").'},
       {k:['cost','budget','time','deadline','constraints','resources'], label:'Mention constraints (time, cost, resources) and how they affect decisions.'},
@@ -889,7 +891,7 @@
     const li = document.createElement('li');
     li.className = 'good';
     li.textContent = missing.length <= 2
-      ? 'You're close to Level 3. Next: add specific examples and justify each point clearly.'
+      ? "You're close to Level 3. Next: add specific examples and justify each point clearly."
       : 'Top tip: for every point, add one sentence explaining the impact on the product/campaign/user.';
     tipsEl.appendChild(li);
   }

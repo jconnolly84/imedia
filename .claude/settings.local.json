@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -v \"\\\\.js$\")",
+      "Bash(node *)",
+      "Bash(grep -v \":0$\")"
+    ]
+  }
+}
