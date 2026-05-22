@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "A QR code on the flyer that links directly to the website or trailer.",
         "A long URL printed in small text with no explanation.",
         "Only a picture of the game logo.",
-        "Text saying "Search online" with no other details."
+        "Text saying \"Search online\" with no other details."
       ],
       correctIndex: 0,
       explanation:

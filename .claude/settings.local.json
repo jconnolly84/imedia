@@ -3,7 +3,8 @@
     "allow": [
       "Bash(grep -v \"\\\\.js$\")",
       "Bash(node *)",
-      "Bash(grep -v \":0$\")"
+      "Bash(grep -v \":0$\")",
+      "Bash(python3 *)"
     ]
   }
 }
