@@ -6,7 +6,7 @@
   // data-studio-mode: unset for course hubs/lessons; 'game', 'guide', 'tools' or 'page' for shell-only pages.
   const mode = body.dataset.studioMode || '';
   const root = body.dataset.root != null ? body.dataset.root : (course === 'r093' ? '' : '../');
-  const icons = { arrow: 'ArrowRight', back: 'ArrowLeft', book: 'BookOpen', game: 'Gamepad2', pen: 'Pencil', check: 'Check', download: 'Download', login: 'LogIn', chevron: 'ChevronRight', tools: 'Wrench', external: 'ExternalLink', image: 'Image', vector: 'PenTool', voice: 'AudioLines', shield: 'ShieldCheck', sparkles: 'Sparkles', monitor: 'Monitor', type: 'Type' };
+  const icons = { arrow: 'ArrowRight', back: 'ArrowLeft', book: 'BookOpen', game: 'Gamepad2', pen: 'Pencil', check: 'Check', download: 'Download', login: 'LogIn', chevron: 'ChevronRight', tools: 'Wrench', external: 'ExternalLink', image: 'Image', vector: 'PenTool', voice: 'AudioLines', shield: 'ShieldCheck', sparkles: 'Sparkles', monitor: 'Monitor', type: 'Type', convert: 'ArrowLeftRight' };
   function icon(name) { return window.lucide.createElement(window.lucide.icons[icons[name] || 'ArrowRight'], { 'aria-hidden': 'true', 'stroke-width': 1.7 }).outerHTML; }
   function escapeHtml(value) { return String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
   document.querySelectorAll('[data-icon]').forEach(el => { el.innerHTML = icon(el.dataset.icon); });
