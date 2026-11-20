@@ -6,7 +6,7 @@
 
 /* Deep orange / blue glow to tie to 'purpose' and 'campaigns' */
 .game-card {
-  background: radial-gradient(circle at top left, #2b1f14, #141522 60%, #050309 95%);
+  background: radial-gradient(circle at top left, #2b1f14, #171f1b 60%, #050706 95%);
 }
 
 /* Shared arcade buttons */

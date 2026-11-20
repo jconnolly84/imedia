@@ -94,15 +94,24 @@
     const inWorksheet = !!(session && session.sessionId);
     const classLabel = session && (session.className || session.classCode) ? (session.className || session.classCode) : 'Open from worksheet app';
 
+    // Studio-styled pages already show the title in the header, so the bar becomes a slim status strip.
+    const studio = document.body.classList.contains('studio-game');
+    const headerTitle = header.querySelector('h1');
+    if (studio && headerTitle && !header.querySelector('.game-eyebrow')) {
+      const eyebrow = document.createElement('span');
+      eyebrow.className = 'game-eyebrow';
+      eyebrow.textContent = document.querySelector('body > .app') ? 'R093 / Revision game' : 'R093 / Exam practice';
+      headerTitle.before(eyebrow);
+    }
     const bar = document.createElement('section');
     bar.className = 'game-shell-bar';
     bar.innerHTML = `
       <div class="game-shell-panel">
-        <div class="game-shell-title">
+        ${studio && headerTitle ? '' : `<div class="game-shell-title">
           <span class="game-shell-kicker">iMedia revision arcade</span>
           <strong>${escapeHtml(getGameTitle())}</strong>
         </div>
-        <p class="game-shell-copy">${escapeHtml(getSubtitle())}</p>
+        <p class="game-shell-copy">${escapeHtml(getSubtitle())}</p>`}
         <div class="game-shell-meta">
           <div class="game-shell-chip">
             <div>
@@ -124,7 +133,7 @@
           </div>
         </div>
         <div class="game-shell-links">
-          <a class="game-shell-link primary" href="index.html">Back to arcade</a>
+          <a class="game-shell-link primary" href="index.html#gamesCollapsible">Back to arcade</a>
           <a class="game-shell-link secondary" href="https://imediagenius.web.app/" target="_blank" rel="noopener noreferrer">Open worksheet app</a>
         </div>
       </div>
@@ -148,7 +157,7 @@
           <p>Take on more arcade challenges, sharpen your R093 knowledge, and push your class score even higher.</p>
         </div>
         <div class="game-shell-links" style="margin-top:0;">
-          <a class="game-shell-link primary" href="index.html">Return to arcade</a>
+          <a class="game-shell-link primary" href="index.html#gamesCollapsible">Return to arcade</a>
           <a class="game-shell-link secondary" href="https://imediagenius.web.app/" target="_blank" rel="noopener noreferrer">Worksheet app</a>
         </div>
       </div>`;

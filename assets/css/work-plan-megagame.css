@@ -2,7 +2,7 @@
 
 .game-card {
   margin-top: 1.5rem;
-  background: radial-gradient(circle at top left, #1b2336, #070a11 55%, #030308 90%);
+  background: radial-gradient(circle at top left, #222f29, #0a0e0c 55%, #050606 90%);
   border-radius: 18px;
   padding: 1.25rem 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -17,7 +17,7 @@
   flex-wrap: wrap;
   gap: 0.5rem 1.25rem;
   font-size: 0.9rem;
-  color: #d6ddff;
+  color: #def7f2;
   margin-bottom: 0.75rem;
 }
 
@@ -48,13 +48,13 @@
 
 #timerLabel {
   font-size: 0.85rem;
-  color: #9ba5d2;
+  color: #abc2b6;
   margin-bottom: 0.3rem;
 }
 
 /* Main question card */
 .question-card {
-  background: radial-gradient(circle at top, #151d33, #090c18 60%, #05050c 100%);
+  background: radial-gradient(circle at top, #1e2a24, #0e1310 60%, #070a09 100%);
   border-radius: 18px;
   padding: 1.1rem 1.2rem 1.2rem;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -74,7 +74,7 @@
 /* Stage intro text */
 .stage-intro {
   font-size: 0.92rem;
-  color: #9fb6ff;
+  color: #b2ece0;
   margin-bottom: 0.45rem;
 }
 
@@ -108,8 +108,8 @@
   border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   padding: 0.7rem 0.85rem;
-  background: rgba(10, 16, 38, 0.95);
-  color: #f4f7ff;
+  background: rgba(20, 28, 24, 0.95);
+  color: #f6fdfb;
   font-size: 0.95rem;
   cursor: pointer;
   transition:
@@ -158,7 +158,7 @@
   font-size: 0.84rem;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: #9ba5c9;
+  color: #a6beb2;
 }
 
 /* Score pop animation */
@@ -196,7 +196,7 @@
 /* Stage complete / game over panels for this page */
 .game-over {
   margin-top: 1.5rem;
-  background: radial-gradient(circle at top, #1a2233, #070a11 60%, #030307 100%);
+  background: radial-gradient(circle at top, #202d27, #0a0e0c 60%, #040605 100%);
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 20px 32px rgba(0, 0, 0, 0.6);

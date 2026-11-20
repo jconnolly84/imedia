@@ -6,13 +6,13 @@
 
 /* Neon social palette – purple/blue gradient for the arena */
 .game-card {
-  background: radial-gradient(circle at top left, #221437, #0f1630 55%, #050613 95%);
+  background: radial-gradient(circle at top left, #221437, #1a2520 55%, #0a0e0c 95%);
 }
 
 /* Shared arcade buttons */
 .answer-btn.correct {
-  background: linear-gradient(135deg, #25375f, #3e6ad9);
-  border-color: rgba(120, 190, 255, 0.9);
+  background: linear-gradient(135deg, #374d42, #64d8c1);
+  border-color: rgba(147, 228, 212, 0.9);
 }
 
 .answer-btn.wrong {

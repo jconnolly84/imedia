@@ -1,14 +1,14 @@
 :root {
-  --bg: #050716;
-  --bg2: #181b3a;
-  --card-bg: #151b2c;
+  --bg: #111814;
+  --bg2: #223029;
+  --card-bg: #1b2621;
   --accent: #32d47b;
-  --accent2: #04b4ff;
+  --accent2: #64d8c1;
   --accent-soft: rgba(50, 212, 123, 0.18);
   --danger: #ff4d6a;
-  --text: #f5f7ff;
-  --muted: #9aa4c6;
-  --border: #232a3f;
+  --text: #f7fdfc;
+  --muted: #b7c4ba;
+  --border: #293931;
   --shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
   --radius-lg: 18px;
 }
@@ -22,7 +22,7 @@
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: radial-gradient(circle at top, #3c1e6e 0, #050814 45%, #000 100%);
+  background: radial-gradient(circle at top, #3c1e6e 0, #111814 45%, #000 100%);
   background-size: 200% 200%;
   animation: bgShift 18s ease-in-out infinite;
   color: var(--text);
@@ -55,7 +55,7 @@ body {
   font-size: 2.3rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  text-shadow: 0 0 18px rgba(4, 180, 255, 0.6);
+  text-shadow: 0 0 18px rgba(100, 216, 193, 0.6);
 }
 
 .subtitle {
@@ -69,7 +69,7 @@ body {
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
   padding: 16px 18px;
-  box-shadow: var(--shadow), 0 0 25px rgba(4, 180, 255, 0.18);
+  box-shadow: var(--shadow), 0 0 25px rgba(100, 216, 193, 0.18);
   backdrop-filter: blur(10px);
 }
 
@@ -93,7 +93,7 @@ body {
 
 .field-row input,
 .field-row select {
-  background: #050815;
+  background: #111814;
   border-radius: 999px;
   border: 1px solid var(--border);
   color: var(--text);
@@ -112,7 +112,7 @@ body {
   border-radius: 999px;
   border: 1px solid transparent;
   padding: 8px 18px;
-  background: #1f2740;
+  background: #283730;
   color: var(--text);
   font-size: 0.95rem;
   cursor: pointer;
@@ -121,7 +121,7 @@ body {
 
 .btn.primary {
   background: linear-gradient(135deg, var(--accent), var(--accent2));
-  color: #050814;
+  color: #111814;
   font-weight: 600;
   box-shadow: 0 12px 22px rgba(0,0,0,0.6), 0 0 20px rgba(50,212,123,0.6);
 }
@@ -159,10 +159,10 @@ body {
 .question-card {
   margin-top: 4px;
   border-radius: var(--radius-lg);
-  border: 1px solid #243055;
+  border: 1px solid #33463d;
   padding: 14px 14px 10px;
   background: radial-gradient(circle at top left, rgba(50,212,123,0.10), rgba(0,0,0,0.9));
-  box-shadow: 0 0 18px rgba(4, 180, 255, 0.2);
+  box-shadow: 0 0 18px rgba(100, 216, 193, 0.2);
   position: relative;
   overflow: hidden;
 }
@@ -180,8 +180,8 @@ body {
 
 .answer-btn {
   border-radius: 999px;
-  border: 1px solid #283354;
-  background: #050815;
+  border: 1px solid #34433b;
+  background: #111814;
   padding: 9px 13px;
   text-align: left;
   font-size: 0.9rem;
@@ -196,7 +196,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, rgba(4,180,255,0.4), rgba(50,212,123,0.4));
+  background: linear-gradient(120deg, rgba(100, 216, 193, 0.4), rgba(50,212,123,0.4));
   opacity: 0;
   mix-blend-mode: screen;
   transition: opacity 0.18s ease;
@@ -204,8 +204,8 @@ body {
 
 .answer-btn:hover {
   border-color: var(--accent);
-  background: #0c1125;
-  box-shadow: 0 0 14px rgba(4,180,255,0.35);
+  background: #1a231e;
+  box-shadow: 0 0 14px rgba(100, 216, 193, 0.35);
 }
 
 .answer-btn:hover::before {
@@ -259,7 +259,7 @@ body {
 .leaderboard-tabs {
   display: inline-flex;
   border-radius: 999px;
-  background: rgba(5, 8, 21, 0.9);
+  background: rgba(17, 24, 20, 0.9);
   padding: 2px;
 }
 
@@ -296,8 +296,8 @@ body {
 
 .leaderboard-table {
   border-radius: 12px;
-  border: 1px solid #232a3f;
-  background: #050815;
+  border: 1px solid #293931;
+  background: #111814;
   padding: 8px;
   max-height: 260px;
   overflow: auto;
@@ -330,13 +330,13 @@ body {
 @keyframes flashCorrect {
   0% { box-shadow: 0 0 0 rgba(50,212,123,0.9); }
   50% { box-shadow: 0 0 30px rgba(50,212,123,0.9); }
-  100% { box-shadow: 0 0 18px rgba(4,180,255,0.2); }
+  100% { box-shadow: 0 0 18px rgba(100, 216, 193, 0.2); }
 }
 
 @keyframes flashWrong {
   0% { box-shadow: 0 0 0 rgba(255,77,106,0.9); }
   50% { box-shadow: 0 0 30px rgba(255,77,106,0.9); }
-  100% { box-shadow: 0 0 18px rgba(4,180,255,0.2); }
+  100% { box-shadow: 0 0 18px rgba(100, 216, 193, 0.2); }
 }
 
 @media (max-width: 720px) {
@@ -366,9 +366,9 @@ body {
   flex: 1;
   height: 6px;
   border-radius: 999px;
-  background: rgba(5, 8, 21, 0.9);
+  background: rgba(17, 24, 20, 0.9);
   overflow: hidden;
-  box-shadow: 0 0 10px rgba(4,180,255,0.5) inset;
+  box-shadow: 0 0 10px rgba(100, 216, 193, 0.5) inset;
 }
 
 #timerBar {
@@ -386,7 +386,7 @@ body {
 
 @keyframes timerGlow {
   0% { box-shadow: 0 0 6px rgba(50,212,123,0.5); }
-  50% { box-shadow: 0 0 18px rgba(4,180,255,0.95); }
+  50% { box-shadow: 0 0 18px rgba(100, 216, 193, 0.95); }
   100% { box-shadow: 0 0 6px rgba(50,212,123,0.5); }
 }
 
@@ -399,7 +399,7 @@ body {
   font-weight: 700;
   color: #9fffd2;
   pointer-events: none;
-  text-shadow: 0 0 12px rgba(4,180,255,0.9);
+  text-shadow: 0 0 12px rgba(100, 216, 193, 0.9);
   opacity: 0;
 }
 

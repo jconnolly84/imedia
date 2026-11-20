@@ -6,7 +6,7 @@
 
 /* Custom gradient for this game – purple/blue highlights */
 .game-card {
-  background: radial-gradient(circle at top left, #221a36, #0e1230 60%, #05081a 95%);
+  background: radial-gradient(circle at top left, #222e28, #1a241f 60%, #0d1210 95%);
 }
 
 /* Correct answers: gentle purple‑green mix */

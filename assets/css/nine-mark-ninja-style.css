@@ -2,17 +2,17 @@
 /* 9-Mark Ninja – High Contrast, Site-Safe Overrides */
 
 :root {
-  --bg: #050716;
-  --bg-gradient: radial-gradient(circle at top, #0b4a5f 0, #050716 45%, #000 100%);
+  --bg: #111814;
+  --bg-gradient: radial-gradient(circle at top, #2d3d35 0, #111814 45%, #000 100%);
 
-  --card-bg: #0d1128;
-  --border: #3b4364;
+  --card-bg: #161f1a;
+  --border: #435c50;
 
   --text-main: #ffffff;
-  --text-muted: #d6d9f0;
+  --text-muted: #dfe7e3;
 
-  --accent: #4dc9ff;
-  --accent-strong: #009dff;
+  --accent: #71dbc6;
+  --accent-strong: #64d8c1;
 
   --correct: #3ddc84;
   --wrong: #ff4d5e;
@@ -77,11 +77,11 @@ body {
 
 .btn {
   border-radius: 999px;
-  border: 1px solid #252c40;
+  border: 1px solid #34433b;
   padding: 8px 18px;
   font-size: 0.9rem;
   cursor: pointer;
-  background: #141a33;
+  background: #222d27;
   color: var(--text-main);
   transition: background 0.2s ease, transform 0.1s ease;
 }
@@ -89,17 +89,17 @@ body {
 .btn.primary {
   background: linear-gradient(135deg, var(--accent), var(--accent-strong));
   border-color: transparent;
-  color: #02040a;
+  color: #050706;
   font-weight: 600;
 }
 
 .btn.secondary {
-  background: #111528;
+  background: #18211c;
 }
 
 .btn:hover {
   transform: translateY(-2px);
-  background: #1b2344;
+  background: #283730;
 }
 
 .btn:active {
@@ -136,7 +136,7 @@ body {
   display: inline-block;
   padding: 4px 12px;
   border-radius: 999px;
-  background: #141a33 !important;
+  background: #222d27 !important;
   color: #ffffff !important;
   font-size: 0.8rem;
 }
@@ -145,7 +145,7 @@ body {
 
 .nine-meter-bar {
   height: 12px;
-  background: #1f294a;
+  background: #2c3d35;
   border-radius: 999px;
   overflow: hidden;
 }
@@ -164,7 +164,7 @@ body {
   margin-top: 6px;
   padding: 4px 10px;
   border-radius: 999px;
-  background: #141a33 !important;
+  background: #222d27 !important;
   color: #ffffff !important;
   font-size: 0.78rem;
 }
@@ -188,8 +188,8 @@ body {
   margin: 0.45rem 0;
   padding: 12px;
   border-radius: 10px;
-  border: 2px solid #252c40;
-  background: #141a33;
+  border: 2px solid #34433b;
+  background: #222d27;
   color: #ffffff;
   cursor: pointer;
   transition: border-color 0.2s ease, background 0.2s ease;
@@ -197,12 +197,12 @@ body {
 
 .mcq-option:hover {
   border-color: var(--accent);
-  background: #1b2344;
+  background: #283730;
 }
 
 .mcq-option.selected {
   border-color: var(--accent-strong) !important;
-  background: #1d3770 !important;
+  background: #3b5247 !important;
   color: #ffffff !important;
 }
 
@@ -230,8 +230,8 @@ body {
 .nine-card .pill {
   padding: 6px 12px;
   border-radius: 999px;
-  border: 2px solid #252c40;
-  background: #151a33;
+  border: 2px solid #34433b;
+  background: #222d27;
   color: #ffffff;
   cursor: pointer;
   font-size: 0.85rem;
@@ -239,12 +239,12 @@ body {
 }
 
 .nine-card .pill:hover {
-  background: #1e2647;
+  background: #2a3b33;
   border-color: var(--accent);
 }
 
 .nine-card .pill.selected {
-  background: #1d3770;
+  background: #3b5247;
   border-color: var(--accent-strong);
 }
 
@@ -263,8 +263,8 @@ body {
   min-height: 100px;
   padding: 12px;
   border-radius: 10px;
-  border: 2px dashed #3b4364;
-  background: #131731;
+  border: 2px dashed #435c50;
+  background: #1d2722;
   color: #ffffff;
 }
 
@@ -273,14 +273,14 @@ body {
   margin: 4px;
   padding: 5px 9px;
   border-radius: 6px;
-  background: #1c2244 !important;
-  border: 1px solid #303659 !important;
+  background: #283830 !important;
+  border: 1px solid #3a4f45 !important;
   color: #ffffff !important;
   cursor: pointer;
 }
 
 .sentence-chip:hover {
-  background: #273061;
+  background: #394f44;
 }
 
 .sentence-chip.used {

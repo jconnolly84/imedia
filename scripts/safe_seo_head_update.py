@@ -6,7 +6,7 @@ from pathlib import Path
 
 BASE_URL = "https://imediagenius.co.uk"
 SITE_NAME = "iMedia Genius"
-TODAY = "2026-04-19"
+TODAY = __import__("datetime").date.today().isoformat()
 
 NOINDEX_PAGES = {
     "markable-mini-exam-marking-desk.html",
@@ -59,7 +59,8 @@ def ascii_clean(value: str) -> str:
     }
     for old, new in replacements.items():
         value = value.replace(old, new)
-    value = "".join(ch for ch in value if ord(ch) < 128)
+    # Keep accented letters (mise-en-scène, café); drop other non-ASCII symbols.
+    value = "".join(ch for ch in value if ord(ch) < 128 or ch.isalpha())
     return " ".join(value.split())
 
 
@@ -286,6 +287,22 @@ def update_sitemap(root: Path) -> None:
             f"    <priority>{priority}</priority>\n"
             "  </url>\n"
         )
+
+    # Coursework, Dreamweaver guide and tools pages. Retired redirect stubs are skipped.
+    sections = [("r094", "0.8"), ("r097", "0.8"), ("r097-dreamweaver", "0.7"),
+                ("r097-dreamweaver/pages", "0.6"), ("tools", "0.8")]
+    for folder, priority in sections:
+        for path in sorted((root / folder).glob("*.html")):
+            if 'http-equiv="refresh"' in path.read_text(encoding="utf-8", errors="ignore"):
+                continue
+            entries.append(
+                "  <url>\n"
+                f"    <loc>{BASE_URL}/{folder}/{path.name}</loc>\n"
+                f"    <lastmod>{TODAY}</lastmod>\n"
+                "    <changefreq>weekly</changefreq>\n"
+                f"    <priority>{priority}</priority>\n"
+                "  </url>\n"
+            )
 
     xml = (
         '<?xml version="1.0" encoding="utf-8"?>\n'

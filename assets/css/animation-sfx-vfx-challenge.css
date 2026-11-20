@@ -6,7 +6,7 @@
 
 /* Slightly different gradient for this arena */
 .game-card {
-  background: radial-gradient(circle at top left, #1a243a, #060a14 60%, #030308 95%);
+  background: radial-gradient(circle at top left, #23312a, #0b0f0d 60%, #050606 95%);
 }
 
 /* Emphasise correct / wrong answers with stronger colours */

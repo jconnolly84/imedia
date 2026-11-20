@@ -6,7 +6,7 @@
 
 /* Slightly cooler gradient for segmentation arena */
 .game-card {
-  background: radial-gradient(circle at top left, #1c293f, #081025 65%, #04050b 95%);
+  background: radial-gradient(circle at top left, #26352e, #131a17 65%, #060908 95%);
 }
 
 .answer-btn.correct {

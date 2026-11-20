@@ -1,0 +1,287 @@
+/* Studio skin for the R093 games and exam tools.
+   Loaded after each game's own CSS and game-shell.css. The game engines keep their markup and
+   behaviour; this layer re-points their shared colour tokens at the studio palette and frames
+   each game as a dark "stage" beneath the shared studio navigation. */
+
+body.studio-game {
+  /* Shared tokens used across the game stylesheets */
+  --bg: #151d19;
+  --bg2: #1b2520;
+  --bg-gradient: #151d19;
+  --card-bg: #1d2722;
+  --card-soft: #232f29;
+  --border: #34433b;
+  --border-soft: #2c3933;
+  --bucket-border: #3e5046;
+  --bucket-border-active: #e5f570;
+  --text: #f2f5ee;
+  --text-main: #f2f5ee;
+  --muted: #b7c4ba;
+  --text-muted: #b7c4ba;
+  --muted-soft: #93a399;
+  --accent: #e5f570;
+  --accent-strong: #d6eb4c;
+  --accent2: #8be0d0;
+  --accent-soft: rgba(229, 245, 112, 0.14);
+  --correct: #63d69c;
+  --correct-soft: rgba(99, 214, 156, 0.16);
+  --wrong: #ff8a75;
+  --danger: #ff8a75;
+  --shadow: none;
+  --radius-lg: 10px;
+  /* game-shell.css tokens */
+  --shell-bg-1: #151d19;
+  --shell-bg-2: #151d19;
+  --shell-card: #1d2722;
+  --shell-border: #34433b;
+  --shell-text: #f2f5ee;
+  --shell-muted: #b7c4ba;
+  --shell-accent: #e5f570;
+  --shell-accent-2: #8be0d0;
+  --shell-shadow: none;
+  --stage: #151d19;
+  --paper: #f5f6f3;
+
+  display: block !important;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0 0 8px !important;
+  background: var(--paper) !important;
+  animation: none !important;
+  color: var(--text);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  line-height: 1.55;
+}
+body.studio-game *, body.studio-game *::before, body.studio-game *::after { letter-spacing: 0 !important; }
+
+/* The stage: one dark, calm surface for every game */
+body.studio-game > .app,
+body.studio-game > main.app,
+body.studio-game > .page,
+body.studio-game > .container {
+  width: calc(100% - 64px);
+  max-width: 1216px;
+  margin: 0 auto;
+  padding: 32px 32px 28px;
+  border-radius: 10px;
+  background:
+    radial-gradient(ellipse 60% 220px at 100% 0%, rgba(139, 224, 208, 0.10), transparent 70%),
+    radial-gradient(ellipse 50% 200px at 0% 0%, rgba(229, 245, 112, 0.08), transparent 70%),
+    var(--stage);
+  color: var(--text);
+  box-shadow: none;
+}
+
+/* Header: left aligned, studio type, highlighted game name */
+body.studio-game .app-header,
+body.studio-game .app > header {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0;
+  box-shadow: none !important;
+  padding: 0 0 4px !important;
+  margin: 0;
+  text-align: left;
+}
+body.studio-game .logo-wrap, body.studio-game .title-block, body.studio-game .header-main { text-align: left; justify-content: flex-start; align-items: flex-start; }
+body.studio-game .game-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px; margin: 0 0 14px;
+  font: 700 11px/1.4 'DM Sans', sans-serif; text-transform: uppercase; color: var(--accent);
+}
+body.studio-game .game-eyebrow::before { content: ''; width: 8px; height: 8px; background: currentColor; }
+body.studio-game .app-header h1,
+body.studio-game .app > header h1,
+body.studio-game .header-main h1,
+body.studio-game > .container > h1 {
+  display: block;
+  margin: 0 0 12px;
+  font: 700 46px/1.05 'Space Grotesk', system-ui, sans-serif !important;
+  text-transform: none !important;
+  text-shadow: none !important;
+  text-align: left;
+  color: #fff !important;
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+body.studio-game .app-header h1 span,
+body.studio-game .app > header h1 span,
+body.studio-game .header-main h1 span {
+  color: #1d241f !important;
+  -webkit-text-fill-color: #1d241f !important;
+  background: var(--accent) !important;
+  padding: 0 6px;
+  text-shadow: none !important;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+body.studio-game .subtitle,
+body.studio-game .app-header > p,
+body.studio-game .app > header > p {
+  margin: 0 0 6px !important;
+  max-width: 720px;
+  text-align: left !important;
+  font-size: 15px !important;
+  color: var(--muted) !important;
+}
+body.studio-game .subtitle strong { color: var(--accent) !important; }
+
+/* Status strip from game-shell.js */
+body.studio-game .game-shell-bar { grid-template-columns: minmax(0, 1fr) 300px; gap: 12px; margin: 22px 0 22px; }
+body.studio-game .game-shell-panel {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: none;
+  padding: 16px 18px;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px;
+}
+body.studio-game .game-shell-meta { margin: 0; gap: 8px; }
+body.studio-game .game-shell-chip { background: transparent; border: 0; border-left: 2px solid var(--accent); border-radius: 0; padding: 0 16px 0 10px; }
+body.studio-game .game-shell-chip:nth-child(2) { border-color: var(--accent2); }
+body.studio-game .game-shell-chip:nth-child(3) { border-color: #ff927c; }
+body.studio-game .game-shell-chip-label { color: var(--muted-soft); font-size: 10px; text-transform: uppercase; }
+body.studio-game .game-shell-chip-value { color: var(--text); font-size: 13px; font-weight: 700; }
+body.studio-game .game-shell-links { margin: 0; gap: 8px; }
+body.studio-game .game-shell-link,
+body.studio-game .game-shell-link.primary,
+body.studio-game .game-shell-link.secondary {
+  min-height: 40px; padding: 9px 15px; border-radius: 5px; font-size: 13px; font-weight: 700;
+  box-shadow: none; transform: none;
+}
+body.studio-game .game-shell-link.primary { background: var(--accent) !important; color: #1d241f !important; border: 1px solid var(--accent) !important; }
+body.studio-game .game-shell-link.secondary { background: transparent !important; color: var(--text) !important; border: 1px solid var(--border) !important; }
+body.studio-game .game-shell-link:hover { transform: translateY(-1px); }
+body.studio-game .game-shell-score-card { display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; align-items: center; }
+body.studio-game .game-shell-score-card > div:first-child { display: contents; }
+body.studio-game .game-shell-score-card .game-shell-chip-label { grid-column: 1; grid-row: 1; }
+body.studio-game .game-shell-score-value { grid-column: 1; grid-row: 2; font: 700 34px/1 'Space Grotesk', sans-serif; color: var(--accent); margin: 0; }
+body.studio-game .game-shell-score-note { grid-column: 2; grid-row: 1 / span 2; margin: 0; font-size: 12px; line-height: 1.45; color: var(--muted); }
+body.studio-game .game-shell-callout { display: none; }
+
+/* Cards, panels and controls inside the stage */
+body.studio-game .card,
+body.studio-game .shared-game-card,
+body.studio-game .main-layout,
+body.studio-game .nine-card,
+body.studio-game .setup-card,
+body.studio-game .game-card,
+body.studio-game .footer-card,
+body.studio-game .leaderboard-card,
+body.studio-game #leaderboardContainerCard {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}
+body.studio-game .app-header.card, body.studio-game .app-header .card.control-bar { background: var(--card-bg) !important; }
+body.studio-game h2, body.studio-game h3 { font-family: 'Space Grotesk', system-ui, sans-serif; color: var(--text); text-transform: none; text-shadow: none; }
+body.studio-game .btn,
+body.studio-game button.btn,
+body.studio-game a.btn {
+  border-radius: 5px !important;
+  box-shadow: none !important;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-weight: 700;
+  text-transform: none;
+}
+body.studio-game .btn.primary,
+body.studio-game .btn-primary,
+body.studio-game button.primary {
+  background: var(--accent) !important;
+  color: #1d241f !important;
+  border: 1px solid var(--accent) !important;
+}
+body.studio-game .btn.secondary,
+body.studio-game .btn-secondary,
+body.studio-game a.btn.secondary,
+body.studio-game .return-menu a.btn.secondary,
+body.studio-game .shared-game-footer-actions a.btn.secondary {
+  background: transparent !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+}
+body.studio-game .btn:hover, body.studio-game a.btn:hover { filter: brightness(1.06); transform: translateY(-1px); }
+body.studio-game select,
+body.studio-game input[type="text"],
+body.studio-game input[type="number"],
+body.studio-game textarea {
+  background: #111814 !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 5px !important;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+body.studio-game select option { background: #111814; color: var(--text); }
+body.studio-game :focus-visible { outline: 3px solid var(--accent2); outline-offset: 3px; }
+body.studio-game .choice-btn.correct { background: rgba(99, 214, 156, 0.18) !important; border-color: var(--correct) !important; }
+body.studio-game .choice-btn.wrong { background: rgba(255, 138, 117, 0.16) !important; border-color: var(--wrong) !important; }
+body.studio-game [id*="result"] h2, body.studio-game [id*="Result"] h2 { color: var(--text); }
+
+/* Footer band inside the stage and the legal links underneath it */
+body.studio-game .game-shell-footer {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: none;
+  margin-top: 24px;
+}
+body.studio-game .game-shell-footer strong { font-family: 'Space Grotesk', sans-serif; font-size: 18px; color: var(--text); }
+body.studio-game > footer,
+body.studio-game > .site-footer {
+  width: calc(100% - 64px);
+  max-width: 1216px;
+  margin: 20px auto 0;
+  padding: 20px 0;
+  border-top: 1px solid #d6dcd5;
+  background: transparent;
+  box-shadow: none;
+  color: #5b655e;
+  font-size: 12px;
+  text-align: left;
+}
+body.studio-game > footer .footer-links { justify-content: flex-start; gap: 18px; }
+body.studio-game > footer .footer-links a { color: #44584d !important; font-size: 12px; font-weight: 600; }
+
+/* Exam papers and marking desks share host.css/topic.css with the topic pages, so their
+   blue accents are overridden here rather than recoloured at source. */
+body.studio-game > .page > header { margin: 0; padding: 0; background: transparent; border: 0; box-shadow: none; }
+body.studio-game .topic-header .brand { gap: 0; }
+body.studio-game .topic-header .brand > img, body.studio-game .topic-header .brand-logo { display: none; }
+body.studio-game .brand-text h1 { font: 700 46px/1.05 'Space Grotesk', system-ui, sans-serif !important; color: #fff !important; margin: 0 0 12px; }
+body.studio-game .brand-text h1 .highlight {
+  color: #1d241f !important; -webkit-text-fill-color: #1d241f !important;
+  background: var(--accent) !important; border: 0 !important; padding: 0 6px; text-shadow: none !important;
+}
+body.studio-game .brand-text p { color: var(--muted) !important; font-size: 15px; }
+body.studio-game .back-link {
+  background: transparent !important; color: var(--text) !important;
+  border: 1px solid var(--border) !important; border-radius: 5px !important; box-shadow: none !important;
+}
+body.studio-game .back-link:hover { border-color: var(--accent) !important; }
+body.studio-game > .page > main {
+  background: var(--card-bg) !important; border: 1px solid var(--border) !important;
+  border-radius: 8px !important; box-shadow: none !important;
+}
+body.studio-game .pill, body.studio-game .tag, body.studio-game .chip {
+  background: rgba(229, 245, 112, 0.10) !important; color: var(--text) !important;
+  border-color: rgba(229, 245, 112, 0.24) !important;
+}
+
+@media (max-width: 900px) {
+  body.studio-game .game-shell-bar { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  body.studio-game > .app, body.studio-game > main.app, body.studio-game > .page, body.studio-game > .container,
+  body.studio-game > footer, body.studio-game > .site-footer { width: calc(100% - 32px); }
+  body.studio-game > .app, body.studio-game > main.app, body.studio-game > .page, body.studio-game > .container { padding: 22px 16px 18px; border-radius: 8px; }
+  body.studio-game .app-header h1, body.studio-game .app > header h1, body.studio-game .header-main h1, body.studio-game .brand-text h1 { font-size: 32px !important; }
+  body.studio-game .game-shell-panel { padding: 14px; }
+  /* Label + dropdown rows and the marking desks' two-column grid must wrap on a phone */
+  body.studio-game .field, body.studio-game .field-row { flex-wrap: wrap; max-width: 100%; }
+  body.studio-game .field select, body.studio-game .field-row select { min-width: 0; max-width: 100%; flex: 1 1 200px; }
+  body.studio-game .desk { grid-template-columns: minmax(0, 1fr) !important; }
+  body.studio-game .desk > *, body.studio-game > .page > main > .card { min-width: 0; }
+  body.studio-game .game-shell-chip { padding-right: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.studio-game *, body.studio-game *::before, body.studio-game *::after { animation-duration: 0.01ms !important; transition: none !important; }
+}

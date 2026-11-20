@@ -13,16 +13,15 @@
 <meta property="og:url" content="https://imediagenius.co.uk/r093-jun2025-exam.html"/>
 <meta property="og:title" content="R093 June 2025 Exam Practice | OCR Creative iMedia Mock Exam | iMedia Genius"/>
 <meta property="og:description" content="Practise the OCR Creative iMedia R093 exam with a full June 2025 style paper, timed conditions and markable answers."/>
-<meta property="og:image" content="https://imediagenius.co.uk/img/index-hero.png"/>
+<meta property="og:image" content="https://imediagenius.co.uk/assets/img/brand/social-card.jpg"/>
 <meta property="og:image:alt" content="R093/01 June 2025 Full Exam for OCR Creative iMedia R093"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="R093 June 2025 Exam Practice | OCR Creative iMedia Mock Exam | iMedia Genius"/>
 <meta name="twitter:description" content="Practise the OCR Creative iMedia R093 exam with a full June 2025 style paper, timed conditions and markable answers."/>
-<meta name="twitter:image" content="https://imediagenius.co.uk/img/index-hero.png"/>
+<meta name="twitter:image" content="https://imediagenius.co.uk/assets/img/brand/social-card.jpg"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"R093 June 2025 Exam Practice | OCR Creative iMedia Mock Exam | iMedia Genius","description":"Practise the OCR Creative iMedia R093 exam with a full June 2025 style paper, timed conditions and markable answers.","url":"https://imediagenius.co.uk/r093-jun2025-exam.html","inLanguage":"en-GB","isPartOf":{"@type":"WebSite","name":"iMedia Genius","url":"https://imediagenius.co.uk"},"about":["OCR Creative iMedia","R093","Creative iMedia in the Media Industry","iMedia revision"]}</script>
 <link href="assets/css/host.css" rel="stylesheet"/>
   <link href="assets/css/topic.css" rel="stylesheet"/>
-  <link href="assets/css/nav.css" rel="stylesheet"/>
   <link href="assets/css/markable-mini-exam.css" rel="stylesheet"/>
 
 <link rel="stylesheet" href="assets/css/markable-mini-exam.css">
@@ -54,8 +53,13 @@
   </style>
   <script src="assets/js/engagement-config.js"></script>
 <link href="assets/css/game-shell.css" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/studio.css">
+<link rel="stylesheet" href="assets/css/studio-game.css">
+<script defer src="assets/js/lucide.min.js"></script>
+<script defer src="assets/js/studio.js"></script>
+<link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
 </head>
-<body class="game-shell-enabled" class="game-shell-enabled">
+<body class="game-shell-enabled studio-game" data-course="r093" data-studio-mode="game">
   <div class="container">
     <h1>R093/01 · June 2025 Full Exam</h1>
 
@@ -351,12 +355,12 @@
 
     let db, collection, addDoc, serverTimestamp;
     try {
-      const cfg = await import("./firebaseConfig.js");
+      const cfg = await import("./assets/js/firebaseConfig.js");
       db = cfg.db;
       ({ collection, addDoc, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"));
     } catch(e) {
       console.error(e);
-      alert("Firebase failed to load. Check firebaseConfig.js is in the repo root and accessible.");
+      alert("Firebase failed to load. Check assets/js/firebaseConfig.js is accessible.");
       return;
     }
 

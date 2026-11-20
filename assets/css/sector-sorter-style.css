@@ -1,15 +1,15 @@
 :root {
-  --bg: #050716;
-  --bg-gradient: radial-gradient(circle at top, #2b144f 0, #050716 45%, #000 100%);
-  --card-bg: rgba(10, 13, 32, 0.95);
+  --bg: #111814;
+  --bg-gradient: radial-gradient(circle at top, #2b144f 0, #111814 45%, #000 100%);
+  --card-bg: rgba(18, 24, 21, 0.95);
   --accent: #ffb347;
   --accent2: #ffe76b;
   --accent-soft: rgba(255, 179, 71, 0.16);
-  --border: #262b45;
-  --bucket-border: #343b5f;
+  --border: #34433b;
+  --bucket-border: #3e554a;
   --bucket-border-active: #ffb347;
-  --text: #f7f7ff;
-  --muted: #a6b0d6;
+  --text: #f9fdfc;
+  --muted: #b4c8be;
   --correct: #32d47b;
   --wrong: #ff4d6a;
   --shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
@@ -104,7 +104,7 @@ body {
 }
 
 .field select {
-  background: #050814;
+  background: #111814;
   border-radius: 999px;
   border: 1px solid var(--border);
   color: var(--text);
@@ -126,7 +126,7 @@ body {
   border-radius: 999px;
   border: 1px solid transparent;
   padding: 7px 16px;
-  background: #151a33;
+  background: #222d27;
   color: var(--text);
   font-size: 0.9rem;
   cursor: pointer;
@@ -138,7 +138,7 @@ body {
 
 .btn.primary {
   background: linear-gradient(135deg, var(--accent), var(--accent2));
-  color: #050814;
+  color: #111814;
   font-weight: 600;
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.7);
 }
@@ -180,7 +180,7 @@ body {
   padding: 10px;
   border-radius: 14px;
   border: 1px dashed var(--bucket-border);
-  background: rgba(4, 6, 20, 0.9);
+  background: rgba(10, 14, 12, 0.9);
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -201,7 +201,7 @@ body {
 .bucket {
   border-radius: 14px;
   border: 1px solid var(--bucket-border);
-  background: rgba(6, 9, 26, 0.95);
+  background: rgba(13, 19, 16, 0.95);
   padding: 8px 8px 10px;
   min-height: 120px;
   display: flex;
@@ -242,8 +242,8 @@ body {
 .token {
   border-radius: 999px;
   padding: 6px 9px;
-  background: rgba(19, 23, 52, 0.98);
-  border: 1px solid #343b5f;
+  background: rgba(30, 41, 36, 0.98);
+  border: 1px solid #3e554a;
   font-size: 0.85rem;
   cursor: grab;
   user-select: none;

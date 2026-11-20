@@ -1,15 +1,15 @@
 :root {
-  --bg: #050716;
-  --bg-gradient: radial-gradient(circle at top, #319795 0, #050716 45%, #000 100%);
-  --card-bg: rgba(12, 13, 35, 0.97);
+  --bg: #111814;
+  --bg-gradient: radial-gradient(circle at top, #319795 0, #111814 45%, #000 100%);
+  --card-bg: rgba(20, 27, 24, 0.97);
   --accent: #38b2ac;
   --accent-soft: rgba(56, 178, 172, 0.18);
   --accent2: #81e6d9;
-  --border: #262b45;
-  --border-soft: #1a1e33;
-  --text: #f6f7ff;
-  --muted: #aab1d8;
-  --muted-soft: #8a92c4;
+  --border: #34433b;
+  --border-soft: #202d27;
+  --text: #f8fdfc;
+  --muted: #b7c4ba;
+  --muted-soft: #99b5a7;
   --correct: #38a169;
   --wrong: #e53e3e;
   --shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
@@ -119,7 +119,7 @@ body {
   border-radius: var(--radius-pill);
   padding: 6px 16px;
   font-size: 0.85rem;
-  background: rgba(7, 10, 30, 0.95);
+  background: rgba(16, 21, 18, 0.95);
   border: 1px solid var(--border-soft);
   color: var(--muted);
 }
@@ -176,7 +176,7 @@ body {
   height: 36px;
   border-radius: 12px;
   border: 1px solid var(--border-soft);
-  background: rgba(7, 9, 26, 0.98);
+  background: rgba(14, 19, 16, 0.98);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -241,7 +241,7 @@ body {
   text-align: left;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-soft);
-  background: rgba(7, 9, 26, 0.98);
+  background: rgba(14, 19, 16, 0.98);
   padding: 8px 10px;
   font-size: 0.9rem;
   color: var(--text);
@@ -271,7 +271,7 @@ body {
   padding: 8px 10px;
   border-radius: var(--radius-pill);
   border: 1px solid var(--border-soft);
-  background: rgba(7, 9, 26, 0.98);
+  background: rgba(14, 19, 16, 0.98);
   color: var(--text);
   font-size: 0.9rem;
 }
@@ -286,7 +286,7 @@ body {
   margin: 6px 0 8px;
   padding: 8px 10px;
   border-radius: 10px;
-  background: rgba(7, 9, 26, 0.96);
+  background: rgba(14, 19, 16, 0.96);
   border: 1px dashed var(--border-soft);
   font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
@@ -315,7 +315,7 @@ body {
 
 .btn.primary {
   background: linear-gradient(135deg, var(--accent), var(--accent2));
-  color: #050716;
+  color: #111814;
   box-shadow: 0 12px 28px rgba(10, 148, 140, 0.7);
 }
 
@@ -381,7 +381,7 @@ body {
   color: var(--muted-soft);
   padding: 8px 10px;
   border-radius: 10px;
-  background: rgba(5, 7, 22, 0.97);
+  background: rgba(17, 24, 20, 0.97);
   border: 1px solid var(--border-soft);
 }
 

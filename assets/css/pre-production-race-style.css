@@ -1,12 +1,12 @@
 :root {
-  --bg: #050716;
-  --bg-gradient: radial-gradient(circle at top, #34527f 0, #050716 45%, #000 100%);
-  --card-bg: rgba(10, 13, 32, 0.97);
+  --bg: #111814;
+  --bg-gradient: radial-gradient(circle at top, #4b685a 0, #111814 45%, #000 100%);
+  --card-bg: rgba(18, 24, 21, 0.97);
   --accent: #7afff1;
   --accent2: #ffd36b;
-  --border: #263047;
-  --text: #f6f7ff;
-  --muted: #aab1d8;
+  --border: #34433b;
+  --text: #f8fdfc;
+  --muted: #b7c4ba;
   --correct: #32d47b;
   --wrong: #ff4d6a;
   --shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
@@ -106,7 +106,7 @@ body {
 }
 
 .field select {
-  background: #050814;
+  background: #111814;
   border-radius: 999px;
   border: 1px solid var(--border);
   color: var(--text);
@@ -125,7 +125,7 @@ body {
   padding: 7px 16px;
   font-size: 0.9rem;
   cursor: pointer;
-  background: #151a33;
+  background: #222d27;
   color: var(--text);
   transition:
     background 0.16s ease,
@@ -135,7 +135,7 @@ body {
 
 .btn.primary {
   background: linear-gradient(135deg, var(--accent), var(--accent2));
-  color: #050814;
+  color: #111814;
   font-weight: 600;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.75);
 }
@@ -160,8 +160,8 @@ body {
   justify-content: center;
   padding: 3px 8px;
   border-radius: 999px;
-  border: 1px solid #313a5c;
-  background: #050815;
+  border: 1px solid #3b5247;
+  background: #111814;
   cursor: pointer;
   font-size: 0.7rem;
   color: var(--muted);
@@ -172,7 +172,7 @@ body {
 }
 
 .btn-icon:hover {
-  background: #11162a;
+  background: #19221e;
   color: var(--text);
   box-shadow: 0 0 10px rgba(122, 255, 241, 0.5);
 }
@@ -214,8 +214,8 @@ body {
   line-height: 1.5;
   padding: 10px;
   border-radius: 12px;
-  border: 1px solid #262b45;
-  background: rgba(5, 8, 24, 0.9);
+  border: 1px solid #34433b;
+  background: rgba(17, 24, 20, 0.9);
   max-height: 210px;
   overflow-y: auto;
 }
@@ -263,8 +263,8 @@ body {
   align-items: center;
   padding: 7px 9px;
   border-radius: 12px;
-  border: 1px solid #283354;
-  background: #050815;
+  border: 1px solid #34433b;
+  background: #111814;
   font-size: 0.9rem;
   transition:
     border-color 0.16s ease,

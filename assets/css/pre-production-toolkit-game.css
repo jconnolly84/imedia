@@ -5,7 +5,7 @@
 @import url('work-plan-megagame.css');
 
 .game-card {
-  background: radial-gradient(circle at top left, #1a2e3d, #081729 65%, #03060c 95%);
+  background: radial-gradient(circle at top left, #25322c, #151c19 65%, #060908 95%);
 }
 
 .answer-btn.correct {
