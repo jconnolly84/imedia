@@ -208,7 +208,7 @@ body:not(.studio-site) > .studio-breadcrumb { color: var(--muted); }
 .studio-lesson-sidebar .studio-label { margin-top: 22px; color: var(--course-ink); }
 @media (max-height: 900px) {
   .studio-lesson-sidebar { padding-bottom: 12px; }
-  .studio-lesson-sidebar .studio-lesson-link { padding: 6px 4px; }
+  .studio-lesson-sidebar .studio-lesson-link { padding: 4px 4px; }
   .studio-lesson-sidebar .studio-label { margin-top: 14px; }
   .studio-lesson-sidebar h2 { margin-top: 10px; }
 }
