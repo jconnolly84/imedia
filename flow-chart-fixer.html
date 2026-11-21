@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Flow Chart Fixer | OCR Creative iMedia R093 Revision | iMedia Genius</title>
+<meta name="description" content="Revise flow charts for OCR Creative iMedia R093: name the symbols, match flow charts to media products and users, and fix broken flow charts."/>
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+<link rel="canonical" href="https://imediagenius.co.uk/flow-chart-fixer.html"/>
+<meta property="og:locale" content="en_GB"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="iMedia Genius"/>
+<meta property="og:url" content="https://imediagenius.co.uk/flow-chart-fixer.html"/>
+<meta property="og:title" content="Flow Chart Fixer | OCR Creative iMedia R093 Revision | iMedia Genius"/>
+<meta property="og:description" content="Name the symbols, match flow charts to media products and fix broken flow charts – R093 revision game."/>
+<meta property="og:image" content="https://imediagenius.co.uk/img/topic-36-flow-charts-hero.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Flow Chart Fixer | OCR Creative iMedia R093 Revision | iMedia Genius","description":"Revise flow charts for OCR Creative iMedia R093 with Flow Chart Fixer on iMedia Genius.","url":"https://imediagenius.co.uk/flow-chart-fixer.html","inLanguage":"en-GB","isPartOf":{"@type":"WebSite","name":"iMedia Genius","url":"https://imediagenius.co.uk"},"about":["OCR Creative iMedia","R093","Creative iMedia in the Media Industry","iMedia revision","Flow charts"]}</script>
+<link href="assets/css/document-doctor-style.css" rel="stylesheet"/>
+<link rel="icon" href="favicon.ico" sizes="any"><script src="assets/js/engagement-config.js"></script>
+<link href="assets/css/game-shell.css" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/studio.css">
+<link rel="stylesheet" href="assets/css/studio-game.css">
+<style>
+  .fcf-progress{height:6px;border-radius:99px;background:var(--border-soft,#2c3933);overflow:hidden;margin:4px 0 14px}
+  .fcf-progress span{display:block;height:100%;width:0;background:var(--accent,#e5f570);transition:width .3s}
+  .fcf-diagram{margin:14px 0 18px;padding:14px;border-radius:12px;background:#f5f6f3;border:1px solid var(--border,#34433b)}
+  .fcf-diagram[hidden]{display:none}
+  .fc-chart{display:block;width:100%;max-width:520px;height:auto;margin:0 auto}
+  .fc-shape{stroke:#202322;stroke-width:2}
+  .fc-term{fill:#e5f570}.fc-proc{fill:#ffffff}.fc-dec{fill:#ff927c}.fc-io{fill:#8be0d0}
+  .fc-blank{fill:#ffffff;stroke-dasharray:6 5}
+  .fc-hl{stroke:#c0392b;stroke-width:4}
+  .fc-label{font-family:'Space Grotesk','DM Sans',system-ui,sans-serif;font-weight:700;fill:#202322}
+  .fc-line{fill:none;stroke:#202322;stroke-width:2.5}
+  .fc-arrowhead{fill:#202322}
+  .fc-edge-label{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;fill:#58625e}
+  .answers .answer-btn{display:block;width:100%;text-align:left;margin:0 0 10px;padding:12px 14px;border-radius:10px;
+    border:1px solid var(--border,#34433b);background:var(--card-soft,#232f29);color:var(--text,#f2f5ee);font:inherit;cursor:pointer}
+  .answers .answer-btn:hover:not(:disabled){border-color:var(--accent,#e5f570)}
+  .answers .answer-btn.correct{border-color:var(--correct,#63d69c);background:var(--correct-soft,rgba(99,214,156,.16))}
+  .answers .answer-btn.wrong{border-color:var(--wrong,#ff8a75);background:rgba(255,138,117,.14)}
+  .feedback.good{color:var(--text,#f2f5ee)}
+  .feedback.bad{color:var(--text,#f2f5ee)}
+  .key-grid{display:grid;grid-template-columns:70px 1fr;gap:8px 12px;align-items:center;margin:8px 0 14px}
+  .key-grid svg{width:70px;height:36px}
+</style>
+<script defer src="assets/js/lucide.min.js"></script>
+<script defer src="assets/js/studio.js"></script>
+<link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
+</head>
+<body class="game-shell-enabled studio-game" data-course="r093" data-studio-mode="game">
+<div class="app">
+<header class="app-header card">
+<div class="header-main">
+<div class="logo-wrap">
+</div>
+<div class="title-block">
+<h1>Flow Chart <span>Fixer</span></h1>
+<p class="subtitle">
+            Name the symbols, match flow charts to media products and their users, and fix broken flow charts – just like R093 exam questions.
+          </p>
+</div>
+</div>
+<div class="header-controls">
+<div class="field">
+<label for="modeSelect">Round:</label>
+<select id="modeSelect">
+<option value="all">Mixed – all rounds</option>
+<option value="symbols">Symbols &amp; conventions</option>
+<option value="uses">Flow charts in media</option>
+<option value="fix">Fix the flow</option>
+</select>
+</div>
+<button class="btn primary" id="newGameBtn" type="button">New Game</button>
+</div>
+</header>
+<main class="main-layout card">
+<section class="question-panel">
+<div class="hud">
+<div>Question <span id="questionNumber">0</span> / <span id="questionTotal">12</span></div>
+<div>Streak: <span id="streakDisplay">0</span></div>
+<div>Score: <span id="scoreDisplay">0</span></div>
+</div>
+<div class="fcf-progress" aria-hidden="true"><span id="progressBar"></span></div>
+<h2 id="modeLabel">Ready?</h2>
+<p class="question-text" id="questionText">
+          Choose a round and press <strong>New Game</strong> to start.
+        </p>
+<div class="fcf-diagram" id="diagram" hidden></div>
+<div class="answers" id="answersContainer"></div>
+<div class="controls-row">
+<button class="btn secondary" disabled="" id="nextQuestionBtn" type="button">Next question</button>
+</div>
+<div aria-live="polite" class="feedback" id="feedback"></div>
+</section>
+<aside class="help-panel">
+<h2>Symbol Key</h2>
+<div class="key-grid">
+<svg viewBox="0 0 70 36" aria-hidden="true"><rect class="fc-shape fc-term" x="3" y="5" width="64" height="26" rx="13"/></svg><div><strong>Terminator</strong> – start / end</div>
+<svg viewBox="0 0 70 36" aria-hidden="true"><rect class="fc-shape fc-proc" x="3" y="5" width="64" height="26" rx="3"/></svg><div><strong>Process</strong> – action or screen</div>
+<svg viewBox="0 0 70 36" aria-hidden="true"><path class="fc-shape fc-dec" d="M35 2L67 18L35 34L3 18Z"/></svg><div><strong>Decision</strong> – question with Yes / No exits</div>
+<svg viewBox="0 0 70 36" aria-hidden="true"><path class="fc-shape fc-io" d="M14 5H67L56 31H3Z"/></svg><div><strong>Input / output</strong> – data in or out</div>
+</div>
+<ul class="ref-list">
+<li><strong>Read:</strong> top → bottom or left → right.</li>
+<li><strong>Effective:</strong> standard symbols, clear labels, every route complete.</li>
+<li><strong>Use for:</strong> websites, apps, games, quizzes, kiosks.</li>
+</ul>
+<p class="hint">
+          Exam tip: when asked to <strong>improve</strong> a flow chart, say what you would change <em>and</em> why it helps the people using it.
+        </p>
+</aside>
+</main>
+<section class="card footer-card">
+<p class="hint">
+        This game supports R093 Topic 36: <a href="topic-36-flow-charts.html">Flow Charts in Media Products</a>. Use it to prepare for questions on
+        the <strong>purpose</strong>, <strong>components and conventions</strong>, <strong>users</strong> and <strong>improvement</strong> of flow charts.
+      </p>
+</section>
+
+<div class="return-menu" style="text-align:center;margin:20px 0;">
+<a class="btn secondary" href="index.html" style="display:inline-block;padding:10px 18px;background:#1a73e8;color:#fff;
+                text-decoration:none;border-radius:8px;font-weight:bold;text-decoration:none;">
+        ⬅ Return to Menu
+      </a>
+</div>
+</div>
+<script src="assets/js/flow-chart-fixer.js"></script>
+<script src="assets/js/imedia-engagement-tracker.js"></script>
+<script src="assets/js/game-score-service.js"></script>
+<script src="assets/js/game-shell.js"></script>
+
+<footer>
+<p class="footer-links">
+<a href="privacy-policy.html">Privacy Policy</a>
+<a href="cookie-notice.html">Cookie Notice</a>
+<a href="terms-of-service.html">Terms of Service</a>
+<a href="help.html">Help</a>
+</p>
+</footer>
+</body>
+</html>

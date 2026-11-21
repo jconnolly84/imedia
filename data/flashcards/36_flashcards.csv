@@ -1,0 +1,30 @@
+﻿What is a flow chart?,A diagram that shows the sequence of steps and decisions in a process.
+What is the main purpose of a flow chart in media?,"To plan how an interactive product works – its navigation, user journeys and logic – before it is built."
+Which flow chart symbol marks the start and end?,The terminator – a rounded rectangle or oval.
+What does a rectangle represent in a flow chart?,A process – an action or task to be carried out.
+What shape is the decision symbol?,A diamond.
+What should be written inside a decision symbol?,"A question, such as ""Password correct?"""
+How should the exits from a decision symbol be labelled?,"With each possible answer, usually Yes and No."
+What does a parallelogram represent in a flow chart?,Input or output – data entered by or shown to the user.
+What do the arrows (flow lines) show?,The direction of flow from one step to the next.
+In which directions should a flow chart normally be read?,Top to bottom or left to right.
+How many start points should a flow chart have?,One.
+What is a 'dead end' in a flow chart?,A route that stops without reaching an end or another step – a sign the chart is incomplete.
+Name three media products that are planned with flow charts.,"Any three from: websites, apps, video games, interactive quizzes, e-learning, kiosks, DVD menus."
+Why do web developers use flow charts?,To plan site navigation and how pages link together so users never reach a dead end.
+How do game designers and programmers use flow charts?,"To plan branching choices, levels and the logic for characters."
+Why might a client look at a flow chart?,To check and approve how the finished interactive product will work before it is built.
+Give a non-interactive use of a flow chart in the media industry.,"Setting out a process, such as an emergency procedure in a TV studio."
+Name two items of hardware used to create a hand-drawn flow chart.,"Any two from: paper, pens or pencils, a ruler or template, a whiteboard."
+Name two types of software that can be used to create a flow chart.,"Dedicated diagramming software (e.g. Visio, Lucidchart, draw.io) or the shape tools in word processing, presentation or DTP software."
+Give one advantage of creating a flow chart digitally.,"It is easy to edit, rearrange and share, and the shapes are neat and standard."
+Give one advantage of a hand-drawn flow chart.,"It is quick for early ideas, needs no software and is good for group brainstorming."
+When is a flow chart appropriate to use?,"When a product has choices, branches or logic – what happens next depends on the user."
+Why is a flow chart less suitable for planning a poster?,A poster is static with no choices or sequence – a visualisation diagram is better.
+What is the difference between a flow chart and a wireframe?,A flow chart shows how a product works (the routes and logic); a wireframe shows what each screen looks like (the layout).
+Give two features of an effective flow chart.,"Any two from: standard symbols, complete routes with no dead ends, short clear labels, a logical direction, few crossing lines, matches the client brief."
+A question has been drawn in a rectangle. How should it be improved?,Redraw it as a diamond (decision symbol) with labelled exits for each answer.
+"A ""Password correct?"" decision only has a Yes route. What is missing?",A No route – for example show an error message and let the user try again.
+How can a key improve a flow chart?,It helps users who do not know the symbols (such as the client) to understand the chart.
+What is a 'loop' in a flow chart?,A route that goes back to an earlier step – e.g. returning to a question after a wrong answer.
+In which part of R093 are flow charts covered?,Topic Area 3.3 – documents used to design and plan media products.
