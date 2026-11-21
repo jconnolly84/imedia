@@ -1,0 +1,67 @@
+/* Uplift blocks – spec checklists, deep dives, photos with credits, key terms, exam tips.
+   Shared by R093 topic pages and R094/R097 guides. Colours follow the page's course tokens. */
+.uplift { --u-ink:#202322; --u-muted:#58625e; --u-line:#d6dcd5; --u-accent:var(--course,#e5f570); --u-soft:var(--course-soft,#f0f7ce); --u-deep:var(--course-ink,#364512); }
+.uplift h2 { margin-top: 0; }
+/* On R094/R097 guide pages (no topic.css), give each uplift section its own card */
+.studio-guide .uplift, main.container > .uplift, .studio-lesson-body .uplift { background: #fff; border: 1px solid var(--u-line); border-radius: 12px; padding: 22px 24px; margin: 22px 0; }
+.studio-guide .uplift h2, main.container > .uplift h2, .studio-lesson-body .uplift h2 { font-size: 1.35rem; margin-bottom: 12px; }
+.uplift-section { margin: 0; }
+
+/* Spec checklist */
+.up-spec { background: var(--u-soft); border: 1px solid var(--u-line); border-left: 6px solid var(--u-accent); border-radius: 10px; padding: 18px 22px; }
+.up-spec h3 { margin: 0 0 4px; font-size: 1.05rem; color: var(--u-ink); }
+.up-spec p { margin: 0 0 10px; color: var(--u-muted); font-size: .92rem; }
+.up-spec ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.up-spec li { position: relative; padding-left: 28px; color: var(--u-ink); }
+.up-spec li::before { content: "✓"; position: absolute; left: 0; top: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--u-accent); color: #202322; font-size: .75rem; font-weight: 700; display: grid; place-items: center; }
+.up-spec .up-ref { display: inline-block; margin-top: 10px; font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--u-deep); }
+
+/* Deep-dive cards */
+.up-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 16px; }
+.up-card { background: #fff; border: 1px solid var(--u-line); border-radius: 12px; padding: 16px 18px; position: relative; overflow: hidden; }
+.up-card::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 5px; background: var(--u-accent); }
+.up-card h3 { margin: 6px 0 8px; font-size: 1.05rem; }
+.up-card p { margin: 0 0 8px; color: var(--u-ink); font-size: .95rem; }
+.up-card ul { margin: 0; padding-left: 18px; font-size: .93rem; }
+.up-card li { margin-bottom: 4px; }
+.up-card .up-label { display: inline-block; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; background: var(--u-soft); color: var(--u-deep); border-radius: 999px; padding: 2px 9px; }
+
+/* Photo + text feature */
+.up-feature { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 22px; align-items: center; margin-top: 18px; }
+.up-feature.reverse .up-figure { order: 2; }
+.up-figure { margin: 0; }
+.up-figure img { display: block; width: 100% !important; height: auto !important; max-width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 12px; background: #e8ece6; margin: 0; box-shadow: none; }
+.up-figure figcaption { font-size: .78rem; color: var(--u-muted); margin-top: 6px; line-height: 1.4; }
+.up-figure figcaption a { color: inherit; text-decoration: underline; }
+.up-feature h3 { margin: 0 0 8px; }
+.up-feature p { margin: 0 0 10px; }
+@media (max-width: 720px) { .up-feature { grid-template-columns: 1fr; } .up-feature.reverse .up-figure { order: 0; } }
+
+/* Key terms */
+.up-terms { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 14px 0 0; }
+.up-terms div { background: #fff; border: 1px solid var(--u-line); border-radius: 10px; padding: 10px 14px; }
+.up-terms dt { font-weight: 700; color: var(--u-ink); }
+.up-terms dd { margin: 2px 0 0; color: var(--u-muted); font-size: .92rem; }
+
+/* Exam tips & common mistakes */
+.up-tips { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 14px; }
+.up-tip { border-radius: 12px; padding: 16px 18px; }
+.up-tip h3 { margin: 0 0 8px; font-size: 1rem; display: flex; align-items: center; gap: 8px; }
+.up-tip ul { margin: 0; padding-left: 18px; }
+.up-tip li { margin-bottom: 5px; }
+.up-tip.do { background: #202322; color: #f5f6f3; }
+.up-tip.do h3 { color: #e5f570 !important; }
+.up-tip.do li, .up-tip.do p, .up-tip.do em { color: #f5f6f3 !important; }
+.up-tip.do strong, .up-tip.do b { color: #e5f570 !important; }
+.up-tip.do li::marker { color: #e5f570; }
+.up-tip.dont { background: #fff0e9; border: 1px solid #efb6a4; color: #202322; }
+.up-tip.dont h3 { color: #80341f; }
+
+/* Worked example / scenario */
+.up-scenario { margin-top: 16px; background: #fff; border: 1px dashed var(--u-deep); border-radius: 12px; padding: 16px 18px; }
+.up-scenario h3 { margin: 0 0 6px; font-size: 1rem; }
+.up-scenario p { margin: 0 0 6px; }
+
+/* Photo credits strip */
+.up-credits { font-size: .76rem; color: var(--u-muted); margin-top: 14px; }
+.up-credits a { color: inherit; }

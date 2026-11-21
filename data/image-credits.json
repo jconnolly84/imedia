@@ -1,0 +1,839 @@
+{
+  "film-crew-street": {
+    "file": "img/stock/film-crew-street.jpg",
+    "alt": "A film crew operating a professional cinema camera on a city street",
+    "caption": "Film: a crew shooting on location",
+    "by": "Lê Minh",
+    "page": "https://www.pexels.com/photo/3062541/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "tv-studio-cameras": {
+    "file": "img/stock/tv-studio-cameras.jpg",
+    "alt": "Television studio with cameras and a green screen",
+    "caption": "Television: a studio set up for broadcast",
+    "by": "SHAHBAZ ZAMAN",
+    "page": "https://www.pexels.com/photo/7865064/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "radio-show-hosts": {
+    "file": "img/stock/radio-show-hosts.jpg",
+    "alt": "Two presenters hosting a radio show with professional microphones",
+    "caption": "Radio: presenters live on air",
+    "by": "cottonbro studio",
+    "page": "https://www.pexels.com/photo/7598545/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "newspapers-stack": {
+    "file": "img/stock/newspapers-stack.jpg",
+    "alt": "A stack of folded newspapers on a wooden table",
+    "caption": "Print publishing: newspapers",
+    "by": "Suzy Hazelwood",
+    "page": "https://www.pexels.com/photo/3866816/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "phone-social-scroll": {
+    "file": "img/stock/phone-social-scroll.jpg",
+    "alt": "A person scrolling content on a smartphone",
+    "caption": "New media: on-demand content on a smartphone",
+    "by": "kaboompics",
+    "page": "https://www.pexels.com/photo/6255898/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "gamers-playing": {
+    "file": "img/stock/gamers-playing.jpg",
+    "alt": "Friends playing a video game together",
+    "caption": "Computer games: an interactive new media product",
+    "by": "Yan Krukau",
+    "page": "https://www.pexels.com/photo/9068963/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "video-camera-shoot": {
+    "file": "img/stock/video-camera-shoot.jpg",
+    "alt": "A videographer filming with a professional camera",
+    "caption": "Video: filming an interview",
+    "by": "Luis Quintero",
+    "page": "https://www.pexels.com/photo/8456858/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "music-production-desk": {
+    "file": "img/stock/music-production-desk.jpg",
+    "alt": "A music producer working at a mixing desk",
+    "caption": "Music: producing a track in a studio",
+    "by": "Edgar Gurrola",
+    "page": "https://www.pexels.com/photo/40520842/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "pyrotechnics-fire": {
+    "file": "img/stock/pyrotechnics-fire.jpg",
+    "alt": "Flames from pyrotechnic effects",
+    "caption": "SFX: practical pyrotechnic effects",
+    "by": "Banx Photography",
+    "page": "https://www.pexels.com/photo/36430493/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "green-screen-studio": {
+    "file": "img/stock/green-screen-studio.jpg",
+    "alt": "A person filmed in front of a green screen",
+    "caption": "VFX: chroma key (green screen)",
+    "by": "Javier Gonzalez",
+    "page": "https://www.pexels.com/photo/15468076/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "influencer-filming": {
+    "file": "img/stock/influencer-filming.jpg",
+    "alt": "A content creator filming with a phone and ring light",
+    "caption": "Social media: creating content for a platform",
+    "by": "Ivan S",
+    "page": "https://www.pexels.com/photo/7676470/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "web-design-laptop": {
+    "file": "img/stock/web-design-laptop.jpg",
+    "alt": "A laptop showing a website design",
+    "caption": "Websites: assets brought together on a page",
+    "by": "Pixabay",
+    "page": "https://www.pexels.com/photo/221043/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "animator-tablet": {
+    "file": "img/stock/animator-tablet.jpg",
+    "alt": "A digital artist drawing on a graphics tablet",
+    "caption": "Creative roles: an illustrator/animator at work",
+    "by": "Mikhail Nilov",
+    "page": "https://www.pexels.com/photo/7989026/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "photographer-shoot": {
+    "file": "img/stock/photographer-shoot.jpg",
+    "alt": "A photographer taking photos in a studio",
+    "caption": "Creative roles: a photographer on a shoot",
+    "by": "Vitaly Gariev",
+    "page": "https://www.pexels.com/photo/36697538/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "camera-operator": {
+    "file": "img/stock/camera-operator.jpg",
+    "alt": "A camera operator filming with a broadcast camera",
+    "caption": "Technical roles: a camera operator",
+    "by": "Caleb Oquendo",
+    "page": "https://www.pexels.com/photo/8412361/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "video-editor-timeline": {
+    "file": "img/stock/video-editor-timeline.jpg",
+    "alt": "A video editing timeline on a computer screen",
+    "caption": "Technical roles: editing in post-production",
+    "by": "Abdulkadir Emiroğlu",
+    "page": "https://www.pexels.com/photo/29505140/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "director-on-set": {
+    "file": "img/stock/director-on-set.jpg",
+    "alt": "A film director giving instructions on set",
+    "caption": "Senior roles: a director working with the crew",
+    "by": "Ron Lach",
+    "page": "https://www.pexels.com/photo/8088390/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "team-meeting-planning": {
+    "file": "img/stock/team-meeting-planning.jpg",
+    "alt": "A creative team planning around a whiteboard",
+    "caption": "Senior roles: planning and managing a project",
+    "by": "Walls.io",
+    "page": "https://www.pexels.com/photo/17724732/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "documentary-filming": {
+    "file": "img/stock/documentary-filming.jpg",
+    "alt": "A crew filming a documentary",
+    "caption": "Purpose: inform and educate",
+    "by": "Garley Gibson",
+    "page": "https://www.pexels.com/photo/18886383/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "client-meeting": {
+    "file": "img/stock/client-meeting.jpg",
+    "alt": "A designer presenting ideas to a client",
+    "caption": "Client requirements: discussing the brief",
+    "by": "RDNE Stock project",
+    "page": "https://www.pexels.com/photo/7490849/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "signing-contract": {
+    "file": "img/stock/signing-contract.jpg",
+    "alt": "A person signing a written agreement",
+    "caption": "Brief formats: a formal, written commission",
+    "by": "Pixabay",
+    "page": "https://www.pexels.com/photo/261621/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "diverse-crowd": {
+    "file": "img/stock/diverse-crowd.jpg",
+    "alt": "A diverse group of people walking in a city",
+    "caption": "Audiences are grouped by shared characteristics",
+    "by": "Tima Miroshnichenko",
+    "page": "https://www.pexels.com/photo/5560606/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "teens-phones": {
+    "file": "img/stock/teens-phones.jpg",
+    "alt": "Teenagers looking at their phones together",
+    "caption": "Segmentation: age and interests shape design",
+    "by": "kaboompics",
+    "page": "https://www.pexels.com/photo/6255981/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "focus-group": {
+    "file": "img/stock/focus-group.jpg",
+    "alt": "A group of people discussing ideas around a table",
+    "caption": "Primary research: a focus group",
+    "by": "Pavel Danilyuk",
+    "page": "https://www.pexels.com/photo/6340617/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "interview-mic": {
+    "file": "img/stock/interview-mic.jpg",
+    "alt": "Two people in an interview with a microphone",
+    "caption": "Primary research: an interview",
+    "by": "Mikhail Nilov",
+    "page": "https://www.pexels.com/photo/8872486/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "survey-tablet": {
+    "file": "img/stock/survey-tablet.jpg",
+    "alt": "A person filling in a survey on a tablet",
+    "caption": "Primary research: an online survey",
+    "by": "Jakub Zerdzicki",
+    "page": "https://www.pexels.com/photo/33349191/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "library-books": {
+    "file": "img/stock/library-books.jpg",
+    "alt": "A student researching with library books",
+    "caption": "Secondary research: books and journals",
+    "by": "Tima Miroshnichenko",
+    "page": "https://www.pexels.com/photo/6549849/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "magazines-rack": {
+    "file": "img/stock/magazines-rack.jpg",
+    "alt": "Magazines displayed on a newsstand",
+    "caption": "Secondary research: magazines and newspapers",
+    "by": "Patrick",
+    "page": "https://www.pexels.com/photo/17155075/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "film-poster-cinema": {
+    "file": "img/stock/film-poster-cinema.jpg",
+    "alt": "Film posters displayed on a cinema wall",
+    "caption": "Media codes: symbolic and written codes on a poster",
+    "by": "𝗛&𝗖𝗢",
+    "page": "https://www.pexels.com/photo/3137890/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "camera-lens-closeup": {
+    "file": "img/stock/camera-lens-closeup.jpg",
+    "alt": "Close-up of a cinema camera lens",
+    "caption": "Technical codes: camera shots, angles and movement",
+    "by": "Bruno Massao",
+    "page": "https://www.pexels.com/photo/29043650/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "film-lighting-set": {
+    "file": "img/stock/film-lighting-set.jpg",
+    "alt": "Lights set up on a film set",
+    "caption": "Technical codes: lighting intensity and position",
+    "by": "cottonbro studio",
+    "page": "https://www.pexels.com/photo/6804866/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "costume-props": {
+    "file": "img/stock/costume-props.jpg",
+    "alt": "Costumes and props on a film set",
+    "caption": "Mise-en-scene: costume and props",
+    "by": "cottonbro studio",
+    "page": "https://www.pexels.com/photo/4716557/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "foley-artist": {
+    "file": "img/stock/foley-artist.jpg",
+    "alt": "A sound engineer wearing headphones in a studio",
+    "caption": "Audio codes: dialogue, music, silence and sound effects",
+    "by": "Viet Hang Pham",
+    "page": "https://www.pexels.com/photo/33071233/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "app-interaction": {
+    "file": "img/stock/app-interaction.jpg",
+    "alt": "A hand interacting with an app on a smartphone",
+    "caption": "Interactivity: users control the product",
+    "by": "ready made",
+    "page": "https://www.pexels.com/photo/3850201/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "typography-letters": {
+    "file": "img/stock/typography-letters.jpg",
+    "alt": "Close-up of printed typography",
+    "caption": "Typography: font type, size and emphasis",
+    "by": "Ann Hannes",
+    "page": "https://www.pexels.com/photo/6480785/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "gantt-planning": {
+    "file": "img/stock/gantt-planning.jpg",
+    "alt": "A project plan with sticky notes and a calendar",
+    "caption": "Work plans: tasks, timescales and milestones",
+    "by": "Walls.io",
+    "page": "https://www.pexels.com/photo/15505431/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "mind-map-paper": {
+    "file": "img/stock/mind-map-paper.jpg",
+    "alt": "A hand-drawn mind map on paper",
+    "caption": "Mind maps: hand-drawn idea generation",
+    "by": "Jessica Lewis 🦋 thepaintedsquare",
+    "page": "https://www.pexels.com/photo/10024568/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "mood-board-wall": {
+    "file": "img/stock/mood-board-wall.jpg",
+    "alt": "A mood board with images and colour swatches",
+    "caption": "Mood boards: collecting visual inspiration",
+    "by": "phuong nguyen",
+    "page": "https://www.pexels.com/photo/7549484/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "asset-files-folder": {
+    "file": "img/stock/asset-files-folder.jpg",
+    "alt": "Organised folders of files on a computer",
+    "caption": "Asset logs: tracking every file used",
+    "by": "Zulfugar Karimov",
+    "page": "https://www.pexels.com/photo/34293528/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "script-pages": {
+    "file": "img/stock/script-pages.jpg",
+    "alt": "Pages of a printed film script",
+    "caption": "Scripts: dialogue and directions",
+    "by": "Ron Lach",
+    "page": "https://www.pexels.com/photo/8036329/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "wireframe-sketch": {
+    "file": "img/stock/wireframe-sketch.jpg",
+    "alt": "A website wireframe sketched on paper",
+    "caption": "Wireframes: planning screen layouts",
+    "by": "picjumbo.com",
+    "page": "https://www.pexels.com/photo/196644/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "street-photographer": {
+    "file": "img/stock/street-photographer.jpg",
+    "alt": "A photographer taking photos on a busy street",
+    "caption": "Recording in public places",
+    "by": "Tahir Osman",
+    "page": "https://www.pexels.com/photo/16724874/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "privacy-data-laptop": {
+    "file": "img/stock/privacy-data-laptop.jpg",
+    "alt": "A laptop with a padlock symbolising data security",
+    "caption": "Data protection: storing personal data securely",
+    "by": "Dan Nelson",
+    "page": "https://www.pexels.com/photo/4973899/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "creative-commons-art": {
+    "file": "img/stock/creative-commons-art.jpg",
+    "alt": "An artist working on an original painting",
+    "caption": "Intellectual property: protecting original work",
+    "by": "cottonbro studio",
+    "page": "https://www.pexels.com/photo/7896648/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "watermark-photo": {
+    "file": "img/stock/watermark-photo.jpg",
+    "alt": "A photographer editing images on a laptop",
+    "caption": "Using copyrighted material: permissions and licences",
+    "by": "George Milton",
+    "page": "https://www.pexels.com/photo/7014919/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "cinema-audience": {
+    "file": "img/stock/cinema-audience.jpg",
+    "alt": "An audience watching a film in a cinema",
+    "caption": "Classification: age ratings help audiences choose",
+    "by": "Tima Miroshnichenko",
+    "page": "https://www.pexels.com/photo/7991266/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "game-controller": {
+    "file": "img/stock/game-controller.jpg",
+    "alt": "A video game controller",
+    "caption": "PEGI: age ratings for games",
+    "by": "Artem Podrez",
+    "page": "https://www.pexels.com/photo/7773745/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "location-scout": {
+    "file": "img/stock/location-scout.jpg",
+    "alt": "A person checking a filming location outdoors",
+    "caption": "Location recce: checking a site before filming",
+    "by": "cottonbro studio",
+    "page": "https://www.pexels.com/photo/9910850/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "streaming-tv": {
+    "file": "img/stock/streaming-tv.jpg",
+    "alt": "A smart TV showing streaming apps in a living room",
+    "caption": "Distribution: interactive TV and streaming",
+    "by": "kaboompics",
+    "page": "https://www.pexels.com/photo/5202925/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "museum-kiosk": {
+    "file": "img/stock/museum-kiosk.jpg",
+    "alt": "A person using an interactive touch-screen kiosk",
+    "caption": "Physical platforms: interactive kiosks",
+    "by": "MedPoint 24",
+    "page": "https://www.pexels.com/photo/12203845/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "zip-files": {
+    "file": "img/stock/zip-files.jpg",
+    "alt": "Server racks storing data",
+    "caption": "Compression saves storage space and transfer time",
+    "by": "panumas nikhomkhai",
+    "page": "https://www.pexels.com/photo/37730212/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "camera-sensor-pixels": {
+    "file": "img/stock/camera-sensor-pixels.jpg",
+    "alt": "A photographer reviewing a photo",
+    "caption": "Image files: pixels, resolution and formats",
+    "by": "Jakub Zerdzicki",
+    "page": "https://www.pexels.com/photo/31313667/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "headphones-waveform": {
+    "file": "img/stock/headphones-waveform.jpg",
+    "alt": "An audio waveform in editing software",
+    "caption": "Audio files: sample rate and bit depth",
+    "by": "Pixabay",
+    "page": "https://www.pexels.com/photo/257904/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "video-render-4k": {
+    "file": "img/stock/video-render-4k.jpg",
+    "alt": "A video being edited on a high-resolution monitor",
+    "caption": "Moving image files: resolution and frame rate",
+    "by": "Jakub Zerdzicki",
+    "page": "https://www.pexels.com/photo/39694504/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "graphics-tablet-desk": {
+    "file": "img/stock/graphics-tablet-desk.jpg",
+    "alt": "A designer's desk with computer and graphics tablet",
+    "caption": "Hardware and software for creating documents",
+    "by": "Alex Andrews",
+    "page": "https://www.pexels.com/photo/3045245/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "flowchart-whiteboard": {
+    "file": "img/stock/flowchart-whiteboard.jpg",
+    "alt": "A flow chart drawn on a whiteboard",
+    "caption": "Flow charts: planning steps and decisions",
+    "by": "Christina Morillo",
+    "page": "https://www.pexels.com/photo/1181311/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r094-designer-desk": {
+    "file": "img/stock/r094-designer-desk.jpg",
+    "alt": "A graphic designer's tidy workspace with a computer",
+    "caption": "Organising a design project",
+    "by": "Tranmautritam",
+    "page": "https://www.pexels.com/photo/326514/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r094-brief-notes": {
+    "file": "img/stock/r094-brief-notes.jpg",
+    "alt": "A person highlighting key points on a printed document",
+    "caption": "Reading and annotating a brief",
+    "by": "Charlotte May",
+    "page": "https://www.pexels.com/photo/5965889/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r094-brainstorm": {
+    "file": "img/stock/r094-brainstorm.jpg",
+    "alt": "Sticky notes arranged during a brainstorm",
+    "caption": "Generating ideas",
+    "by": "cottonbro studio",
+    "page": "https://www.pexels.com/photo/5990265/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r094-moodboard": {
+    "file": "img/stock/r094-moodboard.jpg",
+    "alt": "A designer arranging colour samples and images",
+    "caption": "Collecting visual inspiration",
+    "by": "Yuliya Duzhaya",
+    "page": "https://www.pexels.com/photo/37471990/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r094-sketchbook": {
+    "file": "img/stock/r094-sketchbook.jpg",
+    "alt": "Logo ideas sketched in a sketchbook",
+    "caption": "Developing ideas with concept sketches",
+    "by": "MESSALA CIULLA",
+    "page": "https://www.pexels.com/photo/2324808/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r094-brand-colours": {
+    "file": "img/stock/r094-brand-colours.jpg",
+    "alt": "Branded stationery showing a consistent visual identity",
+    "caption": "Visual identity across products",
+    "by": "Leeloo The First",
+    "page": "https://www.pexels.com/photo/7598009/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r094-layout-grid": {
+    "file": "img/stock/r094-layout-grid.jpg",
+    "alt": "A designer reviewing a magazine page layout",
+    "caption": "Planning layout and conventions",
+    "by": "alleksana",
+    "page": "https://www.pexels.com/photo/4271615/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r094-stock-search": {
+    "file": "img/stock/r094-stock-search.jpg",
+    "alt": "A person searching for images on a laptop",
+    "caption": "Sourcing assets responsibly",
+    "by": "cottonbro studio",
+    "page": "https://www.pexels.com/photo/3584994/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r094-file-formats": {
+    "file": "img/stock/r094-file-formats.jpg",
+    "alt": "A designer exporting files on a computer",
+    "caption": "Exporting the right file types",
+    "by": "Ron Lach",
+    "page": "https://www.pexels.com/photo/9902807/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r094-photo-editing": {
+    "file": "img/stock/r094-photo-editing.jpg",
+    "alt": "Photo editing software showing layers and adjustments",
+    "caption": "Image editing tools and techniques",
+    "by": "Leeloo The First",
+    "page": "https://www.pexels.com/photo/7610529/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r094-asset-records": {
+    "file": "img/stock/r094-asset-records.jpg",
+    "alt": "A spreadsheet of records on a laptop",
+    "caption": "Recording licences and sources",
+    "by": "Kampus Production",
+    "page": "https://www.pexels.com/photo/7983587/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r094-print-press": {
+    "file": "img/stock/r094-print-press.jpg",
+    "alt": "A tin of magenta printing ink in a print shop",
+    "caption": "Print uses CMYK inks",
+    "by": "Samborskaya Anastasia",
+    "page": "https://www.pexels.com/photo/41088463/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r094-screens-devices": {
+    "file": "img/stock/r094-screens-devices.jpg",
+    "alt": "A design displayed on a monitor, tablet and phone",
+    "caption": "Preparing graphics for screens",
+    "by": "Bhavishya :)",
+    "page": "https://www.pexels.com/photo/15717262/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r094-review-critique": {
+    "file": "img/stock/r094-review-critique.jpg",
+    "alt": "Two designers reviewing printed design work",
+    "caption": "Reviewing a design",
+    "by": "Antoni Shkraba",
+    "page": "https://www.pexels.com/photo/6322358/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r097-teens-tablet": {
+    "file": "img/stock/r097-teens-tablet.jpg",
+    "alt": "Teenagers using a tablet together",
+    "caption": "Designing for a target audience",
+    "by": "Vitaly Gariev",
+    "page": "https://www.pexels.com/photo/36812623/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r097-idea-wall": {
+    "file": "img/stock/r097-idea-wall.jpg",
+    "alt": "A design team arranging ideas on a wall",
+    "caption": "Generating original ideas",
+    "by": "Vitaly Gariev",
+    "page": "https://www.pexels.com/photo/39204849/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r097-site-planning": {
+    "file": "img/stock/r097-site-planning.jpg",
+    "alt": "A website plan sketched in a notebook",
+    "caption": "Planning website content",
+    "by": "Tima Miroshnichenko",
+    "page": "https://www.pexels.com/photo/6614748/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r097-wireframes": {
+    "file": "img/stock/r097-wireframes.jpg",
+    "alt": "UX wireframe sketches on paper",
+    "caption": "Wireframes and storyboards for interfaces",
+    "by": "picjumbo.com",
+    "page": "https://www.pexels.com/photo/196646/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r097-testing-checklist": {
+    "file": "img/stock/r097-testing-checklist.jpg",
+    "alt": "A checklist on a clipboard next to a laptop",
+    "caption": "Planning tests with a checklist",
+    "by": "RDNE Stock project",
+    "page": "https://www.pexels.com/photo/8580716/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r097-media-assets": {
+    "file": "img/stock/r097-media-assets.jpg",
+    "alt": "A camera, microphone and laptop for creating content",
+    "caption": "Assets: images, audio and video",
+    "by": "Jakub Zerdzicki",
+    "page": "https://www.pexels.com/photo/37033702/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r097-photo-resize": {
+    "file": "img/stock/r097-photo-resize.jpg",
+    "alt": "A person editing photos on a laptop",
+    "caption": "Repurposing image assets",
+    "by": "George Milton",
+    "page": "https://www.pexels.com/photo/7014939/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r097-audio-edit": {
+    "file": "img/stock/r097-audio-edit.jpg",
+    "alt": "Audio waveforms in editing software",
+    "caption": "Repurposing audio assets",
+    "by": "Jerson Vargas",
+    "page": "https://www.pexels.com/photo/4765390/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r097-navigation-ui": {
+    "file": "img/stock/r097-navigation-ui.jpg",
+    "alt": "A mobile app showing a navigation menu",
+    "caption": "Navigation systems and interactive elements",
+    "by": "ready made",
+    "page": "https://www.pexels.com/photo/3850250/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r097-coding-screen": {
+    "file": "img/stock/r097-coding-screen.jpg",
+    "alt": "Website code on a developer's screen",
+    "caption": "Building with templates and house style",
+    "by": "Bibek ghosh",
+    "page": "https://www.pexels.com/photo/14553707/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r097-review-meeting": {
+    "file": "img/stock/r097-review-meeting.jpg",
+    "alt": "A team reviewing a website on a laptop",
+    "caption": "Reviewing fitness for purpose",
+    "by": "Mikael Blomkvist",
+    "page": "https://www.pexels.com/photo/6476253/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r097-accessibility": {
+    "file": "img/stock/r097-accessibility.jpg",
+    "alt": "A person using a keyboard to navigate a website",
+    "caption": "Accessibility features help all users",
+    "by": "IslandHopper X",
+    "page": "https://www.pexels.com/photo/16042972/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "stop-motion-clay": {
+    "file": "img/stock/stop-motion-clay.jpg",
+    "alt": "A wooden figure holding a clay model of the Earth",
+    "caption": "Animation: models and figures can be moved and shot frame by frame",
+    "by": "Mery Stockera",
+    "page": "https://www.pexels.com/photo/15402579/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "billboard-advert": {
+    "file": "img/stock/billboard-advert.jpg",
+    "alt": "A large advertising billboard in a city",
+    "caption": "Purpose: advertise/promote",
+    "by": "Markus Winkler",
+    "page": "https://www.pexels.com/photo/5102100/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "colour-palette-swatches": {
+    "file": "img/stock/colour-palette-swatches.jpg",
+    "alt": "Colour swatches spread out on a desk",
+    "caption": "Colour: palettes create mood and meaning",
+    "by": "Fiona Murray",
+    "page": "https://www.pexels.com/photo/27668992/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "storyboard-sketches": {
+    "file": "img/stock/storyboard-sketches.jpg",
+    "alt": "Hand-drawn storyboard sketches",
+    "caption": "Storyboards: planning a sequence shot by shot",
+    "by": "PNW Production",
+    "page": "https://www.pexels.com/photo/8250889/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "scanner-document": {
+    "file": "img/stock/scanner-document.jpg",
+    "alt": "Film negatives being scanned",
+    "caption": "Digitising: scanning physical material",
+    "by": "Jakub Zerdzicki",
+    "page": "https://www.pexels.com/photo/38163944/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r097-client-chat": {
+    "file": "img/stock/r097-client-chat.jpg",
+    "alt": "Two people reviewing work on a laptop together",
+    "caption": "Working through requirements together",
+    "by": "Christina Morillo",
+    "page": "https://www.pexels.com/photo/1181263/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r097-usability-test": {
+    "file": "img/stock/r097-usability-test.jpg",
+    "alt": "A person testing an app on a smartphone",
+    "caption": "Testing functionality",
+    "by": "Shoper .pl",
+    "page": "https://www.pexels.com/photo/17485352/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r094-vector-logo": {
+    "file": "img/stock/r094-vector-logo.jpg",
+    "alt": "Vector design software on a computer screen",
+    "caption": "Vector tools for logos",
+    "by": "Pavel Danilyuk",
+    "page": "https://www.pexels.com/photo/7675023/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "film-set-cables": {
+    "file": "img/stock/film-set-cables.jpg",
+    "alt": "Film equipment and cables on a set",
+    "caption": "Hazards on set: cables, lights and equipment",
+    "by": "Ron Lach",
+    "page": "https://www.pexels.com/photo/8089650/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r097-devices-range": {
+    "file": "img/stock/r097-devices-range.jpg",
+    "alt": "A website shown on a phone, tablet and laptop",
+    "caption": "Publishing for different devices",
+    "by": "Pixabay",
+    "page": "https://www.pexels.com/photo/4158/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  },
+  "r097-touch-interface": {
+    "file": "img/stock/r097-touch-interface.jpg",
+    "alt": "A hand using a touch-screen interface",
+    "caption": "Interaction styles: touch and gesture",
+    "by": "Pixabay",
+    "page": "https://www.pexels.com/photo/38271/",
+    "site": "Pexels",
+    "site_url": "https://www.pexels.com/"
+  }
+}
