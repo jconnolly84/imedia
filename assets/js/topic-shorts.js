@@ -7,7 +7,7 @@
 
   var SHORTS = {
     'topic-01-traditional-media.html': '_Pdl6jkoRAw',
-    // 'topic-02-new-media.html': 'PASTE_SHORT_ID',
+    'topic-02-new-media.html': 'O-S8ZyxyDy0',
     // 'topic-03-video-audio-music.html': 'PASTE_SHORT_ID',
     // 'topic-04-animation-sfx-vfx.html': 'PASTE_SHORT_ID',
     // 'topic-05-social-media.html': 'PASTE_SHORT_ID',
