@@ -86,11 +86,14 @@ def inject(path, p):
         anchor = re.search(r'<link rel="stylesheet" href="(\.\./)?assets/css/studio\.css">', s)
         if not anchor: raise SystemExit("no studio.css link in " + path)
         s = s[:anchor.end()] + "\n" + css + s[anchor.end():]
-    if "<!-- uplift:start -->" in s:
-        s = re.sub(r"<!-- uplift:start -->.*?<!-- uplift:end -->", lambda m: blk, s, flags=re.S)
-    elif p.get("insert_before"):
+    # Remove any existing block, then insert fresh so the position is always correct
+    s = re.sub(r"<!-- uplift:start -->.*?<!-- uplift:end -->\n?", "", s, flags=re.S)
+    if p.get("insert_before"):
         i = s.find(p["insert_before"])
         if i < 0: raise SystemExit(f"anchor {p['insert_before']!r} not found in {path}")
+        main_end = s.find("</main>")
+        if 0 <= main_end < i:   # footer sits outside <main>: keep the block inside the lesson layout
+            i = main_end
         s = s[:i] + blk + "\n" + s[i:]
     else:
         where = p.get("insert_after", "topic-overview")
