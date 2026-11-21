@@ -352,3 +352,6 @@ body:not(.studio-site) > .studio-breadcrumb { color: var(--muted); }
 /* NEA practice-resource notice (R094 / R097 / Dreamweaver guides) */
 .practice-notice { margin: 16px 0 20px; padding: 12px 16px; border: 1px solid #d6dcd5; border-left: 4px solid #b7791f; background: #fffaf0; color: #202322; border-radius: 6px; font-size: 14px; line-height: 1.5; text-align: left; }
 .practice-notice strong { color: #7a4b0c; }
+/* Save / Load / Reset on the dark AI prompt panel – readable light buttons */
+.studio-topic .ai-prompt-card .filter-btn { background: transparent !important; color: #f2f5ee !important; border: 1px solid rgba(242,245,238,.55) !important; }
+.studio-topic .ai-prompt-card .filter-btn:hover, .studio-topic .ai-prompt-card .filter-btn:focus-visible { background: rgba(229,245,112,.16) !important; border-color: #e5f570 !important; color: #fff !important; }
