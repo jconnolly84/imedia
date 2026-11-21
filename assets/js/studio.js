@@ -163,6 +163,7 @@
       details.append(summary, infographic); hero ? hero.after(details) : content.prepend(details);
     }
     const mobileSelect = select.cloneNode(true); mobileSelect.removeAttribute('id'); mobileSelect.removeAttribute('onchange'); mobileSelect.className = 'studio-topic-select'; mobileSelect.setAttribute('aria-label', 'Choose a project guide'); mobileSelect.value = current; mobileSelect.addEventListener('change', () => { location.href = mobileSelect.value; }); content.prepend(mobileSelect);
+    const practiceNotice = content.querySelector('.practice-notice'); if (practiceNotice) content.prepend(practiceNotice);
     const stage = stageFor(lesson.number);
     const evidence = document.createElement('section'); evidence.className = 'studio-evidence';
     const prompts = [
@@ -170,7 +171,7 @@
       ['Capture a meaningful before-and-after stage, including the tools or settings you used.', 'Explain why you chose that technique, format or layout for this product and audience.', 'Record where the finished asset or output is saved, with a clear filename.'],
       ['Record the expected result and the actual result, with a screenshot or other supporting evidence.', 'Explain how the result meets a requirement, or identify a specific shortcoming.', 'Suggest or make a justified improvement, then check whether it solved the problem.']
     ];
-    evidence.innerHTML = '<span class="studio-label">Evidence checkpoint</span><h2>Make your decisions visible.</h2><p>Adapt these prompts to this guide and your own assignment brief.</p><ul>' + prompts[stage].map(p => '<li>' + p + '</li>').join('') + '</ul><blockquote>“I chose ___ because my audience needs ___. This meets the brief by ___. My evidence shows ___.”</blockquote>';
+    evidence.innerHTML = '<span class="studio-label">Evidence checkpoint</span><h2>Make your decisions visible.</h2><p>Use these prompts when practising this skill.</p><ul>' + prompts[stage].map(p => '<li>' + p + '</li>').join('') + '</ul>';
     content.append(evidence);
     const controls = document.createElement('div'); controls.className = 'studio-lesson-controls';
     const previous = lessons[lesson.number - 2], next = lessons[lesson.number];

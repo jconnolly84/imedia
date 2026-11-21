@@ -348,3 +348,7 @@ body:not(.studio-site) > .studio-breadcrumb { color: var(--muted); }
 .studio-tools-band-icons img + img { margin-left: -10px; }
 .studio-tools-band-icons img:last-child { background: #24123f; }
 .studio-home .studio-tools-band { margin: 32px 0 8px; }
+
+/* NEA practice-resource notice (R094 / R097 / Dreamweaver guides) */
+.practice-notice { margin: 16px 0 20px; padding: 12px 16px; border: 1px solid #d6dcd5; border-left: 4px solid #b7791f; background: #fffaf0; color: #202322; border-radius: 6px; font-size: 14px; line-height: 1.5; text-align: left; }
+.practice-notice strong { color: #7a4b0c; }
