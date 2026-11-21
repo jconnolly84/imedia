@@ -346,7 +346,7 @@ body:not(.studio-site) > .studio-breadcrumb { color: var(--muted); }
 .studio-tools-band-icons { display: flex; flex-shrink: 0; }
 .studio-tools-band-icons img { width: 44px; height: 44px; border-radius: 22%; box-shadow: 0 0 0 3px var(--paper, #f5f6f3); }
 .studio-tools-band-icons img + img { margin-left: -10px; }
-.studio-tools-band-icons img:last-child { background: #24123f; }
+.studio-tools-band-icons img[src*="voice-studio"] { background: #24123f; }
 .studio-home .studio-tools-band { margin: 32px 0 8px; }
 
 /* NEA practice-resource notice (R094 / R097 / Dreamweaver guides) */
