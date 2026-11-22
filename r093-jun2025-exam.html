@@ -44,7 +44,6 @@
     .answer textarea{ width:100%; padding:10px; border-radius:10px; min-height:120px; }
     .mcq { display:grid; gap:8px; margin-top:8px; }
     .mcq label{ display:flex; gap:10px; align-items:flex-start; padding:8px 10px; border-radius:12px; background:rgba(255,255,255,0.03); }
-    .submit-card { margin-top:18px; padding:16px; border-radius:14px; background: rgba(255,105,180,0.08); border: 1px solid rgba(255,105,180,0.35); }
     .btn-row { display:flex; flex-wrap:wrap; gap:10px; }
     button { cursor:pointer; }
     #examLoadError { display:none; margin: 12px 0; padding: 12px; border-radius: 12px; background: rgba(255,0,0,0.12); border: 1px solid rgba(255,0,0,0.35); }
@@ -75,10 +74,6 @@
       </div>
     </div>
 
-    <div class="formrow">
-      <input id="studentName" type="text" placeholder="Student name">
-      <input id="classCode" type="text" placeholder="Class">
-    </div>
 
     <div id="examLoadError"></div>
 
@@ -86,12 +81,6 @@
 
     <section id="questions"></section>
 
-    <div class="submit-card" id="submitCard">
-      <p>When finished, click <strong>Submit for marking</strong>.</p>
-      <button id="submitAttemptBtn" style="background:#ff4fa1;color:white;border:none;padding:12px 16px;border-radius:12px;font-weight:700;">
-        Submit for marking
-      </button>
-    </div>
   </div>
 
 <script type="module">
@@ -134,9 +123,7 @@
       examId: EXAM_ID,
       savedAt: Date.now(),
       answers,
-      timeRemaining: seconds,
-      studentName: ($("studentName")?.value || "").trim(),
-      classCode: ($("classCode")?.value || "").trim()
+      timeRemaining: seconds
     };
   }
 
@@ -148,8 +135,6 @@
       if(data && typeof data === "object"){
         if(data.answers && typeof data.answers === "object") answers = data.answers;
         if(typeof data.timeRemaining === "number") seconds = data.timeRemaining;
-        if(data.studentName && $("studentName")) $("studentName").value = data.studentName;
-        if(data.classCode && $("classCode")) $("classCode").value = data.classCode;
         return true;
       }
     }catch(e){
@@ -320,9 +305,6 @@
 
     QUESTIONS.forEach((q, idx)=> container.appendChild(renderQuestion(q, idx)));
 
-    // force submit to bottom
-    const submitCard = $("submitCard");
-    if(submitCard && container.parentElement) container.parentElement.appendChild(submitCard);
   }
 
   // Timer
@@ -345,55 +327,6 @@
     timerInterval = null;
   }
 
-  async function submitToFirestore(){
-    const studentName = ($("studentName").value || "").trim();
-    const classCode = ($("classCode").value || "").trim();
-    if(!studentName || !classCode) {
-      alert("Please enter Student name and Class.");
-      return;
-    }
-
-    let db, collection, addDoc, serverTimestamp;
-    try {
-      const cfg = await import("./assets/js/firebaseConfig.js");
-      db = cfg.db;
-      ({ collection, addDoc, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"));
-    } catch(e) {
-      console.error(e);
-      alert("Firebase failed to load. Check assets/js/firebaseConfig.js is accessible.");
-      return;
-    }
-
-    const colRef = collection(db, "exams", EXAM_ID, "submissions");
-    function sanitise(v){
-      if (v === undefined) return undefined;
-      if (v === null) return null;
-      if (Array.isArray(v)){
-        const arr = v.map(sanitise).filter(x => x !== undefined);
-        return arr;
-      }
-      if (typeof v === "object"){
-        const out = {};
-        Object.keys(v).forEach(k=>{
-          const sv = sanitise(v[k]);
-          if (sv !== undefined) out[k] = sv;
-        });
-        return out;
-      }
-      return v;
-    }
-
-    const cleanAnswers = sanitise(answers) || {};
-
-    await addDoc(colRef, {
-      examId: EXAM_ID,
-      studentName,
-      classCode,
-      answers: cleanAnswers,
-      submittedAt: serverTimestamp()
-    });
-    alert("Submitted ✅");
-  }
 
   function wire(){
     $("startBtn").addEventListener("click", startTimer);
@@ -407,11 +340,6 @@
         saveSaved();
         renderAll();
       }
-    });
-
-    $("submitAttemptBtn").addEventListener("click", async ()=> {
-      try { await submitToFirestore(); }
-      catch(e) { console.error(e); alert("Submit failed. Check Firestore rules/network."); }
     });
   }
 

@@ -9,13 +9,11 @@ SITE_NAME = "iMedia Genius"
 TODAY = __import__("datetime").date.today().isoformat()
 
 NOINDEX_PAGES = {
-    "markable-mini-exam-marking-desk.html",
-    "marking-desk-jun2025.html",
+    "markable-mini-exam.html",  # redirect to 01-mini-exam.html
 }
 
 EXAM_PAGES = {
     "01-mini-exam.html",
-    "markable-mini-exam.html",
     "r093-jun2025-exam.html",
     "nine-mark-ai-trainer.html",
     "nine-mark-ninja.html",
@@ -130,18 +128,6 @@ def page_meta(filename: str, text: str) -> dict:
         "01-mini-exam.html": (
             "R093 Mini Exam | OCR Creative iMedia Exam Practice | iMedia Genius",
             "Test OCR Creative iMedia R093 knowledge with a focused mini exam built for revision, retrieval practice and exam confidence.",
-        ),
-        "markable-mini-exam.html": (
-            "Markable R093 Mini Exam | OCR Creative iMedia Practice | iMedia Genius",
-            "Complete a markable OCR Creative iMedia R093 mini exam with exam style questions and structured practice.",
-        ),
-        "markable-mini-exam-marking-desk.html": (
-            "Marking Desk Pre-Mock 01 | OCR Creative iMedia R093 | iMedia Genius",
-            "Internal marking desk for OCR Creative iMedia R093 pre-mock review.",
-        ),
-        "marking-desk-jun2025.html": (
-            "June 2025 Marking Desk | OCR Creative iMedia R093 | iMedia Genius",
-            "Internal marking desk for OCR Creative iMedia R093 June 2025 review.",
         ),
         "escape-room-r093.html": (
             "Escape Room R093 | OCR Creative iMedia Revision Game | iMedia Genius",
