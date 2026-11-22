@@ -6,6 +6,8 @@
 .studio-page .policy-card h1 { font-size: 46px; line-height: 1.05; margin: 8px 0 16px; }
 .studio-page .policy-card h1::before { content: 'iMedia Genius / Site information'; display: block; margin-bottom: 16px; font: 700 11px/1.4 'DM Sans', sans-serif; text-transform: uppercase; color: var(--course-ink); }
 .studio-page .policy-lead { font-size: 17px; color: #3f4a43; margin: 0 0 12px; max-width: 680px; }
+.studio-page .policy-updated { font-size: 13px !important; color: #6b7a70 !important; margin: 0 0 4px; }
+.studio-page .policy-card code { font-size: 13px; background: rgba(0,0,0,.05); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; }
 .studio-page .policy-card h2 { font-size: 22px; margin: 34px 0 10px; padding-top: 22px; border-top: 1px solid var(--line); }
 .studio-page .policy-card p, .studio-page .policy-card li { font-size: 15px; color: #4b5c51; }
 .studio-page .policy-card ul { padding-left: 20px; }
